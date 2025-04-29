@@ -112,11 +112,27 @@
           "soft-check-sweatshirt"
         ]
       }
+    },
+    "17459101958e382654": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_CmbgCM": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_CmbgCM"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
     "main",
     "related-products",
-    "slider_GdyTYk"
+    "slider_GdyTYk",
+    "17459101958e382654"
   ]
 }
