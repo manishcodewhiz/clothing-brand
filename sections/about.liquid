@@ -1,0 +1,43 @@
+{{ 'section-about-us.css' | asset_url | stylesheet_tag }}
+
+{% comment %} <div class="about-section">
+  <div class="page-width">
+    <div class="row">
+      {% for product_cards in shop.metaobjects.product_card.values %}
+        <div class="col-4">
+          <a href="{{ product_cards.product_link }}">
+            <div class="product-grid">
+              <div class="product-grid-block">
+                <img
+                  src="{{ product_cards.product_image | image_url }}"
+                  alt="{{ product_cards.heading_text | escape }}"
+                  loading="lazy"
+                  width="25%"
+                  height="auto"
+                >
+              </div>
+              <div class="product-grid-content">
+                <h4>{{ product_cards.heading_text }}</h4>
+                <div class="hpb-button-wrapper">
+                  <span class="hpb-button-main">{{ product_cards.button_text }}</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div> {% endcomment %}
+
+{% schema %}
+{
+  "name": "About Us",
+  "settings": [],
+  "presets": [
+    {
+      "name": "About Us"
+    }
+  ]
+}
+{% endschema %}
