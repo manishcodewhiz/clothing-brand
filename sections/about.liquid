@@ -1,6 +1,6 @@
 {{ 'section-about-us.css' | asset_url | stylesheet_tag }}
 
-{% comment %} <div class="about-section">
+<div class="about-section">
   <div class="page-width">
     <div class="row">
       {% for product_cards in shop.metaobjects.product_card.values %}
@@ -28,7 +28,7 @@
       {% endfor %}
     </div>
   </div>
-</div> {% endcomment %}
+</div>
 
 {% schema %}
 {
