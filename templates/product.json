@@ -100,10 +100,23 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "slider_GdyTYk": {
+      "type": "slider",
+      "name": "Product Slider",
+      "settings": {
+        "selected_products": [
+          "100-wool-belted-jacket",
+          "geometric-jacquard-shirt",
+          "short-t-shirt",
+          "soft-check-sweatshirt"
+        ]
+      }
     }
   },
   "order": [
     "main",
-    "related-products"
+    "related-products",
+    "slider_GdyTYk"
   ]
 }
