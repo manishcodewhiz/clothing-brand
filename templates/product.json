@@ -100,16 +100,10 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
-    },
-    "about_KhtNi4": {
-      "type": "about",
-      "name": "About Us",
-      "settings": {}
     }
   },
   "order": [
     "main",
-    "related-products",
-    "about_KhtNi4"
+    "related-products"
   ]
 }
