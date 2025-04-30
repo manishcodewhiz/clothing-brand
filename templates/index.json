@@ -88,11 +88,17 @@
           "soft-check-sweatshirt"
         ]
       }
+    },
+    "custome_video_WaBUei": {
+      "type": "custome-video",
+      "name": "Video Card",
+      "settings": {}
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
-    "slider_Tn3zY8"
+    "slider_Tn3zY8",
+    "custome_video_WaBUei"
   ]
 }
