@@ -14,9 +14,23 @@
       "disabled": true,
       "name": "Video Card",
       "settings": {}
+    },
+    "hero_section_7T7jL9": {
+      "type": "hero-section",
+      "name": "Hero Section",
+      "settings": {
+        "hero_image": "shopify://shop_images/image-2.png",
+        "heading": "Cold & flu relief, Same day delivery.",
+        "description": "<p>Get ahead of coughs, chills, and sniffles. Stock up on trusted Aussie brands like Demazin, Difflam, Betadine, and DURO TUSS.</p>",
+        "button_url": "",
+        "button_text": "Shop all products",
+        "text_url": "",
+        "text_title": "HELP ME CHOOSE"
+      }
     }
   },
   "order": [
-    "custome_video_WaBUei"
+    "custome_video_WaBUei",
+    "hero_section_7T7jL9"
   ]
 }
