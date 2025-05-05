@@ -35,10 +35,40 @@
         "page_url": "",
         "page_text": ""
       }
+    },
+    "cards_item_4BHgrE": {
+      "type": "cards-item",
+      "blocks": {
+        "card_KKyk9r": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/158772e8bc9e56d8183ad3b449dcf884904db017.png",
+            "heading": "Bestselling Moisturizer",
+            "button_url": "#",
+            "button_text": "Shop Now"
+          }
+        },
+        "card_LxbqFW": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/a8f61be4e99f97b1ff2f95dd98b40fdfa29be77a.png",
+            "heading": "Bestselling Moisturizer",
+            "button_url": "#",
+            "button_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "card_KKyk9r",
+        "card_LxbqFW"
+      ],
+      "name": "Cards Item",
+      "settings": {}
     }
   },
   "order": [
     "hero_section_7T7jL9",
-    "product_card_VXC3z8"
+    "product_card_VXC3z8",
+    "cards_item_4BHgrE"
   ]
 }
