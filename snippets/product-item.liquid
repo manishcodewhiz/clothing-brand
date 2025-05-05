@@ -64,6 +64,7 @@
       <span class="visually-hidden">{{ product.title }}</span>
     </a>
     {% if product.featured_image != blank %}
+      <a href="{{ product.url }}" class="custom-full-unstyled-link">
       <img
         src="{{ product.featured_image | image_url }}"
         width="260"
@@ -71,6 +72,7 @@
         alt="Product Image"
         loading="lazy"
       >
+      </a>
     {% else %}
       {{ 'image' | placeholder_svg_tag }}
     {% endif %}

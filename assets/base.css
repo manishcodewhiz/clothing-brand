@@ -3670,6 +3670,7 @@ body{
 }
 
 /**************** Font Family Variables  *****************/
+
 @font-face {
   font-family: "Montserrat", sans-serif;
   src: url('../assets/Montserrat-Thin.ttf') format('ttf');
