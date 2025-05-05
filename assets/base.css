@@ -2254,11 +2254,11 @@ input[type='checkbox'] {
   font-weight: 600;
 }
 
-@media (max-width: 580px){
+@media (max-width: 580px) {
   .announcement-bar__message {
-  font-size: 12px;
-  font-weight: 600;
-}
+    font-size: 12px;
+    font-weight: 600;
+  }
 }
 
 .announcement-bar-slider--fade-in-next .announcement-bar__message,
@@ -2814,7 +2814,7 @@ details[open]>.header__submenu {
 }
 
 .header__icon .svg-wrapper svg path,
-.header__icon span svg  path{
+.header__icon span svg path {
   fill: var(--white) !important;
 }
 
@@ -2822,7 +2822,7 @@ details[open]>.header__submenu {
   color: var(--secondary);
 }
 
-.menu-drawer__menu-item{
+.menu-drawer__menu-item {
   color: var(--white);
 }
 
@@ -3656,7 +3656,9 @@ ol {
 }
 
 /**************** Color Variables  *****************/
-
+body{
+  font-family: var(--font-montserrat);
+}
 :root {
   --primary: #232869;
   --secondary: #c8e4ff;
@@ -3665,12 +3667,59 @@ ol {
   --white: #ffffff;
 }
 
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url('static/Montserrat-Thin.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url('static/Montserrat-ExtraLight.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url('static/Montserrat-Light.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url('static/Montserrat-Regular.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url('static/Montserrat-Medium.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url('static/Montserrat-SemiBold.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url('static/Montserrat-Black.ttf') format('ttf');
+  font-style: normal;
+}
+
+:root {
+  --font-montserrat: "Montserrat", sans-serif;
+}
+
 p:empty {
   display: none !important;
 }
 
 h1 {
-  font-family: var(--font-Helvetica-lt-pro);
+  font-family: var(--font-montserrat);
   font-size: 70px;
   font-weight: 700;
   line-height: 75px;
@@ -3679,7 +3728,7 @@ h1 {
 }
 
 h2 {
-  font-family: var(--font-Helvetica-lt-pro);
+  font-family: var(--font-montserrat);
   font-size: 40px;
   font-weight: 700;
   line-height: 48px;
@@ -3696,7 +3745,7 @@ h6 {
 
 
 p {
-  font-family: var(--font-helvetica);
+  font-family: var(--font-montserrat);
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -3714,7 +3763,7 @@ p {
 .main-cta {
   padding: 21px 50px;
   display: inline-block;
-  font-family: var(--font-helvetica);
+  font-family: var(--font-montserrat);
   font-size: 16px;
   font-weight: 700;
   line-height: 18.4px;
