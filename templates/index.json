@@ -26,7 +26,12 @@
       "type": "product-card",
       "name": "Product Card",
       "settings": {
-        "selected_products": [],
+        "selected_products": [
+          "demazin-cold-flu-relief-day-night-48-tablets",
+          "demazin-cold-flu-relief-day-night-48-tablets-1",
+          "demazin-cold-flu-relief-day-night-48-tablets-2",
+          "demazin-cold-flu-relief-day-night-48-tablets-3"
+        ],
         "page_url": "",
         "page_text": ""
       }
