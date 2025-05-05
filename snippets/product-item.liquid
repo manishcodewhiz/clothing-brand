@@ -1,0 +1,193 @@
+<div class="product-card cstm-product-card" product-id="{{ product.selected_or_first_available_variant.id }}">
+  {% assign product_sku_last_character = product.selected_or_first_available_variant.sku | slice: -1, 1 %}
+  {% assign show_price = true %}
+  {% assign show_atc = true %}
+
+  {% if customer and customer.tags == blank %}
+    {% assign show_price = false %}
+    {% assign show_atc = false %}
+
+  {% elsif customer and customer.tags contains 'Student' or customer.tags contains 'Professional Customer No Peel' %}
+    {% if customer.tags contains 'Student' %}
+      {% if product.collections != blank %}
+        {% for product_collection in product.collections %}
+          {% if settings.retail_customer__hide_collection != blank %}
+            {% for hidden_collection in settings.retail_customer__hide_collection %}
+              {% if product_collection.handle == hidden_collection.handle %}
+                {% assign show_price = false %}
+                {% assign show_atc = false %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% else %}
+      {% if product.collections != blank %}
+        {% for product_collection in product.collections %}
+          {% if settings.pro_no_peel_customer__hide_collection != blank %}
+            {% for hidden_collection in settings.pro_no_peel_customer__hide_collection %}
+              {% if product_collection.handle == hidden_collection.handle %}
+                {% assign show_price = false %}
+                {% assign show_atc = false %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+
+  {% elsif customer and customer.tags != blank %}
+    {% if product_sku_last_character == 'P' and product.tags contains 'Professional' %}
+      {% assign show_price = false %}
+      {% assign show_atc = false %}
+    {% endif %}
+    {% if product.collections != blank %}
+      {% for product_collection in product.collections %}
+        {% if settings.retail_customer__hide_collection != blank %}
+          {% for hidden_collection in settings.retail_customer__hide_collection %}
+            {% if product_collection.handle == hidden_collection.handle %}
+              {% assign show_price = false %}
+              {% assign show_atc = false %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+
+  {% if product.tags contains 'Bestseller' %}
+    <span class="bestseller">Bestseller</span>
+  {% endif %}
+
+  <div class="img-box">
+    <a href="{{ product.url }}" class="custom-full-unstyled-link">
+      <span class="visually-hidden">{{ product.title }}</span>
+    </a>
+    {% if product.featured_image != blank %}
+      <img
+        src="{{ product.featured_image | image_url }}"
+        width="260"
+        height="260"
+        alt="Product Image"
+        loading="lazy"
+      >
+    {% else %}
+      {{ 'image' | placeholder_svg_tag }}
+    {% endif %}
+  </div>
+
+  <div class="transform-box">
+    <div class="name-box">
+      <h6>{{ product.title }}</h6>
+      <div class="d-flex">
+        {% if customer %}
+          {% if show_price %}
+            <div class="price">
+              <p>{{ product.selected_or_first_available_variant.price | money }}</p>
+              {% if product.selected_or_first_available_variant.compare_at_price != blank %}
+                <span>{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endif %}
+        <div class="star-box">
+          {% comment %}
+            <img src="{{ "star.svg" | asset_url }}" width="14" height="14" loading="lazy" alt="star">
+            <span>{% render 'okendo-reviews-product-rating-summary', product: product %}</span>
+          {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} {% if show_atc %}
+    <div class="add-box">
+      <p class="add-to-cart-error-message">
+        <span class="svg-wrapper">
+          {{ 'icon-error.svg' | inline_asset_content }}
+        </span>
+        You can't add more product to the cart as we are sold out.
+      </p>
+      <form name="customAddToCart" class="custom-add-to-card-btn custom_product_data" method="post">
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="quantity" min="1" value="1">
+        <input type="hidden" name="product-id" value="{{ product.id }}" class="product-variant-id">
+
+        <div
+          class="quantity_input_block"
+          data-product-price="{{ product.price }}"
+          product-id="{{ product.selected_or_first_available_variant.id }}"
+        >
+          <button type="button" class="quantity_button decrease-qty" id="decrease-qty">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-minus" viewBox="0 0 10 2">
+              <path fill="#000000" fill-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 1 1 0 1H1A.5.5 0 0 1 .5 1" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <input
+            class="quantity__input"
+            type="number"
+            name="quantity"
+            data-cart-quantity="0"
+            data-min="1"
+            min="1"
+            step="1"
+            value="1"
+          >
+          <button type="button" class="quantity_button increase-qty" id="increase-qty">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-plus" viewBox="0 0 10 10">
+              <path fill="#000000" fill-rule="evenodd" d="M1 4.51a.5.5 0 0 0 0 1h3.5l.01 3.5a.5.5 0 0 0 1-.01V5.5l3.5-.01a.5.5 0 0 0-.01-1H5.5L5.49.99a.5.5 0 0 0-1 .01v3.5l-3.5.01z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </form>
+      <form method="post" action="/cart/add" data-type="add-to-cart-form">
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      {% if product.variants.first.inventory_quantity > 0 %}
+        <button type="submit" name="add" class="product_submit">
+          Add to bag -
+          <span class="total_quantity_price">{{ product.selected_or_first_available_variant.price | money }}</span>
+        </button>
+      {% else %}
+        <button class="product_submit" disabled>Sold out</button>
+      {% endif %}
+    </form>    
+    </div>
+  {% endif %} {% endcomment %}
+  <form method="post" action="/cart/add" data-type="add-to-cart-form" class="custom_product_data">
+  <input type="hidden" name="form_type" value="product">
+  <input type="hidden" name="utf8" value="✓">
+  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+  <input type="hidden" name="product-id" value="{{ product.id }}" class="product-variant-id">
+
+  <div
+    class="quantity_input_block"
+    data-product-price="{{ product.price }}"
+    product-id="{{ product.selected_or_first_available_variant.id }}"
+  >
+    <button type="button" class="quantity_button decrease-qty" id="decrease-qty">
+      <!-- SVG minus -->
+    </button>
+    <input
+      class="quantity__input"
+      type="number"
+      name="quantity"
+      min="1"
+      step="1"
+      value="1"
+    >
+    <button type="button" class="quantity_button increase-qty" id="increase-qty">
+      <!-- SVG plus -->
+    </button>
+  </div>
+  {% if product.variants.first.inventory_quantity > 0 %}
+    <button type="submit" name="add" class="product_submit">
+      Add to bag -
+      <span class="total_quantity_price">{{ product.selected_or_first_available_variant.price | money }}</span>
+    </button>
+  {% else %}
+    <button class="product_submit" disabled>Sold out</button>
+  {% endif %}
+</form>
+</div>
