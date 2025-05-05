@@ -21,9 +21,19 @@
         "text_url": "",
         "text_title": "HELP ME CHOOSE"
       }
+    },
+    "product_card_VXC3z8": {
+      "type": "product-card",
+      "name": "Product Card",
+      "settings": {
+        "selected_products": [],
+        "page_url": "",
+        "page_text": ""
+      }
     }
   },
   "order": [
-    "hero_section_7T7jL9"
+    "hero_section_7T7jL9",
+    "product_card_VXC3z8"
   ]
 }
