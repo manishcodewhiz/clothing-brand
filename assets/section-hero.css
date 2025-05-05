@@ -1,5 +1,6 @@
 .section-hero {
     position: relative;
+    overflow: hidden;
 }
 
 .section-hero .hero_item {

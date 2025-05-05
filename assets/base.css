@@ -3655,10 +3655,12 @@ ol {
   cursor: pointer;
 }
 
-/**************** Color Variables  *****************/
 body{
   font-family: var(--font-montserrat);
 }
+
+/**************** Color Variables  *****************/
+
 :root {
   --primary: #232869;
   --secondary: #c8e4ff;
@@ -3667,46 +3669,46 @@ body{
   --white: #ffffff;
 }
 
-
+/**************** Font Family Variables  *****************/
 @font-face {
   font-family: "Montserrat", sans-serif;
-  src: url('static/Montserrat-Thin.ttf') format('ttf');
+  src: url('../assets/Montserrat-Thin.ttf') format('ttf');
   font-style: normal;
 }
 
 @font-face {
   font-family: "Montserrat", sans-serif;
-  src: url('static/Montserrat-ExtraLight.ttf') format('ttf');
+  src: url('../assets/Montserrat-ExtraLight.ttf') format('ttf');
   font-style: normal;
 }
 
 @font-face {
   font-family: "Montserrat", sans-serif;
-  src: url('static/Montserrat-Light.ttf') format('ttf');
+  src: url('../assets/Montserrat-Light.ttf') format('ttf');
   font-style: normal;
 }
 
 @font-face {
   font-family: "Montserrat", sans-serif;
-  src: url('static/Montserrat-Regular.ttf') format('ttf');
+  src: url('../assets/Montserrat-Regular.ttf') format('ttf');
   font-style: normal;
 }
 
 @font-face {
   font-family: "Montserrat", sans-serif;
-  src: url('static/Montserrat-Medium.ttf') format('ttf');
+  src: url('../assets/Montserrat-Medium.ttf') format('ttf');
   font-style: normal;
 }
 
 @font-face {
   font-family: "Montserrat", sans-serif;
-  src: url('static/Montserrat-SemiBold.ttf') format('ttf');
+  src: url('../assets/Montserrat-SemiBold.ttf') format('ttf');
   font-style: normal;
 }
 
 @font-face {
   font-family: "Montserrat", sans-serif;
-  src: url('static/Montserrat-Black.ttf') format('ttf');
+  src: url('../assets/Montserrat-Black.ttf') format('ttf');
   font-style: normal;
 }
 
