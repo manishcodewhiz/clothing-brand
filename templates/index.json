@@ -56,11 +56,27 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "product_card_CqdgGF": {
+      "type": "product-card",
+      "name": "Product Card",
+      "settings": {
+        "selected_products": [
+          "check-overshirt",
+          "demazin-cold-flu-relief-day-night-48-tablets",
+          "demazin-cold-flu-relief-day-night-48-tablets-1",
+          "demazin-cold-flu-relief-day-night-48-tablets-2",
+          "demazin-cold-flu-relief-day-night-48-tablets-3"
+        ],
+        "page_url": "",
+        "page_text": ""
+      }
     }
   },
   "order": [
     "custome_video_WaBUei",
     "hero_section_7T7jL9",
-    "featured_collection_yLGhni"
+    "featured_collection_yLGhni",
+    "product_card_CqdgGF"
   ]
 }
