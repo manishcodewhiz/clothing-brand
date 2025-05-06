@@ -26,7 +26,10 @@
                   %}
                     <h3>{{ block.settings.heading }}</h3>
                     <p>{{ block.settings.decsription }}</p>
-                    <span>{{ block.settings.button_text }} {{ 'Arrow-white.svg' | inline_asset_content -}}</span>
+                    <span>
+                      {{- block.settings.button_text }}
+                      {{ 'Arrow-white.svg' | inline_asset_content -}}
+                    </span>
                   {% endif %}
                 </div>
               </a>
@@ -41,23 +44,7 @@
 {% schema %}
 {
   "name": "Product Cards",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "image2",
-      "label": "Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "image3",
-      "label": "Image"
-    }
-  ],
+  "settings": [],
   "blocks": [
     {
       "type": "cards",
