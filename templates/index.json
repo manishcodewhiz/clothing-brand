@@ -64,11 +64,27 @@
       ],
       "name": "Cards Item",
       "settings": {}
+    },
+    "discover_routine_yMaBLR": {
+      "type": "discover-routine",
+      "name": "Discover Routine",
+      "settings": {
+        "product_lists": [
+          "exfoliators",
+          "treatments",
+          "moisturizers",
+          "spot-treatment",
+          "sunscreen",
+          "eye-care"
+        ],
+        "heading": "Discover Your Routine"
+      }
     }
   },
   "order": [
     "hero_section_7T7jL9",
     "product_card_VXC3z8",
-    "cards_item_4BHgrE"
+    "cards_item_4BHgrE",
+    "discover_routine_yMaBLR"
   ]
 }
