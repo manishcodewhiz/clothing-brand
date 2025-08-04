@@ -49,7 +49,8 @@
         "main_megamenu_mNbEWU": {
           "type": "main-megamenu",
           "settings": {
-            "navigation_title": "Shop"
+            "navigation_title": "Shop",
+            "menu_type": "secound-level-menu"
           }
         },
         "inner_megamenu_8BeATJ": {
@@ -58,7 +59,7 @@
             "inner_navigation_title": "Navigation title",
             "menu_type": "color-menu-with-image-block",
             "color_menu_title": "Shop By Color",
-            "secondary_menu": "megamenu-block-shop",
+            "secondary_menu": "customer-account-main-menu",
             "image_block_image": "shopify://shop_images/image-block.png",
             "featured_image": "shopify://shop_images/image-block.png",
             "featured_top_text": "Featured Text",
