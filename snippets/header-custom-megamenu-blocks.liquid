@@ -1,0 +1,149 @@
+{% comment %}
+  <div class="nav-menu-dropdown page-width">
+    <div class="menu-dropdown-content">
+      <div class="main-menu-block">
+
+          <ul class="first-level-menu first-level-desktop">
+            <li><a href="#">NEW</a></li>
+            <li><a href="#">BEST SELLERS</a></li>
+            <li><a href="#">SHOP BY PRODUCTS</a></li>
+            <li><a href="#">SHOP BY COLOR</a></li>
+            <li><a href="#">SHOP BY COLLECTIONS</a></li>
+          </ul>
+
+        {% if link.links != blank %}
+          <ul class="first-level-menu first-level-desktop">
+            {% for link in link.links %}
+              <li
+                data-id="{{ link.title | handleize }}"
+                {% if forloop.index == 4 %}
+                  class="active-item"
+                {% endif %}
+              >
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        <div class="first-level-menu_items">
+          <div class="first-level-shop_list">
+            <h3>Shop By Color</h3>
+            <ul class="second-level-menu-list">
+              <li><a href="#">Black</a></li>
+              <li><a href="#">White</a></li>
+              <li><a href="#">Blue</a></li>
+              <li><a href="#">Green</a></li>
+              <li><a href="#">Red</a></li>
+              <li><a href="#">Black</a></li>
+              <li><a href="#">White</a></li>
+              <li><a href="#">Blue</a></li>
+              <li><a href="#">Green</a></li>
+              <li><a href="#">Red</a></li>
+            </ul>
+          </div>
+          <div class="first-level-shop_image-block">
+            <span class="image_level">
+              <img src="{{ section.settings.image_block | image_url }}" width="282" height="266" alt="" loading="lazy">
+            </span>
+          </div>
+          <div class="first-level-card">
+            <div class="main-card_item">
+              <span class="image-span">
+                <img
+                  src="{{ section.settings.image_block | image_url }}"
+                  width="432"
+                  height="266"
+                  alt=""
+                  loading="lazy"
+                >
+              </span>
+              <div class="main-card_item_text">
+                <span>New Arrivals</span>
+                <h2>New Nail Lacquers Collection</h2>
+                <a href="#">Shop Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcomment %}
+
+<div class="nav-menu-dropdown page-width">
+  <div class="menu-dropdown-content">
+    <div class="main-menu-block">
+      {%- if link.links != blank -%}
+        <ul class="first-level-menu first-level-desktop">
+          {%- for link in link.links -%}
+            <li
+              data-id="{{ link.title | handleize }}"
+              {% if forloop.index == 4 %}
+                class="active-item"
+              {% endif %}
+            >
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <div class="first-level-menu_items">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'inner-megamenu' -%}
+            <div class="first-level-shop_list">
+              <h3>{{ block.settings.color_menu_title }}</h3>
+
+              {%- if block.settings.secondary_menu != blank -%}
+                <ul class="second-level-menu-list">
+                  {%- assign menu = linklists[block.settings.secondary_menu] -%}
+                  {%- for sublink in menu.links -%}
+                    <li>
+                      <a href="{{ sublink.url }}">{{ sublink.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.image_block_image != blank -%}
+              <div class="first-level-shop_image-block">
+                <span class="image_level">
+                  <img
+                    src="{{ block.settings.image_block_image | image_url }}"
+                    width="282"
+                    height="266"
+                    alt=""
+                    loading="lazy"
+                  >
+                </span>
+              </div>
+            {%- endif -%}
+
+            <div class="first-level-card">
+              <div class="main-card_item">
+                {%- if block.settings.featured_image != blank -%}
+                  <span class="image-span">
+                    <img
+                      src="{{ block.settings.featured_image | image_url }}"
+                      width="432"
+                      height="266"
+                      alt=""
+                      loading="lazy"
+                    >
+                  </span>
+                {%- endif -%}
+                <div class="main-card_item_text">
+                  <span>{{ block.settings.featured_top_text }}</span>
+                  <h2>{{ block.settings.featured_title }}</h2>
+                  <a href="{{ block.settings.featured_cta_link }}">{{ block.settings.featured_cta_text }}</a>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
