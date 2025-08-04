@@ -162,10 +162,8 @@
               </div>
 
             {% elsif block.settings.menu_type == 'collection-menu-with-image-block' %}
-              <div class="second-level-main menu-with-color">
+              <div class="second-level-main menu-with-collection">
                 <div class="first-level-shop_list">
-                  <h3>{{ block.settings.color_menu_title }}</h3>
-
                   {%- if block.settings.secondary_menu != blank -%}
                     <ul class="second-level-menu-list">
                       {%- assign menu = linklists[block.settings.secondary_menu] -%}
@@ -215,7 +213,7 @@
               </div>
 
             {% elsif block.settings.menu_type == 'product-menu' %}
-              <div class="second-level-main menu-with-color">
+              <div class="second-level-main menu-with-product">
                 <div class="first-level-shop_list">
                   <h3>{{ block.settings.color_menu_title }}</h3>
 
