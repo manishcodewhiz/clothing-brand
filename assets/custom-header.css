@@ -98,7 +98,7 @@
 /* .section-header .header .main-menu-block .first-level-menu.first-level-desktop li a:hover:after {
     display: block;
 } */
-.menu-item .second-level.menu-with-collection{
+.second-level.menu-with-collection{
     display: none;
 }
 .menu-item[data-id="shop-by-collections"]:hover .second-level.menu-with-collection {
