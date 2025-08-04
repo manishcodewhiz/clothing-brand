@@ -73,8 +73,10 @@
           "settings": {
             "inner_navigation_title": "Navigation title",
             "menu_type": "collection-menu-with-image-block",
-            "color_menu_title": "Shop By Color",
-            "secondary_menu": "",
+            "color_menu_title": "",
+            "secondary_menu": "collection-menu",
+            "image_block_image": "shopify://shop_images/image-block.png",
+            "featured_image": "shopify://shop_images/image-block.png",
             "featured_top_text": "Featured Text",
             "featured_title": "Featured Title",
             "featured_cta_text": "Shop Now",
