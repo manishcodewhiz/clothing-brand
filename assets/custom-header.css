@@ -277,7 +277,7 @@
     gap: 20px;
 }
 .section-header .header .list-menu.list-menu--inline .list-menu-item{
-    display: none;
+    /* display: none; */
 }
 .section-header .header .list-menu.list-menu--inline .list-menu-item.active{
     display: block;
