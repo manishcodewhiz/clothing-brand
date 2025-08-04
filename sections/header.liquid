@@ -423,6 +423,19 @@
   }
 
   customElements.define('sticky-header', StickyHeader);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var menuItems = document.querySelectorAll('.list-menu > li');
+
+    menuItems.forEach(function (item) {
+      item.addEventListener('mouseenter', function () {
+        item.classList.add('active');
+      });
+      item.addEventListener('mouseleave', function () {
+        item.classList.remove('active');
+      });
+    });
+  });
 {% endjavascript %}
 
 <script type="application/ld+json">
@@ -658,7 +671,7 @@
           "id": "navigation_title",
           "label": "Navigation title"
         },
-         {
+        {
           "type": "link_list",
           "id": "menu",
           "default": "main-menu",
