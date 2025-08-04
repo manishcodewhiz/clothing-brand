@@ -72,7 +72,7 @@
           "type": "main-megamenu",
           "settings": {
             "navigation_title": "Learn More",
-            "menu": "main-menu"
+            "menu": "megamenu-block-shop"
           }
         },
         "inner_megamenu_F7dE3w": {
@@ -81,7 +81,7 @@
             "inner_navigation_title": "Navigation title",
             "menu_type": "color-menu-with-image-block",
             "color_menu_title": "Shop By Color",
-            "secondary_menu": "",
+            "secondary_menu": "color-menu",
             "featured_top_text": "Featured Text",
             "featured_title": "Featured Title",
             "featured_cta_text": "Shop Now",
