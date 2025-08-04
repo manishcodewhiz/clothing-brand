@@ -276,7 +276,12 @@
     flex-wrap: wrap;
     gap: 20px;
 }
-
+.section-header .header .list-menu.list-menu--inline .list-menu-item{
+    display: none;
+}
+.section-header .header .list-menu.list-menu--inline .list-menu-item.active{
+    display: block;
+}
 .mega-menu__list .main-block ul li {
     gap: 0 !important;
     padding: 0 !important;
