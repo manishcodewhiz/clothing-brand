@@ -424,17 +424,15 @@
 
   customElements.define('sticky-header', StickyHeader);
 
-  document.addEventListener('DOMContentLoaded', function () {
-    var menuItems = document.querySelectorAll('.list-menu > li');
-
-    menuItems.forEach(function (item) {
-      item.addEventListener('mouseenter', function () {
-        item.classList.add('active');
-      });
-      item.addEventListener('mouseleave', function () {
-        item.classList.remove('active');
-      });
-    });
+  $(document).ready(function () {
+    $('.list-menu > li').hover(
+      function () {
+        $(this).addClass('active');
+      },
+      function () {
+        $(this).removeClass('active');
+      }
+    );
   });
 {% endjavascript %}
 
