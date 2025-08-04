@@ -74,7 +74,7 @@
 <div class="nav-menu-dropdown page-width">
   <div class="menu-dropdown-content">
     <div class="main-menu-block">
-        {%- for block in section.blocks -%}
+      {%- for block in section.blocks -%}
         {%- if block.type == 'main-megamenu' -%}
           {%- assign menu = linklists[block.settings.menu] -%}
           {%- if menu.links != blank -%}
