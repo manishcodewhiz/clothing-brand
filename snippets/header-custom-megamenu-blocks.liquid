@@ -74,23 +74,35 @@
 <div class="nav-menu-dropdown page-width">
   <div class="menu-dropdown-content">
     <div class="main-menu-block">
-     {%- for block in section.blocks -%}
+      {%- for block in section.blocks -%}
         {%- if block.type == 'main-megamenu' -%}
           {%- assign menu_handle = block.settings.navigation_title | handleize -%}
           {%- assign menu = linklists[menu_handle] -%}
           {%- if menu.links != blank -%}
-        <ul class="first-level-menu first-level-desktop">
-          {%- for link in menu.links -%}
-            <li
-          data-id="{{ link.title | handleize }}"
-          {% if forloop.index == 4 %}
-            class="active-item"
-          {% endif %}
-            >
-          <a href="{{ link.url }}">{{ link.title }}</a>
-            </li>
-          {%- endfor -%}
-        </ul>
+            <ul class="first-level-menu first-level-desktop">
+              {%- for link in menu.links -%}
+                <li
+                  data-id="{{ link.title | handleize }}"
+                  {% if forloop.index == 4 %}
+                    class="active-item"
+                  {% endif %}
+                >
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        {%- elsif block.type == 'secound-level-menu' -%}
+          {%- assign menu_handle = block.settings.navigation_title | handleize -%}
+          {%- assign menu = linklists[menu_handle] -%}
+          {%- if menu.links != blank -%}
+            <ul class="second-level-menu-list">
+              {%- for link in menu.links -%}
+                <li>
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+              {%- endfor -%}
+            </ul>
           {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
