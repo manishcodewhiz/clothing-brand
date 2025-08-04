@@ -179,8 +179,8 @@
         </h1>
       {%- endif -%}
     {%- endif -%}
-    
- {% if section.settings.menu != blank %}
+
+    {% if section.settings.menu != blank %}
       {%- render 'header-custom-megamenu', section: section -%}
     {% endif %}
 
@@ -241,7 +241,7 @@
           </localization-form>
         {%- endif -%}
       </div>
-        <div class="spa-locator">
+      <div class="spa-locator">
         <span class="svg-wrapper">{{ 'locator-icon.svg' | inline_asset_content }}</span>
         <span class="locator-text">Spa Locator</span>
       </div>
@@ -281,7 +281,7 @@
             {% render block %}
         {%- endcase -%}
       {%- endfor -%}
- <a href="#">
+      <a href="#">
         <span>{{ 'wiselist-icon.svg' | inline_asset_content }}</span>
       </a>
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
@@ -649,7 +649,7 @@
     }
   ],
   "blocks": [
-     {
+    {
       "type": "main-megamenu",
       "name": "Main Megamenu",
       "settings": [
@@ -657,6 +657,17 @@
           "type": "text",
           "id": "navigation_title",
           "label": "Navigation title"
+        },
+        {
+          "type": "select",
+          "id": "menu_type",
+          "label": "Select Menu Type",
+          "options": [
+            {
+              "value": "secound-level-menu",
+              "label": "Second Level Menu"
+            }
+          ]
         }
       ]
     },
