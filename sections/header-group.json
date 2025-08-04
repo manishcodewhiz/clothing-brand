@@ -67,11 +67,19 @@
             "featured_cta_text": "Shop Now",
             "featured_cta_link": ""
           }
+        },
+        "main_megamenu_hXe4bK": {
+          "type": "main-megamenu",
+          "settings": {
+            "navigation_title": "Learn More",
+            "menu": "main-menu"
+          }
         }
       },
       "block_order": [
         "main_megamenu_mNbEWU",
-        "inner_megamenu_8BeATJ"
+        "inner_megamenu_8BeATJ",
+        "main_megamenu_hXe4bK"
       ],
       "settings": {
         "logo_position": "middle-left",
