@@ -98,10 +98,10 @@
 /* .section-header .header .main-menu-block .first-level-menu.first-level-desktop li a:hover:after {
     display: block;
 } */
-.second-level.menu-with-collection{
+.second-level-main.menu-with-collection{
     display: none;
 }
-.menu-item[data-id="shop-by-collections"]:hover .second-level.menu-with-collection {
+.menu-item[data-id="shop-by-collections"]:hover .second-level-main.menu-with-collection {
   display: block;
 }
 
