@@ -74,20 +74,26 @@
 <div class="nav-menu-dropdown page-width">
   <div class="menu-dropdown-content">
     <div class="main-menu-block">
-      {%- if link.links != blank -%}
+     {%- for block in section.blocks -%}
+        {%- if block.type == 'main-megamenu' -%}
+          {%- assign menu_handle = block.settings.navigation_title | handleize -%}
+          {%- assign menu = linklists[menu_handle] -%}
+          {%- if menu.links != blank -%}
         <ul class="first-level-menu first-level-desktop">
-          {%- for link in link.links -%}
+          {%- for link in menu.links -%}
             <li
-              data-id="{{ link.title | handleize }}"
-              {% if forloop.index == 4 %}
-                class="active-item"
-              {% endif %}
+          data-id="{{ link.title | handleize }}"
+          {% if forloop.index == 4 %}
+            class="active-item"
+          {% endif %}
             >
-              <a href="{{ link.url }}">{{ link.title }}</a>
+          <a href="{{ link.url }}">{{ link.title }}</a>
             </li>
           {%- endfor -%}
         </ul>
-      {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
 
       <div class="first-level-menu_items">
         {%- for block in section.blocks -%}
