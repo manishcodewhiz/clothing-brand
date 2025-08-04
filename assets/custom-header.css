@@ -276,10 +276,10 @@
     flex-wrap: wrap;
     gap: 20px;
 }
-.section-header .header .list-menu.list-menu--inline .list-menu-item{
-    /* display: none; */
+.section-header .header .list-menu.list-menu--inline .list-menu-item .nav-menu-dropdown{
+    display: none;
 }
-.section-header .header .list-menu.list-menu--inline .list-menu-item.active{
+.section-header .header .list-menu.list-menu--inline .list-menu-item.active .nav-menu-dropdown{
     display: block;
 }
 .mega-menu__list .main-block ul li {
