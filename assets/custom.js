@@ -23,8 +23,8 @@
 
 	$menuItems.on("mouseenter", function () {
 		clearTimeout(hideTimeout);
-		$menuItems.removeClass("active-menu");
-		$(this).addClass("active-menu");
+		$menuItems.removeClass("active");
+		$(this).addClass("active");
 
 		if ($(this).find(".nav-menu-dropdown").length) {
 			$("body").addClass("menu-main");
