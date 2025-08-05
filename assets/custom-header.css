@@ -42,7 +42,7 @@
 
 .main-menu-block.active .first-level-menu_items,
 .nav-menu-dropdown.active .first-level-menu_items {
-    display: block !important;
+    display: flex !important;
 }
 .section-header .header .nav-menu-dropdown {
     position: absolute;
