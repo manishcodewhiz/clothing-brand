@@ -409,4 +409,7 @@ body.gradient.menu-box:before {
         max-width:calc(33% - 5px);
         width: 100%;
     }
+    .section-header .header .main-menu-block .first-level-menu_mobile{
+        width: 100%;
+    }
 }
