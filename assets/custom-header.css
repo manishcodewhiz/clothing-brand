@@ -44,6 +44,7 @@
     border-radius: 0 0 8px 8px;
     margin: auto;
     max-width: 1456px;
+    display: none;
     max-height: calc(100vh - 150px);
 }
 
