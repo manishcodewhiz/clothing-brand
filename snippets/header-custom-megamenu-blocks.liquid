@@ -52,27 +52,13 @@
             </li>
           </ul>
         </div>
-        {% for link in block.settings.inner_menu.links %}
-          {% if link.links.size > 0 %}
-            <div
-              class="menu-product brands-products-{{ link.title | handleize }}"
-              data-tabid="{{ link.title | handleize }}"
-            >
-              {% for sublink in link.links %}
-                {% assign product = sublink.object %}
-                {% if product != blank %}
-                  <div class="product-card">
-                    {% render 'card-product',
-                      card_product: product,
-                      shopnow_button: block.settings.shopnow_button,
-                      section_id: section.id
-                    %}
-                  </div>
-                {% endif %}
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endfor %}
+        <div class="row">
+       <div class="product-main_box">
+        <div class="product-block">
+          <img src="{{ section.setting.product_image | image_url }}" width="206" height="206" loading="lazy">
+          </div>
+        </div>
+        </div>
       </div>
       {% comment %}
         <div class="first-level-menu_items logo-item">
