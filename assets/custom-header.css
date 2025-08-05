@@ -26,6 +26,23 @@
     color: #000;
 }
 
+body.gradient.menu-box {
+    position: relative;
+}
+
+body.gradient.menu-box:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #00000080;
+    z-index: 3;
+}
+
 .section-header .header .spa-locator {
     display: flex;
     align-items: center;
