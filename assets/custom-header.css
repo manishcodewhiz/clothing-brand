@@ -39,6 +39,12 @@
  .first-level-menu_items { 
     display: none;
  }
+ .section-header .header .main-menu-block .first-level-menu_items{
+    display: none;
+ }
+ .section-header .header .main-menu-block .first-level-menu_items.show-menu{
+    display: flex;
+ }
 
 .main-menu-block.active .first-level-menu_items,
 .nav-menu-dropdown.active .first-level-menu_items {
