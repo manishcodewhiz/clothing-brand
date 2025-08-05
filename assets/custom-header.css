@@ -376,6 +376,12 @@ body.gradient.menu-box:before {
     }
      .header header-drawer .header__inline-menu{
         display: block !important;
+        height: 100%;
+    }
+     .header header-drawer .list-menu--inline{
+        width: 100%;
+        flex-direction: column;
+        height: 100%;
     }
     .menu-drawer__navigation .nav-menu-dropdown{
         display: block !important;
