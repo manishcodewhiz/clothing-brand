@@ -369,3 +369,9 @@ body.gradient.menu-box:before {
     width: 100%;
     padding: 0;
 }
+
+@media (max-width: 989){
+    .section-header .header .header__inline-menu{
+        display: none
+    }
+}
