@@ -164,6 +164,9 @@ body.gradient.menu-box:before {
     display: none;
     gap: 10px;
 }
+.section-header .header .main-menu-block .first-level-menu_items.logo-item .row.show-menu{
+    display: flex;
+}
 .section-header .header .main-menu-block .first-level-menu_items.logo-item .row .product-main_box{
     max-width: calc(33% - 4px);
     width: 100%;
