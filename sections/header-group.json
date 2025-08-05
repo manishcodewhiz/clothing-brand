@@ -82,20 +82,12 @@
             "featured_cta_text": "Shop Now",
             "featured_cta_link": ""
           }
-        },
-        "main_megamenu_kMepTP": {
-          "type": "main-megamenu",
-          "settings": {
-            "navigation_title": "About Us",
-            "menu": "megamenu-block-shop"
-          }
         }
       },
       "block_order": [
         "main_megamenu_mNbEWU",
         "inner_megamenu_8BeATJ",
-        "inner_megamenu_aMUprY",
-        "main_megamenu_kMepTP"
+        "inner_megamenu_aMUprY"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
