@@ -98,6 +98,7 @@
         "main_megamenu_kMepTP"
       ],
       "settings": {
+        "featured_image": "shopify://shop_images/image-block.png",
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
         "menu": "main-menu",
