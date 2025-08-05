@@ -5,6 +5,9 @@
     $(this).addClass('active');
     $('body').eq(index).addClass('menu-box');
   });
+    $('.nav-menu-dropdown').on('mouseenter', function () {
+    $(this).find('div').css('display', 'none');
+  });
 $(function () {
   // Add 'active' class to the first menu item on page load
   $('.main-menu-block .first-level-desktop li').first().addClass('active');
