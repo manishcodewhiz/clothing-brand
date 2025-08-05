@@ -39,3 +39,17 @@
       $('.main-menu-block .first-level-menu_items').eq(index).addClass('show-menu');
     });
   });
+  $(function () {
+    // Add 'active' class to the first menu item on page load
+    $('.second-level-menu-list li').first().addClass('active');
+    // Show the first menu content on page load
+    $('second-level-menu-list .row').first().addClass('show-menu');
+
+    $('second-level-menu-list li').on('mouseenter', function () {
+      var index = $(this).index();
+      $('second-level-menu-list li').removeClass('active');
+      $('second-level-menu-list .row').removeClass('show-menu');
+      $(this).addClass('active');
+      $('second-level-menu-list .row').eq(index).addClass('show-menu');
+    });
+  });
