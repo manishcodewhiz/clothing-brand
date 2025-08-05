@@ -27,14 +27,14 @@
 		$(this).addClass("active");
 
 		if ($(this).find(".nav-menu-dropdown").length) {
-			$("body").addClass("menu-main");
+			$("body").addClass("menu-box");
 		}
 	});
 
 	$header.on("mouseleave", function () {
 		hideTimeout = setTimeout(function () {
 			$menuItems.removeClass("active-menu");
-			$("body").removeClass("menu-main");
+			$("body").removeClass("menu-box");
 		}, 200);
 	});
 
