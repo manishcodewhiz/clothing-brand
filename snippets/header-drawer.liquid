@@ -113,7 +113,11 @@
                                     </div>
                                   </details>
                                 {%- endif -%}
-                             {%- render 'mobile-custom-megamenu-blocks', block: block, link: link, section: section -%}
+                                {%- render 'mobile-custom-megamenu-blocks',
+                                  block: block,
+                                  link: link,
+                                  section: section
+                                -%}
                               </li>
                             {%- endfor -%}
                           </ul>
