@@ -1,10 +1,20 @@
-  $('.list-menu > li').on('mouseenter', function () {
-    var index = $(this).index();
+$('.list-menu > li').on('mouseenter', function () {
+    // Remove the class from all li and body first
     $('.list-menu > li').removeClass('active');
     $('body').removeClass('menu-box');
+
+    // Add class to the hovered li
     $(this).addClass('active');
-    $('body').eq(index).addClass('menu-box');
-  });
+
+    // Add the menu-box class to body
+    $('body').addClass('menu-box');
+});
+
+$('.list-menu > li').on('mouseleave', function () {
+    // Optional: remove menu-box class when leaving the item
+    $(this).removeClass('active');
+    $('body').removeClass('menu-box');
+});
 
 $(function () {
   // Add 'active' class to the first menu item on page load
