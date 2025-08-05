@@ -400,9 +400,10 @@ body.gradient.menu-box:before {
         max-width: 100%;
         width: 100%;
     }
-    .section-header .header .first-level-shop_list .second-level-menu-list lo{
+    .section-header .header .first-level-shop_list .second-level-menu-list li{
         max-width:calc(33% - 5px);
         width: 100%;
+        padding: 0;
     }
     .section-header .header .main-menu-block .first-level-menu_mobile{
         width: 100%;
