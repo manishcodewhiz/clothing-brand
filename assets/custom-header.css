@@ -149,9 +149,16 @@ body.gradient.menu-box:before {
     max-width: calc(80% - 25px);
     width: 100%;
     display: flex;
-    gap: 60px;
+    gap: 32px;
     justify-content: space-between;
     align-items: center;
+}
+.section-header .header .main-menu-block .first-level-menu_items.logo-item .first-level-shop_list{
+    max-width: calc(30% - 6px);
+}
+.section-header .header .main-menu-block .first-level-menu_items.logo-item .product-card{
+    width: 100%;
+    max-width: calc(70% - 26px)
 }
 
 .section-header .header .first-level-shop_list {
