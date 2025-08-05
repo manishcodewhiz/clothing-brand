@@ -41,15 +41,15 @@
   });
   $(function () {
     // Add 'active' class to the first menu item on page load
-    $('.second-level-menu-list li').first().addClass('active');
+    $('.first-level-menu_items .second-level-menu-list li').first().addClass('active');
     // Show the first menu content on page load
-    $('second-level-menu-list .row').first().addClass('show-menu');
+    $('first-level-menu_items .row').first().addClass('show-menu');
 
-    $('second-level-menu-list li').on('mouseenter', function () {
+    $('.first-level-menu_items .second-level-menu-list li').on('mouseenter', function () {
       var index = $(this).index();
-      $('second-level-menu-list li').removeClass('active');
-      $('second-level-menu-list .row').removeClass('show-menu');
+      $('.first-level-menu_items .second-level-menu-list li').removeClass('active');
+      $('.first-level-menu_items .row').removeClass('show-menu');
       $(this).addClass('active');
-      $('second-level-menu-list .row').eq(index).addClass('show-menu');
+      $('.first-level-menu_items .row').eq(index).addClass('show-menu');
     });
   });
