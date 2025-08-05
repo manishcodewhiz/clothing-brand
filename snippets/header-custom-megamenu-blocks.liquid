@@ -265,7 +265,11 @@
               </div>
             {% endif %}
           {%- endif -%}
-           {%- if block.type == 'shop-megamenu' -%}
+        {%- endfor -%}
+      </div>
+      <div class="first-level-menu_items">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'shop-megamenu' -%}
             {% if block.settings.menu_type == 'color-menu-with-image-block' %}
               <div class="second-level-main menu-with-color">
                 <div class="first-level-shop_list">
