@@ -54,3 +54,16 @@
       $('.first-level-menu_items .row').eq(index).addClass('show-menu');
     });
   });
+
+   $(function () {
+    $('.first-level-menu_mobile.first-level-mobile > li > a').on('click', function (e) {
+      e.preventDefault();
+      var $menuItem = $(this).closest('li');
+      var $submenu = $menuItem.find('.first-level-menu_items-mobile').first();
+
+      // Optionally close other open submenus
+      $('.first-level-menu_items-mobile').not($submenu).slideUp(200);
+
+      $submenu.slideToggle(200);
+    });
+  });
