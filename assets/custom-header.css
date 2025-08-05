@@ -36,6 +36,14 @@
     display: block;
 }
 
+ .first-level-menu_items { 
+    display: none;
+ }
+
+.main-menu-block.active .first-level-menu_items,
+.nav-menu-dropdown.active .first-level-menu_items {
+    display: block !important;
+}
 .section-header .header .nav-menu-dropdown {
     position: absolute;
     top: 100%;
