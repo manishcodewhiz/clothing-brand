@@ -422,20 +422,40 @@
     }
   }
 
-
   customElements.define('sticky-header', StickyHeader);
 
+  $(document).ready(function () {
+    $('.list-menu > li').hover(
+      function () {
+        $(this).addClass('active');
+      },
+      function () {
+        $(this).removeClass('active');
+      }
+    );
+  });
 
-   $(document).ready(function() {
-      $('.list-menu > li').hover(
-        function() {
-          $(this).addClass('active');
-        },
-        function() {
-          $(this).removeClass('active');
-        }
-      );
-    });
+  $(function () {
+    var $menu = $('.first-level-menu.first-level-desktop');
+    var $menuItems = $('.first-level-menu_items');
+    var $mainMenuBlock = $('.main-menu-block');
+    var $navMenuDropdown = $('.nav-menu-dropdown');
+
+    if ($menu.length && $menuItems.length && $mainMenuBlock.length && $navMenuDropdown.length) {
+      $menu
+        .add($menuItems)
+        .on('mouseenter', function () {
+          $menuItems.show();
+          $mainMenuBlock.addClass('active');
+          $navMenuDropdown.addClass('active');
+        })
+        .on('mouseleave', function () {
+          $menuItems.hide();
+          $mainMenuBlock.removeClass('active');
+          $navMenuDropdown.removeClass('active');
+        });
+    }
+  });
 {% endjavascript %}
 
 <script type="application/ld+json">
@@ -464,17 +484,17 @@
 {%- if request.page_type == 'index' -%}
   {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
   <script type="application/ld+json">
-       {
-         "@context": "http://schema.org",
-         "@type": "WebSite",
-         "name": {{ shop.name | json }},
-         "potentialAction": {
-           "@type": "SearchAction",
-           "target": {{ potential_action_target | json }},
-           "query-input": "required name=search_term_string"
-         },
-         "url": {{ request.origin | append: page.url | json }}
-       }
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
   </script>
 {%- endif -%}
 
