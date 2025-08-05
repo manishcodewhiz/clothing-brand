@@ -160,6 +160,14 @@ body.gradient.menu-box:before {
     width: 100%;
     max-width: calc(70% - 26px)
 }
+.section-header .header .main-menu-block .first-level-menu_items.logo-item .row{
+    display: flex;
+    gap: 10px;
+}
+.section-header .header .main-menu-block .first-level-menu_items.logo-item .row .product-main_box{
+    max-width: calc(33% - 5px);
+    width: 100%;
+}
 
 .section-header .header .first-level-shop_list {
     max-width: calc(25% - 28px);
