@@ -43,7 +43,7 @@
     // Add 'active' class to the first menu item on page load
     $('.first-level-menu_items .second-level-menu-list li').first().addClass('active');
     // Show the first menu content on page load
-    $('first-level-menu_items .row').first().addClass('show-menu');
+    $('.first-level-menu_items .row').first().addClass('show-menu');
 
     $('.first-level-menu_items .second-level-menu-list li').on('mouseenter', function () {
       var index = $(this).index();
