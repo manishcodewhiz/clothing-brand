@@ -32,6 +32,9 @@
     justify-content: center;
     gap: 8px;
 }
+.section-header .header .list-menu.list-menu--inline li.active .nav-menu-dropdown{
+    display: block;
+}
 
 .section-header .header .nav-menu-dropdown {
     position: absolute;
