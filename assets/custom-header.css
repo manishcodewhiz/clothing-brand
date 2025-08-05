@@ -161,7 +161,7 @@ body.gradient.menu-box:before {
     max-width: calc(70% - 26px)
 }
 .section-header .header .main-menu-block .first-level-menu_items.logo-item .row{
-    display: flex;
+    display: none;
     gap: 10px;
 }
 .section-header .header .main-menu-block .first-level-menu_items.logo-item .row .product-main_box{
