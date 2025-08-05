@@ -400,4 +400,13 @@ body.gradient.menu-box:before {
         max-width: 100%;
         width: 100%;
     }
+    .header .header-drawer .first-level-menu_mobile.first-level-mobile .second-level-menu-list{
+        display: flex ;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .header .header-drawer .first-level-menu_mobile.first-level-mobile .second-level-menu-list li{
+        max-width:calc(33% - 5px);
+        width: 100%;
+    }
 }
