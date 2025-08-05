@@ -374,4 +374,17 @@ body.gradient.menu-box:before {
     .section-header .header .header__inline-menu{
         display: none
     }
+    .menu-drawer__navigation .nav-menu-dropdown{
+        display: block !important;
+        position: relative !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: #f6f6f6;
+        padding: 32px;
+        border-radius: 0 0 8px 8px;
+        margin: auto;
+        max-width: 1456px;
+    }
 }
