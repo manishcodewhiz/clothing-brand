@@ -1,16 +1,10 @@
-$(document).ready(function() {
-    $('.list-menu > li').hover(
-      function() {
-        $(this).addClass('active');
-        $('body').addClass('menu-box');
-      },
-      function() {
-        $(this).removeClass('active');
-        $('body').removeClass('menu-box');
-      }
-    );
+  $('.list-menu > li').on('mouseenter', function () {
+    var index = $(this).index();
+    $('.list-menu > li').removeClass('active');
+    $('body').removeClass('menu-box');
+    $(this).addClass('active');
+    $('body').eq(index).addClass('menu-box');
   });
-
 $(function () {
   // Add 'active' class to the first menu item on page load
   $('.main-menu-block .first-level-desktop li').first().addClass('active');
