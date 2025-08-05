@@ -55,15 +55,17 @@
     });
   });
 
-   $(function () {
+ $(function () {
     $('.first-level-menu_mobile.first-level-mobile > li > a').on('click', function (e) {
       e.preventDefault();
       var $menuItem = $(this).closest('li');
       var $submenu = $menuItem.find('.first-level-menu_items-mobile').first();
 
-      // Optionally close other open submenus
+      // Optionally close other open submenus and remove active class
       $('.first-level-menu_items-mobile').not($submenu).slideUp(200);
+      $('.first-level-menu_mobile.first-level-mobile > li').not($menuItem).removeClass('active');
 
       $submenu.slideToggle(200);
+      $menuItem.toggleClass('active');
     });
   });
