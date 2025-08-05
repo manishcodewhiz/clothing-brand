@@ -396,7 +396,7 @@ body.gradient.menu-box:before {
         margin: auto;
         max-width: 1456px;
     }
-    .header .header-drawer .first-level-menu_mobile.first-level-mobile{
+    .header .header-drawer .first-level-menu_mobile{
         max-width: 100%;
         width: 100%;
     }
