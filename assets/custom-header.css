@@ -416,5 +416,11 @@ body.gradient.menu-box:before {
         gap: 10px;
         flex-wrap: wrap;
     }
+    .section-header .header .first-level-shop_image-block{
+        max-width: 100%;
+    }
+    .section-header .header .first-level-card{
+        max-width: 100%;
+    }
 
 }
