@@ -374,6 +374,9 @@ body.gradient.menu-box:before {
     .section-header .header .header__inline-menu{
         display: none
     }
+     .header header-drawer .header__inline-menu{
+        display: block !important;
+    }
     .menu-drawer__navigation .nav-menu-dropdown{
         display: block !important;
         position: relative !important;
