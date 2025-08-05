@@ -422,5 +422,8 @@ body.gradient.menu-box:before {
     .section-header .header .first-level-card{
         max-width: 100%;
     }
+    .first-level-menu_items-mobile{
+        display: none;
+    }
 
 }
