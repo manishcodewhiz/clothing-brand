@@ -31,12 +31,12 @@
 		}
 	});
 
-	$header.on("mouseleave", function () {
-		hideTimeout = setTimeout(function () {
-			$menuItems.removeClass("active-menu");
-			$("body").removeClass("menu-box");
-		}, 200);
-	});
+  $header.on("mouseleave", function () {
+    hideTimeout = setTimeout(function () {
+      $menuItems.removeClass("active");
+      $("body").removeClass("menu-box");
+    }, 200);
+  });
 
 	$header.on("mouseenter", function () {
 		clearTimeout(hideTimeout);
