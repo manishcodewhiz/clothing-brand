@@ -422,7 +422,20 @@
     }
   }
 
+
   customElements.define('sticky-header', StickyHeader);
+
+
+   $(document).ready(function() {
+      $('.list-menu > li').hover(
+        function() {
+          $(this).addClass('active');
+        },
+        function() {
+          $(this).removeClass('active');
+        }
+      );
+    });
 {% endjavascript %}
 
 <script type="application/ld+json">
@@ -462,16 +475,6 @@
          },
          "url": {{ request.origin | append: page.url | json }}
        }
-    $(document).ready(function() {
-      $('.list-menu > li').hover(
-        function() {
-          $(this).addClass('active');
-        },
-        function() {
-          $(this).removeClass('active');
-        }
-      );
-    });
   </script>
 {%- endif -%}
 
