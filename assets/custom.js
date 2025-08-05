@@ -1,13 +1,15 @@
-   $(document).ready(function() {
-      $('.list-menu > li').hover(
-        function() {
-          $(this).addClass('active');
-        },
-        function() {
-          $(this).removeClass('active');
-        }
-      );
-    });
+$(document).ready(function() {
+    $('.list-menu > li').hover(
+      function() {
+        $(this).addClass('active');
+        $('body').addClass('menu-box');
+      },
+      function() {
+        $(this).removeClass('active');
+        $('body').removeClass('menu-box');
+      }
+    );
+  });
 
 $(function () {
   // Add 'active' class to the first menu item on page load
