@@ -1,19 +1,46 @@
-$('.list-menu > li').on('mouseenter', function () {
-    // Remove the class from all li and body first
-    $('.list-menu > li').removeClass('active');
-    $('body').removeClass('menu-box');
+// $('.list-menu > li').on('mouseenter', function () {
+//     // Remove the class from all li and body first
+//     $('.list-menu > li').removeClass('active');
+//     $('body').removeClass('menu-box');
 
-    // Add class to the hovered li
-    $(this).addClass('active');
+//     // Add class to the hovered li
+//     $(this).addClass('active');
 
-    // Add the menu-box class to body
-    $('body').addClass('menu-box');
-});
+//     // Add the menu-box class to body
+//     $('body').addClass('menu-box');
+// });
 
-$('.list-menu > li').on('mouseleave', function () {
-    // Optional: remove menu-box class when leaving the item
-    $(this).removeClass('active');
-    $('body').removeClass('menu-box');
+// $('.list-menu > li').on('mouseleave', function () {
+//     // Optional: remove menu-box class when leaving the item
+//     $(this).removeClass('active');
+//     $('body').removeClass('menu-box');
+// });
+
+  $(document).ready(function () {
+	var $menuItems = $(".list-menu > li");
+	var $header = $(".header");
+	var hideTimeout;
+
+	$menuItems.on("mouseenter", function () {
+		clearTimeout(hideTimeout);
+		$menuItems.removeClass("active-menu");
+		$(this).addClass("active-menu");
+
+		if ($(this).find(".nav-menu-dropdown").length) {
+			$("body").addClass("menu-main");
+		}
+	});
+
+	$header.on("mouseleave", function () {
+		hideTimeout = setTimeout(function () {
+			$menuItems.removeClass("active-menu");
+			$("body").removeClass("menu-main");
+		}, 200);
+	});
+
+	$header.on("mouseenter", function () {
+		clearTimeout(hideTimeout);
+	});
 });
 
 $(function () {
