@@ -105,8 +105,8 @@
   display: block;
 }
 
-.section-header .header .main-menu-block .first-level-menu_items .menu-with-color{
-    /* max-width: calc(80% - 40px); */
+.section-header .header .main-menu-block .first-level-menu_items {
+    max-width: calc(80% - 40px);
     width: 100%;
     display: flex;
     gap: 60px;
