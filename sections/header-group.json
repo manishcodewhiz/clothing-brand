@@ -46,29 +46,25 @@
     "header": {
       "type": "header",
       "blocks": {
-        "main_dEnkqh": {
-          "type": "main",
+        "menu_yycE8t": {
+          "type": "menu",
           "settings": {
-            "navigation_title": "Shop",
-            "menu": "megamenu-block-shop"
+            "title": "Shop"
           }
         },
-        "inner_megamenu_dNQcGU": {
-          "type": "inner-megamenu",
+        "brand_product_menu_WiYdCB": {
+          "type": "brand-product-menu",
           "settings": {
-            "inner_navigation_title": "Shop by Brand",
-            "color_menu_title": "Shop by Brand",
-            "secondary_menu": "",
-            "featured_top_text": "Featured Text",
-            "featured_title": "Featured Title",
-            "featured_cta_text": "Shop Now",
-            "featured_cta_link": ""
+            "title": "Shop By Brand",
+            "collection_list_heading": "Shop By Brand",
+            "inner_menu": "shop-shop-by-brand",
+            "shopnow_button": "button"
           }
         }
       },
       "block_order": [
-        "main_dEnkqh",
-        "inner_megamenu_dNQcGU"
+        "menu_yycE8t",
+        "brand_product_menu_WiYdCB"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
