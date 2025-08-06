@@ -422,7 +422,6 @@
     }
   }
 
-
   customElements.define('sticky-header', StickyHeader);
 {% endjavascript %}
 
@@ -452,17 +451,17 @@
 {%- if request.page_type == 'index' -%}
   {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
   <script type="application/ld+json">
-       {
-         "@context": "http://schema.org",
-         "@type": "WebSite",
-         "name": {{ shop.name | json }},
-         "potentialAction": {
-           "@type": "SearchAction",
-           "target": {{ potential_action_target | json }},
-           "query-input": "required name=search_term_string"
-         },
-         "url": {{ request.origin | append: page.url | json }}
-       }
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
   </script>
 {%- endif -%}
 
@@ -477,7 +476,7 @@
       "id": "featured_image",
       "label": "Image"
     },
-       {
+    {
       "type": "image_picker",
       "id": "logo_image",
       "label": "Image"
@@ -696,7 +695,6 @@
           "label": "Navigation title (Required)",
           "default": "Navigation title"
         },
-        
         {
           "type": "header",
           "content": "Selected Menu Type Settings"
