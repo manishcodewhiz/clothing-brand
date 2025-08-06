@@ -46,24 +46,16 @@
     "header": {
       "type": "header",
       "blocks": {
-        "main_megamenu_mNbEWU": {
-          "type": "main-megamenu",
+        "main_dEnkqh": {
+          "type": "main",
           "settings": {
             "navigation_title": "Shop",
-            "menu": "megamenu-block-shop"
-          }
-        },
-        "main_megamenu_HiP9FQ": {
-          "type": "main-megamenu",
-          "settings": {
-            "navigation_title": "About Us",
             "menu": "megamenu-block-shop"
           }
         }
       },
       "block_order": [
-        "main_megamenu_mNbEWU",
-        "main_megamenu_HiP9FQ"
+        "main_dEnkqh"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
