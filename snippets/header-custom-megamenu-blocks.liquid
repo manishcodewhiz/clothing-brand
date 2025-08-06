@@ -349,12 +349,11 @@
     </div>
   </div>
 {% endcomment %}
-
-<div class="nav-menu-dropdown page-width">
-  <div class="menu-dropdown-content">
-    <div class="main-menu-block">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'main' -%}
+{%- if block.type == 'main' -%}
+  <div class="nav-menu-dropdown page-width">
+    <div class="menu-dropdown-content">
+      <div class="main-menu-block">
+        {%- for block in section.blocks -%}
           {%- assign menu = linklists[block.settings.navigation_title | handleize] -%}
 
           {% if menu.links.size > 0 %}
@@ -506,8 +505,8 @@
               {%- endfor -%}
             </div>
           {% endfor %}
-        {%- endif -%}
-      {%- endfor -%}
+        {%- endfor -%}
+      </div>
     </div>
   </div>
-</div>
+{%- endif -%}
