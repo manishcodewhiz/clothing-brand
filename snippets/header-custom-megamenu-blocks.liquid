@@ -1,5 +1,5 @@
 
-  <div class="nav-menu-dropdown page-width">
+  {% comment %} <div class="nav-menu-dropdown page-width">
     <div class="menu-dropdown-content">
       <div class="main-menu-block">
         <ul class="first-level-menu first-level-desktop">
@@ -347,4 +347,136 @@
         </div>
       </div>
     </div>
+  </div> {% endcomment %}
+
+  {% if block.type == 'menu' %}
+  <div class="header-megamenu-block-main">
+    <div class="megamenu-block-wrapper">
+      {% if link.links.size > 0 %}
+        <ul class="megamenu-sub-menu">
+          {% for link in link.links %}
+            {% assign has_sub_children = false %}
+            {% for block in section.blocks %}
+              {% if block.settings.title == link.title and block.type == 'brand-product-menu' or block.type == 'product-menu' or block.type == 'collection-menu' %}
+                {% assign has_sub_children = true %}
+              {% endif %}
+            {% endfor %}
+
+            <li class="{% if forloop.index == 1 %}active {% endif %}{% if has_sub_children %}has-sub-children{% endif %}" data-tabid="{{ link.title | handleize }}">
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if link.links.size > 0 %}
+        {% for link in link.links %}
+          <div class="menu-wrapper {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
+            {% for block in section.blocks %}
+              {% if block.settings.title == link.title %}
+                {% if block.type == 'brand-product-menu' %}
+                  {% if block.settings.inner_menu != blank %}
+                    <div class="brand-product-wrapper">
+                      <div class="brand-block">
+                        {% if block.settings.collection_list_heading != blank %}
+                          <div class="brand-title">{{ block.settings.collection_list_heading }}</div>
+                        {% endif %}
+                        <div class="brand-list">
+                          {% for link in block.settings.inner_menu.links %}
+                            <a href="{{ link.url }}" data-tabid="{{ link.title | handleize }}">
+                              <img
+                                src="{{ link.object.metafields.custom.logo | image_url }}"
+                                alt="{{ link.object.featured_image.alt | default: link.title }}"
+                                height="auto"
+                                width="100"
+                              >
+                            </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                      {% for link in block.settings.inner_menu.links %}
+                        {% if link.links.size > 0 %}
+                          <div
+                            class="megamenu-product-list brands-product-list brands-products-{{ link.title | handleize }}"
+                            data-tabid="{{ link.title | handleize }}"
+                          >
+                            {% for sublink in link.links %}
+                              {% assign product = sublink.object %}
+                              {% if product != blank %}
+                                <div class="product-card">
+                                  {% render 'card-product',
+                                    card_product: product,
+                                    shopnow_button: block.settings.shopnow_button,
+                                    section_id: section.id
+                                  %}
+                                </div>
+                              {% endif %}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                {% elsif block.type == 'product-menu' %}
+                  <div class="brand-product-wrapper only-product-list">
+                    <div class="megamenu-product-list">
+                      {% for product in block.settings.product_list %}
+                        <div class="product-card">
+                          {% render 'card-product',
+                            card_product: product,
+                            shopnow_button: block.settings.shopnow_button,
+                            section_id: section.id
+                          %}
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% elsif block.type == 'collection-menu' %}
+                  <div class="megamenu-collection-wrapper">
+                    {% for collection in block.settings.collection_list %}
+                      <div class="collection-list">
+                        <a href="{{ collection.url }}">
+                          <span>
+                            {% if collection.image != blank %}
+                              <img
+                                src="{{ collection.image | image_url }}"
+                                alt="{{ collection.title | default: 'Factory Effex' }}"
+                                height="205"
+                                width="180"
+                                loading="lazy"
+                              >
+                            {% elsif collections.products_count > 0
+                              and collection.products.first.featured_image != blank
+                            %}
+                              <img
+                                src="{{ collection.products.first.featured_image | image_url }}"
+                                alt="{{ collection.products.first.title | default: 'Factory Effex' }}"
+                                height="205"
+                                width="180"
+                                loading="lazy"
+                              >
+                            {% else %}
+                              <img
+                                src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.webp?v=1751355676"
+                                alt="{{ collection.title | default: 'Factory Effex' }}"
+                                height="205"
+                                width="180"
+                              >
+                            {% endif %}
+                          </span>
+                          <p>{{ collection.title }}</p>
+                        </a>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
   </div>
+{% endif %}
+
