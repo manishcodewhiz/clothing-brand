@@ -37,8 +37,8 @@
       $('.first-level-menu_items').removeClass('show-menu');
       $(this).addClass('active');
       $('.first-level-menu_items').eq(index).addClass('show-menu');
-      	$(this).addClass('active');
-		$parent.find('.first-level-menu_items.' + tabId).addClass('show-menu');
+      $(this).addClass('active');
+      $parent.find('.first-level-menu_items.' + tabId).addClass('show-menu');
     });
   });
 
