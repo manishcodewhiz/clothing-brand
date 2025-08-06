@@ -46,25 +46,48 @@
     "header": {
       "type": "header",
       "blocks": {
-        "menu_yycE8t": {
-          "type": "menu",
+        "main_megamenu_F7FTzk": {
+          "type": "main-megamenu",
           "settings": {
-            "title": "Shop"
+            "navigation_title": "Shop",
+            "menu": "megamenu-block-shop"
           }
         },
-        "brand_product_menu_WiYdCB": {
-          "type": "brand-product-menu",
+        "shop_megamenu_PYdhXm": {
+          "type": "shop-megamenu",
           "settings": {
-            "title": "Shop By Brand",
-            "collection_list_heading": "Shop By Brand",
-            "inner_menu": "collection-menu",
-            "shopnow_button": "button"
+            "inner_navigation_title": "Shop By Color",
+            "menu_type": "color-menu-with-image-block",
+            "color_menu_title": "Shop By Color",
+            "secondary_menu": "shop-shop-by-brand",
+            "image_block_image": "shopify://shop_images/image-m-9.png",
+            "featured_image": "shopify://shop_images/image-m-10.png",
+            "featured_top_text": "Featured Text",
+            "featured_title": "Featured Title",
+            "featured_cta_text": "Shop Now",
+            "featured_cta_link": "/"
+          }
+        },
+        "inner_megamenu_m99hwL": {
+          "type": "inner-megamenu",
+          "settings": {
+            "inner_navigation_title": "Shop By Collection",
+            "menu_type": "color-menu-with-image-block",
+            "color_menu_title": "Shop By Collection",
+            "secondary_menu": "collection-menu",
+            "image_block_image": "shopify://shop_images/image-m-6.png",
+            "featured_image": "shopify://shop_images/image-m-5.png",
+            "featured_top_text": "Featured Text",
+            "featured_title": "Featured Title",
+            "featured_cta_text": "Shop Now",
+            "featured_cta_link": "/"
           }
         }
       },
       "block_order": [
-        "menu_yycE8t",
-        "brand_product_menu_WiYdCB"
+        "main_megamenu_F7FTzk",
+        "shop_megamenu_PYdhXm",
+        "inner_megamenu_m99hwL"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
