@@ -35,10 +35,10 @@
       var index = $(this).index();
       $('.first-level-desktop li').removeClass('active');
       $('.first-level-menu_items').removeClass('show-menu');
-      // $(this).addClass('active');
-      // $('.first-level-menu_items').eq(index).addClass('show-menu');
       $(this).addClass('active');
-      $parent.find('.first-level-menu_items.' + tabId).addClass('show-menu');
+      $('.first-level-menu_items').eq(index).addClass('show-menu');
+      // $(this).addClass('active');
+      // $parent.find('.first-level-menu_items.' + tabId).addClass('show-menu');
     });
   });
 
@@ -52,10 +52,10 @@
       var index = $(this).index();
       $('.first-level-menu_items .second-level-menu-list li').removeClass('active');
       $('.first-level-menu_items .row').removeClass('show-menu');
-      // $(this).addClass('active');
-      // $('.first-level-menu_items .row').eq(index).addClass('show-menu');
       $(this).addClass('active');
-      $parent.find('.first-level-menu_items .row.' + tabId).addClass('show-menu');
+      $('.first-level-menu_items .row').eq(index).addClass('show-menu');
+      // $(this).addClass('active');
+      // $parent.find('.first-level-menu_items .row.' + tabId).addClass('show-menu');
     });
   });
 
