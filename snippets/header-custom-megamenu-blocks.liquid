@@ -1,27 +1,11 @@
-{% if block.type == 'menu' %}
+{% comment %}
   <div class="nav-menu-dropdown page-width">
     <div class="menu-dropdown-content">
       <div class="main-menu-block">
-        {% if link.links.size > 0 %}
-          <ul class="first-level-menu first-level-desktop">
-            {% for link in link.links %}
-              {% assign has_sub_children = false %}
-              {% for block in section.blocks %}
-                {% if block.settings.title == link.title and block.type == 'inner-megamenu' or block.type == 'shop-megamenu'%}
-                  {% assign has_sub_children = true %}
-                {% endif %}
-              {% endfor %}
-
-              <li
-                class="{% if forloop.index == 1 %}active {% endif %}{% if has_sub_children %}has-sub-children{% endif %}"
-                data-tabid="{{ link.title | handleize }}"
-              >
-                <a href="{{ link.url }}">{{ link.title }}</a>
-              </li>
-              {% comment %} <li data-tabid="{{ link.title | handleize }}"><a href="#">Shop By Product</a></li> {% endcomment %}
-            {% endfor %}
-          </ul>
-        {% endif %}
+        <ul class="first-level-menu first-level-desktop">
+          <li data-tabid="{{ link.title | handleize }}"><a href="#">Shop By Brand</a></li>
+          <li data-tabid="{{ link.title | handleize }}"><a href="#">Shop By Product</a></li>
+        </ul>
 
         <div class="first-level-menu_items logo-item">
           <div class="first-level-shop_list">
@@ -29,82 +13,42 @@
             <ul class="second-level-menu-list">
               <li>
                 <a href="#"
-                  ><img
-                    src="{{ section.settings.logo_image | image_url }}"
-                    width="100"
-                    height="38"
-                    alt=""
-                    loading="lazy"
+                  ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><img
-                    src="{{ section.settings.logo_image | image_url }}"
-                    width="100"
-                    height="38"
-                    alt=""
-                    loading="lazy"
+                  ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><img
-                    src="{{ section.settings.logo_image | image_url }}"
-                    width="100"
-                    height="38"
-                    alt=""
-                    loading="lazy"
+                  ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><img
-                    src="{{ section.settings.logo_image | image_url }}"
-                    width="100"
-                    height="38"
-                    alt=""
-                    loading="lazy"
+                  ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><img
-                    src="{{ section.settings.logo_image | image_url }}"
-                    width="100"
-                    height="38"
-                    alt=""
-                    loading="lazy"
+                  ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><img
-                    src="{{ section.settings.logo_image | image_url }}"
-                    width="100"
-                    height="38"
-                    alt=""
-                    loading="lazy"
+                  ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><img
-                    src="{{ section.settings.logo_image | image_url }}"
-                    width="100"
-                    height="38"
-                    alt=""
-                    loading="lazy"
+                  ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
                 ></a>
               </li>
               <li>
                 <a href="#"
-                  ><img
-                    src="{{ section.settings.logo_image | image_url }}"
-                    width="100"
-                    height="38"
-                    alt=""
-                    loading="lazy"
+                  ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
                 ></a>
               </li>
             </ul>
@@ -379,13 +323,7 @@
           </div>
           <div class="first-level-shop_image-block">
             <span class="image_level">
-              <img
-                src="{{ section.settings.featured_image | image_url }}"
-                width="282"
-                height="266"
-                alt=""
-                loading="lazy"
-              >
+              <img src="{{ section.settings.featured_image | image_url }}" width="282" height="266" alt="" loading="lazy">
             </span>
           </div>
           <div class="first-level-card">
@@ -406,6 +344,126 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcomment %}
+
+{% if block.type == 'menu' %}
+  <div class="nav-menu-dropdown page-width">
+    <div class="menu-dropdown-content">
+      <div class="main-menu-block">
+        {%- comment -%} MAIN NAVIGATION (Dynamic First Level) {%- endcomment -%}
+        {% if link.links.size > 0 %}
+          <ul class="first-level-menu first-level-desktop">
+            {% for link in link.links %}
+              {% assign has_sub_children = false %}
+              {% for inner_block in section.blocks %}
+                {% if inner_block.settings.title == link.title and inner_block.type contains 'inner-megamenu' %}
+                  {% assign has_sub_children = true %}
+                {% endif %}
+              {% endfor %}
+
+              <li
+                class="{% if forloop.index == 1 %}active {% endif %}{% if has_sub_children %}has-sub-children{% endif %}"
+                data-tabid="{{ link.title | handleize }}"
+              >
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {%- comment -%} MEGA MENU CONTENT BLOCKS {%- endcomment -%}
+        <div class="first-level-menu_items logo-item">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {%- when 'brand-logo-list' -%}
+                <div class="first-level-shop_list">
+                  {% if block.settings.heading != blank %}
+                    <h3>{{ block.settings.heading }}</h3>
+                  {% endif %}
+                  <ul class="second-level-menu-list">
+                    {% for logo in block.settings.logo_list %}
+                      <li>
+                        <a href="{{ logo.url | default: '#' }}">
+                          <img
+                            src="{{ logo.image | image_url }}"
+                            width="100"
+                            height="38"
+                            alt="{{ logo.image.alt | default: logo.title }}"
+                            loading="lazy"
+                          >
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+
+              {%- when 'product-grid' -%}
+                <div class="row">
+                  {% for product in block.settings.product_list %}
+                    {% if product != blank %}
+                      <div class="product-main_box">
+                        <div class="product-block">
+                          <img
+                            src="{{ product.featured_image | image_url: width: 206 }}"
+                            width="206"
+                            height="206"
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="product_content">
+                          <a href="{{ product.url }}">
+                            <h3>{{ product.title }}</h3>
+                          </a>
+                          <div class="add_to_card">
+                            {%- render 'buy-buttons', product: product, section_id: section.id -%}
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+
+              {%- when 'collection-links' -%}
+                <div class="first-level-menu_items">
+                  {% if block.settings.heading != blank %}
+                    <h3>{{ block.settings.heading }}</h3>
+                  {% endif %}
+                  <ul class="second-level-menu-list">
+                    {% for collection in block.settings.collection_list %}
+                      <li>
+                        <a href="{{ collection.url }}">{{ collection.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+
+              {%- when 'image-card' -%}
+                <div class="first-level-card">
+                  <div class="main-card_item">
+                    <span class="image-span">
+                      <img
+                        src="{{ block.settings.image | image_url }}"
+                        width="432"
+                        height="266"
+                        alt="{{ block.settings.heading }}"
+                        loading="lazy"
+                      >
+                    </span>
+                    <div class="main-card_item_text">
+                      <span>{{ block.settings.subheading }}</span>
+                      <h2>{{ block.settings.heading }}</h2>
+                      {% if block.settings.button_link != blank %}
+                        <a href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+            {% endcase %}
+          {% endfor %}
         </div>
       </div>
     </div>
