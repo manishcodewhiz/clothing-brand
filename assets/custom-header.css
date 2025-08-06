@@ -425,5 +425,8 @@ body.gradient.menu-box:before {
     .first-level-menu_items-mobile{
         display: none;
     }
+    .section-header .header .main-menu-block{
+        display: none;
+    }
 
 }
