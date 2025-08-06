@@ -126,9 +126,9 @@ body.gradient.menu-box:before {
     transition: all .4s;
 }
 
-/* .section-header .header .main-menu-block .first-level-menu.first-level-desktop li a:hover:after {
+.section-header .header .main-menu-block .first-level-menu.first-level-desktop li a:hover:after {
     display: block;
-} */
+}
 .second-level-main.menu-with-collection{
     display: none;
 }
@@ -340,9 +340,9 @@ body.gradient.menu-box:before {
     flex-wrap: wrap;
     gap: 20px;
 }
-/* .section-header .header .list-menu.list-menu--inline .list-menu-item .nav-menu-dropdown{
+.section-header .header .list-menu.list-menu--inline .list-menu-item .nav-menu-dropdown{
     display: none;
-} */
+}
 .section-header .header .list-menu.list-menu--inline .list-menu-item.active .nav-menu-dropdown{
     display: block;
 }
