@@ -100,16 +100,82 @@
   </nav>
 {% endcomment %}
 
-<nav class="header__inline-menu">
-  {% render 'header-search', input_id: 'Search-In-Modal' %}
-  <ul class="list-menu list-menu--inline top-level-menu" role="list">
+{% comment %}
+  <nav class="header__inline-menu">
+    {% render 'header-search', input_id: 'Search-In-Modal' %}
+    <ul class="list-menu list-menu--inline top-level-menu" role="list">
+      {%- for link in section.settings.menu.links -%}
+        {% for block in section.blocks %}
+          {% assign header_menu = link.title | handle %}
+          {% assign block_header_menu = block.settings.navigation_title | handle %}
+          {% assign menu_available = false %}
+          {% if block_header_menu == header_menu %}
+            <li class="list-menu-item">
+              <a
+                id="HeaderMenu-{{ link.handle }}"
+                href="{{ link.url }}"
+                class="list-menu__item"
+                {% if link.current %}
+                  aria-current="page"
+                {% endif %}
+              >
+                <span
+                  {%- if link.current %}
+                    class=""
+                  {% endif %}
+                >
+                  {{- link.title | escape -}}
+                </span>
+              </a>
+              {%- render 'header-custom-megamenu-blocks', block: block, link: link, section: section -%}
+            </li>
+            {% assign menu_available = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% unless menu_available %}
+          <li class="{%  if link.links.size > 0 %}list-menu-item{% endif %}">
+            <a
+              id="HeaderMenu-{{ link.handle }}"
+              href="{{ link.url }}"
+              class="list-menu__item"
+              {% if link.current %}
+                aria-current="page"
+              {% endif %}
+            >
+              <span
+                {%- if link.current %}
+                  class=""
+                {% endif %}
+              >
+                {{- link.title | escape -}}
+              </span>
+            </a>
+            {% if link.links.size > 0 %}
+              <ul class="sub-menu second-level-menu">
+                {% for secondLevelLink in link.links %}
+                  <li>
+                    <a href="{{ secondLevelLink.url }}">{{ secondLevelLink.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endunless %}
+      {%- endfor -%}
+    </ul>
+  </nav>
+{% endcomment %}
+
+<nav class="header__inline-menu desktop-menu-block">
+  <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
       {% for block in section.blocks %}
         {% assign header_menu = link.title | handle %}
-        {% assign block_header_menu = block.settings.navigation_title | handle %}
+        {% assign block_header_menu = block.settings.title | handle %}
         {% assign menu_available = false %}
         {% if block_header_menu == header_menu %}
-          <li class="list-menu-item">
+          <li class="list-menu-item has-children">
             <a
               id="HeaderMenu-{{ link.handle }}"
               href="{{ link.url }}"
@@ -133,7 +199,7 @@
         {% endif %}
       {% endfor %}
       {% unless menu_available %}
-        <li class="{%  if link.links.size > 0 %}list-menu-item{% endif %}">
+        <li class="list-menu-item">
           <a
             id="HeaderMenu-{{ link.handle }}"
             href="{{ link.url }}"
@@ -150,15 +216,6 @@
               {{- link.title | escape -}}
             </span>
           </a>
-          {% if link.links.size > 0 %}
-            <ul class="sub-menu second-level-menu">
-              {% for secondLevelLink in link.links %}
-                <li>
-                  <a href="{{ secondLevelLink.url }}">{{ secondLevelLink.title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
         </li>
       {% endunless %}
     {%- endfor -%}
