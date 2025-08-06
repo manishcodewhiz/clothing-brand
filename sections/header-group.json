@@ -57,7 +57,7 @@
           "settings": {
             "title": "Shop By Brand",
             "collection_list_heading": "Shop By Brand",
-            "inner_menu": "shop-shop-by-brand",
+            "inner_menu": "collection-menu",
             "shopnow_button": "button"
           }
         }
