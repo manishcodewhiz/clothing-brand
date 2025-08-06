@@ -349,164 +349,171 @@
     </div>
   </div>
 {% endcomment %}
-{%- if block.type == 'main' -%}
-  <div class="nav-menu-dropdown page-width">
-    <div class="menu-dropdown-content">
-      <div class="main-menu-block">
-        {%- for block in section.blocks -%}
-          {%- assign menu = linklists[block.settings.navigation_title | handleize] -%}
+<div class="nav-menu-dropdown page-width">
+  <div class="menu-dropdown-content">
+    <div class="main-menu-block">
+      {% comment %}
+        Loop through MAIN blocks to generate the first-level menu
+      {% endcomment %}
+      {% for block in section.blocks %}
+        {% if block.type == 'main' %}
+          {% assign menu_handle = block.settings.navigation_title | handleize %}
+          {% assign menu = linklists[menu_handle] %}
 
           {% if menu.links.size > 0 %}
             <ul class="first-level-menu first-level-desktop">
               {% for link in menu.links %}
                 {% assign has_sub_children = false %}
 
-                {%- for inner_block in section.blocks -%}
-                  {% if inner_block.settings.inner_navigation_title == link.title and (inner_block.type == 'inner-megamenu' or inner_block.type == 'shop-megamenu') %}
+                {% for sub_block in section.blocks %}
+                  {% if sub_block.settings.inner_navigation_title == link.title and (sub_block.type == 'inner-megamenu' or sub_block.type == 'shop-megamenu') %}
                     {% assign has_sub_children = true %}
                   {% endif %}
-                {%- endfor -%}
+                {% endfor %}
 
                 <li
-                  class="{% if forloop.index == 1 %}active{% endif %} {% if has_sub_children %}has-sub-children{% endif %}"
+                  class="{% if forloop.first %}active{% endif %} {% if has_sub_children %}has-sub-children{% endif %}"
                   data-tabid="{{ link.title | handleize }}"
                 >
                   <a href="{{ link.url }}">{{ link.title }}</a>
                 </li>
               {% endfor %}
             </ul>
-          {% endif %}
 
-          {%- comment -%} SECOND LEVEL MENU WRAPPERS {%- endcomment -%}
-          {% for link in menu.links %}
-            <div
-              class="menu-wrapper {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}"
-              data-tabid="{{ link.title | handleize }}"
-            >
-              {%- for inner_block in section.blocks -%}
-                {% if inner_block.settings.inner_navigation_title == link.title %}
-                  {%- if inner_block.type == 'inner-megamenu' -%}
-                    <div class="first-level-menu_items logo-item">
-                      <div class="first-level-shop_list">
-                        <h3>{{ inner_block.settings.color_menu_title }}</h3>
-                        {% if inner_block.settings.secondary_menu != blank %}
-                          <ul class="second-level-menu-list">
-                            {% assign secondary_menu = linklists[inner_block.settings.secondary_menu] %}
-                            {% for sublink in secondary_menu.links %}
-                              <li>
-                                <a href="{{ sublink.url }}">
-                                  {{ sublink.title }}
-                                </a>
-                              </li>
-                            {% endfor %}
-                          </ul>
-                        {% endif %}
-                      </div>
-
-                      {% if inner_block.settings.image_block_image != blank %}
-                        <div class="first-level-shop_image-block">
-                          <span class="image_level">
-                            <img
-                              src="{{ inner_block.settings.image_block_image | image_url: width: 282 }}"
-                              alt=""
-                              loading="lazy"
-                            >
-                          </span>
-                        </div>
-                      {% endif %}
-
-                      <div class="first-level-card">
-                        <div class="main-card_item">
-                          {% if inner_block.settings.featured_image != blank %}
-                            <span class="image-span">
-                              <img
-                                src="{{ inner_block.settings.featured_image | image_url: width: 432 }}"
-                                alt=""
-                                loading="lazy"
-                              >
-                            </span>
-                          {% endif %}
-                          <div class="main-card_item_text">
-                            <span>{{ inner_block.settings.featured_top_text }}</span>
-                            <h2>{{ inner_block.settings.featured_title }}</h2>
-                            <a href="{{ inner_block.settings.featured_cta_link | default: '#' }}">
-                              {{ inner_block.settings.featured_cta_text }}
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  {%- elsif inner_block.type == 'shop-megamenu' -%}
-                    <div class="first-level-menu_items">
-                      {% if inner_block.settings.menu_type == 'color-menu-with-image-block' %}
-                        <div class="first-level-shop_list">
-                          <h3>{{ inner_block.settings.color_menu_title }}</h3>
-                          {% if inner_block.settings.secondary_menu != blank %}
-                            {% assign secondary_menu = linklists[inner_block.settings.secondary_menu] %}
-                            <ul class="second-level-menu-list">
-                              {% for sublink in secondary_menu.links %}
-                                <li>
-                                  <a href="{{ sublink.url }}">{{ sublink.title }}</a>
-                                </li>
-                              {% endfor %}
-                            </ul>
-                          {% endif %}
-                        </div>
-
-                      {% elsif inner_block.settings.menu_type == 'collection-menu-with-image-block' %}
-                        <div class="megamenu-collection-wrapper">
-                          {% if inner_block.settings.secondary_menu != blank %}
-                            {% assign collection_menu = linklists[inner_block.settings.secondary_menu] %}
-                            {% for collection_link in collection_menu.links %}
-                              {% assign collection = collection_link.object %}
-                              <div class="collection-list">
-                                <a href="{{ collection.url }}">
-                                  <span>
-                                    {% if collection.image %}
-                                      <img
-                                        src="{{ collection.image | image_url: width: 180 }}"
-                                        alt="{{ collection.title }}"
-                                        loading="lazy"
-                                      >
-                                    {% endif %}
-                                  </span>
-                                  <p>{{ collection.title }}</p>
-                                </a>
-                              </div>
-                            {% endfor %}
-                          {% endif %}
-                        </div>
-
-                      {% elsif inner_block.settings.menu_type == 'product-menu' %}
-                        <div class="brand-product-wrapper only-product-list">
-                          <div class="megamenu-product-list">
-                            {% if inner_block.settings.secondary_menu != blank %}
-                              {% assign product_menu = linklists[inner_block.settings.secondary_menu] %}
-                              {% for product_link in product_menu.links %}
-                                {% assign product = product_link.object %}
-                                {% if product %}
-                                  <div class="product-card">
-                                    {% render 'card-product',
-                                      card_product: product,
-                                      shopnow_button: 'button',
-                                      section_id: section.id
-                                    %}
-                                  </div>
-                                {% endif %}
-                              {% endfor %}
+            {% comment %}
+              Loop again to create second-level content for each link
+            {% endcomment %}
+            {% for link in menu.links %}
+              <div
+                class="menu-wrapper {{ link.title | handleize }} {% if forloop.first %}show-menu{% endif %}"
+                data-tabid="{{ link.title | handleize }}"
+              >
+                {% for sub_block in section.blocks %}
+                  {% if sub_block.settings.inner_navigation_title == link.title %}
+                    {%- case sub_block.type -%}
+                      {%- when 'inner-megamenu' -%}
+                        <div class="first-level-menu_items logo-item">
+                          <div class="first-level-shop_list">
+                            <h3>{{ sub_block.settings.color_menu_title }}</h3>
+                            {% if sub_block.settings.secondary_menu != blank %}
+                              {% assign secondary = linklists[sub_block.settings.secondary_menu] %}
+                              <ul class="second-level-menu-list">
+                                {% for sublink in secondary.links %}
+                                  <li>
+                                    <a href="{{ sublink.url }}">{{ sublink.title }}</a>
+                                  </li>
+                                {% endfor %}
+                              </ul>
                             {% endif %}
                           </div>
+
+                          {% if sub_block.settings.image_block_image != blank %}
+                            <div class="first-level-shop_image-block">
+                              <span class="image_level">
+                                <img
+                                  src="{{ sub_block.settings.image_block_image | image_url: width: 282 }}"
+                                  alt=""
+                                  loading="lazy"
+                                >
+                              </span>
+                            </div>
+                          {% endif %}
+
+                          <div class="first-level-card">
+                            <div class="main-card_item">
+                              {% if sub_block.settings.featured_image != blank %}
+                                <span class="image-span">
+                                  <img
+                                    src="{{ sub_block.settings.featured_image | image_url: width: 432 }}"
+                                    alt=""
+                                    loading="lazy"
+                                  >
+                                </span>
+                              {% endif %}
+                              <div class="main-card_item_text">
+                                <span>{{ sub_block.settings.featured_top_text }}</span>
+                                <h2>{{ sub_block.settings.featured_title }}</h2>
+                                <a href="{{ sub_block.settings.featured_cta_link | default: '#' }}">
+                                  {{ sub_block.settings.featured_cta_text }}
+                                </a>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      {% endif %}
-                    </div>
-                  {%- endif -%}
-                {% endif %}
-              {%- endfor -%}
-            </div>
-          {% endfor %}
-        {%- endfor -%}
-      </div>
+
+                      {%- when 'shop-megamenu' -%}
+                        <div class="first-level-menu_items">
+                          {% if sub_block.settings.menu_type == 'color-menu-with-image-block' %}
+                            <div class="first-level-shop_list">
+                              <h3>{{ sub_block.settings.color_menu_title }}</h3>
+                              {% if sub_block.settings.secondary_menu != blank %}
+                                {% assign color_menu = linklists[sub_block.settings.secondary_menu] %}
+                                <ul class="second-level-menu-list">
+                                  {% for sublink in color_menu.links %}
+                                    <li>
+                                      <a href="{{ sublink.url }}">{{ sublink.title }}</a>
+                                    </li>
+                                  {% endfor %}
+                                </ul>
+                              {% endif %}
+                            </div>
+
+                          {% elsif sub_block.settings.menu_type == 'collection-menu-with-image-block' %}
+                            <div class="megamenu-collection-wrapper">
+                              {% if sub_block.settings.secondary_menu != blank %}
+                                {% assign collection_menu = linklists[sub_block.settings.secondary_menu] %}
+                                {% for collection_link in collection_menu.links %}
+                                  {% assign collection = collection_link.object %}
+                                  {% if collection %}
+                                    <div class="collection-list">
+                                      <a href="{{ collection.url }}">
+                                        <span>
+                                          {% if collection.image %}
+                                            <img
+                                              src="{{ collection.image | image_url: width: 180 }}"
+                                              alt="{{ collection.title }}"
+                                              loading="lazy"
+                                            >
+                                          {% endif %}
+                                        </span>
+                                        <p>{{ collection.title }}</p>
+                                      </a>
+                                    </div>
+                                  {% endif %}
+                                {% endfor %}
+                              {% endif %}
+                            </div>
+
+                          {% elsif sub_block.settings.menu_type == 'product-menu' %}
+                            <div class="brand-product-wrapper only-product-list">
+                              <div class="megamenu-product-list">
+                                {% if sub_block.settings.secondary_menu != blank %}
+                                  {% assign product_menu = linklists[sub_block.settings.secondary_menu] %}
+                                  {% for product_link in product_menu.links %}
+                                    {% assign product = product_link.object %}
+                                    {% if product %}
+                                      <div class="product-card">
+                                        {% render 'card-product',
+                                          card_product: product,
+                                          shopnow_button: 'button',
+                                          section_id: section.id
+                                        %}
+                                      </div>
+                                    {% endif %}
+                                  {% endfor %}
+                                {% endif %}
+                              </div>
+                            </div>
+                          {% endif %}
+                        </div>
+                    {%- endcase -%}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
-{%- endif -%}
+</div>
