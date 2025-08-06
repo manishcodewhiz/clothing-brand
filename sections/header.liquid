@@ -675,160 +675,125 @@
   ],
   "blocks": [
     {
-      "type": "main",
+      "type": "@app"
+    },
+    {
       "name": "Main Megamenu",
+      "type": "menu",
       "settings": [
         {
           "type": "text",
-          "id": "navigation_title",
-          "label": "Navigation title"
+          "id": "title",
+          "label": "Navigation title(Required)",
+          "default": "Navigation title"
         }
       ]
     },
     {
-      "type": "inner-megamenu",
-      "name": "Inner Megamenu",
+      "name": "Inner Brand & Product",
+      "type": "brand-product-menu",
       "settings": [
         {
           "type": "text",
-          "id": "inner_navigation_title",
-          "label": "Navigation title (Required)",
+          "id": "title",
+          "label": "Navigation title(Required)",
           "default": "Navigation title"
         },
         {
           "type": "header",
-          "content": "Selected Menu Type Settings"
+          "content": "Collection List Settings"
         },
         {
           "type": "text",
-          "id": "color_menu_title",
-          "label": "Title",
-          "default": "Shop By Color"
+          "id": "collection_list_heading",
+          "label": "Menu Heading",
+          "default": "Shop By Brand"
         },
         {
           "type": "link_list",
-          "id": "secondary_menu",
-          "label": "Secondary Menu",
-          "info": "Menu design will vary based on the selected menu type"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_block_image",
-          "label": "Image Block Image",
-          "info": "Image to display in the image block"
+          "id": "inner_menu",
+          "label": "Inner Menu"
         },
         {
           "type": "header",
-          "content": "Featured Block Settings"
-        },
-        {
-          "type": "image_picker",
-          "id": "featured_image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "featured_top_text",
-          "label": "Top Text",
-          "default": "Featured Text"
-        },
-        {
-          "type": "text",
-          "id": "featured_title",
-          "label": "Title",
-          "default": "Featured Title"
-        },
-        {
-          "type": "text",
-          "id": "featured_cta_text",
-          "label": "CTA Text",
-          "default": "Shop Now"
-        },
-        {
-          "type": "url",
-          "id": "featured_cta_link",
-          "label": "CTA Link"
-        }
-      ]
-    },
-    {
-      "type": "shop-megamenu",
-      "name": "Shop Megamenu",
-      "settings": [
-        {
-          "type": "text",
-          "id": "inner_navigation_title",
-          "label": "Navigation title (Required)",
-          "default": "Navigation title"
+          "content": "Product Settings"
         },
         {
           "type": "select",
-          "id": "menu_type",
-          "label": "Select Menu Type",
-          "default": "color-menu-with-image-block",
+          "id": "shopnow_button",
+          "default": "button",
+          "label": "Buttons",
           "options": [
-            { "value": "color-menu-with-image-block", "label": "Color Menu with Image Block" },
-            { "value": "collection-menu-with-image-block", "label": "Collection Menu with Image Block" },
-            { "value": "product-menu", "label": "Product Menu" }
+            {
+              "value": "none",
+              "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
+            },
+            {
+              "value": "button",
+              "label": "Button"
+            }
           ]
-        },
-        {
-          "type": "header",
-          "content": "Selected Menu Type Settings"
-        },
-        {
-          "type": "text",
-          "id": "color_menu_title",
-          "label": "Title",
-          "default": "Shop By Color"
-        },
-        {
-          "type": "link_list",
-          "id": "secondary_menu",
-          "label": "Secondary Menu",
-          "info": "Menu design will vary based on the selected menu type"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_block_image",
-          "label": "Image Block Image",
-          "info": "Image to display in the image block"
-        },
-        {
-          "type": "header",
-          "content": "Featured Block Settings"
-        },
-        {
-          "type": "image_picker",
-          "id": "featured_image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "featured_top_text",
-          "label": "Top Text",
-          "default": "Featured Text"
-        },
-        {
-          "type": "text",
-          "id": "featured_title",
-          "label": "Title",
-          "default": "Featured Title"
-        },
-        {
-          "type": "text",
-          "id": "featured_cta_text",
-          "label": "CTA Text",
-          "default": "Shop Now"
-        },
-        {
-          "type": "url",
-          "id": "featured_cta_link",
-          "label": "CTA Link"
         }
       ]
     },
-    { "type": "@app" }
+    {
+      "name": "Inner Product Menu",
+      "type": "product-menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Navigation title(Required)",
+          "default": "Navigation title"
+        },
+        {
+          "type": "header",
+          "content": "Product Menu Settings"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Select Product"
+        },
+        {
+          "type": "select",
+          "id": "shopnow_button",
+          "default": "button",
+          "label": "Buttons",
+          "options": [
+            {
+              "value": "none",
+              "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
+            },
+            {
+              "value": "button",
+              "label": "Button"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Inner Collection Menu",
+      "type": "collection-menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Navigation title(Required)",
+          "default": "Navigation title"
+        },
+        {
+          "type": "header",
+          "content": "Collection List Settings"
+        },
+        {
+          "type": "collection_list",
+          "id": "collection_list",
+          "label": "Select Collection"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}
