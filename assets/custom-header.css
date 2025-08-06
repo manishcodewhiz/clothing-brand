@@ -122,7 +122,7 @@ body.gradient.menu-box:before {
     background-image: url('main-arrow.svg');
     background-repeat: no-repeat;
     background-size: contain;
-    /* display: none; */
+    display: none;
     transition: all .4s;
 }
 
@@ -301,8 +301,6 @@ body.gradient.menu-box:before {
     object-fit: cover;
     border-radius: 10px;
 }
-
-/*  */
 
 .mega-menu__list {
     display: flex !important;
