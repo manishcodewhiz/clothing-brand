@@ -37,9 +37,11 @@
       $('.first-level-menu_items').removeClass('show-menu');
       $(this).addClass('active');
       $('.first-level-menu_items').eq(index).addClass('show-menu');
+      	$(this).addClass('active');
+		$parent.find('.first-level-menu_items.' + tabId).addClass('show-menu');
     });
   });
-  
+
   $(function () {
     // Add 'active' class to the first menu item on page load
     $('.first-level-menu_items .second-level-menu-list li').first().addClass('active');
