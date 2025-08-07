@@ -2,11 +2,11 @@
 <div class="nav-menu-dropdown page-width">
   <div class="menu-dropdown-content">
     <div class="main-menu-block">
-      {%  for link in link.links %}
       <ul class="first-level-menu first-level-desktop">
+        {%  for link in link.links %}
         <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-      </ul>
       {% endfor %}
+      </ul>
 
       <div class="first-level-menu_items logo-item">
         <div class="first-level-shop_list">
