@@ -45,6 +45,27 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "menu_WBAHn3": {
+          "type": "menu",
+          "settings": {
+            "title": "ghfj"
+          }
+        },
+        "brand_product_menu_XFjYgm": {
+          "type": "brand-product-menu",
+          "settings": {
+            "title": "shop by brand",
+            "collection_list_heading": "shop by brand",
+            "inner_menu": "shop-shop-by-brand",
+            "shopnow_button": false
+          }
+        }
+      },
+      "block_order": [
+        "menu_WBAHn3",
+        "brand_product_menu_XFjYgm"
+      ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
         "logo_image": "shopify://shop_images/d36998decee9f4f4ce078eb823044154950eb836.png",
