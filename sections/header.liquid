@@ -469,7 +469,6 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  "max_blocks": 12,
   "settings": [
     {
       "type": "image_picker",
@@ -675,36 +674,29 @@
   ],
   "blocks": [
     {
-      "type": "@app"
-    },
-    {
       "type": "menu",
-      "name": "Main Menu",
+      "name": "Menu Block",
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Navigation title(Required)"
+          "label": "Menu Title"
         }
       ]
     },
     {
       "type": "brand-product-menu",
-      "name": "Brand & Product",
+      "name": "Brand Product Menu",
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Navigation title(Required)"
-        },
-        {
-          "type": "header",
-          "content": "Collection List Settings"
+          "label": "Title (Match First Menu Title)"
         },
         {
           "type": "text",
           "id": "collection_list_heading",
-          "label": "Menu Heading"
+          "label": "Heading above brands"
         },
         {
           "type": "link_list",
@@ -712,31 +704,38 @@
           "label": "Inner Menu"
         },
         {
-          "type": "header",
-          "content": "Product Settings"
-        },
-        {
-          "type": "select",
+          "type": "checkbox",
           "id": "shopnow_button",
-          "default": "button",
-          "label": "Buttons",
-          "options": [
-            {
-              "value": "none",
-              "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
-            },
-            {
-              "value": "button",
-              "label": "Button"
-            }
-          ]
+          "label": "Show Shop Now Button"
         }
       ]
     },
     {
       "type": "product-menu",
       "name": "Product Menu",
-      "settings": []
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title (Match First Menu Title)"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Submenu Heading"
+        },
+        {
+          "type": "text",
+          "id": "color_1",
+          "label": "Color 1"
+        },
+        {
+          "type": "text",
+          "id": "color_2",
+          "label": "Color 2"
+        }
+        // Add up to color_10 or use a dynamic array type when available
+      ]
     }
   ]
 }
