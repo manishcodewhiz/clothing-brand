@@ -674,68 +674,47 @@
   ],
   "blocks": [
     {
-      "type": "@app"
-    },
-    {
-      "type": "menu",
-      "name": "Main Menu",
+      "type": "brand_logo",
+      "name": "Brand Logo",
       "settings": [
         {
-          "type": "text",
-          "id": "title",
-          "label": "Navigation title(Required)"
+          "type": "image_picker",
+          "id": "brand_logo",
+          "label": "Brand Logo"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Brand Link"
         }
       ]
     },
     {
-      "type": "brand-product-menu",
-      "name": "Brand & Product",
+      "type": "product_card",
+      "name": "Product Card",
       "settings": [
         {
-          "type": "text",
-          "id": "title",
-          "label": "Navigation title(Required)"
-        },
-        {
-          "type": "header",
-          "content": "Collection List Settings"
-        },
-        {
-          "type": "text",
-          "id": "collection_list_heading",
-          "label": "Menu Heading"
-        },
-        {
-          "type": "link_list",
-          "id": "inner_menu",
-          "label": "Inner Menu"
-        },
-        {
-          "type": "header",
-          "content": "Product Settings"
-        },
-        {
-          "type": "select",
-          "id": "shopnow_button",
-          "default": "button",
-          "label": "Buttons",
-          "options": [
-            {
-              "value": "none",
-              "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
-            },
-            {
-              "value": "button",
-              "label": "Button"
-            }
-          ]
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
         }
       ]
     },
     {
-      "type": "product-menu",
-      "name": "Product Menu",
-      "settings": []
+      "type": "color_link",
+      "name": "Color Filter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "color_name",
+          "label": "Color Name"
+        },
+        {
+          "type": "url",
+          "id": "color_link",
+          "label": "Color Link"
+        }
+      ]
     }
   ]
 }
