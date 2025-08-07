@@ -51,10 +51,20 @@
           "settings": {
             "title": "Shop"
           }
+        },
+        "brand_product_menu_7D8kXy": {
+          "type": "brand-product-menu",
+          "settings": {
+            "title": "Shop by Brand",
+            "collection_list_heading": "Shop by Brand",
+            "inner_menu": "shop-shop-by-brand",
+            "shopnow_button": "button"
+          }
         }
       },
       "block_order": [
-        "menu_Apxiwx"
+        "menu_Apxiwx",
+        "brand_product_menu_7D8kXy"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
