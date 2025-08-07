@@ -106,7 +106,7 @@
     {%- for link in section.settings.menu.links -%}
       {% for block in section.blocks %}
         {% assign header_menu = link.title | handle %}
-        {% assign block_header_menu = block.settings.navigation_title | handle %}
+        {% assign block_header_menu = block.settings.title | handle %}
         {% assign menu_available = false %}
         {% if block_header_menu == header_menu %}
           <li class="list-menu-item">
