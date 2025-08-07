@@ -11,7 +11,8 @@
       <div class="first-level-menu_items logo-item">
         <div class="first-level-shop_list">
           <h3>Shop By Brand</h3>
-          {%  assign coll_logo = collection.metafields.custom.logo.value %}
+          {%  assign coll_logo = collection.metafields.custom.logo %}
+          {{  coll_logo | json }}
           <ul class="second-level-menu-list">
             <li>
               <a href="#"
