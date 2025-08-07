@@ -58,7 +58,7 @@
             "title": "Shop by Brand",
             "collection_list_heading": "Shop by Brand",
             "inner_menu": "shop-shop-by-brand",
-            "shopnow_button": false
+            "shopnow_button": true
           }
         },
         "product_menu_dPLYNt": {
