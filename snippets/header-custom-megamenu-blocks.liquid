@@ -18,7 +18,12 @@
           <div class="brand-title">Featured Brands</div>
           <div class="second-level-menu-list">
             <a href="#" data-tabid="brand-1">
-              <img src="brand1-logo.jpg" alt="Brand 1" width="100">
+               <img
+                                src="{{ link.object.metafields.custom.logo | image_url }}"
+                                alt="{{ link.object.featured_image.alt | default: link.title }}"
+                                height="auto"
+                                width="100"
+                              >
             </a>
             <a href="#" data-tabid="brand-2">
               <img src="brand2-logo.jpg" alt="Brand 2" width="100">
