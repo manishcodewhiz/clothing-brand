@@ -31,369 +31,354 @@
             <div class="main-menu {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
               {% for block in section.blocks %}
                 {% if block.settings.title == link.title %}
-                  <div class="first-level-menu_items logo-item">
-                    <div class="first-level-shop_list">
-                      <h3>Shop By Brand</h3>
-                      <ul class="second-level-menu-list">
-                        <li>
-                          <a href="#"
-                            ><img
-                              src="{{ section.settings.logo_image | image_url }}"
-                              width="100"
-                              height="38"
-                              alt=""
-                              loading="lazy"
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="#"
-                            ><img
-                              src="{{ section.settings.logo_image | image_url }}"
-                              width="100"
-                              height="38"
-                              alt=""
-                              loading="lazy"
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="#"
-                            ><img
-                              src="{{ section.settings.logo_image | image_url }}"
-                              width="100"
-                              height="38"
-                              alt=""
-                              loading="lazy"
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="#"
-                            ><img
-                              src="{{ section.settings.logo_image | image_url }}"
-                              width="100"
-                              height="38"
-                              alt=""
-                              loading="lazy"
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="#"
-                            ><img
-                              src="{{ section.settings.logo_image | image_url }}"
-                              width="100"
-                              height="38"
-                              alt=""
-                              loading="lazy"
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="#"
-                            ><img
-                              src="{{ section.settings.logo_image | image_url }}"
-                              width="100"
-                              height="38"
-                              alt=""
-                              loading="lazy"
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="#"
-                            ><img
-                              src="{{ section.settings.logo_image | image_url }}"
-                              width="100"
-                              height="38"
-                              alt=""
-                              loading="lazy"
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="#"
-                            ><img
-                              src="{{ section.settings.logo_image | image_url }}"
-                              width="100"
-                              height="38"
-                              alt=""
-                              loading="lazy"
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="row">
-                      <div class="product-main_box">
-                        <div class="product-block">
-                          <img
-                            src="{{ section.settings.product_image2 | image_url }}"
-                            width="206"
-                            height="206"
-                            loading="lazy"
-                          >
+                  {% if block.type == 'brand-product-menu' %}
+                    {% if block.settings.inner_menu != blank %}
+                      <div class="first-level-menu_items logo-item">
+                        <div class="first-level-shop_list">
+                          {% if block.settings.collection_list_heading != blank %}
+                            <div class="brand-title">
+                              <h3>{{ block.settings.collection_list_heading }}</h3>
+                            </div>
+                          {% endif %}
+                          <ul class="second-level-menu-list">
+                            {% for link in block.settings.inner_menu.links %}
+                              <li>
+                                <a href="{{ link.url }}" data-tabid="{{ link.title | handleize }}">
+                                  <img
+                                    src="{{ link.object.metafields.custom.logo | image_url }}"
+                                    width="100"
+                                    height="38"
+                                    alt="{{ link.object.featured_image.alt | default: link.title }}"
+                                    loading="lazy"
+                                ></a>
+                              </li>
+                            {% endfor %}
+                            {% comment %}
+                              <li>
+                                <a href="#"
+                                  ><img
+                                    src="{{ section.settings.logo_image | image_url }}"
+                                    width="100"
+                                    height="38"
+                                    alt=""
+                                    loading="lazy"
+                                ></a>
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><img
+                                    src="{{ section.settings.logo_image | image_url }}"
+                                    width="100"
+                                    height="38"
+                                    alt=""
+                                    loading="lazy"
+                                ></a>
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><img
+                                    src="{{ section.settings.logo_image | image_url }}"
+                                    width="100"
+                                    height="38"
+                                    alt=""
+                                    loading="lazy"
+                                ></a>
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><img
+                                    src="{{ section.settings.logo_image | image_url }}"
+                                    width="100"
+                                    height="38"
+                                    alt=""
+                                    loading="lazy"
+                                ></a>
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><img
+                                    src="{{ section.settings.logo_image | image_url }}"
+                                    width="100"
+                                    height="38"
+                                    alt=""
+                                    loading="lazy"
+                                ></a>
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><img
+                                    src="{{ section.settings.logo_image | image_url }}"
+                                    width="100"
+                                    height="38"
+                                    alt=""
+                                    loading="lazy"
+                                ></a>
+                              </li>
+                              <li>
+                                <a href="#"
+                                  ><img
+                                    src="{{ section.settings.logo_image | image_url }}"
+                                    width="100"
+                                    height="38"
+                                    alt=""
+                                    loading="lazy"
+                                ></a>
+                              </li>
+                            {% endcomment %}
+                          </ul>
                         </div>
-                        <div class="product_content">
-                          <a href="#">
-                            <h3>Suzuki Wedged Baseball T-Shirt</h3>
-                          </a>
-                          <div class="add_to_card">
-                            {%- render 'buy-buttons',
-                              block: block,
-                              product: product,
-                              product_form_id: product_form_id,
-                              section_id: section.id
-                            -%}
+                        <div class="row">
+                          <div class="product-main_box">
+                            <div class="product-block">
+                              <img
+                                src="{{ section.settings.product_image2 | image_url }}"
+                                width="206"
+                                height="206"
+                                loading="lazy"
+                              >
+                            </div>
+                            <div class="product_content">
+                              <a href="#">
+                                <h3>Suzuki Wedged Baseball T-Shirt</h3>
+                              </a>
+                              <div class="add_to_card">
+                                {%- render 'buy-buttons',
+                                  block: block,
+                                  product: product,
+                                  product_form_id: product_form_id,
+                                  section_id: section.id
+                                -%}
+                              </div>
+                            </div>
+                            <a href="#"></a>
+                          </div>
+                          <div class="product-main_box">
+                            <div class="product-block">
+                              <img
+                                src="{{ section.settings.product_image | image_url }}"
+                                width="206"
+                                height="206"
+                                loading="lazy"
+                              >
+                            </div>
+                            <div class="product_content">
+                              <a href="#">
+                                <h3>Suzuki Wedged Baseball T-Shirt</h3>
+                              </a>
+                              <div class="add_to_card">
+                                {%- render 'buy-buttons',
+                                  block: block,
+                                  product: product,
+                                  product_form_id: product_form_id,
+                                  section_id: section.id
+                                -%}
+                              </div>
+                            </div>
+                            <a href="#"></a>
+                          </div>
+                          <div class="product-main_box">
+                            <div class="product-block">
+                              <img
+                                src="{{ section.settings.product_image3 | image_url }}"
+                                width="206"
+                                height="206"
+                                loading="lazy"
+                              >
+                            </div>
+                            <div class="product_content">
+                              <a href="#">
+                                <h3>Suzuki Wedged Baseball T-Shirt</h3>
+                              </a>
+                              <div class="add_to_card">
+                                {%- render 'buy-buttons',
+                                  block: block,
+                                  product: product,
+                                  product_form_id: product_form_id,
+                                  section_id: section.id
+                                -%}
+                              </div>
+                            </div>
+                            <a href="#"></a>
                           </div>
                         </div>
-                        <a href="#"></a>
-                      </div>
-                      <div class="product-main_box">
-                        <div class="product-block">
-                          <img
-                            src="{{ section.settings.product_image | image_url }}"
-                            width="206"
-                            height="206"
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="product_content">
-                          <a href="#">
-                            <h3>Suzuki Wedged Baseball T-Shirt</h3>
-                          </a>
-                          <div class="add_to_card">
-                            {%- render 'buy-buttons',
-                              block: block,
-                              product: product,
-                              product_form_id: product_form_id,
-                              section_id: section.id
-                            -%}
+                        <div class="row">
+                          <div class="product-main_box">
+                            <div class="product-block">
+                              <img
+                                src="{{ section.settings.product_image3 | image_url }}"
+                                width="206"
+                                height="206"
+                                loading="lazy"
+                              >
+                            </div>
+                            <div class="product_content">
+                              <a href="#">
+                                <h3>Suzuki Wedged Baseball T-Shirt</h3>
+                              </a>
+                              <div class="add_to_card">
+                                {%- render 'buy-buttons',
+                                  block: block,
+                                  product: product,
+                                  product_form_id: product_form_id,
+                                  section_id: section.id
+                                -%}
+                              </div>
+                            </div>
+                            <a href="#"></a>
+                          </div>
+                          <div class="product-main_box">
+                            <div class="product-block">
+                              <img
+                                src="{{ section.settings.product_image2 | image_url }}"
+                                width="206"
+                                height="206"
+                                loading="lazy"
+                              >
+                            </div>
+                            <div class="product_content">
+                              <a href="#">
+                                <h3>Suzuki Wedged Baseball T-Shirt</h3>
+                              </a>
+                              <div class="add_to_card">
+                                {%- render 'buy-buttons',
+                                  block: block,
+                                  product: product,
+                                  product_form_id: product_form_id,
+                                  section_id: section.id
+                                -%}
+                              </div>
+                            </div>
+                            <a href="#"></a>
+                          </div>
+                          <div class="product-main_box">
+                            <div class="product-block">
+                              <img
+                                src="{{ section.settings.product_image | image_url }}"
+                                width="206"
+                                height="206"
+                                loading="lazy"
+                              >
+                            </div>
+                            <div class="product_content">
+                              <a href="#">
+                                <h3>Suzuki Wedged Baseball T-Shirt</h3>
+                              </a>
+                              <div class="add_to_card">
+                                {%- render 'buy-buttons',
+                                  block: block,
+                                  product: product,
+                                  product_form_id: product_form_id,
+                                  section_id: section.id
+                                -%}
+                              </div>
+                            </div>
+                            <a href="#"></a>
                           </div>
                         </div>
-                        <a href="#"></a>
-                      </div>
-                      <div class="product-main_box">
-                        <div class="product-block">
-                          <img
-                            src="{{ section.settings.product_image3 | image_url }}"
-                            width="206"
-                            height="206"
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="product_content">
-                          <a href="#">
-                            <h3>Suzuki Wedged Baseball T-Shirt</h3>
-                          </a>
-                          <div class="add_to_card">
-                            {%- render 'buy-buttons',
-                              block: block,
-                              product: product,
-                              product_form_id: product_form_id,
-                              section_id: section.id
-                            -%}
+                        <div class="row">
+                          <div class="product-main_box">
+                            <div class="product-block">
+                              <img
+                                src="{{ section.settings.product_image | image_url }}"
+                                width="206"
+                                height="206"
+                                loading="lazy"
+                              >
+                            </div>
+                            <div class="product_content">
+                              <a href="#">
+                                <h3>Suzuki Wedged Baseball T-Shirt</h3>
+                              </a>
+                              <div class="add_to_card">
+                                {%- render 'buy-buttons',
+                                  block: block,
+                                  product: product,
+                                  product_form_id: product_form_id,
+                                  section_id: section.id
+                                -%}
+                              </div>
+                            </div>
+                            <a href="#"></a>
+                          </div>
+                          <div class="product-main_box">
+                            <div class="product-block">
+                              <img
+                                src="{{ section.settings.product_image2 | image_url }}"
+                                width="206"
+                                height="206"
+                                loading="lazy"
+                              >
+                            </div>
+                            <div class="product_content">
+                              <a href="#">
+                                <h3>Suzuki Wedged Baseball T-Shirt</h3>
+                              </a>
+                              <div class="add_to_card">
+                                {%- render 'buy-buttons',
+                                  block: block,
+                                  product: product,
+                                  product_form_id: product_form_id,
+                                  section_id: section.id
+                                -%}
+                              </div>
+                            </div>
+                            <a href="#"></a>
+                          </div>
+                          <div class="product-main_box">
+                            <div class="product-block">
+                              <img
+                                src="{{ section.settings.product_image3 | image_url }}"
+                                width="206"
+                                height="206"
+                                loading="lazy"
+                              >
+                            </div>
+                            <div class="product_content">
+                              <a href="#">
+                                <h3>Suzuki Wedged Baseball T-Shirt</h3>
+                              </a>
+                              <div class="add_to_card">
+                                {%- render 'buy-buttons',
+                                  block: block,
+                                  product: product,
+                                  product_form_id: product_form_id,
+                                  section_id: section.id
+                                -%}
+                              </div>
+                            </div>
+                            <a href="#"></a>
                           </div>
                         </div>
-                        <a href="#"></a>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="product-main_box">
-                        <div class="product-block">
-                          <img
-                            src="{{ section.settings.product_image3 | image_url }}"
-                            width="206"
-                            height="206"
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="product_content">
-                          <a href="#">
-                            <h3>Suzuki Wedged Baseball T-Shirt</h3>
-                          </a>
-                          <div class="add_to_card">
-                            {%- render 'buy-buttons',
-                              block: block,
-                              product: product,
-                              product_form_id: product_form_id,
-                              section_id: section.id
-                            -%}
-                          </div>
-                        </div>
-                        <a href="#"></a>
-                      </div>
-                      <div class="product-main_box">
-                        <div class="product-block">
-                          <img
-                            src="{{ section.settings.product_image2 | image_url }}"
-                            width="206"
-                            height="206"
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="product_content">
-                          <a href="#">
-                            <h3>Suzuki Wedged Baseball T-Shirt</h3>
-                          </a>
-                          <div class="add_to_card">
-                            {%- render 'buy-buttons',
-                              block: block,
-                              product: product,
-                              product_form_id: product_form_id,
-                              section_id: section.id
-                            -%}
-                          </div>
-                        </div>
-                        <a href="#"></a>
-                      </div>
-                      <div class="product-main_box">
-                        <div class="product-block">
-                          <img
-                            src="{{ section.settings.product_image | image_url }}"
-                            width="206"
-                            height="206"
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="product_content">
-                          <a href="#">
-                            <h3>Suzuki Wedged Baseball T-Shirt</h3>
-                          </a>
-                          <div class="add_to_card">
-                            {%- render 'buy-buttons',
-                              block: block,
-                              product: product,
-                              product_form_id: product_form_id,
-                              section_id: section.id
-                            -%}
-                          </div>
-                        </div>
-                        <a href="#"></a>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="product-main_box">
-                        <div class="product-block">
-                          <img
-                            src="{{ section.settings.product_image | image_url }}"
-                            width="206"
-                            height="206"
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="product_content">
-                          <a href="#">
-                            <h3>Suzuki Wedged Baseball T-Shirt</h3>
-                          </a>
-                          <div class="add_to_card">
-                            {%- render 'buy-buttons',
-                              block: block,
-                              product: product,
-                              product_form_id: product_form_id,
-                              section_id: section.id
-                            -%}
-                          </div>
-                        </div>
-                        <a href="#"></a>
-                      </div>
-                      <div class="product-main_box">
-                        <div class="product-block">
-                          <img
-                            src="{{ section.settings.product_image2 | image_url }}"
-                            width="206"
-                            height="206"
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="product_content">
-                          <a href="#">
-                            <h3>Suzuki Wedged Baseball T-Shirt</h3>
-                          </a>
-                          <div class="add_to_card">
-                            {%- render 'buy-buttons',
-                              block: block,
-                              product: product,
-                              product_form_id: product_form_id,
-                              section_id: section.id
-                            -%}
-                          </div>
-                        </div>
-                        <a href="#"></a>
-                      </div>
-                      <div class="product-main_box">
-                        <div class="product-block">
-                          <img
-                            src="{{ section.settings.product_image3 | image_url }}"
-                            width="206"
-                            height="206"
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="product_content">
-                          <a href="#">
-                            <h3>Suzuki Wedged Baseball T-Shirt</h3>
-                          </a>
-                          <div class="add_to_card">
-                            {%- render 'buy-buttons',
-                              block: block,
-                              product: product,
-                              product_form_id: product_form_id,
-                              section_id: section.id
-                            -%}
-                          </div>
-                        </div>
-                        <a href="#"></a>
-                      </div>
-                    </div>
-                  </div>
-                  {% comment %}
-                    <div class="first-level-menu_items logo-item">
+                    {% endif %}
+                  {% elsif block.type == 'product-menu' %}
+                    <div class="first-level-menu_items">
                       <div class="first-level-shop_list">
                         <h3>Shop By Color</h3>
                         <ul class="second-level-menu-list">
-                          <li>
-                            <a href="#"
-                              ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="#"
-                              ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="#"
-                              ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="#"
-                              ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="#"
-                              ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="#"
-                              ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="#"
-                              ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="#"
-                              ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                            ></a>
-                          </li>
+                          <li><a href="#">Black</a></li>
+                          <li><a href="#">White</a></li>
+                          <li><a href="#">Blue</a></li>
+                          <li><a href="#">Green</a></li>
+                          <li><a href="#">Red</a></li>
+                          <li><a href="#">Black</a></li>
+                          <li><a href="#">White</a></li>
+                          <li><a href="#">Blue</a></li>
+                          <li><a href="#">Green</a></li>
+                          <li><a href="#">Red</a></li>
                         </ul>
                       </div>
-                      {% comment %}
-                        <div class="first-level-shop_image-block">
-                          <span class="image_level">
-                            <img src="{{ section.settings.image_block | image_url }}" width="282" height="266" alt="" loading="lazy">
-                          </span>
-                        </div>
-                      {% endcomment %}
+                      <div class="first-level-shop_image-block">
+                        <span class="image_level">
+                          <img
+                            src="{{ section.settings.featured_image | image_url }}"
+                            width="282"
+                            height="266"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </span>
+                      </div>
                       <div class="first-level-card">
                         <div class="main-card_item">
                           <span class="image-span">
@@ -413,53 +398,7 @@
                         </div>
                       </div>
                     </div>
-                  {% endcomment %}
-                  <div class="first-level-menu_items">
-                    <div class="first-level-shop_list">
-                      <h3>Shop By Color</h3>
-                      <ul class="second-level-menu-list">
-                        <li><a href="#">Black</a></li>
-                        <li><a href="#">White</a></li>
-                        <li><a href="#">Blue</a></li>
-                        <li><a href="#">Green</a></li>
-                        <li><a href="#">Red</a></li>
-                        <li><a href="#">Black</a></li>
-                        <li><a href="#">White</a></li>
-                        <li><a href="#">Blue</a></li>
-                        <li><a href="#">Green</a></li>
-                        <li><a href="#">Red</a></li>
-                      </ul>
-                    </div>
-                    <div class="first-level-shop_image-block">
-                      <span class="image_level">
-                        <img
-                          src="{{ section.settings.featured_image | image_url }}"
-                          width="282"
-                          height="266"
-                          alt=""
-                          loading="lazy"
-                        >
-                      </span>
-                    </div>
-                    <div class="first-level-card">
-                      <div class="main-card_item">
-                        <span class="image-span">
-                          <img
-                            src="{{ section.settings.featured_image | image_url }}"
-                            width="432"
-                            height="266"
-                            alt=""
-                            loading="lazy"
-                          >
-                        </span>
-                        <div class="main-card_item_text">
-                          <span>New Arrivals</span>
-                          <h2>New Nail Lacquers Collection</h2>
-                          <a href="#">Shop Now</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  {% endif %}
                 {% endif %}
               {% endfor %}
             </div>
@@ -469,3 +408,78 @@
     </div>
   </div>
 {% endif %}
+
+{% comment %}
+  <div class="first-level-menu_items logo-item">
+    <div class="first-level-shop_list">
+      <h3>Shop By Color</h3>
+      <ul class="second-level-menu-list">
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+      </ul>
+    </div>
+    {% comment %}
+      <div class="first-level-shop_image-block">
+        <span class="image_level">
+          <img src="{{ section.settings.image_block | image_url }}" width="282" height="266" alt="" loading="lazy">
+        </span>
+      </div>
+    {% endcomment %}
+    <div class="first-level-card">
+      <div class="main-card_item">
+        <span class="image-span">
+          <img
+            src="{{ section.settings.featured_image | image_url }}"
+            width="432"
+            height="266"
+            alt=""
+            loading="lazy"
+          >
+        </span>
+        <div class="main-card_item_text">
+          <span>New Arrivals</span>
+          <h2>New Nail Lacquers Collection</h2>
+          <a href="#">Shop Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcomment %}
