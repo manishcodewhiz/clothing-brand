@@ -1,7 +1,6 @@
 {% if block.type == 'menu' %}
   <div class="nav-menu-dropdown page-width">
     <div class="menu-dropdown-content">
-      <div class="main-menu-block">
         {% for link in link.links %}
           {% assign has_sub_children = false %}
           {% for block in section.blocks %}
@@ -205,7 +204,7 @@
             </div>
           {% endfor %}
         {% endif %}
-      </div>
+    
     </div>
   </div>
 {% endif %}
