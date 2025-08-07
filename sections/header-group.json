@@ -70,7 +70,8 @@
           "settings": {
             "title": "Shop by Products",
             "collection_list_heading": "Shop by Products",
-            "inner_menu": "",
+            "inner_menu": "shop-shop-by-product",
+            "featured_image": "shopify://shop_images/image-m-3.png",
             "featured_top_text": "Featured Text",
             "featured_title": "Featured Title",
             "featured_cta_text": "Shop Now",
