@@ -674,29 +674,36 @@
   ],
   "blocks": [
     {
+      "type": "@app"
+    },
+    {
       "type": "menu",
-      "name": "Menu Block",
+      "name": "Main Menu",
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Menu Title"
+          "label": "Navigation title(Required)"
         }
       ]
     },
     {
       "type": "brand-product-menu",
-      "name": "Brand Product Menu",
+      "name": "Brand & Product",
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Title (Match First Menu Title)"
+          "label": "Navigation title(Required)"
+        },
+        {
+          "type": "header",
+          "content": "Collection List Settings"
         },
         {
           "type": "text",
           "id": "collection_list_heading",
-          "label": "Heading above brands"
+          "label": "Menu Heading"
         },
         {
           "type": "link_list",
@@ -704,38 +711,31 @@
           "label": "Inner Menu"
         },
         {
-          "type": "checkbox",
+          "type": "header",
+          "content": "Product Settings"
+        },
+        {
+          "type": "select",
           "id": "shopnow_button",
-          "label": "Show Shop Now Button"
+          "default": "button",
+          "label": "Buttons",
+          "options": [
+            {
+              "value": "none",
+              "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
+            },
+            {
+              "value": "button",
+              "label": "Button"
+            }
+          ]
         }
       ]
     },
     {
       "type": "product-menu",
       "name": "Product Menu",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title (Match First Menu Title)"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Submenu Heading"
-        },
-        {
-          "type": "text",
-          "id": "color_1",
-          "label": "Color 1"
-        },
-        {
-          "type": "text",
-          "id": "color_2",
-          "label": "Color 2"
-        }
-        // Add up to color_10 or use a dynamic array type when available
-      ]
+      "settings": []
     }
   ]
 }
