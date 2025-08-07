@@ -422,7 +422,6 @@
     }
   }
 
-
   customElements.define('sticky-header', StickyHeader);
 {% endjavascript %}
 
@@ -452,17 +451,17 @@
 {%- if request.page_type == 'index' -%}
   {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
   <script type="application/ld+json">
-       {
-         "@context": "http://schema.org",
-         "@type": "WebSite",
-         "name": {{ shop.name | json }},
-         "potentialAction": {
-           "@type": "SearchAction",
-           "target": {{ potential_action_target | json }},
-           "query-input": "required name=search_term_string"
-         },
-         "url": {{ request.origin | append: page.url | json }}
-       }
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ request.origin | append: page.url | json }}
+    }
   </script>
 {%- endif -%}
 
@@ -477,7 +476,7 @@
       "id": "featured_image",
       "label": "Image"
     },
-       {
+    {
       "type": "image_picker",
       "id": "logo_image",
       "label": "Image"
@@ -676,196 +675,18 @@
   ],
   "blocks": [
     {
-      "type": "main-megamenu",
-      "name": "Main Megamenu",
-      "settings": [
-        {
-          "type": "text",
-          "id": "navigation_title",
-          "label": "Navigation title"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "default": "main-menu",
-          "label": "Menu"
-        }
-      ]
-    },
-    {
-      "type": "inner-megamenu",
-      "name": "Inner Megamenu",
-      "settings": [
-        {
-          "type": "text",
-          "id": "inner_navigation_title",
-          "label": "Navigation title (Required)",
-          "default": "Navigation title"
-        },
-        {
-          "type": "select",
-          "id": "menu_type",
-          "label": "Select Menu Type",
-          "default": "color-menu-with-image-block",
-          "options": [
-            {
-              "value": "color-menu-with-image-block",
-              "label": "Color Menu with Image Block"
-            },
-            {
-              "value": "collection-menu-with-image-block",
-              "label": "Collection Menu with Image Block"
-            },
-            {
-              "value": "product-menu",
-              "label": "Product Menu"
-            }
-          ]
-        },
-        {
-          "type": "header",
-          "content": "Selected Menu Type Settings"
-        },
-        {
-          "type": "text",
-          "id": "color_menu_title",
-          "label": "Title",
-          "default": "Shop By Color"
-        },
-        {
-          "type": "link_list",
-          "id": "secondary_menu",
-          "label": "Secondary Menu",
-          "info": "Menu design will vary based on the selected menu type"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_block_image",
-          "label": "Image Block Image",
-          "info": "Image to display in the image block"
-        },
-        {
-          "type": "header",
-          "content": "Featured Block Settings"
-        },
-        {
-          "type": "image_picker",
-          "id": "featured_image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "featured_top_text",
-          "label": "Top Text",
-          "default": "Featured Text"
-        },
-        {
-          "type": "text",
-          "id": "featured_title",
-          "label": "Title",
-          "default": "Featured Title"
-        },
-        {
-          "type": "text",
-          "id": "featured_cta_text",
-          "label": "CTA Text",
-          "default": "Shop Now"
-        },
-        {
-          "type": "url",
-          "id": "featured_cta_link",
-          "label": "CTA Link"
-        }
-      ]
-    },
-    {
-      "type": "shop-megamenu",
-      "name": "Shop Megamenu",
-      "settings": [
-        {
-          "type": "text",
-          "id": "inner_navigation_title",
-          "label": "Navigation title (Required)",
-          "default": "Navigation title"
-        },
-        {
-          "type": "select",
-          "id": "menu_type",
-          "label": "Select Menu Type",
-          "default": "color-menu-with-image-block",
-          "options": [
-            {
-              "value": "color-menu-with-image-block",
-              "label": "Color Menu with Image Block"
-            },
-            {
-              "value": "collection-menu-with-image-block",
-              "label": "Collection Menu with Image Block"
-            },
-            {
-              "value": "product-menu",
-              "label": "Product Menu"
-            }
-          ]
-        },
-        {
-          "type": "header",
-          "content": "Selected Menu Type Settings"
-        },
-        {
-          "type": "text",
-          "id": "color_menu_title",
-          "label": "Title",
-          "default": "Shop By Color"
-        },
-        {
-          "type": "link_list",
-          "id": "secondary_menu",
-          "label": "Secondary Menu",
-          "info": "Menu design will vary based on the selected menu type"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_block_image",
-          "label": "Image Block Image",
-          "info": "Image to display in the image block"
-        },
-        {
-          "type": "header",
-          "content": "Featured Block Settings"
-        },
-        {
-          "type": "image_picker",
-          "id": "featured_image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "featured_top_text",
-          "label": "Top Text",
-          "default": "Featured Text"
-        },
-        {
-          "type": "text",
-          "id": "featured_title",
-          "label": "Title",
-          "default": "Featured Title"
-        },
-        {
-          "type": "text",
-          "id": "featured_cta_text",
-          "label": "CTA Text",
-          "default": "Shop Now"
-        },
-        {
-          "type": "url",
-          "id": "featured_cta_link",
-          "label": "CTA Link"
-        }
-      ]
-    },
-    {
       "type": "@app"
+    },
+    {
+      "type": "menu",
+      "name": "Main Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Navigation title(Required)"
+        }
+      ]
     }
   ]
 }
