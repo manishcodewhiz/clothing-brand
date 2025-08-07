@@ -49,14 +49,15 @@
         "menu_FdP8Ti": {
           "type": "menu",
           "settings": {
-            "title": "Shop"
+            "title": "Shop",
+            "enabled_mega_menu": true
           }
         },
-        "brand_product_menu_XFjYgm": {
-          "type": "brand-product-menu",
+        "inner_menu_3TRUqT": {
+          "type": "inner_menu",
           "settings": {
-            "title": "shop by brand",
-            "collection_list_heading": "shop by brand",
+            "title": "Shop By Brand",
+            "collection_list_heading": "Shop By Brand",
             "inner_menu": "shop-shop-by-brand",
             "shopnow_button": "button"
           }
@@ -64,7 +65,7 @@
       },
       "block_order": [
         "menu_FdP8Ti",
-        "brand_product_menu_XFjYgm"
+        "inner_menu_3TRUqT"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
