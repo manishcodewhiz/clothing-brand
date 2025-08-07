@@ -90,7 +90,7 @@
                       {% endif %}
                       <ul class="second-level-menu-list">
                         {% for i in (1..10) %}
-                          {% assign color = block.settings["color_" | append: i] %}
+                          {% assign color = block.settings["color_"] | append: [i] %}
                           {% if color != blank %}
                             <li><a href="#">{{ color }}</a></li>
                           {% endif %}
