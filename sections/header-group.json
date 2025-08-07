@@ -46,10 +46,10 @@
     "header": {
       "type": "header",
       "blocks": {
-        "menu_WBAHn3": {
+        "menu_FdP8Ti": {
           "type": "menu",
           "settings": {
-            "title": "ghfj"
+            "title": "Shop"
           }
         },
         "brand_product_menu_XFjYgm": {
@@ -58,12 +58,12 @@
             "title": "shop by brand",
             "collection_list_heading": "shop by brand",
             "inner_menu": "shop-shop-by-brand",
-            "shopnow_button": false
+            "shopnow_button": "false"
           }
         }
       },
       "block_order": [
-        "menu_WBAHn3",
+        "menu_FdP8Ti",
         "brand_product_menu_XFjYgm"
       ],
       "settings": {
