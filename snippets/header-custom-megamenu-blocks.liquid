@@ -1,198 +1,128 @@
 {% if block.type == 'menu' %}
   <div class="nav-menu-dropdown page-width">
     <div class="menu-dropdown-content">
-      {% if link.links.size > 0 %}
+      {% assign menu_links = link.links %}
+      {% if menu_links.size > 0 %}
+        <!-- First Level Menu -->
         <ul class="first-level-menu first-level-desktop">
-          {% for link in link.links %}
+          {% for item in menu_links %}
             {% assign has_sub_children = false %}
             {% for block in section.blocks %}
-              {% if block.settings.title == link.title and block.type == 'brand-product-menu' or block.type == 'product-menu' %}
+              {% if block.settings.title == item.title and (block.type == 'brand-product-menu' or block.type == 'product-menu') %}
                 {% assign has_sub_children = true %}
               {% endif %}
             {% endfor %}
-
             <li
               class="{% if forloop.index == 1 %}active {% endif %}{% if has_sub_children %}has-sub-children{% endif %}"
-              data-tabid="{{ link.title | handleize }}"
+              data-tabid="{{ item.title | handleize }}"
             >
-              <a href="{{ link.url }}">{{ link.title }}</a>
+              <a href="{{ item.url }}">{{ item.title }}</a>
             </li>
           {% endfor %}
         </ul>
-      {% endif %}
 
-      {% if link.links.size > 0 %}
-        {% for link in link.links %}
-          <div class="main-menu {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
+        <!-- Second Level Menus -->
+        {% for item in menu_links %}
+          <div class="main-menu {{ item.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
             {% for block in section.blocks %}
-              {% if block.settings.title == link.title %}
-                {% if block.type == 'brand-product-menu' %}
-                  {% if block.settings.inner_menu != blank %}
-                    <div class="first-level-menu_items logo-item">
-                      <div class="first-level-shop_list">
-                        {% if block.settings.collection_list_heading != blank %}
-                          <div class="brand-title">
-                            <h3>{{ block.settings.collection_list_heading }}</h3>
-                          </div>
-                        {% endif %}
-                        <div class="second-level-menu-list">
-                          {% for link in block.settings.inner_menu.links %}
-                            <a href="{{ link.url }}" data-tabid="{{ link.title | handleize }}">
-                              <img
-                                src="{{ link.object.metafields.custom.logo | image_url }}"
-                                alt="{{ link.object.featured_image.alt | default: link.title }}"
-                                height="auto"
-                                width="100"
-                              >
-                            </a>
-                          {% endfor %}
-                          {% comment %}
-                            <li>
-                              <a href="#"
-                                ><img
-                                  src="{{ section.settings.logo_image | image_url }}"
-                                  width="100"
-                                  height="38"
-                                  alt=""
-                                  loading="lazy"
-                              ></a>
-                            </li>
-                            <li>
-                              <a href="#"
-                                ><img
-                                  src="{{ section.settings.logo_image | image_url }}"
-                                  width="100"
-                                  height="38"
-                                  alt=""
-                                  loading="lazy"
-                              ></a>
-                            </li>
-                            <li>
-                              <a href="#"
-                                ><img
-                                  src="{{ section.settings.logo_image | image_url }}"
-                                  width="100"
-                                  height="38"
-                                  alt=""
-                                  loading="lazy"
-                              ></a>
-                            </li>
-                            <li>
-                              <a href="#"
-                                ><img
-                                  src="{{ section.settings.logo_image | image_url }}"
-                                  width="100"
-                                  height="38"
-                                  alt=""
-                                  loading="lazy"
-                              ></a>
-                            </li>
-                            <li>
-                              <a href="#"
-                                ><img
-                                  src="{{ section.settings.logo_image | image_url }}"
-                                  width="100"
-                                  height="38"
-                                  alt=""
-                                  loading="lazy"
-                              ></a>
-                            </li>
-                            <li>
-                              <a href="#"
-                                ><img
-                                  src="{{ section.settings.logo_image | image_url }}"
-                                  width="100"
-                                  height="38"
-                                  alt=""
-                                  loading="lazy"
-                              ></a>
-                            </li>
-                            <li>
-                              <a href="#"
-                                ><img
-                                  src="{{ section.settings.logo_image | image_url }}"
-                                  width="100"
-                                  height="38"
-                                  alt=""
-                                  loading="lazy"
-                              ></a>
-                            </li>
-                          {% endcomment %}
-                        </div>
-                      </div>
-                      <div class="row">
-                        {% for link in block.settings.inner_menu.links %}
-                          {% if link.links.size > 0 %}
-                            <div
-                              class="product-main_box brands-product-list brands-products-{{ link.title | handleize }}"
-                              data-tabid="{{ link.title | handleize }}"
-                            >
-                              {% for sublink in link.links %}
-                                {% assign product = sublink.object %}
-                                {% if product != blank %}
-                                  <div class="product-card">
-                                    {% render 'card-product',
-                                      card_product: product,
-                                      shopnow_button: block.settings.shopnow_button,
-                                      section_id: section.id
-                                    %}
-                                  </div>
-                                {% endif %}
-                              {% endfor %}
+              {% if block.settings.title == item.title %}
+                {% case block.type %}
+                  {% when 'brand-product-menu' %}
+                    {% if block.settings.inner_menu != blank %}
+                      <div class="first-level-menu_items logo-item">
+                        <div class="first-level-shop_list">
+                          {% if block.settings.collection_list_heading != blank %}
+                            <div class="brand-title">
+                              <h3>{{ block.settings.collection_list_heading }}</h3>
                             </div>
                           {% endif %}
-                        {% endfor %}
+                          <div class="second-level-menu-list">
+                            {% for link in block.settings.inner_menu.links %}
+                              <a href="{{ link.url }}" data-tabid="{{ link.title | handleize }}">
+                                <img
+                                  src="{{ link.object.metafields.custom.logo | image_url }}"
+                                  alt="{{ link.object.featured_image.alt | default: link.title }}"
+                                  height="auto"
+                                  width="100"
+                                >
+                              </a>
+                            {% endfor %}
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          {% for link in block.settings.inner_menu.links %}
+                            {% if link.links.size > 0 %}
+                              <div
+                                class="product-main_box brands-product-list brands-products-{{ link.title | handleize }}"
+                                data-tabid="{{ link.title | handleize }}"
+                              >
+                                {% for sublink in link.links %}
+                                  {% assign product = sublink.object %}
+                                  {% if product != blank %}
+                                    <div class="product-card">
+                                      {% render 'card-product',
+                                        card_product: product,
+                                        shopnow_button: block.settings.shopnow_button,
+                                        section_id: section.id
+                                      %}
+                                    </div>
+                                  {% endif %}
+                                {% endfor %}
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
                       </div>
-                    </div>
-                  {% endif %}
-                {% elsif block.type == 'product-menu' %}
-                  <div class="first-level-menu_items">
-                    <div class="first-level-shop_list">
-                      <h3>Shop By Color</h3>
-                      <ul class="second-level-menu-list">
-                        <li><a href="#">Black</a></li>
-                        <li><a href="#">White</a></li>
-                        <li><a href="#">Blue</a></li>
-                        <li><a href="#">Green</a></li>
-                        <li><a href="#">Red</a></li>
-                        <li><a href="#">Black</a></li>
-                        <li><a href="#">White</a></li>
-                        <li><a href="#">Blue</a></li>
-                        <li><a href="#">Green</a></li>
-                        <li><a href="#">Red</a></li>
-                      </ul>
-                    </div>
-                    <div class="first-level-shop_image-block">
-                      <span class="image_level">
-                        <img
-                          src="{{ section.settings.featured_image | image_url }}"
-                          width="282"
-                          height="266"
-                          alt=""
-                          loading="lazy"
-                        >
-                      </span>
-                    </div>
-                    <div class="first-level-card">
-                      <div class="main-card_item">
-                        <span class="image-span">
+                    {% endif %}
+
+                  {% when 'product-menu' %}
+                    <div class="first-level-menu_items">
+                      <div class="first-level-shop_list">
+                        <h3>Shop By Color</h3>
+                        <ul class="second-level-menu-list">
+                          {% assign colors = 'Black,White,Blue,Green,Red' | split: ',' %}
+                          {% for color in colors %}
+                            <li>
+                              <a href="#">{{ color }}</a>
+                            </li>
+                            <li>
+                              <a href="#">{{ color }}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                      <div class="first-level-shop_image-block">
+                        <span class="image_level">
                           <img
                             src="{{ section.settings.featured_image | image_url }}"
-                            width="432"
+                            width="282"
                             height="266"
                             alt=""
                             loading="lazy"
                           >
                         </span>
-                        <div class="main-card_item_text">
-                          <span>New Arrivals</span>
-                          <h2>New Nail Lacquers Collection</h2>
-                          <a href="#">Shop Now</a>
+                      </div>
+                      <div class="first-level-card">
+                        <div class="main-card_item">
+                          <span class="image-span">
+                            <img
+                              src="{{ section.settings.featured_image | image_url }}"
+                              width="432"
+                              height="266"
+                              alt=""
+                              loading="lazy"
+                            >
+                          </span>
+                          <div class="main-card_item_text">
+                            <span>New Arrivals</span>
+                            <h2>New Nail Lacquers Collection</h2>
+                            <a href="#">Shop Now</a>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                {% endif %}
+                {% endcase %}
               {% endif %}
             {% endfor %}
           </div>
@@ -285,4 +215,77 @@
       <li><a href="#" data-tabid="{{ link.title | handleize }}">Shop By Product</a></li>
     </ul>
   {% endif %}
+{% endcomment %}
+
+{% comment %}
+  <li>
+    <a href="#"
+      ><img
+        src="{{ section.settings.logo_image | image_url }}"
+        width="100"
+        height="38"
+        alt=""
+        loading="lazy"
+    ></a>
+  </li>
+  <li>
+    <a href="#"
+      ><img
+        src="{{ section.settings.logo_image | image_url }}"
+        width="100"
+        height="38"
+        alt=""
+        loading="lazy"
+    ></a>
+  </li>
+  <li>
+    <a href="#"
+      ><img
+        src="{{ section.settings.logo_image | image_url }}"
+        width="100"
+        height="38"
+        alt=""
+        loading="lazy"
+    ></a>
+  </li>
+  <li>
+    <a href="#"
+      ><img
+        src="{{ section.settings.logo_image | image_url }}"
+        width="100"
+        height="38"
+        alt=""
+        loading="lazy"
+    ></a>
+  </li>
+  <li>
+    <a href="#"
+      ><img
+        src="{{ section.settings.logo_image | image_url }}"
+        width="100"
+        height="38"
+        alt=""
+        loading="lazy"
+    ></a>
+  </li>
+  <li>
+    <a href="#"
+      ><img
+        src="{{ section.settings.logo_image | image_url }}"
+        width="100"
+        height="38"
+        alt=""
+        loading="lazy"
+    ></a>
+  </li>
+  <li>
+    <a href="#"
+      ><img
+        src="{{ section.settings.logo_image | image_url }}"
+        width="100"
+        height="38"
+        alt=""
+        loading="lazy"
+    ></a>
+  </li>
 {% endcomment %}
