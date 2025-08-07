@@ -58,13 +58,23 @@
             "title": "Shop by Brand",
             "collection_list_heading": "Shop by Brand",
             "inner_menu": "shop-shop-by-brand",
-            "shopnow_button": "button"
+            "shopnow_button": false
+          }
+        },
+        "product_menu_dPLYNt": {
+          "type": "product-menu",
+          "settings": {
+            "title": "chfvhjbn",
+            "heading": "cjhbjkm",
+            "color_1": "xfgcghhj",
+            "color_2": "659+5"
           }
         }
       },
       "block_order": [
         "menu_Apxiwx",
-        "brand_product_menu_7D8kXy"
+        "brand_product_menu_7D8kXy",
+        "product_menu_dPLYNt"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
