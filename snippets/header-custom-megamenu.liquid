@@ -102,54 +102,47 @@
 
 <nav class="header__inline-menu">
   {% render 'header-search', input_id: 'Search-In-Modal' %}
+  
   <ul class="list-menu list-menu--inline top-level-menu" role="list">
-    {%- for link in section.settings.menu.links -%}
+    {% for link in section.settings.menu.links %}
+      {% assign matched_block = nil %}
+
       {% for block in section.blocks %}
-        {% assign header_menu = link.title | handle %}
-        {% assign block_header_menu = block.settings.title | handle %}
-        {% assign menu_available = false %}
+        {% assign header_menu = link.title | handleize %}
+        {% assign block_header_menu = block.settings.title | handleize %}
         {% if block_header_menu == header_menu %}
-          <li class="list-menu-item">
-            <a
-              id="HeaderMenu-{{ link.handle }}"
-              href="{{ link.url }}"
-              class="list-menu__item"
-              {% if link.current %}
-                aria-current="page"
-              {% endif %}
-            >
-              <span
-                {%- if link.current %}
-                  class=""
-                {% endif %}
-              >
-                {{- link.title | escape -}}
-              </span>
-            </a>
-            {%- render 'header-custom-megamenu-blocks', block: block, link: link, section: section -%}
-          </li>
-          {% assign menu_available = true %}
+          {% assign matched_block = block %}
           {% break %}
         {% endif %}
       {% endfor %}
-      {% unless menu_available %}
-        <li class="{%  if link.links.size > 0 %}list-menu-item{% endif %}">
+
+      {% if matched_block %}
+        <!-- Mega Menu Item with custom block -->
+        <li class="list-menu-item" data-tabid="{{ link.title | handleize }}">
           <a
             id="HeaderMenu-{{ link.handle }}"
             href="{{ link.url }}"
             class="list-menu__item"
-            {% if link.current %}
-              aria-current="page"
-            {% endif %}
+            {% if link.current %} aria-current="page" {% endif %}
           >
-            <span
-              {%- if link.current %}
-                class=""
-              {% endif %}
-            >
-              {{- link.title | escape -}}
-            </span>
+            <span>{{ link.title | escape }}</span>
           </a>
+
+          {% render 'header-custom-megamenu-blocks', block: matched_block, link: link, section: section %}
+        </li>
+
+      {% else %}
+        <!-- Regular menu item (with or without dropdown) -->
+        <li class="{% if link.links.size > 0 %}list-menu-item{% endif %}">
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="list-menu__item"
+            {% if link.current %} aria-current="page" {% endif %}
+          >
+            <span>{{ link.title | escape }}</span>
+          </a>
+
           {% if link.links.size > 0 %}
             <ul class="sub-menu second-level-menu">
               {% for secondLevelLink in link.links %}
@@ -160,7 +153,8 @@
             </ul>
           {% endif %}
         </li>
-      {% endunless %}
-    {%- endfor -%}
+      {% endif %}
+    {% endfor %}
   </ul>
 </nav>
+
