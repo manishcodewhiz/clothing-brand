@@ -13,11 +13,15 @@
           <h3>Shop By Brand</h3>
           {%  assign logo = collection.metafields.custom.logo %}
           <ul class="second-level-menu-list">
+            {% for link in link.links %}
+              {% if block.type == 'inner_menu' %}
             <li>
               <a href="#"
                 ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
               ></a>
             </li>
+            {% endif %}
+            {% endfor %}
             {% comment %} <li>
               <a href="#"
                 ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
