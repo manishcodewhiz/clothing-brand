@@ -45,37 +45,6 @@
     },
     "header": {
       "type": "header",
-      "blocks": {
-        "menu_Apxiwx": {
-          "type": "menu",
-          "settings": {
-            "title": "Shop"
-          }
-        },
-        "brand_product_menu_7D8kXy": {
-          "type": "brand-product-menu",
-          "settings": {
-            "title": "Shop by Brand",
-            "collection_list_heading": "Shop by Brand",
-            "inner_menu": "shop-shop-by-brand",
-            "shopnow_button": true
-          }
-        },
-        "product_menu_dPLYNt": {
-          "type": "product-menu",
-          "settings": {
-            "title": "chfvhjbn",
-            "heading": "cjhbjkm",
-            "color_1": "xfgcghhj",
-            "color_2": "659+5"
-          }
-        }
-      },
-      "block_order": [
-        "menu_Apxiwx",
-        "brand_product_menu_7D8kXy",
-        "product_menu_dPLYNt"
-      ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
         "logo_image": "shopify://shop_images/d36998decee9f4f4ce078eb823044154950eb836.png",
@@ -84,7 +53,7 @@
         "product_image3": "shopify://shop_images/image-m-9.png",
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
-        "menu": "main-menu",
+        "menu": "megamenu-block-shop",
         "menu_type_desktop": "mega",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
