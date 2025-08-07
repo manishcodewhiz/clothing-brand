@@ -59,13 +59,29 @@
             "title": "Shop By Brand",
             "collection_list_heading": "Shop By Brand",
             "inner_menu": "shop-shop-by-brand",
-            "shopnow_button": "button"
+            "featured_top_text": "Featured Text",
+            "featured_title": "Featured Title",
+            "featured_cta_text": "Shop Now",
+            "featured_cta_link": ""
+          }
+        },
+        "inner_menu_wQCB3E": {
+          "type": "inner_menu",
+          "settings": {
+            "title": "Shop by Products",
+            "collection_list_heading": "Shop by Products",
+            "inner_menu": "",
+            "featured_top_text": "Featured Text",
+            "featured_title": "Featured Title",
+            "featured_cta_text": "Shop Now",
+            "featured_cta_link": ""
           }
         }
       },
       "block_order": [
         "menu_FdP8Ti",
-        "inner_menu_3TRUqT"
+        "inner_menu_3TRUqT",
+        "inner_menu_wQCB3E"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
