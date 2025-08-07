@@ -8,7 +8,7 @@
           {% for item in menu_links %}
             {% assign has_sub_children = false %}
             {% for block in section.blocks %}
-              {% if block.settings.title == item.title and (block.type == 'brand-product-menu' or block.type == 'product-menu') %}
+              {% if block.settings.title == item.title and block.type == 'brand-product-menu' or block.type == 'product-menu' %}
                 {% assign has_sub_children = true %}
               {% endif %}
             {% endfor %}
