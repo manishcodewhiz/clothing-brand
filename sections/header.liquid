@@ -687,8 +687,52 @@
           "label": "Navigation title(Required)"
         }
       ]
+    },
+    {
+      "type": "brand-product-menu",
+      "name": "Brand & Product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Navigation title(Required)"
+        },
+        {
+          "type": "header",
+          "content": "Collection List Settings"
+        },
+        {
+          "type": "text",
+          "id": "collection_list_heading",
+          "label": "Menu Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "inner_menu",
+          "label": "Inner Menu"
+        },
+        {
+          "type": "header",
+          "content": "Product Settings"
+        },
+        {
+          "type": "select",
+          "id": "shopnow_button",
+          "default": "button",
+          "label": "Buttons",
+          "options": [
+            {
+              "value": "none",
+              "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
+            },
+            {
+              "value": "button",
+              "label": "Button"
+            }
+          ]
+        }
+      ]
     }
-    
   ]
 }
 {% endschema %}
