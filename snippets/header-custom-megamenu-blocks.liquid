@@ -2,10 +2,12 @@
 <div class="nav-menu-dropdown page-width">
   <div class="menu-dropdown-content">
     <div class="main-menu-block">
+      {%  for link in link.links %}
       <ul class="first-level-menu first-level-desktop">
-        <li><a href="#">Shop By Brand</a></li>
+        <li><a href="{{ link.url }}">Shop By Brand</a></li>
         <li><a href="#" data-tabid="{{ link.title | handleize }}">Shop By Product</a></li>
       </ul>
+      {% endfor %}
 
       <div class="first-level-menu_items logo-item">
         <div class="first-level-shop_list">
