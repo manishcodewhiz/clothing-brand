@@ -1,24 +1,28 @@
 {% if block.type == 'menu' %}
   <div class="nav-menu-dropdown page-width">
     <div class="menu-dropdown-content">
-      {% for link in link.links %}
-        {% assign has_sub_children = false %}
-        {% for block in section.blocks %}
-          {% if block.settings.title == link.title
-            and block.type == 'brand-product-menu'
-            or block.type == 'product-menu'
-          %}
-            {% assign has_sub_children = true %}
-          {% endif %}
-        {% endfor %}
+      {% if link.links.size > 0 %}
+        <ul class="first-level-menu first-level-desktop">
+          {% for link in link.links %}
+            {% assign has_sub_children = false %}
+            {% for block in section.blocks %}
+              {% if block.settings.title == link.title
+                and block.type == 'brand-product-menu'
+                or block.type == 'product-menu'
+              %}
+                {% assign has_sub_children = true %}
+              {% endif %}
+            {% endfor %}
 
-        <li
-          class="{% if forloop.index == 1 %}active {% endif %}{% if has_sub_children %}has-sub-children{% endif %}"
-          data-tabid="{{ link.title | handleize }}"
-        >
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        </li>
-      {% endfor %}
+            <li
+              class="{% if forloop.index == 1 %}active {% endif %}{% if has_sub_children %}has-sub-children{% endif %}"
+              data-tabid="{{ link.title | handleize }}"
+            >
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
 
       {% if link.links.size > 0 %}
         {% for link in link.links %}
