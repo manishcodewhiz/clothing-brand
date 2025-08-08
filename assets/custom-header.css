@@ -185,6 +185,10 @@ body.gradient.menu-box:before {
     flex-wrap: wrap;
     gap: 10px;
 }
+.section-header .brand-product-wrapper.only-product-list{
+    display: flex;
+    width: 100%;
+}
 .section-header .header .first-level-shop_image-block {
     max-width: calc(30% - 40px);
     width: 100%;
