@@ -139,7 +139,7 @@ body.gradient.menu-box:before {
   display: block;
 }
 
-.section-header .header .main-menu-block .first-level-menu_items {
+.section-header .header .main-menu-block .first-level-menu_items .logo-item{
     max-width: calc(80% - 40px);
     width: 100%;
     display: flex;
