@@ -74,7 +74,7 @@ body.gradient.menu-box:before {
     border-radius: 0 0 8px 8px;
     margin: auto;
     max-width: 1456px;
-    display: ;
+    display: block;
     max-height: calc(100vh - 150px);
 }
 
@@ -151,7 +151,7 @@ body.gradient.menu-box:before {
     display: flex;
     gap: 32px;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 .section-header .header .main-menu-block .first-level-menu_items.logo-item .first-level-shop_list{
     max-width: calc(30% - 6px);
@@ -163,6 +163,7 @@ body.gradient.menu-box:before {
 .section-header .header .main-menu-block .first-level-menu_items.logo-item .row{
     display: none;
     gap: 10px;
+    width: 100%;
 }
 .section-header .header .main-menu-block .first-level-menu_items.logo-item .row.show-menu{
     display: flex;
@@ -177,6 +178,17 @@ body.gradient.menu-box:before {
     width: 100%;
 }
 
+.section-header .megamenu-product-list{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.section-header .brand-product-wrapper.only-product-list{
+    display: flex;
+    width: 100%;
+}
 .section-header .header .first-level-shop_image-block {
     max-width: calc(30% - 40px);
     width: 100%;
@@ -210,6 +222,15 @@ body.gradient.menu-box:before {
     font-size: 14px;
     line-height: 22px;
     color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+.section-header .header .first-level-menu_items .second-level-menu-list li a img{
+    object-fit: contain;
 }
 
 .section-header .header .first-level-card .main-card_item {
