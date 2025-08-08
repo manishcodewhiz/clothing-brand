@@ -32,12 +32,13 @@
                   {% for sublink in link.links %}
                     {% assign product = sublink.object %}
                     <div class="product-main_box">
+                      {% assign show_buttons = block.settings.show_buttons %}
                       {% render 'card-product',
                         card_product: product,
-                        buttons: block.settings.buttons,
+                        show_buttons: block.settings.show_buttons,
                         section_id: section.id
                       %}
-                       <div>{{ block.settings.buttons }}</div>
+                       <div>{{ block.settings.show_buttons }}</div>
                     </div>
                   {% endfor %}
                 </div>
