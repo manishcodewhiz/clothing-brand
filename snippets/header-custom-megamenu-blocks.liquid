@@ -123,18 +123,17 @@
             <div class="first-level-menu_items">
               <div class="first-level-shop_list">
                 <h3>{{ block.settings.heading }}</h3>
+
                 <ul class="second-level-menu-list">
-                  {% for block in section.blocks %}
-                    {% if block.type == 'secondary_menu_color' and block.settings.title == link.title %}
-                      {% for child_link in link.links %}
-                        <li>
-                          <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-                        </li>
-                      {% endfor %}
-                    {% endif %}
+                  {% assign linklists = null %}
+                  {% for link in linklists[block.settings.menu].links %}
+                    <li>
+                      <a href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
                   {% endfor %}
                 </ul>
               </div>
+
               <div class="first-level-shop_image-block">
                 <span class="image_level">
                   <img
@@ -146,6 +145,7 @@
                   >
                 </span>
               </div>
+
               <div class="first-level-card">
                 <div class="main-card_item">
                   <span class="image-span">
