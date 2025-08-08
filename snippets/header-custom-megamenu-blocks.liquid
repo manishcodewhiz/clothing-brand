@@ -19,7 +19,7 @@
                   {% for link in block.settings.secondary_menu.links %}
                     {% assign logo = collection.metafields.custom.logo %}
                     <li>
-                      <a href="#"><img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy"></a>
+                      <a href="{{ link.url }}"><img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy">{{ link.title }}</a>
                     </li>
                   {% endfor %}
                 </ul>
