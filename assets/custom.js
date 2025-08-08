@@ -44,13 +44,13 @@
 
   $(function () {
     // Add 'active' class to the first menu item on page load
-    $('.first-level-menu_items .second-level-menu-list a').first().addClass('active');
+    $('.second-level-menu-list li a').first().addClass('active');
     // Show the first menu content on page load
     $('.first-level-menu_items .row').first().addClass('show-menu');
 
-    $('.first-level-menu_items .second-level-menu-list a').on('mouseenter', function () {
+    $('.second-level-menu-list li a').on('mouseenter', function () {
       var index = $(this).index();
-      $('.first-level-menu_items .second-level-menu-list a').removeClass('active');
+      $('.second-level-menu-list li a').removeClass('active');
       $('.first-level-menu_items .row').removeClass('show-menu');
       $(this).addClass('active');
       $('.first-level-menu_items .row').eq(index).addClass('show-menu');
