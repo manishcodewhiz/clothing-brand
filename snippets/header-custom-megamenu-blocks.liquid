@@ -14,7 +14,7 @@
           {% for block in section.blocks %}
             {% if block.type == 'inner_menu' %}
               <div class="first-level-shop_list">
-                <h3>Shop By Brand</h3>
+                <h3>{{ block.settings.title }}</h3>
                 <ul class="second-level-menu-list">
                   {% for link in link.links %}
                     {% assign logo = collection.metafields.custom.logo %}
