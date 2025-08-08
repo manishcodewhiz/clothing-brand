@@ -150,15 +150,6 @@
               {{- link.title | escape -}}
             </span>
           </a>
-          {% if link.links.size > 0 %}
-            <ul class="sub-menu second-level-menu">
-              {% for secondLevelLink in link.links %}
-                <li>
-                  <a href="{{ secondLevelLink.url }}">{{ secondLevelLink.title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
         </li>
       {% endunless %}
     {%- endfor -%}
