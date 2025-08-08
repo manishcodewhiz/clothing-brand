@@ -44,8 +44,15 @@
                     </div>
                   {% endfor %}
                 </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
 
-              {% elsif block.type == 'collection_list' %}
+        <div class="main-item {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
+          {% for block in section.blocks %}
+            {% if block.settings.title == link.title %}
+              {% if block.type == 'collection_list' %}
                 {% for collection in block.settings.collection_list %}
                   <div class="collection-list">
                     <a href="{{ collection.url }}">
