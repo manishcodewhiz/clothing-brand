@@ -71,7 +71,12 @@
           "type": "collection_list",
           "settings": {
             "title": "Shop By Collection",
-            "collection_list": []
+            "collection_list": [
+              "colla",
+              "frontpage",
+              "products",
+              "rockstar"
+            ]
           }
         }
       },
