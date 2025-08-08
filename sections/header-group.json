@@ -67,21 +67,18 @@
             "featured_cta_link": ""
           }
         },
-        "product_menu_iFTe6T": {
-          "type": "product_menu",
+        "collection_list_NgrNqE": {
+          "type": "collection_list",
           "settings": {
-            "title": "Shop By Product",
-            "collection_list": [
-              "yamaha",
-              "suzuki"
-            ]
+            "title": "Shop By Collection",
+            "collection_list": []
           }
         }
       },
       "block_order": [
         "menu_FdP8Ti",
         "inner_menu_wQCB3E",
-        "product_menu_iFTe6T"
+        "collection_list_NgrNqE"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
