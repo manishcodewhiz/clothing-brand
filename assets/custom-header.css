@@ -162,6 +162,9 @@ body.gradient.menu-box:before {
     background-color: #FFFFFF;
     border-radius: 8px;
 }
+.section-header .first-level-menu_items.collection--lists .collection-list a span img{
+    display: block;
+}
 
 .section-header .header .main-menu-block .first-level-menu_items.logo-item {
     max-width: calc(80% - 25px);
