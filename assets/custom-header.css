@@ -167,12 +167,10 @@ body.gradient.menu-box:before {
     object-fit: cover;
 }
 .section-header .header .main-menu-block .first-level-menu_items.product_list{
-    display: flex;
-    gap: 10px;
 }
 .section-header .header .main-menu-block .first-level-menu_items.product_list .product-box{
-    max-width: calc(20% - 5px)
-    width: 100%;
+    display: flex;
+    gap: 10px;
 }
 
 .section-header .header .main-menu-block .first-level-menu_items.logo-item {
