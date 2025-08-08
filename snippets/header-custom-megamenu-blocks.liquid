@@ -18,7 +18,16 @@
               {% for link in link.links %}
                 {% if block.type == 'inner_menu' %}
                   <li>
-                    <a href="#"><img src="{{ link.object.metafields.custom.logo | image_url }}" width="100" height="38" alt="" loading="lazy"></a>
+                    {% for link in block.settings.inner_menu.links %}
+                      <a href="#"
+                        ><img
+                          src="{{ link.object.metafields.custom.logo | image_url }}"
+                          width="100"
+                          height="38"
+                          alt=""
+                          loading="lazy"
+                      ></a>
+                    {% endfor %}
                   </li>
                 {% endif %}
               {% endfor %}
