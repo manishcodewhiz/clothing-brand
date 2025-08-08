@@ -151,7 +151,7 @@ body.gradient.menu-box:before {
     display: flex;
     gap: 32px;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 .section-header .header .main-menu-block .first-level-menu_items.logo-item .first-level-shop_list{
     max-width: calc(30% - 6px);
