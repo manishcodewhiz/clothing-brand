@@ -11,8 +11,8 @@
         </ul>
         {% if link.links.size > 0 %}
           {% for link in link.links %}
-            <div class="main-item">
-              {% for block in section.blocks %}
+            {% for block in section.blocks %}
+              <div class="main-item">
                 {% if block.settings.title == link.title %}
                   {% if block.type == 'inner_menu' %}
                     <div class="first-level-menu_items logo-item">
@@ -62,8 +62,8 @@
                     </div>
                   {% endif %}
                 {% endif %}
-              {% endfor %}
-            </div>
+              </div>
+            {% endfor %}
           {% endfor %}
         {% endif %}
         {% comment %}
