@@ -145,8 +145,9 @@ body.gradient.menu-box:before {
     align-items: center;
 }
 .section-header .first-level-menu_items.collection--lists{
-    gap: 16px;
+    gap: 16px !important;
     flex-wrap: wrap;
+    max-width:100%;
 }
 .section-header .first-level-menu_items.collection--lists .collection-list{
     width:  180px;
