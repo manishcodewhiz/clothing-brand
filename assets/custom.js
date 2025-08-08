@@ -5,8 +5,8 @@
 
     $menuItems.on('mouseenter', function () {
       clearTimeout(hideTimeout);
-      // $menuItems.removeClass('active');
-      // $(this).addClass('active');
+      $menuItems.removeClass('active');
+      $(this).addClass('active');
 
       if ($(this).find('.nav-menu-dropdown').length) {
         $('body').addClass('menu-box');
