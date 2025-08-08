@@ -46,7 +46,7 @@
         {% endfor %}
         {% for block in section.blocks %}
           {% if block.type == 'collection_list' %}
-            <div class="megamenu-collection-wrapper">
+            <div class="first-level-menu_items">
               {% for collection in block.settings.collection_list %}
                 <div class="collection-list">
                   <a href="{{ collection.url }}">
