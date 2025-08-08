@@ -9,189 +9,190 @@
             </li>
           {% endfor %}
         </ul>
-       
-     
-            <div class="main-item {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
-                {% for block in section.blocks %}
-                {% if block.settings.title == link.title %}
-                  {% if block.type == 'inner_menu' %}
-                    <div class="first-level-menu_items logo-item">
-                      <div class="first-level-shop_list">
-                        <h3>{{ block.settings.title }}</h3>
-                        <ul class="second-level-menu-list">
-                          {% for link in block.settings.secondary_menu.links %}
-                            {% assign logo = link.object.metafields.custom.logo.value %}
-                            <li>
-                              <a href="{{ link.url }}"
-                                ><img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy">
-                                {{- link.title -}}
-                              </a>
-                            </li>
-                          {% endfor %}
-                        </ul>
-                      </div>
-                      {% for link in block.settings.secondary_menu.links %}
-                        <div class="row">
-                          {% for sublink in link.links %}
-                            {% assign product = sublink.object %}
-                            <div class="product-main_box">
-                              {% render 'card-product',
-                                card_product: product,
-                                buttons: block.settings.buttons,
-                                section_id: section.id
-                              %}
-                            </div>
-                          {% endfor %}
+
+        <div class="main-item {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
+          {% for block in section.blocks %}
+            {% if block.settings.title == link.title %}
+              {% if block.type == 'inner_menu' %}
+                <div class="first-level-menu_items logo-item">
+                  <div class="first-level-shop_list">
+                    <h3>{{ block.settings.title }}</h3>
+                    <ul class="second-level-menu-list">
+                      {% for inner_link in block.settings.secondary_menu.links %}
+                        {% assign logo = inner_link.object.metafields.custom.logo.value %}
+                        <li>
+                          <a href="{{ inner_link.url }}">
+                            {% if logo %}
+                              <img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy">
+                            {% endif %}
+                            {{- inner_link.title -}}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+
+                  {% for inner_link in block.settings.secondary_menu.links %}
+                    <div class="row">
+                      {% for sublink in inner_link.links %}
+                        {% assign product = sublink.object %}
+                        <div class="product-main_box">
+                          {% render 'card-product',
+                            card_product: product,
+                            buttons: block.settings.buttons,
+                            section_id: section.id
+                          %}
                         </div>
                       {% endfor %}
                     </div>
+                  {% endfor %}
+                </div>
 
-                  {% elsif block.type == 'product_menu' %}
-                    <div class="brand-product-wrapper only-product-list">
-                      <div class="megamenu-product-list">
-                        {% for products in block.settings.product_list %}
-                          <div class="product-main_box">
-                            {% render 'card-product',
-                              card_product: product,
-                              buttons: block.settings.buttons,
-                              section_id: section.id
-                            %}
-                          </div>
-                        {% endfor %}
+              {% elsif block.type == 'product_menu' %}
+                <div class="brand-product-wrapper only-product-list">
+                  <div class="megamenu-product-list">
+                    {% for product in block.settings.product_list %}
+                      <div class="product-main_box">
+                        {% render 'card-product',
+                          card_product: product,
+                          buttons: block.settings.buttons,
+                          section_id: section.id
+                        %}
                       </div>
-                    </div>
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
-              </div>
-       
-      
-        {% comment %}
-          <div class="first-level-menu_items logo-item">
-            <div class="first-level-shop_list">
-              <h3>Shop By Color</h3>
-              <ul class="second-level-menu-list">
-                <li>
-                  <a href="#"
-                    ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"
-                    ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"
-                    ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"
-                    ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"
-                    ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"
-                    ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"
-                    ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"
-                    ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            {% comment %}
-              <div class="first-level-shop_image-block">
-                <span class="image_level">
-                  <img src="{{ section.settings.image_block | image_url }}" width="282" height="266" alt="" loading="lazy">
-                </span>
-              </div>
-            {% endcomment %}
-            <div class="first-level-card">
-              <div class="main-card_item">
-                <span class="image-span">
-                  <img
-                    src="{{ section.settings.featured_image | image_url }}"
-                    width="432"
-                    height="266"
-                    alt=""
-                    loading="lazy"
-                  >
-                </span>
-                <div class="main-card_item_text">
-                  <span>New Arrivals</span>
-                  <h2>New Nail Lacquers Collection</h2>
-                  <a href="#">Shop Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        {% endcomment %}
-        {% comment %}
-          {% for block in section.blocks %}
-            {% if block.type == 'color_menu' %}
-              <div class="first-level-menu_items">
-                <div class="first-level-shop_list">
-                  <h3>{{ block.settings.heading }}</h3>
-                  <ul class="second-level-menu-list">
-                    {% for block in section.blocks %}
-                      {% if block.type == 'secondary_menu_color' and block.settings.title == link.title %}
-                        {% for child_link in link.links %}
-                          <li>
-                            <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-                          </li>
-                        {% endfor %}
-                      {% endif %}
                     {% endfor %}
-                  </ul>
-                </div>
-                <div class="first-level-shop_image-block">
-                  <span class="image_level">
-                    <img
-                      src="{{ section.settings.featured_image | image_url }}"
-                      width="282"
-                      height="266"
-                      alt=""
-                      loading="lazy"
-                    >
-                  </span>
-                </div>
-                <div class="first-level-card">
-                  <div class="main-card_item">
-                    <span class="image-span">
-                      <img
-                        src="{{ section.settings.featured_image | image_url }}"
-                        width="432"
-                        height="266"
-                        alt=""
-                        loading="lazy"
-                      >
-                    </span>
-                    <div class="main-card_item_text">
-                      <span>New Arrivals</span>
-                      <h2>New Nail Lacquers Collection</h2>
-                      <a href="#">Shop Now</a>
-                    </div>
                   </div>
                 </div>
-              </div>
+              {% endif %}
             {% endif %}
           {% endfor %}
-        {% endcomment %}
+        </div>
       </div>
     </div>
   </div>
 {% endif %}
+
+{% comment %}
+  <div class="first-level-menu_items logo-item">
+    <div class="first-level-shop_list">
+      <h3>Shop By Color</h3>
+      <ul class="second-level-menu-list">
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img src="{{ section.settings.logo_image | image_url }}" width="100" height="38" alt="" loading="lazy"
+          ></a>
+        </li>
+      </ul>
+    </div>
+    {% comment %}
+      <div class="first-level-shop_image-block">
+        <span class="image_level">
+          <img src="{{ section.settings.image_block | image_url }}" width="282" height="266" alt="" loading="lazy">
+        </span>
+      </div>
+    {% endcomment %}
+    <div class="first-level-card">
+      <div class="main-card_item">
+        <span class="image-span">
+          <img
+            src="{{ section.settings.featured_image | image_url }}"
+            width="432"
+            height="266"
+            alt=""
+            loading="lazy"
+          >
+        </span>
+        <div class="main-card_item_text">
+          <span>New Arrivals</span>
+          <h2>New Nail Lacquers Collection</h2>
+          <a href="#">Shop Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcomment %}
+{% comment %}
+  {% for block in section.blocks %}
+    {% if block.type == 'color_menu' %}
+      <div class="first-level-menu_items">
+        <div class="first-level-shop_list">
+          <h3>{{ block.settings.heading }}</h3>
+          <ul class="second-level-menu-list">
+            {% for block in section.blocks %}
+              {% if block.type == 'secondary_menu_color' and block.settings.title == link.title %}
+                {% for child_link in link.links %}
+                  <li>
+                    <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="first-level-shop_image-block">
+          <span class="image_level">
+            <img
+              src="{{ section.settings.featured_image | image_url }}"
+              width="282"
+              height="266"
+              alt=""
+              loading="lazy"
+            >
+          </span>
+        </div>
+        <div class="first-level-card">
+          <div class="main-card_item">
+            <span class="image-span">
+              <img
+                src="{{ section.settings.featured_image | image_url }}"
+                width="432"
+                height="266"
+                alt=""
+                loading="lazy"
+              >
+            </span>
+            <div class="main-card_item_text">
+              <span>New Arrivals</span>
+              <h2>New Nail Lacquers Collection</h2>
+              <a href="#">Shop Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endcomment %}
