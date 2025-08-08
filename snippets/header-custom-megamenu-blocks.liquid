@@ -79,11 +79,15 @@
           {% if block.type == 'product_list' %}
             <div class="first-level-menu_items product_list">
               <div class="product-box">
-                {% render 'card-product',
-                  card_product: product,
-                  buttons: block.settings.buttons,
-                  section_id: section.id
-                %}
+                {% for product in block.settings.product_list %}
+                  <div class="product-card">
+                    {% render 'card-product',
+                      card_product: product,
+                      shopnow_button: block.settings.shopnow_button,
+                      section_id: section.id
+                    %}
+                  </div>
+                {% endfor %}
               </div>
             </div>
           {% endif %}
