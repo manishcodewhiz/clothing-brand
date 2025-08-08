@@ -772,8 +772,8 @@
       ]
     },
     {
-      "type": "color_menu",
-      "name": "Color Menu",
+      "type": "product_menu",
+      "name": "Product Menu",
       "settings": [
         {
           "type": "text",
@@ -782,22 +782,28 @@
         },
         {
           "type": "header",
-          "content": "Selected Menu Settings"
+          "content": "Product Menu Settings"
         },
         {
-          "type": "text",
-          "id": "collection_list_heading",
-          "label": "Menu Heading"
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Product List"
         },
         {
-          "type": "link_list",
-          "id": "secondary_menu_color",
-          "label": "Inner Menu"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading"
+          "type": "select",
+          "id": "buttons",
+          "label": "Buttons",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "button",
+              "label": "Button"
+            }
+          ],
+          "default": "button"
         }
       ]
     }
