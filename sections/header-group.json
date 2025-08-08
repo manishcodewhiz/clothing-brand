@@ -59,12 +59,7 @@
             "title": "Shop By Brand",
             "collection_list_heading": "Shop By Brand",
             "secondary_menu": "shop-shop-by-brand",
-            "buttons": "button",
-            "featured_image": "shopify://shop_images/image-m-3.png",
-            "featured_top_text": "Featured Text",
-            "featured_title": "Featured Title",
-            "featured_cta_text": "Shop Now",
-            "featured_cta_link": ""
+            "buttons": "button"
           }
         },
         "collection_list_NgrNqE": {
@@ -72,11 +67,11 @@
           "settings": {
             "title": "Shop By Collection",
             "collection_list": [
-              "colla",
-              "frontpage",
               "products",
               "rockstar",
-              "honda"
+              "honda",
+              "kawasaki",
+              "suzuki"
             ]
           }
         }
