@@ -17,15 +17,10 @@
                 <h3>{{ block.settings.title }}</h3>
                 <ul class="second-level-menu-list">
                   {% for link in block.settings.secondary_menu.links %}
-                    {% assign collection_handle = link.object.handle %}
-                    {% assign linked_collection = collections[collection_handle] %}
                     {% assign logo = collection.metafields.custom.logo.value %}
                     {{ logo | json }}
                     <li>
-                      <a href="{{ link.url }}"
-                        ><img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy">
-                        {{- linked_collection -}}
-                      </a>
+                      <a href="{{ link.url }}"><img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy">{{ link.title }}</a>
                     </li>
                   {% endfor %}
                 </ul>
