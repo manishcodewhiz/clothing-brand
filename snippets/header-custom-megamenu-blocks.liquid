@@ -15,6 +15,7 @@
             {% if block.type == 'inner_menu' %}
               <div class="first-level-shop_list">
                 <h3>{{ block.settings.title }}</h3>
+                {%  for link in block.settings.secondary_menu.links %}
                 <ul class="second-level-menu-list">
                   {% for link in link.links %}
                     {% assign logo = collection.metafields.custom.logo %}
@@ -23,6 +24,7 @@
                     </li>
                   {% endfor %}
                 </ul>
+                {%  endfor %}
               </div>
             {% endif %}
           {% endfor %}
