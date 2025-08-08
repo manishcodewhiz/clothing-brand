@@ -125,9 +125,11 @@
                 <h3>Shop By Color</h3>
                 <ul class="second-level-menu-list">
                   {% for link in link.links %}
-                    <li>
-                      <a href="{{ link.url }}">{{ link.title }}</a>
-                    </li>
+                    {% if block.type == 'secondary_menu_color' %}
+                      <li>
+                        <a href="{{ link.url }}">{{ link.title }}</a>
+                      </li>
+                    {% endif %}
                   {% endfor %}
                   {% comment %}
                     <li><a href="#">White</a></li>
