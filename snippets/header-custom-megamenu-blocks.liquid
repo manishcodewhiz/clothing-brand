@@ -4,7 +4,7 @@
       <div class="main-menu-block">
         <ul class="first-level-menu first-level-desktop">
           {% for link in link.links %}
-            <li>
+            <li data-tabid="{{ link.title | handleize }}>
               <a href="{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
