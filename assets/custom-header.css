@@ -149,8 +149,7 @@ body.gradient.menu-box:before {
     flex-wrap: wrap;
 }
 .section-header .first-level-menu_items.collection--lists .collection-list{
-    max-width: calc(20% - 8px);
-    width: 100%;
+    width:  180px;
 }
 
 .section-header .header .main-menu-block .first-level-menu_items.logo-item {
