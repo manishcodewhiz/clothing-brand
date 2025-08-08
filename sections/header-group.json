@@ -66,11 +66,20 @@
             "featured_cta_text": "Shop Now",
             "featured_cta_link": ""
           }
+        },
+        "color_menu_mCfV6A": {
+          "type": "color_menu",
+          "settings": {
+            "title": "Shop By Collection",
+            "collection_list_heading": "Shop By Collection",
+            "secondary_menu_color": "color-menu"
+          }
         }
       },
       "block_order": [
         "menu_FdP8Ti",
-        "inner_menu_wQCB3E"
+        "inner_menu_wQCB3E",
+        "color_menu_mCfV6A"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
