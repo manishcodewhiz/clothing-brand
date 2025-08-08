@@ -118,52 +118,62 @@
             </div>
           </div>
         {% endcomment %}
-        <div class="first-level-menu_items">
-          <div class="first-level-shop_list">
-            <h3>Shop By Color</h3>
-            <ul class="second-level-menu-list">
-              <li><a href="#">Black</a></li>
-              <li><a href="#">White</a></li>
-              <li><a href="#">Blue</a></li>
-              <li><a href="#">Green</a></li>
-              <li><a href="#">Red</a></li>
-              <li><a href="#">Black</a></li>
-              <li><a href="#">White</a></li>
-              <li><a href="#">Blue</a></li>
-              <li><a href="#">Green</a></li>
-              <li><a href="#">Red</a></li>
-            </ul>
-          </div>
-          <div class="first-level-shop_image-block">
-            <span class="image_level">
-              <img
-                src="{{ section.settings.featured_image | image_url }}"
-                width="282"
-                height="266"
-                alt=""
-                loading="lazy"
-              >
-            </span>
-          </div>
-          <div class="first-level-card">
-            <div class="main-card_item">
-              <span class="image-span">
-                <img
-                  src="{{ section.settings.featured_image | image_url }}"
-                  width="432"
-                  height="266"
-                  alt=""
-                  loading="lazy"
-                >
-              </span>
-              <div class="main-card_item_text">
-                <span>New Arrivals</span>
-                <h2>New Nail Lacquers Collection</h2>
-                <a href="#">Shop Now</a>
+        {% for block in section.blocks %}
+          {% if block.type == 'color_menu' %}
+            <div class="first-level-menu_items">
+              <div class="first-level-shop_list">
+                <h3>Shop By Color</h3>
+                <ul class="second-level-menu-list">
+                  {% for link in link.links %}
+                    <li>
+                      <a href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                  {% endfor %}
+                  {% comment %}
+                    <li><a href="#">White</a></li>
+                    <li><a href="#">Blue</a></li>
+                    <li><a href="#">Green</a></li>
+                    <li><a href="#">Red</a></li>
+                    <li><a href="#">Black</a></li>
+                    <li><a href="#">White</a></li>
+                    <li><a href="#">Blue</a></li>
+                    <li><a href="#">Green</a></li>
+                    <li><a href="#">Red</a></li>
+                  {% endcomment %}
+                </ul>
+              </div>
+              <div class="first-level-shop_image-block">
+                <span class="image_level">
+                  <img
+                    src="{{ section.settings.featured_image | image_url }}"
+                    width="282"
+                    height="266"
+                    alt=""
+                    loading="lazy"
+                  >
+                </span>
+              </div>
+              <div class="first-level-card">
+                <div class="main-card_item">
+                  <span class="image-span">
+                    <img
+                      src="{{ section.settings.featured_image | image_url }}"
+                      width="432"
+                      height="266"
+                      alt=""
+                      loading="lazy"
+                    >
+                  </span>
+                  <div class="main-card_item_text">
+                    <span>New Arrivals</span>
+                    <h2>New Nail Lacquers Collection</h2>
+                    <a href="#">Shop Now</a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>
