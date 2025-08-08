@@ -72,7 +72,8 @@
           "settings": {
             "title": "Shop By Collection",
             "collection_list_heading": "Shop By Collection",
-            "secondary_menu_color": "color-menu"
+            "secondary_menu_color": "color-menu",
+            "heading": "Shop By Color"
           }
         }
       },
