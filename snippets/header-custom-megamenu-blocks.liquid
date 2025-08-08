@@ -44,9 +44,9 @@
             </div>
 
           {% elsif block.type == 'product_menu' %}
-            <div class="product_list">
-              {% for products in block.settings.product_list %}
-                <div class="row">
+            <div class="brand-product-wrapper only-product-list">
+              <div class="megamenu-product-list">
+                {% for products in block.settings.product_list %}
                   <div class="product-main_box">
                     {% render 'card-product',
                       card_product: product,
@@ -54,8 +54,8 @@
                       section_id: section.id
                     %}
                   </div>
-                </div>
-              {% endfor %}
+                {% endfor %}
+              </div>
             </div>
           {% endif %}
         {% endfor %}
