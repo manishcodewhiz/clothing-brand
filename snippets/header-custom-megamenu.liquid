@@ -100,9 +100,9 @@
   </nav>
 {% endcomment %}
 
-<nav class="header__inline-menu">
+<nav class="header__inline-menu desktop-menu-block">
   {% render 'header-search', input_id: 'Search-In-Modal' %}
-  <ul class="list-menu list-menu--inline top-level-menu" role="list">
+  <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
       {% for block in section.blocks %}
         {% assign header_menu = link.title | handle %}
