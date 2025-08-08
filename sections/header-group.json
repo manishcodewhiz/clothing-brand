@@ -71,13 +71,10 @@
           "type": "product_menu",
           "settings": {
             "title": "Shop By Product",
-            "product_list": [
-              "honda-classic-snapback-hat",
-              "honda-icon-womens-t-shirt",
-              "honda-octagon-t-shirt",
-              "honda-octagon-t-shirt-1"
-            ],
-            "buttons": "button"
+            "collection_list": [
+              "yamaha",
+              "suzuki"
+            ]
           }
         }
       },
