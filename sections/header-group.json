@@ -67,11 +67,11 @@
           "settings": {
             "title": "Shop By Collection",
             "collection_list": [
-              "products",
               "rockstar",
               "honda",
               "kawasaki",
-              "suzuki"
+              "suzuki",
+              "yamaha"
             ]
           }
         }
