@@ -75,16 +75,17 @@
             ]
           }
         },
-        "product_menu_RbxJXD": {
-          "type": "product_menu",
+        "product_list_bN6Qph": {
+          "type": "product_list",
           "settings": {
             "title": "Shop By Product",
             "product_list": [
-              "geometric-jacquard-shirt",
               "honda-classic-snapback-hat",
               "honda-icon-womens-t-shirt",
               "honda-octagon-t-shirt",
-              "honda-octagon-t-shirt-1"
+              "honda-octagon-t-shirt-1",
+              "kawasaki-bike-youth-pullover-sweatshirt",
+              "kawasaki-youth-team-green-t-shirt"
             ],
             "buttons": "button"
           }
@@ -94,7 +95,7 @@
         "menu_FdP8Ti",
         "inner_menu_wQCB3E",
         "collection_list_NgrNqE",
-        "product_menu_RbxJXD"
+        "product_list_bN6Qph"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
