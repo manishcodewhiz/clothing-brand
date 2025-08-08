@@ -27,6 +27,7 @@
                   {% endfor %}
                 </ul>
               </div>
+              {% for link in block.settings.secondary_menu.links %}
               <div class="row">
                 <div class="product-main_box">
                   <div class="product-block">
@@ -53,6 +54,7 @@
                   <a href="#"></a>
                 </div>
               </div>
+              {% endfor %}
             </div>
           {% endif %}
         {% endfor %}
