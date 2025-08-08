@@ -95,18 +95,6 @@
             "title": "Graphics",
             "enabled_mega_menu": true
           }
-        },
-        "collection_list_ERfCLr": {
-          "type": "collection_list",
-          "settings": {
-            "title": "Bike Graphic Kits",
-            "collection_list": [
-              "colla",
-              "frontpage",
-              "factory-effex",
-              "honda"
-            ]
-          }
         }
       },
       "block_order": [
@@ -114,8 +102,7 @@
         "inner_menu_wQCB3E",
         "collection_list_NgrNqE",
         "product_list_bN6Qph",
-        "menu_3bXiUc",
-        "collection_list_ERfCLr"
+        "menu_3bXiUc"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
