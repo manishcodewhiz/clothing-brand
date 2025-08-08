@@ -84,10 +84,16 @@
               "honda-icon-womens-t-shirt",
               "honda-octagon-t-shirt",
               "honda-octagon-t-shirt-1",
-              "kawasaki-bike-youth-pullover-sweatshirt",
-              "kawasaki-youth-team-green-t-shirt"
+              "kawasaki-bike-youth-pullover-sweatshirt"
             ],
             "buttons": "button"
+          }
+        },
+        "menu_3bXiUc": {
+          "type": "menu",
+          "settings": {
+            "title": "",
+            "enabled_mega_menu": true
           }
         }
       },
@@ -95,7 +101,8 @@
         "menu_FdP8Ti",
         "inner_menu_wQCB3E",
         "collection_list_NgrNqE",
-        "product_list_bN6Qph"
+        "product_list_bN6Qph",
+        "menu_3bXiUc"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
