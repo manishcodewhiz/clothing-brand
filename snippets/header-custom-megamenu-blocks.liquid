@@ -27,10 +27,10 @@
                   {% endfor %}
                 </ul>
               </div>
-              {% for link in block.settings.secondary_menu.links %}
-                {% for sublink in link.links %}
-                  {% assign product = sublink.object %}
-                  <div class="row">
+              {% assign product = sublink.object %}
+              <div class="row">
+                    {% for link in block.settings.secondary_menu.links %}
+                      {% for sublink in link.links %}
                     <div class="product-main_box">
                       {% render 'card-product',
                         card_product: product,
@@ -38,9 +38,9 @@
                         section_id: section.id
                       %}
                     </div>
-                  </div>
+                  {% endfor %}
                 {% endfor %}
-              {% endfor %}
+                  </div>
             </div>
           {% endif %}
         {% endfor %}
