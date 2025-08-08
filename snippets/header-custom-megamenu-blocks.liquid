@@ -28,8 +28,9 @@
                 </ul>
               </div>
               {% for link in block.settings.secondary_menu.links %}
+                {%  for sublink in link.links %}
               <div class="row">
-                {% comment %} <div class="product-main_box">
+                <div class="product-main_box">
                   <div class="product-block">
                     <img
                       src="{{ section.settings.product_image2 | image_url }}"
@@ -52,8 +53,9 @@
                     </div>
                   </div>
                   <a href="#"></a>
-                </div> {% endcomment %}
+                </div>
               </div>
+              {% endfor %}
               {% endfor %}
             </div>
           {% endif %}
