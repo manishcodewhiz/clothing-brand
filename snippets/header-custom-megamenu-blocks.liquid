@@ -9,8 +9,8 @@
             </li>
           {% endfor %}
         </ul>
-        {% if link.links.size > 0 %}
-          {% for link in link.links %}
+       
+     
             <div class="main-item {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
                 {% for block in section.blocks %}
                 {% if block.settings.title == link.title %}
@@ -64,8 +64,8 @@
                 {% endif %}
               {% endfor %}
               </div>
-          {% endfor %}
-        {% endif %}
+       
+      
         {% comment %}
           <div class="first-level-menu_items logo-item">
             <div class="first-level-shop_list">
