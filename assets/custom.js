@@ -31,26 +31,15 @@
     // Show the first menu content on page load
     $('.first-level-menu_items').first().addClass('show-menu');
 
-    $('first-level-desktop li').on('mouseenter', function () {
-		const $parent = $(this).closest('.megamenu-block-wrapper');
-		const tabId = $(this).data('tabid');
-
-		$parent.find('.first-level-desktop li').removeClass('active');
-		$parent.find('.first-level-menu_items').removeClass('show-menu');
-
-		$(this).addClass('active');
-		$parent.find('.first-level-menu_items.' + tabId).addClass('show-menu');
-	});
-
-  //   $(' .first-level-desktop li').on('mouseenter', function () {
-  //     var index = $(this).index();
-  //     $('.first-level-desktop li').removeClass('active');
-  //     $('.first-level-menu_items').removeClass('show-menu');
-  //     $(this).addClass('active');
-  //     $('.first-level-menu_items').eq(index).addClass('show-menu');
-  //     // $(this).addClass('active');
-  //     // $parent.find('.first-level-menu_items.' + tabId).addClass('show-menu');
-  //   });
+    $(' .first-level-desktop li').on('mouseenter', function () {
+      var index = $(this).index();
+      $('.first-level-desktop li').removeClass('active');
+      $('.first-level-menu_items').removeClass('show-menu');
+      $(this).addClass('active');
+      $('.first-level-menu_items').eq(index).addClass('show-menu');
+      // $(this).addClass('active');
+      // $parent.find('.first-level-menu_items.' + tabId).addClass('show-menu');
+    });
   });
 
   $(function () {
