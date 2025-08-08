@@ -108,6 +108,19 @@
               "suzuki"
             ]
           }
+        },
+        "collection_list_KdQTJ4": {
+          "type": "collection_list",
+          "settings": {
+            "title": "Team Kits Graphic Kits",
+            "collection_list": [
+              "bl",
+              "colla",
+              "frontpage",
+              "factory-effex",
+              "honda"
+            ]
+          }
         }
       },
       "block_order": [
@@ -116,7 +129,8 @@
         "collection_list_NgrNqE",
         "product_list_bN6Qph",
         "menu_3bXiUc",
-        "collection_list_WYBWn9"
+        "collection_list_WYBWn9",
+        "collection_list_KdQTJ4"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
