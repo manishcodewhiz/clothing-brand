@@ -109,7 +109,7 @@
         {% assign block_header_menu = block.settings.title | handle %}
         {% assign menu_available = false %}
         {% if block_header_menu == header_menu %}
-          <li class="list-menu-item">
+          <li class="list-menu-item has-children">
             <a
               id="HeaderMenu-{{ link.handle }}"
               href="{{ link.url }}"
