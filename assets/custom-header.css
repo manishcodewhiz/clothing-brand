@@ -163,6 +163,7 @@ body.gradient.menu-box:before {
 .section-header .header .main-menu-block .first-level-menu_items.logo-item .row{
     display: none;
     gap: 10px;
+    width: 100%;
 }
 .section-header .header .main-menu-block .first-level-menu_items.logo-item .row.show-menu{
     display: flex;
