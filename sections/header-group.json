@@ -56,10 +56,10 @@
         "inner_menu_wQCB3E": {
           "type": "inner_menu",
           "settings": {
-            "title": "Shop by Products",
-            "collection_list_heading": "Shop by Products",
+            "title": "Shop by brand",
+            "collection_list_heading": "Shop by brand",
             "secondary_menu": "shop-shop-by-brand",
-            "buttons": "none",
+            "buttons": "button",
             "featured_image": "shopify://shop_images/image-m-3.png",
             "featured_top_text": "Featured Text",
             "featured_title": "Featured Title",
