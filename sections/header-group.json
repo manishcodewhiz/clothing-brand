@@ -67,20 +67,19 @@
             "featured_cta_link": ""
           }
         },
-        "color_menu_mCfV6A": {
-          "type": "color_menu",
+        "product_menu_iFTe6T": {
+          "type": "product_menu",
           "settings": {
-            "title": "Shop By Collection",
-            "collection_list_heading": "Shop By Collection",
-            "secondary_menu_color": "color-menu",
-            "heading": "Shop By Color"
+            "title": "Shop by product",
+            "product_list": [],
+            "buttons": "button"
           }
         }
       },
       "block_order": [
         "menu_FdP8Ti",
         "inner_menu_wQCB3E",
-        "color_menu_mCfV6A"
+        "product_menu_iFTe6T"
       ],
       "settings": {
         "featured_image": "shopify://shop_images/image-block.png",
