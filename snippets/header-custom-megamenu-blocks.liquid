@@ -47,16 +47,13 @@
             <div class="product_list">
               {% for products in block.settings.product_list %}
                 <div class="row">
-                  {% for sublink in link.links %}
-                    {% assign product = sublink.object %}
-                    <div class="product-main_box">
-                      {% render 'card-product',
-                        card_product: product,
-                        buttons: block.settings.buttons,
-                        section_id: section.id
-                      %}
-                    </div>
-                  {% endfor %}
+                  <div class="product-main_box">
+                    {% render 'card-product',
+                      card_product: product,
+                      buttons: block.settings.buttons,
+                      section_id: section.id
+                    %}
+                  </div>
                 </div>
               {% endfor %}
             </div>
