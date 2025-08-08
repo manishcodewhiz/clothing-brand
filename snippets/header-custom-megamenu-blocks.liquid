@@ -53,7 +53,7 @@
                         {% if collection.image != blank %}
                           <img
                             src="{{ collection.image | image_url }}"
-                            alt="{{ collection.title | default: 'Factory Effex' }}"
+                            alt="{{ collection.title | default: 'mancode' }}"
                             height="205"
                             width="180"
                             loading="lazy"
@@ -61,7 +61,7 @@
                         {% elsif collections.products_count > 0 and collection.products.first.featured_image != blank %}
                           <img
                             src="{{ collection.products.first.featured_image | image_url }}"
-                            alt="{{ collection.products.first.title | default: 'Factory Effex' }}"
+                            alt="{{ collection.products.first.title | default: 'mancode' }}"
                             height="205"
                             width="180"
                             loading="lazy"
@@ -69,7 +69,7 @@
                         {% else %}
                           <img
                             src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.webp?v=1751355676"
-                            alt="{{ collection.title | default: 'Factory Effex' }}"
+                            alt="{{ collection.title | default: 'mancode' }}"
                             height="205"
                             width="180"
                           >
