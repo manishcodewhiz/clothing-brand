@@ -62,9 +62,6 @@ body.gradient.menu-box:before {
  .section-header .header .main-menu-block .first-level-menu_items.show-menu{
     display: flex !important; 
  }
- #HeaderMenu-graphics + .nav-menu-dropdown.page-width{
-    display: none;
- }
 
 .section-header .header .nav-menu-dropdown {
     position: absolute;
