@@ -45,7 +45,7 @@
 
           {% elsif block.type == 'product_menu' %}
             <div class="product_list">
-              {% for link in block.settings.secondary_menu.links %}
+              {% for link in block.settings.product_list %}
                 <div class="row">
                   {% for sublink in link.links %}
                     {% assign product = sublink.object %}
