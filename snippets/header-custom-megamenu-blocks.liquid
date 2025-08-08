@@ -75,6 +75,19 @@
             </div>
           {% endif %}
         {% endfor %}
+        {% for block in section.blocks %}
+          {% if block.type == 'collection_list' %}
+            <div class="first-level-menu_items product_list">
+              <div class="product-box">
+                {% render 'card-product',
+                  card_product: product,
+                  buttons: block.settings.buttons,
+                  section_id: section.id
+                %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
         {% comment %}
           <div class="first-level-menu_items logo-item">
             <div class="first-level-shop_list">
