@@ -56,8 +56,8 @@
         "inner_menu_wQCB3E": {
           "type": "inner_menu",
           "settings": {
-            "title": "Shop by brand",
-            "collection_list_heading": "Shop by brand",
+            "title": "Shop By Brand",
+            "collection_list_heading": "Shop By Brand",
             "secondary_menu": "shop-shop-by-brand",
             "buttons": "button",
             "featured_image": "shopify://shop_images/image-m-3.png",
