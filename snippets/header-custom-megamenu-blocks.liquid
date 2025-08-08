@@ -30,6 +30,7 @@
               <div class="row">
                 {% for link in block.settings.secondary_menu.links %}
                   {% for sublink in link.links %}
+                     {% if sublink.type == 'product_link' and sublink.object %}
                     {% assign product = sublink.object %}
                     <div class="product-main_box">
                       {% render 'card-product',
@@ -38,6 +39,7 @@
                         section_id: section.id
                       %}
                     </div>
+                    {% endif %}
                   {% endfor %}
                 {% endfor %}
               </div>
