@@ -46,7 +46,7 @@
         {% endfor %}
         {% for block in section.blocks %}
           {% if block.type == 'collection_list' %}
-            <div class="first-level-menu_items collection--lists">
+            <div class="first-level-menu_items collection--lists"  data-tabid="{{ link.title | handleize }}">
               {% for collection in block.settings.collection_list %}
                 <div class="collection-list">
                   <a href="{{ collection.url }}">
@@ -77,7 +77,7 @@
         {% endfor %}
         {% for block in section.blocks %}
           {% if block.type == 'product_list' %}
-            <div class="first-level-menu_items product_list">
+            <div class="first-level-menu_items product_list"  data-tabid="{{ link.title | handleize }}">
               <div class="product-box">
                 {% for product in block.settings.product_list %}
                   <div class="product-card">
