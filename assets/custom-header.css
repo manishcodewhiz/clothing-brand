@@ -166,11 +166,11 @@ body.gradient.menu-box:before {
     display: block;
     object-fit: cover;
 }
-.section-header .first-level-menu_items.product_list{
+.section-header .header .main-menu-block .first-level-menu_items.product_list{
     display: flex;
     gap: 10px;
 }
-.section-header .first-level-menu_items.product_list .product-box{
+.section-header .header .main-menu-block .first-level-menu_items.product_list .product-box{
     max-width: calc(20% - 5px)
     width: 100%;
 }
