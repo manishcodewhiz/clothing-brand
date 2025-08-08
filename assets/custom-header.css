@@ -170,10 +170,11 @@ body.gradient.menu-box:before {
 .section-header .header .main-menu-block .first-level-menu_items.product_list .product-box{
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 .section-header .header .main-menu-block .first-level-menu_items.product_list .product-box .product-card{
     width: 100%;
-    max-width: calc(20% - 5px);
+    max-width: calc(20% - 8px);
 }
 
 .section-header .header .main-menu-block .first-level-menu_items.logo-item {
