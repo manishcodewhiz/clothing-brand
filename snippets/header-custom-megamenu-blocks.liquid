@@ -59,14 +59,14 @@
                           width="180"
                           loading="lazy"
                         >
-                      {% elsif collections.products_count > 0 and collection.products.first.featured_image != blank %}
+                      {% comment %} {% elsif collections.products_count > 0 and collection.products.first.featured_image != blank %}
                         <img
                           src="{{ collection.products.first.featured_image | image_url }}"
                           alt="{{ collection.products.first.title | default: 'mancode' }}"
                           height="205"
                           width="180"
                           loading="lazy"
-                        >
+                        > {% endcomment %}
                       {% else %}
                         <img
                           src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.webp?v=1751355676"
