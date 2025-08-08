@@ -213,6 +213,9 @@ body.gradient.menu-box:before {
     display: flex;
     flex-direction: column;
 }
+.section-header .header .first-level-menu_items .second-level-menu-list li a img{
+    object-fit: contain;
+}
 
 .section-header .header .first-level-card .main-card_item {
     position: relative;
