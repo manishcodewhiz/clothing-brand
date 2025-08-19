@@ -78,16 +78,16 @@ $(' .first-level-desktop li').on('mouseenter', function () {
 //     });
 //   });
 //  $(function () {
-//     $('.menu-drawer .list-menu-item > a').on('click', function (e) {
-//       e.preventDefault();
-//       var $menuItem = $(this).closest('li');
-//       var $submenu = $menuItem.find('.main-menu-block').first();
+    $('.menu-drawer .list-menu-item > a').on('click', function (e) {
+      e.preventDefault();
+      var $menuItem = $(this).closest('li');
+      var $submenu = $menuItem.find('.main-menu-block').first();
 
-//       // Optionally close other open submenus and remove active class
-//       $('.main-menu-block').not($submenu).slideUp(200);
-//       $('.menu-drawer .list-menu-item > a').not($menuItem).removeClass('active');
+      // Optionally close other open submenus and remove active class
+      $('.main-menu-block').not($submenu).slideUp(200);
+      $('.menu-drawer .list-menu-item > a').not($menuItem).removeClass('active');
 
-//       $submenu.slideToggle(200);
-//       $menuItem.toggleClass('active');
-//     });
-//   });
+      $submenu.slideToggle(200);
+      $menuItem.toggleClass('active');
+    });
+  });
