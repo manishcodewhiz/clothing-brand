@@ -26,29 +26,24 @@
   });
 
   $(function () {
-// Add 'active' class to the first menu item on page load
-// Add 'active' class to the first menu item on page load and show its content using tabId
-const $firstLi = $('.first-level-desktop li').first();
-$firstLi.addClass('active');
-const tabId = $firstLi.data('tabid');
-$('.first-level-menu_items').removeClass('show-menu');
-$('.first-level-menu_items.' + tabId).addClass('show-menu');
-// Show the first menu content on page load
-$('.first-level-menu_items').first().addClass('show-menu');
+      const $firstLi = $('.first-level-desktop li').first();
+      $firstLi.addClass('active');
+      const tabId = $firstLi.data('tabid');
+      $('.first-level-menu_items').removeClass('show-menu');
+      $('.first-level-menu_items.' + tabId).addClass('show-menu');
+      $('.first-level-menu_items').first().addClass('show-menu');
 
-$(' .first-level-desktop li').on('mouseenter', function () {
-	var index = $(this).index();
-	$('.first-level-desktop li').removeClass('active');
-	$('.first-level-menu_items').removeClass('show-menu');
-	$(this).addClass('active');
-	$('.first-level-menu_items').eq(index).addClass('show-menu');
-});
+    $(' .first-level-desktop li').on('mouseenter', function () {
+      var index = $(this).index();
+      $('.first-level-desktop li').removeClass('active');
+      $('.first-level-menu_items').removeClass('show-menu');
+      $(this).addClass('active');
+      $('.first-level-menu_items').eq(index).addClass('show-menu');
+    });
   });
 
   $(function () {
-    // Add 'active' class to the first menu item on page load
     $('.second-level-menu-list li').first().addClass('active');
-    // Show the first menu content on page load
     $('.first-level-menu_items .row').first().addClass('show-menu');
 
     $('.second-level-menu-list li').on('mouseenter', function () {
@@ -57,8 +52,6 @@ $(' .first-level-desktop li').on('mouseenter', function () {
       $('.first-level-menu_items .row').removeClass('show-menu');
       $(this).addClass('active');
       $('.first-level-menu_items .row').eq(index).addClass('show-menu');
-      // $(this).addClass('active');
-      // $parent.find('.first-level-menu_items .row.' + tabId).addClass('show-menu');
     });
   });
 
