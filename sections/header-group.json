@@ -53,8 +53,8 @@
             "enabled_mega_menu": true
           }
         },
-        "inner_menu_wQCB3E": {
-          "type": "inner_menu",
+        "brand_product_menu_NR4cHL": {
+          "type": "Brand-product-menu",
           "settings": {
             "title": "Shop By Brand",
             "collection_list_heading": "Shop By Brand",
@@ -111,7 +111,7 @@
       },
       "block_order": [
         "menu_FdP8Ti",
-        "inner_menu_wQCB3E",
+        "brand_product_menu_NR4cHL",
         "collection_list_NgrNqE",
         "product_list_bN6Qph",
         "menu_3bXiUc",
