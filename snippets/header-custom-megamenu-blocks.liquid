@@ -4,7 +4,7 @@
       <div class="main-menu-block">
         <ul class="first-level-menu first-level-desktop">
           {% for link in link.links %}
-            <li {% if forloop.index == 1 %}active {% endif %}{% if has_sub_children %}has-sub-children{% endif %}" data-tabid="{{ link.title | handleize }}">
+            <li class="{% if forloop.index == 1 %}active {% endif %}{% if has_sub_children %}has-sub-children{% endif %}" data-tabid="{{ link.title | handleize }}">
               <a href="{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
