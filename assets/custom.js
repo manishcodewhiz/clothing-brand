@@ -1,99 +1,96 @@
-//   $(document).ready(function () {
-//     var $menuItems = $('.list-menu > li');
-//     var $header = $('.header');
-//     var hideTimeout;
+  $(document).ready(function () {
+    var $menuItems = $('.list-menu > li');
+    var $header = $('.header');
+    var hideTimeout;
 
-//     $menuItems.on('mouseenter', function () {
-//       clearTimeout(hideTimeout);
-//       $menuItems.removeClass('active');
-//       $(this).addClass('active');
+    $menuItems.on('mouseenter', function () {
+      clearTimeout(hideTimeout);
+      $menuItems.removeClass('active');
+      $(this).addClass('active');
 
-//       if ($(this).find('.nav-menu-dropdown').length) {
-//         $('body').addClass('menu-box');
-//       }
-//     });
+      if ($(this).find('.nav-menu-dropdown').length) {
+        $('body').addClass('menu-box');
+      }
+    });
 
-//     $header.on('mouseleave', function () {
-//       hideTimeout = setTimeout(function () {
-//         $menuItems.removeClass('active');
-//         $('body').removeClass('menu-box');
-//       }, 200);
-//     });
+    $header.on('mouseleave', function () {
+      hideTimeout = setTimeout(function () {
+        $menuItems.removeClass('active');
+        $('body').removeClass('menu-box');
+      }, 200);
+    });
 
-//     $header.on('mouseenter', function () {
-//       clearTimeout(hideTimeout);
-//     });
-//   });
+    $header.on('mouseenter', function () {
+      clearTimeout(hideTimeout);
+    });
+  });
 
-//   $(function () {
-// // Add 'active' class to the first menu item on page load
-// // Add 'active' class to the first menu item on page load and show its content using tabId
-// const $firstLi = $('.first-level-desktop li').first();
-// $firstLi.addClass('active');
-// const tabId = $firstLi.data('tabid');
-// $('.first-level-menu_items').removeClass('show-menu');
-// $('.first-level-menu_items.' + tabId).addClass('show-menu');
-// // Show the first menu content on page load
-// $('.first-level-menu_items').first().addClass('show-menu');
+  $(function () {
+// Add 'active' class to the first menu item on page load
+// Add 'active' class to the first menu item on page load and show its content using tabId
+const $firstLi = $('.first-level-desktop li').first();
+$firstLi.addClass('active');
+const tabId = $firstLi.data('tabid');
+$('.first-level-menu_items').removeClass('show-menu');
+$('.first-level-menu_items.' + tabId).addClass('show-menu');
+// Show the first menu content on page load
+$('.first-level-menu_items').first().addClass('show-menu');
 
-// $(' .first-level-desktop li').on('mouseenter', function () {
-// 	var index = $(this).index();
-// 	$('.first-level-desktop li').removeClass('active');
-// 	$('.first-level-menu_items').removeClass('show-menu');
-// 	$(this).addClass('active');
-// 	$('.first-level-menu_items').eq(index).addClass('show-menu');
-// });
-//   });
+$(' .first-level-desktop li').on('mouseenter', function () {
+	var index = $(this).index();
+	$('.first-level-desktop li').removeClass('active');
+	$('.first-level-menu_items').removeClass('show-menu');
+	$(this).addClass('active');
+	$('.first-level-menu_items').eq(index).addClass('show-menu');
+});
+  });
 
-//   $(function () {
-//     // Add 'active' class to the first menu item on page load
-//     $('.second-level-menu-list li').first().addClass('active');
-//     // Show the first menu content on page load
-//     $('.first-level-menu_items .row').first().addClass('show-menu');
+  $(function () {
+    // Add 'active' class to the first menu item on page load
+    $('.second-level-menu-list li').first().addClass('active');
+    // Show the first menu content on page load
+    $('.first-level-menu_items .row').first().addClass('show-menu');
 
-//     $('.second-level-menu-list li').on('mouseenter', function () {
-//       var index = $(this).index();
-//       $('.second-level-menu-list li').removeClass('active');
-//       $('.first-level-menu_items .row').removeClass('show-menu');
-//       $(this).addClass('active');
-//       $('.first-level-menu_items .row').eq(index).addClass('show-menu');
-//       // $(this).addClass('active');
-//       // $parent.find('.first-level-menu_items .row.' + tabId).addClass('show-menu');
-//     });
-//   });
+    $('.second-level-menu-list li').on('mouseenter', function () {
+      var index = $(this).index();
+      $('.second-level-menu-list li').removeClass('active');
+      $('.first-level-menu_items .row').removeClass('show-menu');
+      $(this).addClass('active');
+      $('.first-level-menu_items .row').eq(index).addClass('show-menu');
+      // $(this).addClass('active');
+      // $parent.find('.first-level-menu_items .row.' + tabId).addClass('show-menu');
+    });
+  });
 
-//   // Mobile menu
-//  $(function () {
-//     $('.first-level-menu_mobile.first-level-mobile > li > a').on('click', function (e) {
-//       e.preventDefault();
-//       var $menuItem = $(this).closest('li');
-//       var $submenu = $menuItem.find('.first-level-menu_items-mobile').first();
+  // Mobile menu
+ $(function () {
+    $('.first-level-menu_mobile.first-level-mobile > li > a').on('click', function (e) {
+      e.preventDefault();
+      var $menuItem = $(this).closest('li');
+      var $submenu = $menuItem.find('.first-level-menu_items-mobile').first();
 
-//       // Optionally close other open submenus and remove active class
-//       $('.first-level-menu_items-mobile').not($submenu).slideUp(200);
-//       $('.first-level-menu_mobile.first-level-mobile > li').not($menuItem).removeClass('active');
+      // Optionally close other open submenus and remove active class
+      $('.first-level-menu_items-mobile').not($submenu).slideUp(200);
+      $('.first-level-menu_mobile.first-level-mobile > li').not($menuItem).removeClass('active');
 
-//       $submenu.slideToggle(200);
-//       $menuItem.toggleClass('active');
-//     });
-//   });
-//  $(function () {
-//     $('.menu-drawer .list-menu-item > a').on('click', function (e) {
-//       e.preventDefault();
-//       var $menuItem = $(this).closest('li');
-//       var $submenu = $menuItem.find('.main-menu-block').first();
+      $submenu.slideToggle(200);
+      $menuItem.toggleClass('active');
+    });
+  });
+ $(function () {
+    $('.menu-drawer .list-menu-item > a').on('click', function (e) {
+      e.preventDefault();
+      var $menuItem = $(this).closest('li');
+      var $submenu = $menuItem.find('.main-menu-block').first();
 
-//       // Optionally close other open submenus and remove active class
-//       $('.main-menu-block').not($submenu).slideUp(200);
-//       $('.menu-drawer .list-menu-item > a').not($menuItem).removeClass('active');
+      // Optionally close other open submenus and remove active class
+      $('.main-menu-block').not($submenu).slideUp(200);
+      $('.menu-drawer .list-menu-item > a').not($menuItem).removeClass('active');
 
-//       $submenu.slideToggle(200);
-//       $menuItem.toggleClass('active');
-//     });
-//   });
-
-
-
+      $submenu.slideToggle(200);
+      $menuItem.toggleClass('active');
+    });
+  });
 
 // $(document).ready(function () {
 //   const $menuItems = $('.list-menu > li');
@@ -185,90 +182,3 @@
 //     $menuItem.toggleClass('active');
 //   });
 // });
-
-
-$(document).ready(function () {
-  /**
-   * -----------------------------------
-   * 1. Top-level menu toggle
-   * -----------------------------------
-   */
-  const $firstLi = $('.first-level-desktop li').first();
-  $firstLi.addClass('active');
-
-  const firstTabId = $firstLi.data('tabid');
-  $('.first-level-menu_items').removeClass('show-menu');
-  $('.first-level-menu_items[data-tabid="' + firstTabId + '"]').addClass('show-menu');
-
-  // Hover handler for top-level menu
-  $('.first-level-desktop li').on('mouseenter', function () {
-    const tabId = $(this).data('tabid');
-
-    $('.first-level-desktop li').removeClass('active');
-    $(this).addClass('active');
-
-    $('.first-level-menu_items').removeClass('show-menu');
-    $('.first-level-menu_items[data-tabid="' + tabId + '"]').addClass('show-menu');
-  });
-
-  /**
-   * -----------------------------------
-   * 2. Second-level submenu toggle
-   * -----------------------------------
-   */
-  $('.second-level-menu-list').each(function () {
-    const $menu = $(this);
-
-    // Default: activate first item
-    $menu.find('li').first().addClass('active');
-    $menu.closest('.first-level-menu_items')
-         .find('.row').removeClass('show-menu')
-         .first().addClass('show-menu');
-
-    // Hover handler for second-level items
-    $menu.find('li').on('mouseenter', function () {
-      const index = $(this).index();
-
-      $menu.find('li').removeClass('active');
-      $(this).addClass('active');
-
-      $menu.closest('.first-level-menu_items')
-           .find('.row').removeClass('show-menu')
-           .eq(index).addClass('show-menu');
-    });
-  });
-
-  /**
-   * -----------------------------------
-   * 3. Show / hide mega menu on header hover
-   * -----------------------------------
-   */
-  var $menuItems = $('.list-menu > li');
-  var $header = $('.header');
-  var hideTimeout;
-
-  // Show when hovering menu item
-  $menuItems.on('mouseenter', function () {
-    clearTimeout(hideTimeout);
-
-    $menuItems.removeClass('active');
-    $(this).addClass('active');
-
-    if ($(this).find('.nav-menu-dropdown').length) {
-      $('body').addClass('menu-box');
-    }
-  });
-
-  // Hide when mouse leaves header
-  $header.on('mouseleave', function () {
-    hideTimeout = setTimeout(function () {
-      $menuItems.removeClass('active');
-      $('body').removeClass('menu-box');
-    }, 200);
-  });
-
-  // Cancel hide if mouse comes back
-  $header.on('mouseenter', function () {
-    clearTimeout(hideTimeout);
-  });
-});
