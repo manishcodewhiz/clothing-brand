@@ -26,20 +26,25 @@
   });
 
 $(function () {
-  // Handle hover on first level menu items
-  $('.desktop-menu-block .first-level-menu li').on('mouseenter', function () {
-    const $parent = $(this).closest('.main-menu-block');
+  // Show first tab on page load
+  const $menu = $('.first-level-menu');
+  const $firstLi = $menu.find('li').first();
+  $firstLi.addClass('active');
+  const firstTabId = $firstLi.data('tabid');
+  $('.first-level-menu_items[data-tabid="' + firstTabId + '"]').addClass('show-menu');
+
+  // On hover, show the matching block
+  $menu.on('mouseenter', 'li', function () {
     const tabId = $(this).data('tabid');
 
-    // Reset active states inside current menu block
-    $parent.find('.first-level-menu li').removeClass('active');
-    $parent.find('.main-block_item').removeClass('show-menu');
+    $menu.find('li').removeClass('active');
+    $('.first-level-menu_items').removeClass('show-menu');
 
-    // Activate hovered tab + its content
     $(this).addClass('active');
-    $parent.find('.main-block_item[data-tabid="' + tabId + '"]').addClass('show-menu');
+    $('.first-level-menu_items[data-tabid="' + tabId + '"]').addClass('show-menu');
   });
 });
+
 
 
   $(function () {
