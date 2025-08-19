@@ -16,7 +16,7 @@
         {% if link.links.size > 0 %}
           {% for block in section.blocks %}
             <div class="menu-wrapper {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
-              {% if block.type == 'Brand-product-menu' %}
+              {% if block.type == 'brand-product-menu' %}
                 <div
                   class="first-level-menu_items logo-item {{ link.title | handleize }}"
                   data-tabid="{{ link.title | handleize }}"
