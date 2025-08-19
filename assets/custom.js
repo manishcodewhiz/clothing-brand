@@ -26,24 +26,37 @@
   });
 
   $(function () {
-// Add 'active' class to the first menu item on page load
-// Add 'active' class to the first menu item on page load and show its content using tabId
-const $firstLi = $('.first-level-desktop li').first();
-$firstLi.addClass('active');
-const tabId = $firstLi.data('tabid');
-$('.first-level-menu_items').removeClass('show-menu');
-$('.first-level-menu_items.' + tabId).addClass('show-menu');
-// Show the first menu content on page load
-$('.first-level-menu_items').first().addClass('show-menu');
+	$('.desktop-menu-block .first-level-menu li').on('mouseenter', function () {
+		const $parent = $(this).closest('.menu-dropdown-content');
+		const tabId = $(this).data('tabid');
 
-$(' .first-level-desktop li').on('mouseenter', function () {
-	var index = $(this).index();
-	$('.first-level-desktop li').removeClass('active');
-	$('.first-level-menu_items').removeClass('show-menu');
-	$(this).addClass('active');
-	$('.first-level-menu_items').eq(index).addClass('show-menu');
+		$parent.find('.first-level-menu li').removeClass('active');
+		$parent.find('.first-level-menu_items').removeClass('show-menu');
+
+		$(this).addClass('active');
+		$parent.find('.first-level-menu_items.' + tabId).addClass('show-menu');
+	});
 });
-  });
+
+//   $(function () {
+// // Add 'active' class to the first menu item on page load
+// // Add 'active' class to the first menu item on page load and show its content using tabId
+// const $firstLi = $('.first-level-desktop li').first();
+// $firstLi.addClass('active');
+// const tabId = $firstLi.data('tabid');
+// $('.first-level-menu_items').removeClass('show-menu');
+// $('.first-level-menu_items.' + tabId).addClass('show-menu');
+// // Show the first menu content on page load
+// $('.first-level-menu_items').first().addClass('show-menu');
+
+// $(' .first-level-desktop li').on('mouseenter', function () {
+// 	var index = $(this).index();
+// 	$('.first-level-desktop li').removeClass('active');
+// 	$('.first-level-menu_items').removeClass('show-menu');
+// 	$(this).addClass('active');
+// 	$('.first-level-menu_items').eq(index).addClass('show-menu');
+// });
+//   });
 
   $(function () {
     // Add 'active' class to the first menu item on page load
