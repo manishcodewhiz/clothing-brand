@@ -27,7 +27,7 @@
 
   $(function () {
 	$('.desktop-menu-block .first-level-menu li').on('mouseenter', function () {
-		const $parent = $(this).closest('.megamenu-block-wrapper');
+		const $parent = $(this).closest('.main-menu-block');
 		const tabId = $(this).data('tabid');
 
 		$parent.find('.first-level-menu li').removeClass('active');
