@@ -1,4 +1,4 @@
- {% if block.type == 'menu' %}
+{% if block.type == 'menu' %}
   <div class="nav-menu-dropdown page-width">
     <div class="menu-dropdown-content">
       <div class="main-menu-block">
@@ -9,29 +9,82 @@
             </li>
           {% endfor %}
         </ul>
-
         {% for block in section.blocks %}
-          {% if block.type == 'Brand-product-menu' %}
-            <div class="first-level-menu_items logo-item {{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
-              <div class="first-level-shop_list">
-                <h3>{{ block.settings.title }}</h3>
-                <ul class="second-level-menu-list">
-                  {% for link in block.settings.secondary_menu.links %}
-                    {% assign logo = link.object.metafields.custom.logo.value %}
-                    <li>
-                      <a href="{{ link.url }}"
-                        ><img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy">
-                        {{- link.title -}}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
+          <div class="menu-wrapper">
+            {% if block.type == 'Brand-product-menu' %}
+              <div
+                class="first-level-menu_items logo-item {{ link.title | handleize }}"
+                data-tabid="{{ link.title | handleize }}"
+              >
+                <div class="first-level-shop_list">
+                  <h3>{{ block.settings.title }}</h3>
+                  <ul class="second-level-menu-list">
+                    {% for link in block.settings.secondary_menu.links %}
+                      {% assign logo = link.object.metafields.custom.logo.value %}
+                      <li>
+                        <a href="{{ link.url }}"
+                          ><img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy">
+                          {{- link.title -}}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% for link in block.settings.secondary_menu.links %}
+                  <div class="row">
+                    {% for sublink in link.links %}
+                      {% assign product = sublink.object %}
+                      <div class="product-main_box">
+                        {% render 'card-product',
+                          card_product: product,
+                          buttons: block.settings.buttons,
+                          section_id: section.id
+                        %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endfor %}
               </div>
-              {% for link in block.settings.secondary_menu.links %}
-                <div class="row">
-                  {% for sublink in link.links %}
-                    {% assign product = sublink.object %}
-                    <div class="product-main_box">
+            {% elsif block.type == 'collection_list' %}
+              <div
+                class="first-level-menu_items collection--lists {{ link.title | handleize }}"
+                data-tabid="{{ link.title | handleize }}"
+              >
+                {% for collection in block.settings.collection_list %}
+                  <div class="collection-list">
+                    <a href="{{ collection.url }}">
+                      <span>
+                        {% if collection.image != blank %}
+                          <img
+                            src="{{ collection.image | image_url }}"
+                            alt="{{ collection.title | default: 'mancode' }}"
+                            height="205"
+                            width="180"
+                            loading="lazy"
+                          >
+                        {% else %}
+                          <img
+                            src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.webp?v=1751355676"
+                            alt="{{ collection.title | default: 'mancode' }}"
+                            height="205"
+                            width="180"
+                          >
+                        {% endif %}
+                      </span>
+                      <p>{{ collection.title }}</p>
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+
+            {% elsif block.type == 'product_list' %}
+              <div
+                class="first-level-menu_items product_list {{ link.title | handleize }}"
+                data-tabid="{{ link.title | handleize }}"
+              >
+                <div class="product-box">
+                  {% for product in block.settings.product_list %}
+                    <div class="product-card">
                       {% render 'card-product',
                         card_product: product,
                         buttons: block.settings.buttons,
@@ -40,58 +93,95 @@
                     </div>
                   {% endfor %}
                 </div>
-              {% endfor %}
-            </div>
-          {% endif %}
+              </div>
+            {% endif %}
+          </div>
         {% endfor %}
-        {% for block in section.blocks %}
-          {% if block.type == 'collection_list' %}
-            <div class="first-level-menu_items collection--lists {{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
-              {% for collection in block.settings.collection_list %}
-                <div class="collection-list">
-                  <a href="{{ collection.url }}">
-                    <span>
-                      {% if collection.image != blank %}
-                        <img
-                          src="{{ collection.image | image_url }}"
-                          alt="{{ collection.title | default: 'mancode' }}"
-                          height="205"
-                          width="180"
-                          loading="lazy"
-                        >
-                      {% else %}
-                        <img
-                          src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.webp?v=1751355676"
-                          alt="{{ collection.title | default: 'mancode' }}"
-                          height="205"
-                          width="180"
-                        >
-                      {% endif %}
-                    </span>
-                    <p>{{ collection.title }}</p>
-                  </a>
+
+        {% comment %}
+          {% for block in section.blocks %}
+            {% if block.type == 'Brand-product-menu' %}
+              <div class="first-level-menu_items logo-item {{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
+                <div class="first-level-shop_list">
+                  <h3>{{ block.settings.title }}</h3>
+                  <ul class="second-level-menu-list">
+                    {% for link in block.settings.secondary_menu.links %}
+                      {% assign logo = link.object.metafields.custom.logo.value %}
+                      <li>
+                        <a href="{{ link.url }}"
+                          ><img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy">
+                          {{- link.title -}}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
                 </div>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endfor %}
-        {% for block in section.blocks %}
-          {% if block.type == 'product_list' %}
-            <div class="first-level-menu_items product_list {{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
-              <div class="product-box">
-                {% for product in block.settings.product_list %}
-                  <div class="product-card">
-                    {% render 'card-product',
-                      card_product: product,
-                      buttons: block.settings.buttons,
-                      section_id: section.id
-                    %}
+                {% for link in block.settings.secondary_menu.links %}
+                  <div class="row">
+                    {% for sublink in link.links %}
+                      {% assign product = sublink.object %}
+                      <div class="product-main_box">
+                        {% render 'card-product',
+                          card_product: product,
+                          buttons: block.settings.buttons,
+                          section_id: section.id
+                        %}
+                      </div>
+                    {% endfor %}
                   </div>
                 {% endfor %}
               </div>
-            </div>
-          {% endif %}
-        {% endfor %}
+            {% endif %}
+          {% endfor %}
+          {% for block in section.blocks %}
+            {% if block.type == 'collection_list' %}
+              <div class="first-level-menu_items collection--lists {{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
+                {% for collection in block.settings.collection_list %}
+                  <div class="collection-list">
+                    <a href="{{ collection.url }}">
+                      <span>
+                        {% if collection.image != blank %}
+                          <img
+                            src="{{ collection.image | image_url }}"
+                            alt="{{ collection.title | default: 'mancode' }}"
+                            height="205"
+                            width="180"
+                            loading="lazy"
+                          >
+                        {% else %}
+                          <img
+                            src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.webp?v=1751355676"
+                            alt="{{ collection.title | default: 'mancode' }}"
+                            height="205"
+                            width="180"
+                          >
+                        {% endif %}
+                      </span>
+                      <p>{{ collection.title }}</p>
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endfor %}
+          {% for block in section.blocks %}
+            {% if block.type == 'product_list' %}
+              <div class="first-level-menu_items product_list {{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
+                <div class="product-box">
+                  {% for product in block.settings.product_list %}
+                    <div class="product-card">
+                      {% render 'card-product',
+                        card_product: product,
+                        buttons: block.settings.buttons,
+                        section_id: section.id
+                      %}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endcomment %}
         {% comment %}
           <div class="first-level-menu_items logo-item">
             <div class="first-level-shop_list">
@@ -220,101 +310,102 @@
       </div>
     </div>
   </div>
-{% endif %} 
+{% endif %}
 
-{% comment %} {% if block.type == 'menu' %}
-  <div class="nav-menu-dropdown page-width">
-    <div class="menu-dropdown-content">
-      <div class="main-menu-block">
-        <ul class="first-level-menu first-level-desktop">
+{% comment %}
+  {% if block.type == 'menu' %}
+    <div class="nav-menu-dropdown page-width">
+      <div class="menu-dropdown-content">
+        <div class="main-menu-block">
+          <ul class="first-level-menu first-level-desktop">
+            {% for link in link.links %}
+              <li class="{% if forloop.index == 1 %}active{% endif %}" data-tabid="{{ link.title | handleize }}">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+
           {% for link in link.links %}
-            <li class="{% if forloop.index == 1 %}active{% endif %}" data-tabid="{{ link.title | handleize }}">
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
+            <div class="first-level-menu_items menu-wrapper {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
 
-        {% for link in link.links %}
-          <div class="first-level-menu_items menu-wrapper {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}">
-            
-            {% for block in section.blocks %}
-              {% if block.settings.title == link.title %}
+              {% for block in section.blocks %}
+                {% if block.settings.title == link.title %}
 
-                {% if block.type == 'inner_menu' %}
-                  <div class="logo-item">
-                    <div class="first-level-shop_list">
-                      <h3>{{ block.settings.title }}</h3>
-                      <ul class="second-level-menu-list">
-                        {% for link in block.settings.secondary_menu.links %}
-                          {% assign logo = link.object.metafields.custom.logo.value %}
-                          <li>
-                            <a href="{{ link.url }}">
-                              <img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy">
-                              {{ link.title }}
-                            </a>
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-
-                    {% for link in block.settings.secondary_menu.links %}
-                      <div class="row brands-products-{{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
-                        {% for sublink in link.links %}
-                          {% assign product = sublink.object %}
-                          {% if product != blank %}
-                            <div class="product-main_box">
-                              {% render 'card-product',
-                                card_product: product,
-                                buttons: block.settings.buttons,
-                                section_id: section.id %}
-                            </div>
-                          {% endif %}
-                        {% endfor %}
+                  {% if block.type == 'inner_menu' %}
+                    <div class="logo-item">
+                      <div class="first-level-shop_list">
+                        <h3>{{ block.settings.title }}</h3>
+                        <ul class="second-level-menu-list">
+                          {% for link in block.settings.secondary_menu.links %}
+                            {% assign logo = link.object.metafields.custom.logo.value %}
+                            <li>
+                              <a href="{{ link.url }}">
+                                <img src="{{ logo | image_url }}" width="100" height="38" alt="" loading="lazy">
+                                {{ link.title }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
                       </div>
-                    {% endfor %}
-                  </div>
-                {% endif %}
 
-                {% if block.type == 'collection_list' %}
-                  <div class="collection--lists">
-                    {% for collection in block.settings.collection_list %}
-                      <div class="collection-list">
-                        <a href="{{ collection.url }}">
-                          <span>
-                            {% if collection.image != blank %}
-                              <img src="{{ collection.image | image_url }}" alt="{{ collection.title | default: 'mancode' }}" height="205" width="180" loading="lazy">
-                            {% else %}
-                              <img src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.webp?v=1751355676" alt="{{ collection.title | default: 'mancode' }}" height="205" width="180">
+                      {% for link in block.settings.secondary_menu.links %}
+                        <div class="row brands-products-{{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
+                          {% for sublink in link.links %}
+                            {% assign product = sublink.object %}
+                            {% if product != blank %}
+                              <div class="product-main_box">
+                                {% render 'card-product',
+                                  card_product: product,
+                                  buttons: block.settings.buttons,
+                                  section_id: section.id %}
+                              </div>
                             {% endif %}
-                          </span>
-                          <p>{{ collection.title }}</p>
-                        </a>
-                      </div>
-                    {% endfor %}
-                  </div>
-                {% endif %}
-
-                {% if block.type == 'product_list' %}
-                  <div class="product_list">
-                    <div class="product-box">
-                      {% for product in block.settings.product_list %}
-                        <div class="product-card">
-                          {% render 'card-product',
-                            card_product: product,
-                            buttons: block.settings.buttons,
-                            section_id: section.id %}
+                          {% endfor %}
                         </div>
                       {% endfor %}
                     </div>
-                  </div>
-                {% endif %}
+                  {% endif %}
 
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endfor %}
+                  {% if block.type == 'collection_list' %}
+                    <div class="collection--lists">
+                      {% for collection in block.settings.collection_list %}
+                        <div class="collection-list">
+                          <a href="{{ collection.url }}">
+                            <span>
+                              {% if collection.image != blank %}
+                                <img src="{{ collection.image | image_url }}" alt="{{ collection.title | default: 'mancode' }}" height="205" width="180" loading="lazy">
+                              {% else %}
+                                <img src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.webp?v=1751355676" alt="{{ collection.title | default: 'mancode' }}" height="205" width="180">
+                              {% endif %}
+                            </span>
+                            <p>{{ collection.title }}</p>
+                          </a>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+
+                  {% if block.type == 'product_list' %}
+                    <div class="product_list">
+                      <div class="product-box">
+                        {% for product in block.settings.product_list %}
+                          <div class="product-card">
+                            {% render 'card-product',
+                              card_product: product,
+                              buttons: block.settings.buttons,
+                              section_id: section.id %}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
-  </div>
-{% endif %} {% endcomment %}
-
+  {% endif %}
+{% endcomment %}
