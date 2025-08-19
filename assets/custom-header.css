@@ -76,6 +76,7 @@ body.gradient.menu-box:before {
     max-width: 1456px;
     display: none;
     max-height: calc(100vh - 150px);
+    overflow-x: auto;
 }
 
 .section-header .header .main-menu-block {
