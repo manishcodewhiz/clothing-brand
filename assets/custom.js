@@ -25,18 +25,19 @@
     });
   });
 
-  $(function () {
-	$('.desktop-menu-block .first-level-menu li').on('mouseenter', function () {
-		const $parent = $(this).closest('.main-menu-block');
-		const tabId = $(this).data('tabid');
+$(function () {
+  $('.desktop-menu-block .first-level-menu li').on('mouseenter', function () {
+    const $parent = $(this).closest('.main-menu-block');
+    const tabId = $(this).data('tabid');
 
-		$parent.find('.first-level-menu li').removeClass('active');
-		$parent.find('.first-level-menu_items').removeClass('show-menu');
+    $parent.find('.first-level-menu li').removeClass('active');
+    $parent.find('.first-level-menu_items').removeClass('show-menu');
 
-		$(this).addClass('active');
-		$parent.find('.first-level-menu_items.' + tabId).addClass('show-menu');
-	});
+    $(this).addClass('active');
+    $parent.find('.first-level-menu_items[data-tabid="' + tabId + '"]').addClass('show-menu');
+  });
 });
+
 
 //   $(function () {
 // // Add 'active' class to the first menu item on page load
