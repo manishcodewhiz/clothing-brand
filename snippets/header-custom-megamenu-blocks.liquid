@@ -95,13 +95,13 @@
           {% endfor %}
         {% endcomment %}
 
-        {% for block in section.blocks %}
-          <div
-            class="main-block_item {{ link.title | handleize }} {% if forloop.index == 1 %}show-menu{% endif %}"
-            data-tabid="{{ link.title | handleize }}"
-          >
+        <div class="main-menu-block">
+          {% for block in section.blocks %}
             {% if block.type == 'Brand-product-menu' %}
-              <div class="first-level-menu_items logo-item">
+              <div
+                class="first-level-menu_items logo-item {{ link.title | handleize }}"
+                data-tabid="{{ link.title | handleize }}"
+              >
                 <div class="first-level-shop_list">
                   <h3>{{ block.settings.title }}</h3>
                   <ul class="second-level-menu-list">
@@ -138,9 +138,13 @@
                   </div>
                 {% endfor %}
               </div>
+            {% endif %}
 
-            {% elsif block.type == 'collection_list' %}
-              <div class="first-level-menu_items collection--lists">
+            {% if block.type == 'collection_list' %}
+              <div
+                class="first-level-menu_items collection--lists {{ link.title | handleize }}"
+                data-tabid="{{ link.title | handleize }}"
+              >
                 {% for collection in block.settings.collection_list %}
                   <div class="collection-list">
                     <a href="{{ collection.url }}">
@@ -167,9 +171,13 @@
                   </div>
                 {% endfor %}
               </div>
+            {% endif %}
 
-            {% elsif block.type == 'product_list' %}
-              <div class="first-level-menu_items product_list">
+            {% if block.type == 'product_list' %}
+              <div
+                class="first-level-menu_items product_list {{ link.title | handleize }}"
+                data-tabid="{{ link.title | handleize }}"
+              >
                 <div class="product-box">
                   {% for product in block.settings.product_list %}
                     <div class="product-card">
@@ -183,8 +191,8 @@
                 </div>
               </div>
             {% endif %}
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
 
         {% comment %}
           <div class="first-level-menu_items logo-item">
