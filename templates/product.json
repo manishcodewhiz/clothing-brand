@@ -58,6 +58,13 @@
         "judge_me_reviews_preview_badge_9J7NTj": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
+        },
+        "popup_b39c9m": {
+          "type": "popup",
+          "settings": {
+            "text": "Pop-up link text",
+            "page": "contact"
+          }
         }
       },
       "block_order": [
@@ -69,7 +76,8 @@
         "buy_buttons",
         "description",
         "share",
-        "judge_me_reviews_preview_badge_9J7NTj"
+        "judge_me_reviews_preview_badge_9J7NTj",
+        "popup_b39c9m"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -106,6 +114,18 @@
         "padding_bottom": 28
       }
     },
+    "quick_order_list_GP4ndm": {
+      "type": "quick-order-list",
+      "name": "t:sections.quick-order-list.presets.name",
+      "settings": {
+        "variants_per_page": 50,
+        "show_image": false,
+        "show_sku": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "slider_GdyTYk": {
       "type": "slider",
       "name": "Product Slider",
@@ -140,6 +160,7 @@
   "order": [
     "main",
     "related-products",
+    "quick_order_list_GP4ndm",
     "slider_GdyTYk",
     "17459101958e382654"
   ]
