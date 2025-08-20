@@ -116,3 +116,10 @@
     max-width: calc(33% - 8px);
     width: 100%;
 }
+.section-video .learning-video-thumbnil img{
+    height: 100%;
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+}
