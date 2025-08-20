@@ -191,7 +191,7 @@
                     {%- endif -%}
                   {%- endif -%}
                 </p>
-             {% when 'short_description' %}
+              {% when 'short_description' %}
                 {% if product.metafields.custom.short_description != blank and block.settings.short_description %}
                   <div class="product-content_item">
                     <p>
@@ -199,7 +199,6 @@
                     </p>
                   </div>
                 {% endif %}
-             
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
                   <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
@@ -365,7 +364,10 @@
                                 </dt>
                                 <dd>
                                   <span class="price-per-item--current">
-                                    {{- 'products.product.volume_pricing.price_at_each_html' | t: price: variant_price -}}
+                                    {{-
+                                      'products.product.volume_pricing.price_at_each_html'
+                                      | t: price: variant_price
+                                    -}}
                                   </span>
                                 </dd>
                               </dl>
@@ -774,7 +776,7 @@
         }
       ]
     },
-    
+
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
@@ -785,7 +787,7 @@
       "name": "t:sections.main-product.blocks.price.name",
       "limit": 1
     },
-      {
+    {
       "type": "short_description",
       "name": "Short Description",
       "settings": [
@@ -1696,7 +1698,7 @@
         {
           "type": "header",
           "content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_2.label"
-        },        
+        },
         {
           "type": "select",
           "id": "icon_2",
@@ -1896,7 +1898,7 @@
         {
           "type": "header",
           "content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_3.label"
-        },        
+        },
         {
           "type": "select",
           "id": "icon_3",
@@ -2198,7 +2200,7 @@
       ],
       "default": "hide",
       "label": "t:sections.main-product.settings.mobile_thumbnails.label"
-    },    
+    },
     {
       "type": "select",
       "id": "media_position",
