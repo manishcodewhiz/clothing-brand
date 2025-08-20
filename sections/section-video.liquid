@@ -3,36 +3,39 @@
 <div class="section-video">
   <div class="page-width">
     <div class="row">
-      <div class="col-4">
-        <div class="learning-video-item">
-          <div class="learning-video-thumbnil">
-            <a
-              href="javascript:void(0)"
-              class="play-btn"
-              data-video="{{ video.video_url }}"
-            >
-              <span></span>
-            </a>
-            {% if video.featured_image != blank %}
-              <img
-                src="{{ video.featured_image | file_url }}"
-                alt="{{ video.featured_image.alt | default: video.title | default: 'Factory Effex' }}"
-                height="205"
-                width="205"
-                loading="lazy"
+      {% for video in section.settings.videos %}
+        <div class="col-4">
+          <div class="learning-video-item">
+            <div class="learning-video-thumbnil">
+              <a
+                href="javascript:void(0)"
+                class="play-btn"
+                data-video="{{ video.video_url }}"
               >
-            {% else %}
-              <img
-                src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.webp?v=1751355676"
-                alt="{{ video.title | default: 'Factory Effex' }}"
-                height="205"
-                width="205"
-                loading="lazy"
-              >
-            {% endif %}
+                <span></span>
+              </a>
+              {% if video.featured_image != blank %}
+                <img
+                  src="{{ video.featured_image | file_url }}"
+                  alt="{{ video.featured_image.alt | default: video.title | default: 'Factory Effex' }}"
+                  height="205"
+                  width="205"
+                  loading="lazy"
+                >
+              {% else %}
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.webp?v=1751355676"
+                  alt="{{ video.title | default: 'Factory Effex' }}"
+                  height="205"
+                  width="205"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+            <h4>{{ video.title }}</h4>
           </div>
         </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
