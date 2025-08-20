@@ -106,10 +106,23 @@
         "cards_PVrMHV"
       ],
       "name": "Product Cards",
+      "settings": {}
+    },
+    "175567525601d5b4aa": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_email_marketing_sms_form_embed_block_JiCQyY": {
+          "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/form-embed-block/2632fe16-c075-4321-a88b-50b567f42507",
+          "settings": {
+            "formId": ""
+          }
+        }
+      },
+      "block_order": [
+        "klaviyo_email_marketing_sms_form_embed_block_JiCQyY"
+      ],
       "settings": {
-        "image": "shopify://shop_images/p-1.png",
-        "image2": "shopify://shop_images/p-2.png",
-        "image3": "shopify://shop_images/p-3.png"
+        "include_margins": true
       }
     }
   },
@@ -117,6 +130,7 @@
     "hero_section_7T7jL9",
     "cards_item_4BHgrE",
     "discover_routine_yMaBLR",
-    "product_cards_mMzHEK"
+    "product_cards_mMzHEK",
+    "175567525601d5b4aa"
   ]
 }
