@@ -3,22 +3,100 @@
 <div class="section-video">
   <div class="page-width">
     <div class="row">
-        {% for block in metaobjects.video_box.values %}
-          
-        {% endfor %}
       <div class="col-4">
-        <div class="video_main-item">
-
+        <div class="learning-video-item">
+          <div class="learning-video-thumbnil">
+            <a
+              href="javascript:void(0)"
+              class="play-btn"
+              data-video="{{ video.video_url }}"
+            >
+              <span></span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<div class="video-modal video-modal-{{ section.id }}">
+  <div class="modal-body">
+    <div class="modal-close">
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </div>
+    <div class="modal-content">
+      <iframe
+        width="740"
+        height="400"
+        id="youtube-frame"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    // Open video modal
+    $(document).on('click', '.play-btn', function () {
+      $('.video-modal.video-modal-{{ section.id }}').addClass('open');
+      $('body').addClass('modal-main');
+      var videoUrl = $(this).data('video');
+      var embedUrl = '';
+      if (videoUrl.includes('embed')) {
+        embedUrl = videoUrl;
+      } else {
+        var videoId = '';
+        var match = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/]+)/);
+        if (match && match[1]) {
+          videoId = match[1];
+          embedUrl = 'https://www.youtube.com/embed/' + videoId;
+        } else {
+          embedUrl = videoUrl;
+        }
+      }
+      $('.video-modal-{{ section.id }} #youtube-frame').attr('src', embedUrl + '?autoplay=1');
+    });
+
+    $(document).on('click', '.modal-close', function () {
+      closeModal();
+    });
+
+    $(document).on('click', '.video-modal.video-modal-{{ section.id }}', function (e) {
+      if ($(e.target).closest('.modal-body').length === 0) {
+        closeModal();
+      }
+    });
+
+    $(document).on('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    function closeModal() {
+      $('.video-modal').removeClass('open');
+      $('.video-modal #youtube-frame').attr('src', '');
+      $('body').removeClass('modal-main');
+    }
+  });
+</script>
+
 {% schema %}
 {
   "name": "Video Section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "metaobject_list",
+      "id": "videos",
+      "label": "Videos",
+      "metaobject_type": "videos",
+      "info": "Recommended Image/Video size: 692 x 360"
+    }
+  ],
   "presets": [
     {
       "name": "Video Section"
