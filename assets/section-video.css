@@ -113,6 +113,6 @@
     gap: 20px;
 }
 .section-video .row .col-4{
-    max-width: calc(33% - 10px);
+    max-width: calc(33% - 8px);
     width: 100%;
 }
