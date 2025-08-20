@@ -3787,4 +3787,5 @@ p {
 button[aria-label="Close dialog"]{
   right: -15px !important;
     top: -15px !important;
+    background: #ffffff;
 }
