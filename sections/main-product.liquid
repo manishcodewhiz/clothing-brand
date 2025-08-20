@@ -131,18 +131,18 @@
                     {%- if shop.shipping_policy.body != blank -%}
                       {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
                     {%- endif -%}
-                    <div class="availability-box">
-                      <p>
-                        <span>Availability:</span>
-                        {% if product.available %}
-                          In Stock
-                        {% else %}
-                          Sold out
-                        {% endif %}
-                      </p>
-                    </div>
+                  {%- endif -%}
+                  <div class="availability-box">
+                    <p>
+                      <span>Availability:</span>
+                      {% if product.available %}
+                        In Stock
+                      {% else %}
+                        Sold out
+                      {% endif %}
+                    </p>
                   </div>
-                {%- endif -%}
+                </div>
                 {% comment %} <div {{ block.shopify_attributes }}>
                   {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
                   {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
