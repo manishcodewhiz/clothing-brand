@@ -107,12 +107,25 @@
       ],
       "name": "Product Cards",
       "settings": {}
+    },
+    "section_video_k8d8gy": {
+      "type": "section-video",
+      "name": "Video Section",
+      "settings": {
+        "videos": [
+          "graphic-kit-install-tips",
+          "number-plate-background-install-tips",
+          "seat-cover-install-tips",
+          "number-plate-background-install-tips-1"
+        ]
+      }
     }
   },
   "order": [
     "hero_section_7T7jL9",
     "cards_item_4BHgrE",
     "discover_routine_yMaBLR",
-    "product_cards_mMzHEK"
+    "product_cards_mMzHEK",
+    "section_video_k8d8gy"
   ]
 }
