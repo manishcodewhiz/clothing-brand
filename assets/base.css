@@ -3789,3 +3789,6 @@ button[aria-label="Close dialog"]{
     top: -15px !important;
     background: #ffffff;
 }
+.kl-private-reset-css-Xuajs1 input[type=email]{
+  background-color: #ffffff !important;
+}
