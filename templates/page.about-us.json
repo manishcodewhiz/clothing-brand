@@ -78,7 +78,13 @@
     "section_video_AzzEBT": {
       "type": "section-video",
       "name": "Video Section",
-      "settings": {}
+      "settings": {
+        "videos": [
+          "graphic-kit-install-tips",
+          "number-plate-background-install-tips",
+          "seat-cover-install-tips"
+        ]
+      }
     }
   },
   "order": [
