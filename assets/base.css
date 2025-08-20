@@ -3783,3 +3783,8 @@ p {
 .main-cta:hover {
   background: var(--secondary);
 }
+
+button[aria-label="Close dialog"]{
+  right: -15px !important;
+    top: -15px !important;
+}
