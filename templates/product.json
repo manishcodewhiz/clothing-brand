@@ -27,6 +27,12 @@
           "type": "price",
           "settings": {}
         },
+        "short_description_gRimRy": {
+          "type": "short_description",
+          "settings": {
+            "short_description": true
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -71,6 +77,7 @@
         "vendor",
         "title",
         "price",
+        "short_description_gRimRy",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
