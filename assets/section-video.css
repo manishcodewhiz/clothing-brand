@@ -110,6 +110,7 @@
 }
 .section-video .row{
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 .section-video .row .col-4{
