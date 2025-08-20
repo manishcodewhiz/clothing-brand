@@ -108,3 +108,11 @@
 .section-video .learning-video-thumbnil .play-btn:hover {
     background: #0009;
 }
+.section-video .row{
+    display: flex;
+    gap: 20px;
+}
+.section-video .row .col-4{
+    max-width: calc(33% - 10px);
+    width: 100%;
+}
