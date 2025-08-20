@@ -131,6 +131,16 @@
                     {%- if shop.shipping_policy.body != blank -%}
                       {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
                     {%- endif -%}
+                    <div class="availability-box">
+                      <p>
+                        <span>Availability:</span>
+                        {% if product.available %}
+                          In Stock
+                        {% else %}
+                          Sold out
+                        {% endif %}
+                      </p>
+                    </div>
                   </div>
                 {%- endif -%}
                 <div {{ block.shopify_attributes }}>
@@ -191,16 +201,7 @@
                     {%- endif -%}
                   {%- endif -%}
                 </p>
-                <div class="availability-box">
-                  <p>
-                    <span>Availability:</span>
-                    {% if product.available %}
-                      In Stock
-                    {% else %}
-                      Sold out
-                    {% endif %}
-                  </p>
-                </div>
+
               {% when 'short_description' %}
                 {% if product.metafields.custom.short_description != blank and block.settings.short_description %}
                   <div class="product-content_item">
