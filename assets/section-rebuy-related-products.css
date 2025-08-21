@@ -284,6 +284,7 @@ padding: 20px;
 .card-wrapper .quick-view-btn button{
     background-color: transparent !important;
     border: 1px solid #1A1A1A !important;
+    border-top: 0px  !important;
     font-weight: 700;
     font-size: 14px;
     line-height: 100%;
