@@ -262,3 +262,6 @@
     max-height: 280px;
     position: relative;
 }
+.card-wrapper .card__content{
+padding: 20px;
+}
