@@ -280,3 +280,15 @@ padding: 20px;
 .card-wrapper .add-to-cart.button:hover{
     background-color: #B10A0A;
 }
+.card-wrapper .quick-view-btn{
+    background-color: #1A1A1A;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 100%;
+    padding: 0 17px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
