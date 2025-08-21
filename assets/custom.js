@@ -85,42 +85,41 @@
     });
   });
 
-  // Wait until Rebuy is loaded
-  document.addEventListener("rebuy:ready", function() {
-    if (window.Rebuy) {
-      // 🔹 Stop Rebuy from redirecting to cart page
-      Rebuy.config.autoRedirect = false;
+ $(document).on('click', '.rebuy-product-actions, .rebuy-bundle-builder__cta-container', function (e) {
+	if ($(e.target).closest(".rebuy-bundle-builder__product-quantity").length) {
+    return;
+  }
+	setTimeout(function () {
+		fetch(`${routes.cart_url}`)
+			.then((response) => response.text())
+			.then((responseText) => {
+				const html = new DOMParser().parseFromString(responseText, 'text/html');
+				const selectors = ['.header__icon--cart', '.cart-drawer', 'cart-drawer-items', '.drawer__footer', '.item-count'];
+				for (const selector of selectors) {
+					const targetElement = document.querySelector(selector);
+					const sourceElement = html.querySelector(selector);
+					if (targetElement && sourceElement) {
+						targetElement.replaceWith(sourceElement);
+					}
+				}
+				$('.drawer__inner-empty').remove()
+				$('cart-drawer.drawer').removeClass('is-empty')
+				$('cart-drawer.drawer').addClass('active')
+			})
+			.catch((e) => {
+				console.error(e);
+			});
+	}, 1200)
+});
+document.addEventListener('DOMContentLoaded', function () {
+	// Function to reinitialize Rebuy
+	function reinitializeRebuy() {
+		if (typeof Rebuy !== 'undefined' && Rebuy.init) {
+			Rebuy.init(); // Adjust this based on Rebuy’s actual API method
+		}
+	}
 
-      // 🔹 Force override goToCart everywhere
-      if (Rebuy.Cart) {
-        Rebuy.Cart.goToCart = function() {
-          // Do NOTHING here = no redirect
-          return false;
-        };
-      }
-    }
-  });
-
-  // 🔹 After product is added by Rebuy, open drawer instead
-  document.addEventListener("rebuy:cart.add", function(event) {
-    event.preventDefault();
-
-    fetch('/cart.js')
-      .then(res => res.json())
-      .then(cart => {
-        // --- Dawn / OS2.0 themes ---
-        if (document.querySelector('cart-drawer')?.renderContents) {
-          const drawer = document.querySelector('cart-drawer');
-          drawer.open();
-          drawer.renderContents(cart);
-        }
-        // --- Impulse / Prestige / Motion ---
-        else if (window.theme && theme.CartDrawer) {
-          theme.CartDrawer.open();
-        }
-        // --- Fallback custom themes ---
-        else {
-          document.querySelector('.cart-drawer')?.classList.add('is-open');
-        }
-      });
-  });
+	setInterval(() => {
+		reinitializeRebuy();
+	}, 1000);
+});
