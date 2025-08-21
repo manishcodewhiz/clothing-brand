@@ -84,3 +84,10 @@
       $menuItem.toggleClass('active');
     });
   });
+
+
+document.addEventListener("cart:updated", function(event) {
+  if (window.Rebuy) {
+    Rebuy.init(); // re-render recommendations in the drawer
+  }
+});
