@@ -85,6 +85,49 @@
     });
   });
 
+
+    // Stop every Rebuy widget from redirecting
+  document.addEventListener("rebuy:ready", function() {
+    // Find all Rebuy add-to-cart forms
+    document.querySelectorAll("form.rebuy-cart-form").forEach(function(form) {
+      form.setAttribute("data-ajax-cart", "true");
+
+      // Intercept submit
+      form.addEventListener("submit", function(e) {
+        e.preventDefault(); // ❌ stop cart page redirect
+
+        const formData = new FormData(form);
+
+        // Use Shopify Ajax API to add product
+        fetch("/cart/add.js", {
+          method: "POST",
+          body: formData
+        })
+        .then(res => res.json())
+        .then(() => {
+          // ✅ Now open drawer instead of redirect
+          fetch("/cart.js")
+            .then(res => res.json())
+            .then(cart => {
+              // Dawn / OS2.0
+              if (document.querySelector("cart-drawer")?.renderContents) {
+                const drawer = document.querySelector("cart-drawer");
+                drawer.open();
+                drawer.renderContents(cart);
+              }
+              // Impulse / Prestige / Motion
+              else if (window.theme && theme.CartDrawer) {
+                theme.CartDrawer.open();
+              }
+              // Custom fallback
+              else {
+                document.querySelector(".cart-drawer")?.classList.add("is-open");
+              }
+            });
+        });
+      });
+    });
+  });
    document.addEventListener("rebuy:ready", function() {
     // Find ALL Rebuy add-to-cart forms
     document.querySelectorAll("form.rebuy-cart-form").forEach(function(form) {
