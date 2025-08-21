@@ -102,7 +102,7 @@
 
 .section-rebuy-related-products .slick-prev:before {
   content: "";
-  background-image: url(../assets/slider-arrow.svg);
+  background-image: url(https://cdn.shopify.com/s/files/1/0669/2503/5691/files/slider-arrow.svg?v=1755777754);
   width: 10px;
   height: 16px;
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(162deg) brightness(97%) contrast(106%);
