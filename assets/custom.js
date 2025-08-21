@@ -87,25 +87,31 @@
 
 
   document.addEventListener("rebuy:cart.add", function(event) {
-    // Prevent default redirect
-    event.preventDefault();
+    // Stop Rebuy from redirecting
+    if (event.detail && event.detail.response) {
+      event.preventDefault();
 
-    // Re-initialize your cart drawer
-    if (typeof window.CartDrawer !== "undefined") {
-      window.CartDrawer.open(); // if your theme has a drawer object
-    } else {
-      // fallback: manually trigger drawer
-      document.querySelector('.cart-drawer').classList.add('active');
+      // Refresh cart drawer (AJAX)
+      fetch('/cart.js')
+        .then(res => res.json())
+        .then(cart => {
+          // If theme uses cart drawer element
+          if (typeof window.CartDrawer !== "undefined") {
+            window.CartDrawer.open();
+            window.CartDrawer.renderContents(cart);
+          } else {
+            // Example: Dawn theme
+            const drawer = document.querySelector('cart-drawer');
+            if (drawer && drawer.renderContents) {
+              drawer.open();
+              drawer.renderContents(cart);
+            } else {
+              // Fallback → open your drawer by class
+              document.querySelector('.cart-drawer')?.classList.add('active');
+            }
+          }
+        });
     }
-  });
-
-  document.addEventListener("rebuy:cart.change", function(event) {
-  // Fetch cart again to refresh drawer
-  fetch('/cart.js')
-    .then(res => res.json())
-    .then(cart => {
-      document.querySelector('cart-drawer').renderContents(cart);
-    });
   });
 
 
