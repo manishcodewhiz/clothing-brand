@@ -3792,3 +3792,7 @@ button[aria-label="Close dialog"]{
 .kl-private-reset-css-Xuajs1 input[type=email]{
   background-color: #ffffff !important;
 }
+
+.drawer.is-empty .rebuy_product_block{
+  display: none;
+}
