@@ -90,7 +90,7 @@
               { breakpoint: 1200, settings: { slidesToShow: 3, slidesToScroll: 1 } },
               { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 1 } },
               // { breakpoint: 768, settings: { slidesToShow: 2, variableWidth: true, arrows: false } },
-              { breakpoint: 400, settings: { slidesToShow: 1, slidesToScroll: 1} },
+              { breakpoint: 400, settings: { slidesToShow: 1, slidesToScroll: 1 } },
             ],
           });
 
@@ -138,7 +138,9 @@
 
       if (availableVariants.length > 0) {
         let badge = '';
-        if (product.tags.includes('New')) badge = '<span class="svg-wrapper"><img src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/new-tag.svg" width="12" height="15" alt="New Tag"/><span>New</span>';
+        if (product.tags.includes('New'))
+          badge =
+            '<span class="svg-wrapper"><img src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/new-tag.svg" width="12" height="15" alt="New Tag"/><span>New</span>';
         else if (
           product.tags.includes('New Arrival') ||
           product.tags.includes('newarrival') ||
