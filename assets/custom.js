@@ -86,32 +86,3 @@
   });
 
 
-  document.addEventListener("rebuy:cart.add", function(event) {
-    // Stop Rebuy from redirecting
-    if (event.detail && event.detail.response) {
-      event.preventDefault();
-
-      // Refresh cart drawer (AJAX)
-      fetch('/cart.js')
-        .then(res => res.json())
-        .then(cart => {
-          // If theme uses cart drawer element
-          if (typeof window.CartDrawer !== "undefined") {
-            window.CartDrawer.open();
-            window.CartDrawer.renderContents(cart);
-          } else {
-            // Example: Dawn theme
-            const drawer = document.querySelector('cart-drawer');
-            if (drawer && drawer.renderContents) {
-              drawer.open();
-              drawer.renderContents(cart);
-            } else {
-              // Fallback → open your drawer by class
-              document.querySelector('.cart-drawer')?.classList.add('active');
-            }
-          }
-        });
-    }
-  });
-
-
