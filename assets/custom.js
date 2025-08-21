@@ -85,4 +85,29 @@
     });
   });
 
+  // When a Rebuy "Add to Cart" runs
+  document.addEventListener("rebuy:cart.add", function(event) {
+    // Stop redirect
+    event.preventDefault();
+
+    // Fetch updated cart to update drawer
+    fetch('/cart.js')
+      .then(res => res.json())
+      .then(cart => {
+        // --- Dawn / most OS 2.0 themes ---
+        if (document.querySelector('cart-drawer')?.renderContents) {
+          document.querySelector('cart-drawer').open();
+          document.querySelector('cart-drawer').renderContents(cart);
+        }
+        // --- Prestige / Impulse / Motion ---
+        else if (window.theme && theme.CartDrawer) {
+          theme.CartDrawer.open();
+        }
+        // --- Custom theme fallback ---
+        else {
+          document.querySelector('.cart-drawer')?.classList.add('is-open');
+        }
+      });
+  });
+
 
