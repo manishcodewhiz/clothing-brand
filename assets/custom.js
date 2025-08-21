@@ -84,17 +84,3 @@
       $menuItem.toggleClass('active');
     });
   });
-
-
-document.addEventListener('DOMContentLoaded', function () {
-	// Function to reinitialize Rebuy
-	function reinitializeRebuy() {
-		if (typeof Rebuy !== 'undefined' && Rebuy.init) {
-			Rebuy.init(); // Adjust this based on Rebuy’s actual API method
-		}
-	}
-
-	setInterval(() => {
-		reinitializeRebuy();
-	}, 1000);
-});
