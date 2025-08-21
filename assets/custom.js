@@ -85,17 +85,25 @@
     });
   });
 
-document.addEventListener("rebuy:cart.add", function(event) {
-    // Stop default redirect
-    if (event && event.preventDefault) {
-      event.preventDefault();
-    }
+  // Completely override Rebuy redirect
+  window.Rebuy = window.Rebuy || {};
+  window.Rebuy.Cart = window.Rebuy.Cart || {};
 
-    // Get updated cart and open drawer
+  // Override the goToCart function (this is what causes the redirect)
+  window.Rebuy.Cart.goToCart = function() {
+    // Do nothing here, so it never redirects
+    return false;
+  };
+
+  // Listen for add-to-cart success
+  document.addEventListener("rebuy:cart.add", function(event) {
+    event.preventDefault();
+
+    // Open your drawer instead of redirecting
     fetch('/cart.js')
       .then(res => res.json())
       .then(cart => {
-        // Dawn & most Online Store 2.0 themes
+        // Dawn / OS2.0 themes
         if (document.querySelector('cart-drawer')?.renderContents) {
           const drawer = document.querySelector('cart-drawer');
           drawer.open();
@@ -105,7 +113,7 @@ document.addEventListener("rebuy:cart.add", function(event) {
         else if (window.theme && theme.CartDrawer) {
           theme.CartDrawer.open();
         }
-        // Fallback for custom themes
+        // Custom fallback
         else {
           document.querySelector('.cart-drawer')?.classList.add('is-open');
         }
