@@ -277,3 +277,6 @@ padding: 20px;
     align-items: center;
     color: #ffffff;
 }
+.card-wrapper .add-to-cart.button:hover{
+    background-color: #B10A0A;
+}
