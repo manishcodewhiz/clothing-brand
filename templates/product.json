@@ -146,6 +146,14 @@
         ]
       }
     },
+    "rebuy_related_products_bGnq7V": {
+      "type": "rebuy-related-products",
+      "name": "Rebuy Related Products",
+      "settings": {
+        "title": "You may also like",
+        "quick_add": "standard"
+      }
+    },
     "1755761471c17d9912": {
       "type": "apps",
       "blocks": {
@@ -162,6 +170,7 @@
       "block_order": [
         "rebuy_personalization_engine_rebuy_widget_kmt7Nx"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
@@ -191,6 +200,7 @@
     "related-products",
     "quick_order_list_GP4ndm",
     "slider_GdyTYk",
+    "rebuy_related_products_bGnq7V",
     "1755761471c17d9912",
     "17459101958e382654"
   ]
