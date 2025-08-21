@@ -85,75 +85,42 @@
     });
   });
 
-
-    // Stop every Rebuy widget from redirecting
+  // Wait until Rebuy is loaded
   document.addEventListener("rebuy:ready", function() {
-    // Find all Rebuy add-to-cart forms
-    document.querySelectorAll("form.rebuy-cart-form").forEach(function(form) {
-      form.setAttribute("data-ajax-cart", "true");
+    if (window.Rebuy) {
+      // 🔹 Stop Rebuy from redirecting to cart page
+      Rebuy.config.autoRedirect = false;
 
-      // Intercept submit
-      form.addEventListener("submit", function(e) {
-        e.preventDefault(); // ❌ stop cart page redirect
-
-        const formData = new FormData(form);
-
-        // Use Shopify Ajax API to add product
-        fetch("/cart/add.js", {
-          method: "POST",
-          body: formData
-        })
-        .then(res => res.json())
-        .then(() => {
-          // ✅ Now open drawer instead of redirect
-          fetch("/cart.js")
-            .then(res => res.json())
-            .then(cart => {
-              // Dawn / OS2.0
-              if (document.querySelector("cart-drawer")?.renderContents) {
-                const drawer = document.querySelector("cart-drawer");
-                drawer.open();
-                drawer.renderContents(cart);
-              }
-              // Impulse / Prestige / Motion
-              else if (window.theme && theme.CartDrawer) {
-                theme.CartDrawer.open();
-              }
-              // Custom fallback
-              else {
-                document.querySelector(".cart-drawer")?.classList.add("is-open");
-              }
-            });
-        });
-      });
-    });
+      // 🔹 Force override goToCart everywhere
+      if (Rebuy.Cart) {
+        Rebuy.Cart.goToCart = function() {
+          // Do NOTHING here = no redirect
+          return false;
+        };
+      }
+    }
   });
-   document.addEventListener("rebuy:ready", function() {
-    // Find ALL Rebuy add-to-cart forms
-    document.querySelectorAll("form.rebuy-cart-form").forEach(function(form) {
-      form.addEventListener("submit", function(e) {
-        e.preventDefault(); // ❌ Stop redirect to /cart
 
-        const formData = new FormData(form);
+  // 🔹 After product is added by Rebuy, open drawer instead
+  document.addEventListener("rebuy:cart.add", function(event) {
+    event.preventDefault();
 
-        // Add item to cart via Ajax
-        fetch("/cart/add.js", {
-          method: "POST",
-          body: formData
-        })
-        .then(res => res.json())
-        .then(() => {
-          // Fetch updated cart
-          fetch("/cart.js")
-            .then(res => res.json())
-            .then(cart => {
-              const drawer = document.querySelector("cart-drawer");
-              if (drawer && drawer.renderContents) {
-                drawer.open();                // ✅ open drawer
-                drawer.renderContents(cart);  // ✅ refresh contents
-              }
-            });
-        });
-      }, { once: false }); // keep working on multiple clicks
-    });
+    fetch('/cart.js')
+      .then(res => res.json())
+      .then(cart => {
+        // --- Dawn / OS2.0 themes ---
+        if (document.querySelector('cart-drawer')?.renderContents) {
+          const drawer = document.querySelector('cart-drawer');
+          drawer.open();
+          drawer.renderContents(cart);
+        }
+        // --- Impulse / Prestige / Motion ---
+        else if (window.theme && theme.CartDrawer) {
+          theme.CartDrawer.open();
+        }
+        // --- Fallback custom themes ---
+        else {
+          document.querySelector('.cart-drawer')?.classList.add('is-open');
+        }
+      });
   });
