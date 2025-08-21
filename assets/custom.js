@@ -85,39 +85,42 @@
     });
   });
 
-     document.addEventListener("rebuy:ready", function() {
-    // 🔹 Stop Rebuy from redirecting
+  // Wait until Rebuy is loaded
+  document.addEventListener("rebuy:ready", function() {
     if (window.Rebuy) {
+      // 🔹 Stop Rebuy from redirecting to cart page
       Rebuy.config.autoRedirect = false;
 
-      // Kill any goToCart redirect function
-      if (Rebuy.Cart && typeof Rebuy.Cart.goToCart === "function") {
+      // 🔹 Force override goToCart everywhere
+      if (Rebuy.Cart) {
         Rebuy.Cart.goToCart = function() {
+          // Do NOTHING here = no redirect
           return false;
         };
       }
     }
   });
 
-  // 🔹 After product added by Rebuy → open drawer instead
-  document.addEventListener("rebuy:cart.add", function() {
-    // Fetch updated cart
+  // 🔹 After product is added by Rebuy, open drawer instead
+  document.addEventListener("rebuy:cart.add", function(event) {
+    event.preventDefault();
+
     fetch('/cart.js')
       .then(res => res.json())
       .then(cart => {
-        // --- Dawn / OS2.0 style themes ---
+        // --- Dawn / OS2.0 themes ---
         if (document.querySelector('cart-drawer')?.renderContents) {
           const drawer = document.querySelector('cart-drawer');
           drawer.open();
           drawer.renderContents(cart);
         }
-        // --- Impulse / Prestige / Motion themes ---
+        // --- Impulse / Prestige / Motion ---
         else if (window.theme && theme.CartDrawer) {
           theme.CartDrawer.open();
         }
-        // --- Fallback: manually toggle drawer ---
-        else if (document.querySelector('.cart-drawer')) {
-          document.querySelector('.cart-drawer').classList.add('is-open');
+        // --- Fallback custom themes ---
+        else {
+          document.querySelector('.cart-drawer')?.classList.add('is-open');
         }
       });
   });
