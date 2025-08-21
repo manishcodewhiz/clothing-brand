@@ -300,4 +300,5 @@ padding: 20px;
     background-color: #1A1A1A !important;
     border: 1px solid transparent !important;
     color: #ffffff !important;
+    border-top: 0px  !important;
 }
