@@ -135,6 +135,7 @@
     },
     "slider_GdyTYk": {
       "type": "slider",
+      "disabled": true,
       "name": "Product Slider",
       "settings": {
         "selected_products": [
