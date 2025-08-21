@@ -85,15 +85,27 @@
     });
   });
 
-  document.addEventListener('DOMContentLoaded', function () {
-	// Function to reinitialize Rebuy
-	function reinitializeRebuy() {
-		if (typeof Rebuy !== 'undefined' && Rebuy.init) {
-			Rebuy.init(); // Adjust this based on Rebuy’s actual API method
-		}
-	}
 
-	setInterval(() => {
-		reinitializeRebuy();
-	}, 1000);
-});
+  document.addEventListener("rebuy:cart.add", function(event) {
+    // Prevent default redirect
+    event.preventDefault();
+
+    // Re-initialize your cart drawer
+    if (typeof window.CartDrawer !== "undefined") {
+      window.CartDrawer.open(); // if your theme has a drawer object
+    } else {
+      // fallback: manually trigger drawer
+      document.querySelector('.cart-drawer').classList.add('active');
+    }
+  });
+
+  document.addEventListener("rebuy:cart.change", function(event) {
+  // Fetch cart again to refresh drawer
+  fetch('/cart.js')
+    .then(res => res.json())
+    .then(cart => {
+      document.querySelector('cart-drawer').renderContents(cart);
+    });
+  });
+
+
