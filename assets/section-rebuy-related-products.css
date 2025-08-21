@@ -290,5 +290,10 @@ padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid transparent;
     color: #ffffff;
+}
+.card-wrapper .quick-view-btn:hover{
+    background-color: transparent;
+    border: 1px solid #1A1A1A;
 }
