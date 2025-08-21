@@ -279,6 +279,7 @@ padding: 20px;
 }
 .card-wrapper .add-to-cart.button:hover{
     background-color: #B10A0A;
+    color: #ffffff;
 }
 .card-wrapper .quick-view-btn{
     background-color: #1A1A1A;
@@ -296,4 +297,5 @@ padding: 20px;
 .card-wrapper .quick-view-btn:hover{
     background-color: transparent;
     border: 1px solid #1A1A1A;
+    color: #ffffff;
 }
