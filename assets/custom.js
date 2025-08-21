@@ -85,38 +85,39 @@
     });
   });
 
-   document.addEventListener("rebuy:ready", function() {
-    // 🔹 Force all Rebuy widgets to use AJAX only (no redirect)
-    Rebuy.config.autoRedirect = false;
+     document.addEventListener("rebuy:ready", function() {
+    // 🔹 Stop Rebuy from redirecting
+    if (window.Rebuy) {
+      Rebuy.config.autoRedirect = false;
 
-    // 🔹 Override goToCart everywhere
-    if (Rebuy.Cart && typeof Rebuy.Cart.goToCart === "function") {
-      Rebuy.Cart.goToCart = function() {
-        return false; // stop redirect
-      };
+      // Kill any goToCart redirect function
+      if (Rebuy.Cart && typeof Rebuy.Cart.goToCart === "function") {
+        Rebuy.Cart.goToCart = function() {
+          return false;
+        };
+      }
     }
   });
 
-  // 🔹 Open cart drawer after item is added
-  document.addEventListener("rebuy:cart.add", function(event) {
-    event.preventDefault();
-
+  // 🔹 After product added by Rebuy → open drawer instead
+  document.addEventListener("rebuy:cart.add", function() {
+    // Fetch updated cart
     fetch('/cart.js')
       .then(res => res.json())
       .then(cart => {
-        // --- Dawn / OS2.0 ---
+        // --- Dawn / OS2.0 style themes ---
         if (document.querySelector('cart-drawer')?.renderContents) {
           const drawer = document.querySelector('cart-drawer');
           drawer.open();
           drawer.renderContents(cart);
         }
-        // --- Impulse / Prestige / Motion ---
+        // --- Impulse / Prestige / Motion themes ---
         else if (window.theme && theme.CartDrawer) {
           theme.CartDrawer.open();
         }
-        // --- Custom fallback ---
-        else {
-          document.querySelector('.cart-drawer')?.classList.add('is-open');
+        // --- Fallback: manually toggle drawer ---
+        else if (document.querySelector('.cart-drawer')) {
+          document.querySelector('.cart-drawer').classList.add('is-open');
         }
       });
   });
