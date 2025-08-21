@@ -154,6 +154,15 @@
         "quick_add": "standard"
       }
     },
+    "section_recommended_products_G6VXjr": {
+      "type": "section-recommended-products",
+      "name": "Recommended Products",
+      "settings": {
+        "recommended_products_id": "234916",
+        "cta_text": "View all",
+        "cta_url": "shopify://collections/all"
+      }
+    },
     "1755761471c17d9912": {
       "type": "apps",
       "blocks": {
@@ -201,6 +210,7 @@
     "quick_order_list_GP4ndm",
     "slider_GdyTYk",
     "rebuy_related_products_bGnq7V",
+    "section_recommended_products_G6VXjr",
     "1755761471c17d9912",
     "17459101958e382654"
   ]
