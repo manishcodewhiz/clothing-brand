@@ -296,6 +296,6 @@ padding: 20px;
 }
 .card-wrapper .quick-view-btn button:hover{
     background-color: transparent;
-    border: 1px solid #1A1A1A;
+    border: 1px solid #1A1A1A !important;
     color: #ffffff;
 }
