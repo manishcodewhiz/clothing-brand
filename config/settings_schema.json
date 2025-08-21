@@ -1413,6 +1413,11 @@
         "default": true
       },
       {
+        "type": "liquid",
+        "id": "cart_drawer_liquid",
+        "label": "Code"
+      },
+      {
         "type": "select",
         "id": "cart_type",
         "options": [
