@@ -1,0 +1,127 @@
+.also-buy-products{
+    width: 100%;
+}
+.also-buy-products .rebuy-widget{
+    padding-bottom: 0;
+}
+.also-buy-products .rebuy-widget h3{
+    text-transform: capitalize;
+    text-align: left;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+.also-buy-products .rebuy-widget .splide--slide{
+    padding: 0;
+}
+.also-buy-products .rebuy-widget .splide__track{
+    padding-right: 40px !important;
+    margin-left: -10px;
+}
+.also-buy-products .rebuy-widget .rebuy-product-block{
+    padding: 0px 10px 12px;
+    border-radius: 8px;
+    position: relative;
+}
+.also-buy-products .rebuy-widget .rebuy-product-block::after{
+    position: absolute;
+    left: 10px;
+    top: 0;
+    z-index: -1;
+    background: #f5f0f4;
+    border-radius: 8px;
+    content: "";
+    width: calc(100% - 20px);
+    height: 100%;
+}
+.also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-media{
+    border-radius: 8px 8px 0px 0px;
+    overflow: hidden;
+}
+.also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-info{
+    padding: 0 10px 0px;
+    text-align: left;
+}
+.also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-info a{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-info .rebuy-product-price{
+    font-size: 16px;
+    line-height: normal;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+.also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-info .rebuy-product-price span{
+    color: var(--primary-color);
+}
+.also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-actions{
+    margin: 16px 0 0;
+    padding: 0 10px;
+}
+.also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-actions .rebuy-button{
+    background: var(--white-color);
+    border: 0;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 600;
+}
+.also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-actions .rebuy-button:hover{
+    background: var(--secondary-color);
+}
+.also-buy-products .rebuy-widget .splide__arrows .splide__arrow{
+    width: 40px;
+    height: 40px;
+    border: 1px solid #E6E6E6;
+}
+.also-buy-products .rebuy-widget .splide__arrows .splide__arrow::before{
+    border: solid var(--primary-color);
+    border-width: 0 1.4px 1.4px 0;
+    display: inline-block;
+    padding: 3.8px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    content: "";
+    transition: var(--webkit-transition-all);
+    margin-right: 4px;
+    margin-top: 1px;
+}
+.also-buy-products .rebuy-widget .splide__arrow.splide__arrow--prev:before{
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    margin-right: -4px;
+}
+.also-buy-products .rebuy-widget .splide__arrows .rebuy-carousel__arrow svg{
+    display: none;
+}
+.also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-options,
+.also-buy-products .rebuy-widget .splide__pagination,
+.also-buy-products .rebuy-widget .powered-by-rebuy{
+    display: none;
+}
+/* Responsive */
+@media screen and (min-width: 990px) {
+    .also-buy-products .rebuy-widget .splide__arrows .splide__arrow.splide__arrow--prev{ left: -20px;}
+    .also-buy-products .rebuy-widget .splide__arrows .splide__arrow.splide__arrow--next{right: -20px;}
+    .also-buy-products .also-buy-products-mobile{ display: none}
+}
+@media screen and (max-width: 1200px) {
+    .also-buy-products .rebuy-widget .splide__track{margin-right: -10px; padding-right: 0px !important;}
+}
+@media screen and (max-width: 989px) {
+    .also-buy-products .also-buy-products-desktop{ display: none}
+    .also-buy-products .rebuy-widget{ padding: 40px 0 0;}
+    .also-buy-products .rebuy-widget h3{padding: 0 36px; text-align: center; font-weight: 600; font-size: 24px; 
+        line-height: 32px; margin-bottom: 16px;}
+    .also-buy-products .rebuy-widget .splide__arrows .splide__arrow{ top: -48px; transform: none; width: 32px; height: 32px;}
+    .also-buy-products .rebuy-widget .rebuy-product-block{padding: 0 5px 10px;}
+    .also-buy-products .rebuy-widget .rebuy-product-block:after{ left: 5px; width: calc(100% - 10px);}
+    .also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-info .rebuy-product-price{ margin-top: 10px; font-size: 13px;}
+    .also-buy-products .rebuy-widget .rebuy-product-block .rebuy-product-actions{ margin-top: 10px;}
+}
