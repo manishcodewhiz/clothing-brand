@@ -119,6 +119,26 @@
           "number-plate-background-install-tips-1"
         ]
       }
+    },
+    "17557582075c4fddae": {
+      "type": "apps",
+      "blocks": {
+        "rebuy_personalization_engine_rebuy_widget_M6b9GQ": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "234908",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        }
+      },
+      "block_order": [
+        "rebuy_personalization_engine_rebuy_widget_M6b9GQ"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -126,6 +146,7 @@
     "cards_item_4BHgrE",
     "discover_routine_yMaBLR",
     "product_cards_mMzHEK",
-    "section_video_k8d8gy"
+    "section_video_k8d8gy",
+    "17557582075c4fddae"
   ]
 }
