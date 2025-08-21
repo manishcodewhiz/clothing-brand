@@ -245,3 +245,20 @@
 .section-rebuy-related-products .quick-add-modal {
   display: none;
 }
+
+.card-wrapper{
+    background-color: #F2F4F5;
+}
+.card-wrapper .card__media .media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-wrapper .card__media .media img{
+    max-width: 280px;
+    min-width: 280px;
+    object-fit: contain;
+    margin: auto;
+    max-height: 280px;
+    position: relative;
+}
