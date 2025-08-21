@@ -281,7 +281,7 @@ padding: 20px;
     background-color: #B10A0A;
     color: #ffffff;
 }
-.card-wrapper .quick-view-btn{
+.card-wrapper .quick-view-btn button{
     background-color: #1A1A1A;
     font-weight: 700;
     font-size: 14px;
@@ -294,7 +294,7 @@ padding: 20px;
     border: 1px solid transparent;
     color: #ffffff;
 }
-.card-wrapper .quick-view-btn:hover{
+.card-wrapper .quick-view-btn button:hover{
     background-color: transparent;
     border: 1px solid #1A1A1A;
     color: #ffffff;
