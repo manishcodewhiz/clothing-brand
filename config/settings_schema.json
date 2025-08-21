@@ -1403,6 +1403,16 @@
     "name": "t:settings_schema.cart.name",
     "settings": [
       {
+        "type": "header",
+        "content": "Rebuy"
+      },
+      {
+        "type": "checkbox",
+        "id": "rebuy_product",
+        "label": "Show Product",
+        "default": true
+      },
+      {
         "type": "select",
         "id": "cart_type",
         "options": [
