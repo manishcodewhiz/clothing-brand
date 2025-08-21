@@ -180,6 +180,7 @@
       "block_order": [
         "judge_me_reviews_review_widget_CmbgCM"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
