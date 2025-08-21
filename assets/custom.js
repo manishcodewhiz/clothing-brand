@@ -85,38 +85,38 @@
     });
   });
 
-  // Completely override Rebuy redirect
-  window.Rebuy = window.Rebuy || {};
-  window.Rebuy.Cart = window.Rebuy.Cart || {};
+   document.addEventListener("rebuy:ready", function() {
+    // 🔹 Force all Rebuy widgets to use AJAX only (no redirect)
+    Rebuy.config.autoRedirect = false;
 
-  // Override the goToCart function (this is what causes the redirect)
-  window.Rebuy.Cart.goToCart = function() {
-    // Do nothing here, so it never redirects
-    return false;
-  };
+    // 🔹 Override goToCart everywhere
+    if (Rebuy.Cart && typeof Rebuy.Cart.goToCart === "function") {
+      Rebuy.Cart.goToCart = function() {
+        return false; // stop redirect
+      };
+    }
+  });
 
-  // Listen for add-to-cart success
+  // 🔹 Open cart drawer after item is added
   document.addEventListener("rebuy:cart.add", function(event) {
     event.preventDefault();
 
-    // Open your drawer instead of redirecting
     fetch('/cart.js')
       .then(res => res.json())
       .then(cart => {
-        // Dawn / OS2.0 themes
+        // --- Dawn / OS2.0 ---
         if (document.querySelector('cart-drawer')?.renderContents) {
           const drawer = document.querySelector('cart-drawer');
           drawer.open();
           drawer.renderContents(cart);
         }
-        // Prestige / Impulse / Motion
+        // --- Impulse / Prestige / Motion ---
         else if (window.theme && theme.CartDrawer) {
           theme.CartDrawer.open();
         }
-        // Custom fallback
+        // --- Custom fallback ---
         else {
           document.querySelector('.cart-drawer')?.classList.add('is-open');
         }
       });
   });
-
