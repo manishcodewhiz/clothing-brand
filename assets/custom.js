@@ -86,37 +86,74 @@
 //   });
 
 
-  // Intercept every Rebuy Add to Cart button click
+(function() {
+  // Utility: replace Dawn cart drawer section and open it
+  function refreshAndOpenCartDrawer() {
+    const cartUrl = (window.routes && window.routes.cart_url) || '/cart';
+
+    return fetch(`${cartUrl}?section_id=cart-drawer`)
+      .then((r) => r.text())
+      .then((htmlText) => {
+        const html = new DOMParser().parseFromString(htmlText, 'text/html');
+        const selectors = [
+          '.header__icon--cart',
+          '.cart-drawer',
+          'cart-drawer-items',
+          '.drawer__footer',
+          '.item-count'
+        ];
+
+        selectors.forEach((sel) => {
+          const target = document.querySelector(sel);
+          const source = html.querySelector(sel);
+          if (target && source) target.replaceWith(source);
+        });
+
+        // Open drawer (Dawn)
+        const drawer = document.querySelector('cart-drawer') || document.querySelector('cart-drawer.drawer');
+        if (drawer) {
+          drawer.classList.remove('is-empty');
+          drawer.classList.add('active');
+        }
+        document.querySelector('.drawer__inner-empty')?.remove();
+
+        // Fallback: trigger header cart icon click if needed
+        document.querySelector('.header__icon--cart')?.dispatchEvent(new Event('click', { bubbles: true }));
+      });
+  }
+
+  // Intercept Rebuy add-to-cart button clicks (capture phase to beat any handlers)
   document.addEventListener('click', function(e) {
-    const btn = e.target.closest('.rebuy-button'); // Rebuy add-to-cart button
-    if (btn) {
-      e.preventDefault();   // stop form/redirect
-      e.stopImmediatePropagation(); // kill any other handlers (Rebuy redirect)
+    const btn = e.target.closest('.rebuy-button[data-variant-id]');
+    if (!btn) return;
 
-      // Trigger the real Rebuy addToCart logic manually
-      if (btn.__vue__) {
-        // Vue instance Rebuy attaches to buttons
-        btn.__vue__.addToCart(btn.__vue__.product);
-      }
+    // Kill any default / bubbling that could redirect to /cart
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
 
-      // After product is added, open/update drawer
-      setTimeout(function () {
-        fetch(`${routes.cart_url}?section_id=cart-drawer`)
-          .then((response) => response.text())
-          .then((responseText) => {
-            const html = new DOMParser().parseFromString(responseText, 'text/html');
-            const selectors = ['.header__icon--cart', '.cart-drawer', 'cart-drawer-items', '.drawer__footer', '.item-count'];
-            for (const selector of selectors) {
-              const targetElement = document.querySelector(selector);
-              const sourceElement = html.querySelector(selector);
-              if (targetElement && sourceElement) {
-                targetElement.replaceWith(sourceElement);
-              }
-            }
-            $('.drawer__inner-empty').remove();
-            $('cart-drawer.drawer').removeClass('is-empty').addClass('active');
-          })
-          .catch((err) => console.error(err));
-      }, 800);
+    const id = parseInt(btn.dataset.variantId, 10);
+    const qty = parseInt(btn.dataset.quantity || '1', 10);
+
+    if (!id || Number.isNaN(id)) {
+      console.error('Rebuy: No valid data-variant-id on button');
+      return;
     }
-  }, true); // use capture phase to beat Rebuy’s handler
+
+    // Add to cart via Shopify AJAX (always works)
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ id, quantity: qty })
+    })
+    .then((res) => {
+      if (!res.ok) throw new Error('Add to cart failed');
+      return res.json();
+    })
+    .then(() => refreshAndOpenCartDrawer())
+    .catch((err) => console.error(err));
+  }, true);
+})();
