@@ -49,9 +49,12 @@
             class="rebuy-product-block"
             role="listitem"
           >
-             {% if card_product.tags contains 'New' %}
-        <div class="product-tag"><span class="svg-wrapper">{{ 'new-tag.svg' | inline_asset_content }}</span><span>New</span></div>
-      {% endif %}
+            {% if card_product.tags contains 'New' %}
+                <div class="product-tag">
+                    <span class="svg-wrapper">{{ 'new-tag.svg' | inline_asset_content }}</span>
+                    <span>New</span>
+                </div>
+            {% endif %}
             <div class="rebuy-product-media">
               <a
                 class="rebuy-product-image"
