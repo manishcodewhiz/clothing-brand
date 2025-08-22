@@ -137,6 +137,70 @@
       const product_form_id = `quick-add-{{ section.id }}-${product.id}`;
 
       if (availableVariants.length > 0) {
+        let badge = '';
+        if (product.tags.includes('New')) badge = '<span class="svg-wrapper"><img src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/new-tag.svg" width="12" height="15" alt="New Tag"/><span>New</span>';
+        else if (
+          product.tags.includes('New Arrival') ||
+          product.tags.includes('newarrival') ||
+          product.tags.includes('new-arrival')
+        )
+          badge = '<span class="badge">New Arrival</span>';
+        else if (
+          product.tags.includes('BestSeller') ||
+          product.tags.includes('best-seller') ||
+          product.tags.includes('best-seller')
+        )
+          badge = '<span class="badge">Best Seller</span>';
+        else if (product.tags.includes('sale')) badge = '<span class="badge">sale</span>';
+        else if (
+          product.tags.includes('back in stock') ||
+          product.tags.includes('backinstock') ||
+          product.tags.includes('back-in-stock')
+        )
+          badge = '<span class="badge">Back in Stock</span>';
+        else if (
+          product.tags.includes('going fast') ||
+          product.tags.includes('goingfast') ||
+          product.tags.includes('going-fast')
+        )
+          badge = '<span class="badge">Going fast</span>';
+        else if (
+          product.tags.includes('low stock') ||
+          product.tags.includes('lowstock') ||
+          product.tags.includes('low-stock')
+        )
+          badge = '<span class="badge">low stock</span>';
+        else if (
+          product.tags.includes('almost gone') ||
+          product.tags.includes('almostgone') ||
+          product.tags.includes('almost-gone')
+        )
+          badge = '<span class="badge">almost gone</span>';
+        else if (
+          product.tags.includes('20% off') ||
+          product.tags.includes('20%off') ||
+          product.tags.includes('20%-off')
+        )
+          badge = '<span class="badge">20% OFF</span>';
+        else if (
+          product.tags.includes('25% off') ||
+          product.tags.includes('25%off') ||
+          product.tags.includes('25%-off')
+        )
+          badge = '<span class="badge">25% OFF</span>';
+        else if (
+          product.tags.includes('30% off') ||
+          product.tags.includes('30%off') ||
+          product.tags.includes('30%-off')
+        )
+          badge = '<span class="badge">30% OFF</span>';
+        else if (
+          product.tags.includes('50% off') ||
+          product.tags.includes('50%off') ||
+          product.tags.includes('50%-off')
+        )
+          badge = '<span class="badge">50% OFF</span>';
+
         let imageTag = '';
         if (product.image) {
           imageTag = `<img src="${product.image.src}" alt="${product.title}" loading="lazy">`;
