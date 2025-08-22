@@ -49,15 +49,12 @@
             class="rebuy-product-block"
             role="listitem"
           >
-           {{#if (includes product.tags "New")}}
-              <div class="product-tag">
-              <span class="svg-wrapper">
-                  <img src="{{ 'new-tag.svg' | asset_url }}" alt="New">
-              </span>
-              <span>New</span>
-              </div>
-          {{/if}}
-
+            {% if product.tags contains 'New' %}
+                <div class="product-tag">
+                    <span class="svg-wrapper">{{ 'new-tag.svg' | inline_asset_content }}</span>
+                    <span>New</span>
+                </div>
+            {% endif %}
             <div class="rebuy-product-media">
               <a
                 class="rebuy-product-image"
