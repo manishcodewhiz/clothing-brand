@@ -160,7 +160,6 @@
 
 
 
-<script>
 document.addEventListener('submit', function(e) {
   const form = e.target.closest('form[name="customAddToCart"]');
   if (!form) return; // ignore other forms
@@ -205,4 +204,4 @@ document.addEventListener('submit', function(e) {
   })
   .catch(err => console.error('Cart error:', err));
 });
-</script>
+
