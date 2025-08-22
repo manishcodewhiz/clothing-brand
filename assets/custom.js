@@ -86,11 +86,17 @@
 //   });
 
 
-  document.addEventListener("rebuy:cart.add", function(event) {
-    // Stop Rebuy from redirecting to the cart page
-    event.preventDefault();
+  // Override Rebuy default add-to-cart behavior
+  document.addEventListener("rebuy:ready", function() {
+    if (window.Rebuy && window.Rebuy.config) {
+      // Disable redirect to cart page globally
+      window.Rebuy.config.redirect_to_cart = false;
+    }
+  });
 
-    // Now open/update Shopify cart drawer
+  // When a product is added to cart
+  document.addEventListener("rebuy:cart.add", function(event) {
+    // Drawer logic
     fetch(`${routes.cart_url}?section_id=cart-drawer`)
       .then((response) => response.text())
       .then((responseText) => {
@@ -103,7 +109,6 @@
             targetElement.replaceWith(sourceElement);
           }
         }
-        // Force drawer open
         $('.drawer__inner-empty').remove();
         $('cart-drawer.drawer').removeClass('is-empty').addClass('active');
       })
