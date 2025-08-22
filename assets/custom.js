@@ -87,9 +87,12 @@
 
 
 $(document).on('click', '.rebuy-product-actions, .rebuy-bundle-builder__cta-container', function (e) {
+  e.preventDefault(); // ✅ stop default cart page redirect
+
   if ($(e.target).closest(".rebuy-bundle-builder__product-quantity").length || $(e.target).hasClass('rebuy-bundle-builder__cta-container')) {
     return;
   }
+
   setTimeout(function () {
     fetch(`${routes.cart_url}?section_id=cart-drawer`)
       .then((response) => response.text())
@@ -110,5 +113,5 @@ $(document).on('click', '.rebuy-product-actions, .rebuy-bundle-builder__cta-cont
       .catch((e) => {
         console.error(e);
       });
-  }, 1200)
+  }, 1200);
 });
