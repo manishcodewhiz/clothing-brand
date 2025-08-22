@@ -65,8 +65,8 @@
     background: var(--secondary-color);
 }
 .rebuy-product-media a{
-    cursor: pointer;
-    pointer-events: auto;
+    cursor: pointer !important;
+    pointer-events: auto !important;
 }
 /* Responsive */
 @media screen and (min-width: 990px) {
