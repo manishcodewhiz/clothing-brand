@@ -148,7 +148,6 @@
     },
     "rebuy_related_products_bGnq7V": {
       "type": "rebuy-related-products",
-      "disabled": true,
       "name": "Rebuy Related Products",
       "settings": {
         "title": "You may also like",
