@@ -5,6 +5,7 @@
   <div class="recommended-products also-buy-products">
     <div class="page-width">
       <div data-rebuy-id="{{ section.settings.recommended_products_id }}"></div>
+      {% render 'rebuy-templates' %}
       {% if section.settings.cta_url != blank and section.settings.cta_text != blank %}
         <a href="{{ section.settings.cta_url }}" class="view-link">{{ section.settings.cta_text }}</a>
       {% endif %}
