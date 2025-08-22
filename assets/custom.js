@@ -86,18 +86,11 @@
 //   });
 
 
-$(document).on('click', '.rebuy-product-actions, .rebuy-bundle-builder__cta-container', function (e) {
-  e.preventDefault();   // ✅ stop Shopify cart redirect
-  e.stopPropagation();  // ✅ stop Rebuy default bubbling
+  document.addEventListener("rebuy:cart.add", function(event) {
+    // Stop Rebuy from redirecting to the cart page
+    event.preventDefault();
 
-  if (
-    $(e.target).closest(".rebuy-bundle-builder__product-quantity").length ||
-    $(e.target).hasClass('rebuy-bundle-builder__cta-container')
-  ) {
-    return;
-  }
-
-  setTimeout(function () {
+    // Now open/update Shopify cart drawer
     fetch(`${routes.cart_url}?section_id=cart-drawer`)
       .then((response) => response.text())
       .then((responseText) => {
@@ -110,12 +103,9 @@ $(document).on('click', '.rebuy-product-actions, .rebuy-bundle-builder__cta-cont
             targetElement.replaceWith(sourceElement);
           }
         }
-        $('.drawer__inner-empty').remove()
-        $('cart-drawer.drawer').removeClass('is-empty')
-        $('cart-drawer.drawer').addClass('active')
+        // Force drawer open
+        $('.drawer__inner-empty').remove();
+        $('cart-drawer.drawer').removeClass('is-empty').addClass('active');
       })
-      .catch((e) => {
-        console.error(e);
-      });
-  }, 1200);
-});
+      .catch((e) => console.error(e));
+  });
