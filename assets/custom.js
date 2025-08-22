@@ -87,9 +87,13 @@
 
 
 $(document).on('click', '.rebuy-product-actions, .rebuy-bundle-builder__cta-container', function (e) {
-  // e.preventDefault(); // ✅ stop default cart page redirect
+  e.preventDefault();   // ✅ stop Shopify cart redirect
+  e.stopPropagation();  // ✅ stop Rebuy default bubbling
 
-  if ($(e.target).closest(".rebuy-bundle-builder__product-quantity").length || $(e.target).hasClass('rebuy-bundle-builder__cta-container')) {
+  if (
+    $(e.target).closest(".rebuy-bundle-builder__product-quantity").length ||
+    $(e.target).hasClass('rebuy-bundle-builder__cta-container')
+  ) {
     return;
   }
 
