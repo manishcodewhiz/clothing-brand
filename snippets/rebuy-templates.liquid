@@ -1,312 +1,313 @@
 <script id="rebuy-recommended-template" type="text/template">
-    <div
-      class="rebuy-widget"
-      v-cloak
-      v-on:click="stopPropagation($event)"
-      v-bind:id="'rebuy-widget-' + id"
-      v-bind:class="['widget-type-' + config.type.replace('_','-'), 'widget-display-' + config.display_type, products.length > 0 ? 'is-visible' : 'is-hidden', 'widget-layout-' + currentLayout()]"
-    >
       <div
-        class="rebuy-widget-container"
+        class="rebuy-widget"
         v-cloak
-        v-bind:class="['widget-display-' + config.display_type, visible ? 'is-visible' : 'is-hidden' ]"
-        v-on:click.self="hide()"
+        v-on:click="stopPropagation($event)"
+        v-bind:id="'rebuy-widget-' + id"
+        v-bind:class="['widget-type-' + config.type.replace('_','-'), 'widget-display-' + config.display_type, products.length > 0 ? 'is-visible' : 'is-hidden', 'widget-layout-' + currentLayout()]"
       >
-        <div class="rebuy-widget-content">
-          <div class="rebuy-modal-close" v-on:click="hide()" aria-label="close modal">
-            <i class="fas fa-times" aria-hidden="true"></i>
-          </div>
+        <div
+          class="rebuy-widget-container"
+          v-cloak
+          v-bind:class="['widget-display-' + config.display_type, visible ? 'is-visible' : 'is-hidden' ]"
+          v-on:click.self="hide()"
+        >
+          <div class="rebuy-widget-content">
+            <div class="rebuy-modal-close" v-on:click="hide()" aria-label="close modal">
+              <i class="fas fa-times" aria-hidden="true"></i>
+            </div>
 
-          <div class="rebuy-timer" v-if="hasTimer()">
-            <p class="rebuy-timer-title" v-if="config.language.timer_title">
-              <span v-html="config.language.timer_title"></span>
-              <span class="rebuy-timer-minutes" v-html="config.timer.duration_minutes"></span>:<span
-                class="rebuy-timer-seconds"
-                v-html="config.timer.duration_seconds"
-              ></span>
-            </p>
-          </div>
+            <div class="rebuy-timer" v-if="hasTimer()">
+              <p class="rebuy-timer-title" v-if="config.language.timer_title">
+                <span v-html="config.language.timer_title"></span>
+                <span class="rebuy-timer-minutes" v-html="config.timer.duration_minutes"></span>:<span
+                  class="rebuy-timer-seconds"
+                  v-html="config.timer.duration_seconds"
+                ></span>
+              </p>
+            </div>
 
-          <h3 class="super-title" v-if="config.language.super_title != ''" v-html="config.language.super_title"></h3>
+            <h3 class="super-title" v-if="config.language.super_title != ''" v-html="config.language.super_title"></h3>
 
-          <h4 class="primary-title" v-if="config.language.title != ''" v-html="config.language.title"></h4>
+            <h4 class="primary-title" v-if="config.language.title != ''" v-html="config.language.title"></h4>
 
-          <div class="description" v-if="config.language.description != ''" v-html="config.language.description"></div>
+            <div class="description" v-if="config.language.description != ''" v-html="config.language.description"></div>
 
-          <div class="rebuy-product-grid" v-bind:class="layoutClasses" tabindex="0" role="list">
-            <div
-              v-for="(product, product_index) in products"
-              v-bind:class="
-                [
-                    product.handle,
-                    'product-id-' + product.id,
-                    cartHasProduct(product) ? 'cart-has-item' : '',
-                    productTagClasses(product),
-                    hasSplideCarousel ? 'splide__slide' : '',
-                ]
-              "
-              aria-label="product"
-              class="rebuy-product-block"
-              role="listitem"
-            >
+            <div class="rebuy-product-grid" v-bind:class="layoutClasses" tabindex="0" role="list">
+              <div
+                v-for="(product, product_index) in products"
+                v-bind:class="
+                  [
+                      product.handle,
+                      'product-id-' + product.id,
+                      cartHasProduct(product) ? 'cart-has-item' : '',
+                      productTagClasses(product),
+                      hasSplideCarousel ? 'splide__slide' : '',
+                  ]
+                "
+                aria-label="product"
+                class="rebuy-product-block"
+                role="listitem"
+              >
 
-                <div class="product-tag" v-if="product.tags.includes('New')">
-                    <span class="svg-wrapper"><img src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/new-tag.svg" width="12" height="15" alt="New Tag"/></span>
-                    <span>New</span>
-                </div>
-
-              <div class="rebuy-product-media">
-                <a
-                  class="rebuy-product-image"
-                  tabindex="-1"
-                  v-bind:href="learnMoreURL(product)"
-                  v-bind:style="imageStyles"
-                  v-on:click="learnMore(product, $event);"
-                  v-bind:class="[hasLearnMore() ? 'clickable' : '']"
-                  rel="nofollow"
-                >
-                  <div class="rebuy-image-wrapper">
-                    <img
-                      class="primary-image"
-                      v-bind:loading="product_index > 1 ? 'lazy' : 'eager'"
-                      v-bind:src="itemImage(product, product.selected_variant, '400x400')"
-                      v-bind:alt="itemImageAlt(product, product.selected_variant)"
-                    >
-                     <img
-                      class="secondary-image"
-                      v-if="product.images.length > 1"
-                      v-bind:src="product.images[1].src + '&width=400'"
-                      v-bind:alt="product.title + ' second image'"
-                    >
-                      {% comment %} <img
-                      class="third-image"
-                      v-if="product.images.length > 1"
-                      v-bind:src="product.images[2].src + '&width=400'"
-                      v-bind:alt="product.title + ' third image'"
-                      > 
-                      <img
-                      class="fourth-image"
-                      v-if="product.images.length > 1"
-                      v-bind:src="product.images[3].src + '&width=400'"
-                      v-bind:alt="product.title + ' fourth image'"
-                      > {% endcomment %}
+                  <div class="product-tag" v-if="product.tags.includes('New')">
+                      <span class="svg-wrapper"><img src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/new-tag.svg" width="12" height="15" alt="New Tag"/></span>
+                      <span>New</span>
                   </div>
-                </a>
-              </div>
-              <div class="rebuy-product-info">
-                <a
-                  role="heading"
-                  aria-level="5"
-                  class="rebuy-product-title"
-                  v-bind:href="learnMoreURL(product)"
-                  v-on:click="learnMore(product, $event);"
-                  v-html="product.title"
-                  v-bind:class="[hasLearnMore() ? 'clickable' : '']"
-                  v-bind:aria-label="'View ' + product.title"
-                  rel="nofollow"
-                ></a>
-                <div
-                  class="rebuy-variant-title"
-                  v-if="showVariantTitle(product)"
-                  v-html="product.selected_variant.title"
-                ></div>
-                <div class="rebuy-product-review" v-if="hasProductReviews(product)" aria-label="product star rating">
-                  <span class="rebuy-star-rating">
-                    <span
-                      v-if="product.reviews.star_rating"
-                      class="rebuy-star-rating-value sr-only"
-                      v-html="product.reviews.star_rating + ' stars out of 5 stars'"
-                    >
-                    </span>
-                    <span class="rebuy-star-rating-background"></span>
-                    <span
-                      class="rebuy-star-rating-foreground"
-                      v-bind:style="{ width: productReviewRatingPercentage(product) }"
-                    ></span>
-                  </span>
-                  <span class="rebuy-review-count" v-html="productReviewCount(product)"></span>
-                </div>
 
-                <div class="rebuy-product-price">
-                  <div v-if="variantOnSale(product, product.selected_variant)">
-                    <span class="rebuy-money sale">
-                      <span class="sr-only">Sale price</span>
-                      <span tabindex="0" v-html="formatMoney(variantPrice(product, product.selected_variant))"></span>
-                    </span>
-                    <span class="rebuy-money compare-at">
-                      <span class="sr-only">Original price</span>
-                      <span v-html="formatMoney(variantCompareAtPrice(product, product.selected_variant))"></span>
-                    </span>
-                  </div>
-                  <div v-if="!(variantOnSale(product, product.selected_variant))">
-                    <span class="rebuy-money">
-                      <span class="sr-only">Price</span>
-                      <span tabindex="0" v-html="formatMoney(variantPrice(product, product.selected_variant))"></span>
-                    </span>
-                  </div>
-                </div>
-                <div
-                  class="rebuy-product-description"
-                  v-if="showProductDescription(product)"
-                  v-html="text(product.body_html)"
-                ></div>
-              </div>
-              <div class="rebuy-product-options" v-if="showVariantSelect(product)">
-                <select
-                  title="Select product variant"
-                  :id="id + '-' + 'select' + '-' + product_index"
-                  :class="{ hide : config.view_options.variant_selector === 'buttons' }"
-                  class="rebuy-select"
-                  v-bind:aria-label="'variant of ' + product.title"
-                  v-model="product.selected_variant_id"
-                  v-on:change="selectVariant(product)"
-                >
-                  <option
-                    v-for="variant in product.variants"
-                    class="rebuy-product-options__option"
-                    :class="{ 'rebuy-product-options__option--oos' : !variantAvailable(variant) }"
-                    v-bind:value="variant.id"
-                    :disabled="!variantAvailable(variant)"
-                    v-html="formatVariantOptionTitle(variant)"
-                  ></option>
-                </select>
-
-                <div
-                  class="rebuy-product-options__button-swatches-container"
-                  :class="{ 'rebuy-style__hidden-block' : config.view_options.variant_selector === 'select' }"
-                >
-                  <div
-                    v-for="option in product.options"
-                    class="rebuy-product-options__button-swatches rebuy-size-swatches"
+                <div class="rebuy-product-media">
+                  <a
+                    class="rebuy-product-image"
+                    tabindex="-1"
+                    v-bind:href="learnMoreURL(product)"
+                    v-bind:style="imageStyles"
+                    v-on:click="learnMore(product, $event);"
+                    v-bind:class="[hasLearnMore() ? 'clickable' : '']"
+                    rel="nofollow"
                   >
-                    <div v-for="(value, value_index) in filterOOSOptions(option, product)">
-                      <div
-                        v-if="displayColorSwatches(option)"
-                        class="rebuy-product-options__button-swatch rebuy-color-swatch"
+                    <div class="rebuy-image-wrapper">
+                      <img
+                        class="primary-image"
+                        v-bind:loading="product_index > 1 ? 'lazy' : 'eager'"
+                        v-bind:src="itemImage(product, product.selected_variant, '400x400')"
+                        v-bind:alt="itemImageAlt(product, product.selected_variant)"
                       >
-                        <input
-                          :name="id + '-color-' + product_index"
-                          :id="id + '-color-' + product_index + '-' + value + '-' + value_index"
-                          :checked="hasSwatchOptionSelected(product, value, value_index, 'color')"
-                          :value="value"
-                          type="radio"
-                          class="rebuy-color-input hide"
-                          v-on:change="selectVariantByOption(product, option.name, value)"
-                          :disabled="isDisabledOptionValue(product, option.name, value)"
-                        >
-
-                        <label
-                          :for="id + '-color-' + product_index + '-' + value + '-' + value_index"
-                          :style="{ backgroundColor: value }"
-                          :title="value"
-                          class="rebuy-color-label"
-                          :class="{ 'rebuy-product-options__button-swatch-label--disabled' : isDisabledOptionValue(product, option.name, value) }"
-                        >
-                        </label>
-                      </div>
-
-                      <div
-                        v-if="!displayColorSwatches(option)"
-                        class="rebuy-product-options__button-swatch rebuy-size-swatch"
+                       <img
+                        class="secondary-image"
+                        v-if="product.images.length > 1"
+                        v-bind:src="product.images[1].src + '&width=400'"
+                        v-bind:alt="product.title + ' second image'"
                       >
-                        <input
-                          :name="id + '-' + option.name + '-' + product_index"
-                          :id="id + '-' + option.name + '-' + product_index + '-' + value"
-                          :checked="hasSwatchOptionSelected(product, value, value_index, option.name)"
-                          :value="value"
-                          type="radio"
-                          class="rebuy-size-input hide"
-                          v-on:change="selectVariantByOption(product, option.name, value)"
-                          :disabled="isDisabledOptionValue(product, option.name, value)"
+                        {% comment %} <img
+                        class="third-image"
+                        v-if="product.images.length > 1"
+                        v-bind:src="product.images[2].src + '&width=400'"
+                        v-bind:alt="product.title + ' third image'"
                         >
+                        <img
+                        class="fourth-image"
+                        v-if="product.images.length > 1"
+                        v-bind:src="product.images[3].src + '&width=400'"
+                        v-bind:alt="product.title + ' fourth image'"
+                        > {% endcomment %}
+                    </div>
+                  </a>
+                </div>
+                <div class="rebuy-product-info">
+                  <a
+                    role="heading"
+                    aria-level="5"
+                    class="rebuy-product-title"
+                    v-bind:href="learnMoreURL(product)"
+                    v-on:click="learnMore(product, $event);"
+                    v-html="product.title"
+                    v-bind:class="[hasLearnMore() ? 'clickable' : '']"
+                    v-bind:aria-label="'View ' + product.title"
+                    rel="nofollow"
+                  ></a>
+                  <div
+                    class="rebuy-variant-title"
+                    v-if="showVariantTitle(product)"
+                    v-html="product.selected_variant.title"
+                  ></div>
+                  <div class="rebuy-product-review" v-if="hasProductReviews(product)" aria-label="product star rating">
+                    <span class="rebuy-star-rating">
+                      <span
+                        v-if="product.reviews.star_rating"
+                        class="rebuy-star-rating-value sr-only"
+                        v-html="product.reviews.star_rating + ' stars out of 5 stars'"
+                      >
+                      </span>
+                      <span class="rebuy-star-rating-background"></span>
+                      <span
+                        class="rebuy-star-rating-foreground"
+                        v-bind:style="{ width: productReviewRatingPercentage(product) }"
+                      ></span>
+                    </span>
+                    <span class="rebuy-review-count" v-html="productReviewCount(product)"></span>
+                  </div>
 
-                        <label
-                          :for="id + '-' + option.name + '-' + product_index + '-' + value"
-                          class="rebuy-size-label"
-                          :class="{ 'rebuy-product-options__button-swatch-label--disabled' : isDisabledOptionValue(product, option.name, value) }"
+                  <div class="rebuy-product-price">
+                    <div v-if="variantOnSale(product, product.selected_variant)">
+                      <span class="rebuy-money sale">
+                        <span class="sr-only">Sale price</span>
+                        <span tabindex="0" v-html="formatMoney(variantPrice(product, product.selected_variant))"></span>
+                      </span>
+                      <span class="rebuy-money compare-at">
+                        <span class="sr-only">Original price</span>
+                        <span v-html="formatMoney(variantCompareAtPrice(product, product.selected_variant))"></span>
+                      </span>
+                    </div>
+                    <div v-if="!(variantOnSale(product, product.selected_variant))">
+                      <span class="rebuy-money">
+                        <span class="sr-only">Price</span>
+                        <span tabindex="0" v-html="formatMoney(variantPrice(product, product.selected_variant))"></span>
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="rebuy-product-description"
+                    v-if="showProductDescription(product)"
+                    v-html="text(product.body_html)"
+                  ></div>
+                </div>
+                <div class="rebuy-product-options" v-if="showVariantSelect(product)">
+                  <select
+                    title="Select product variant"
+                    :id="id + '-' + 'select' + '-' + product_index"
+                    :class="{ hide : config.view_options.variant_selector === 'buttons' }"
+                    class="rebuy-select"
+                    v-bind:aria-label="'variant of ' + product.title"
+                    v-model="product.selected_variant_id"
+                    v-on:change="selectVariant(product)"
+                  >
+                    <option
+                      v-for="variant in product.variants"
+                      class="rebuy-product-options__option"
+                      :class="{ 'rebuy-product-options__option--oos' : !variantAvailable(variant) }"
+                      v-bind:value="variant.id"
+                      :disabled="!variantAvailable(variant)"
+                      v-html="formatVariantOptionTitle(variant)"
+                    ></option>
+                  </select>
+
+                  <div
+                    class="rebuy-product-options__button-swatches-container"
+                    :class="{ 'rebuy-style__hidden-block' : config.view_options.variant_selector === 'select' }"
+                  >
+                    <div
+                      v-for="option in product.options"
+                      class="rebuy-product-options__button-swatches rebuy-size-swatches"
+                    >
+                      <div v-for="(value, value_index) in filterOOSOptions(option, product)">
+                        <div
+                          v-if="displayColorSwatches(option)"
+                          class="rebuy-product-options__button-swatch rebuy-color-swatch"
                         >
-                          {{ value }}
-                        </label>
+                          <input
+                            :name="id + '-color-' + product_index"
+                            :id="id + '-color-' + product_index + '-' + value + '-' + value_index"
+                            :checked="hasSwatchOptionSelected(product, value, value_index, 'color')"
+                            :value="value"
+                            type="radio"
+                            class="rebuy-color-input hide"
+                            v-on:change="selectVariantByOption(product, option.name, value)"
+                            :disabled="isDisabledOptionValue(product, option.name, value)"
+                          >
+
+                          <label
+                            :for="id + '-color-' + product_index + '-' + value + '-' + value_index"
+                            :style="{ backgroundColor: value }"
+                            :title="value"
+                            class="rebuy-color-label"
+                            :class="{ 'rebuy-product-options__button-swatch-label--disabled' : isDisabledOptionValue(product, option.name, value) }"
+                          >
+                          </label>
+                        </div>
+
+                        <div
+                          v-if="!displayColorSwatches(option)"
+                          class="rebuy-product-options__button-swatch rebuy-size-swatch"
+                        >
+                          <input
+                            :name="id + '-' + option.name + '-' + product_index"
+                            :id="id + '-' + option.name + '-' + product_index + '-' + value"
+                            :checked="hasSwatchOptionSelected(product, value, value_index, option.name)"
+                            :value="value"
+                            type="radio"
+                            class="rebuy-size-input hide"
+                            v-on:change="selectVariantByOption(product, option.name, value)"
+                            :disabled="isDisabledOptionValue(product, option.name, value)"
+                          >
+
+                          <label
+                            :for="id + '-' + option.name + '-' + product_index + '-' + value"
+                            class="rebuy-size-label"
+                            :class="{ 'rebuy-product-options__button-swatch-label--disabled' : isDisabledOptionValue(product, option.name, value) }"
+                          >
+                            {{ value }}
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div
-                class="rebuy-product-custom-actions"
-                v-if="productTagClasses(product) && product.tags.includes('easy-bundle')"
-              >
-                <a v-bind:href="learnMoreURL(product)" class="quick-add__submit button button--full-width button--secondary"
-                  >Customize Your Bundle</a
+                <div
+                  class="rebuy-product-custom-actions"
+                  v-if="productTagClasses(product) && product.tags.includes('easy-bundle')"
                 >
-              </div>
-              <div class="rebuy-product-actions" v-else>
-                <div class="subscription-checkbox" v-if="showSubscriptionOptions(product)">
-                  <label class="rebuy-checkbox-label">
-                    <input
-                      class="checkbox-input rebuy-checkbox"
-                      v-model="product.subscription"
-                      v-on:change="toggleSubscription(product)"
-                      type="checkbox"
-                      :aria-label="upgradeToSubscriptionAriaLabel(product)"
-                    >
-                    <span class="checkbox-label" v-html="upgradeToSubscriptionLabel(product)"></span>
-                  </label>
-                </div>
-
-                <div class="subscription-frequency" v-if="showSubscriptionFrequency(product)">
-                  <select
-                    class="rebuy-select"
-                    aria-label="subscription frequency"
-                    v-model="product.subscription_frequency"
-                    v-on:change="updateSubscriptionFrequency(product)"
+                  <a v-bind:href="learnMoreURL(product)" class="quick-add__submit button button--full-width button--secondary"
+                    >Customize Your Bundle</a
                   >
-                    <option v-for="frequency in product.subscription_frequencies" v-bind:value="frequency">
-                      frequencyLabel(frequency, {{ product.subscription_interval }})
-                    </option>
-                  </select>
                 </div>
+                <div class="rebuy-product-actions" v-else>
+                  <div class="subscription-checkbox" v-if="showSubscriptionOptions(product)">
+                    <label class="rebuy-checkbox-label">
+                      <input
+                        class="checkbox-input rebuy-checkbox"
+                        v-model="product.subscription"
+                        v-on:change="toggleSubscription(product)"
+                        type="checkbox"
+                        :aria-label="upgradeToSubscriptionAriaLabel(product)"
+                      >
+                      <span class="checkbox-label" v-html="upgradeToSubscriptionLabel(product)"></span>
+                    </label>
+                  </div>
 
-                <div class="product-quantity" v-if="hasQuantityInputEnabled()">
-                  <div class="rebuy-select-wrapper">
-                    <label class="rebuy-label">Quantity</label>
+                  <div class="subscription-frequency" v-if="showSubscriptionFrequency(product)">
                     <select
                       class="rebuy-select"
-                      aria-label="product quantity"
-                      v-model="product.quantity"
+                      aria-label="subscription frequency"
+                      v-model="product.subscription_frequency"
+                      v-on:change="updateSubscriptionFrequency(product)"
                     >
-                      <option v-for="n in maxQuantityInputValue()" v-bind:value="n">{{ n }}</option>
+                      <option v-for="frequency in product.subscription_frequencies" v-bind:value="frequency">
+                        frequencyLabel(frequency, {{ product.subscription_interval }})
+                      </option>
                     </select>
                   </div>
-                </div>
-                <button
-                  class="rebuy-button"
-                  v-bind:class="{ working: (product.status != 'ready' && product.status != 'selecting') }"
-                  v-bind:disabled="!(variantAvailable(product.selected_variant)) || (product.status != 'ready' && product.status != 'selecting')"
-                  v-bind:aria-label="buttonAriaLabel(product)"
-                  v-on:click="addToCart(product)"
-                  type="button"
+
+                  <div class="product-quantity" v-if="hasQuantityInputEnabled()">
+                    <div class="rebuy-select-wrapper">
+                      <label class="rebuy-label">Quantity</label>
+                      <select
+                        class="rebuy-select"
+                        aria-label="product quantity"
+                        v-model="product.quantity"
+                      >
+                        <option v-for="n in maxQuantityInputValue()" v-bind:value="n">{{ n }}</option>
+                      </select>
+                    </div>
+                  </div>
+              <button
+                    class="rebuy-button"
+                    :data-variant-id="(product.selected_variant && product.selected_variant.id) || product.selected_variant_id"
+                    :data-quantity="product.quantity || 1"
+                    v-bind:class="{ working: (product.status != 'ready' && product.status != 'selecting') }"
+                    v-bind:disabled="!(variantAvailable(product.selected_variant)) || (product.status != 'ready' && product.status != 'selecting')"
+                    v-bind:aria-label="buttonAriaLabel(product)"
+                    type="button"
                 >
-                  <span v-html="buttonLabel(product)"></span>
+                    <span v-html="buttonLabel(product)"></span>
                 </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="rebuy-modal-actions" v-if="showContinueButton()">
-            <button
-              class="rebuy-button decline"
-              v-on:click="hide()"
-              type="button"
-            >
-              <span v-html="continueLabel()"></span>
-            </button>
-          </div>
-          <div class="powered-by-rebuy">
-            <a v-bind:href="'https://rebuyengine.com/?shop=' + config.shop.myshopify_domain" target="_blank" rel="noopener">
-              Powered by Rebuy
-            </a>
+            <div class="rebuy-modal-actions" v-if="showContinueButton()">
+              <button
+                class="rebuy-button decline"
+                v-on:click="hide()"
+                type="button"
+              >
+                <span v-html="continueLabel()"></span>
+              </button>
+            </div>
+            <div class="powered-by-rebuy">
+              <a v-bind:href="'https://rebuyengine.com/?shop=' + config.shop.myshopify_domain" target="_blank" rel="noopener">
+                Powered by Rebuy
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 </script>
