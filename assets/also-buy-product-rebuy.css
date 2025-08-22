@@ -121,14 +121,14 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.rebuy-image-wrapper .third-image {
+.rebuy-image-wrapper .fourth-image {
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
 }
 
-.rebuy-product-block:hover .third-image {
+.rebuy-product-block:hover .fourth-image {
   opacity: 1;
 }
 

@@ -78,6 +78,12 @@
                     v-bind:src="product.images[2].src + '&width=400'"
                     v-bind:alt="product.title + ' third image'"
                     >
+                    <img
+                    class="fourth-image"
+                    v-if="product.images.length > 1"
+                    v-bind:src="product.images[3].src + '&width=400'"
+                    v-bind:alt="product.title + ' fourth image'"
+                    >
                 </div>
               </a>
             </div>
