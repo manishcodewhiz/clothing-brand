@@ -87,7 +87,7 @@
 
 
 $(document).on('click', '.rebuy-product-actions, .rebuy-bundle-builder__cta-container', function (e) {
-  e.preventDefault(); // ✅ stop default cart page redirect
+  // e.preventDefault(); // ✅ stop default cart page redirect
 
   if ($(e.target).closest(".rebuy-bundle-builder__product-quantity").length || $(e.target).hasClass('rebuy-bundle-builder__cta-container')) {
     return;
