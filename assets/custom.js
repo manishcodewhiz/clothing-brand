@@ -205,3 +205,7 @@ document.addEventListener('submit', function(e) {
   .catch(err => console.error('Cart error:', err));
 });
 
+.then(() => {
+  // Refresh cart drawer section
+  return fetch(`${(window.routes && window.routes.cart_url) || '/cart'}?section_id=cart-drawer`);
+})
