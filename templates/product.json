@@ -156,7 +156,6 @@
     },
     "section_recommended_products_G6VXjr": {
       "type": "section-recommended-products",
-      "disabled": true,
       "name": "Recommended Products",
       "settings": {
         "recommended_products_id": "234916",
