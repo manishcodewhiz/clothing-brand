@@ -86,3 +86,37 @@
 //   });
 
 
+  // Intercept every Rebuy Add to Cart button click
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.rebuy-button'); // Rebuy add-to-cart button
+    if (btn) {
+      e.preventDefault();   // stop form/redirect
+      e.stopImmediatePropagation(); // kill any other handlers (Rebuy redirect)
+
+      // Trigger the real Rebuy addToCart logic manually
+      if (btn.__vue__) {
+        // Vue instance Rebuy attaches to buttons
+        btn.__vue__.addToCart(btn.__vue__.product);
+      }
+
+      // After product is added, open/update drawer
+      setTimeout(function () {
+        fetch(`${routes.cart_url}?section_id=cart-drawer`)
+          .then((response) => response.text())
+          .then((responseText) => {
+            const html = new DOMParser().parseFromString(responseText, 'text/html');
+            const selectors = ['.header__icon--cart', '.cart-drawer', 'cart-drawer-items', '.drawer__footer', '.item-count'];
+            for (const selector of selectors) {
+              const targetElement = document.querySelector(selector);
+              const sourceElement = html.querySelector(selector);
+              if (targetElement && sourceElement) {
+                targetElement.replaceWith(sourceElement);
+              }
+            }
+            $('.drawer__inner-empty').remove();
+            $('cart-drawer.drawer').removeClass('is-empty').addClass('active');
+          })
+          .catch((err) => console.error(err));
+      }, 800);
+    }
+  }, true); // use capture phase to beat Rebuy’s handler
