@@ -87,20 +87,19 @@
 
 
 (function() {
-  // Utility: replace Dawn cart drawer section and open it
+  // Utility: replace Dawn cart drawer + bubble section and open it
   function refreshAndOpenCartDrawer() {
     const cartUrl = (window.routes && window.routes.cart_url) || '/cart';
 
+    // Refresh drawer
     return fetch(`${cartUrl}?section_id=cart-drawer`)
       .then((r) => r.text())
       .then((htmlText) => {
         const html = new DOMParser().parseFromString(htmlText, 'text/html');
         const selectors = [
-          '.header__icon--cart',
           '.cart-drawer',
           'cart-drawer-items',
-          '.drawer__footer',
-          '.item-count'
+          '.drawer__footer'
         ];
 
         selectors.forEach((sel) => {
@@ -117,17 +116,23 @@
         }
         document.querySelector('.drawer__inner-empty')?.remove();
 
-        // Fallback: trigger header cart icon click if needed
-        document.querySelector('.header__icon--cart')?.dispatchEvent(new Event('click', { bubbles: true }));
+        // ALSO refresh header cart bubble
+        return fetch(`${cartUrl}?section_id=cart-icon-bubble`)
+          .then(r => r.text())
+          .then(htmlText => {
+            const html = new DOMParser().parseFromString(htmlText, 'text/html');
+            const source = html.querySelector('cart-icon-bubble');
+            const target = document.querySelector('cart-icon-bubble');
+            if (source && target) target.replaceWith(source);
+          });
       });
   }
 
-  // Intercept Rebuy add-to-cart button clicks (capture phase to beat any handlers)
+  // Intercept Rebuy add-to-cart buttons
   document.addEventListener('click', function(e) {
     const btn = e.target.closest('.rebuy-button[data-variant-id]');
     if (!btn) return;
 
-    // Kill any default / bubbling that could redirect to /cart
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
@@ -140,7 +145,6 @@
       return;
     }
 
-    // Add to cart via Shopify AJAX (always works)
     fetch('/cart/add.js', {
       method: 'POST',
       headers: {
@@ -159,12 +163,12 @@
 })();
 
 
-
+// Handle custom add-to-cart forms
 document.addEventListener('submit', function(e) {
   const form = e.target.closest('form[name="customAddToCart"]');
-  if (!form) return; // ignore other forms
+  if (!form) return;
 
-  e.preventDefault(); // stop normal /cart/add redirect
+  e.preventDefault();
 
   const formData = new FormData(form);
   const id = formData.get('id');
@@ -179,29 +183,7 @@ document.addEventListener('submit', function(e) {
     if (!r.ok) throw new Error('Add to cart failed');
     return r.json();
   })
-  .then(() => {
-    // Refresh cart drawer section
-    return fetch(`${(window.routes && window.routes.cart_url) || '/cart'}?section_id=cart-drawer`);
-  })
-  .then(r => r.text())
-  .then(htmlText => {
-    const html = new DOMParser().parseFromString(htmlText, 'text/html');
-    const selectors = ['.header__icon--cart', '.cart-drawer', 'cart-drawer-items', '.drawer__footer', '.item-count'];
-
-    selectors.forEach(sel => {
-      const target = document.querySelector(sel);
-      const source = html.querySelector(sel);
-      if (target && source) target.replaceWith(source);
-    });
-
-    // Open drawer
-    const drawer = document.querySelector('cart-drawer') || document.querySelector('cart-drawer.drawer');
-    if (drawer) {
-      drawer.classList.remove('is-empty');
-      drawer.classList.add('active');
-    }
-    document.querySelector('.drawer__inner-empty')?.remove();
-  })
+  .then(() => refreshAndOpenCartDrawer())
   .catch(err => console.error('Cart error:', err));
 });
 
