@@ -64,7 +64,8 @@
 .rebuy-product-custom-actions .quick-add__submit:hover{
     background: var(--secondary-color);
 }
-.rebuy-product-media a{
+.rebuy-product-media a,
+#rebuy-widget-234916 .rebuy-product-title{
     cursor: pointer !important;
     pointer-events: auto !important;
 }
