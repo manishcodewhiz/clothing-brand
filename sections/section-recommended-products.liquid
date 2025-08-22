@@ -1,23 +1,23 @@
- {{ 'also-buy-product-rebuy.css' |  asset_url |  stylesheet_tag }}
- {{ 'recommended-products.css' | asset_url |  stylesheet_tag }}
+{{ 'also-buy-product-rebuy.css' | asset_url | stylesheet_tag }}
+{{ 'recommended-products.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.recommended_products_id != blank %}
-<div class="recommended-products also-buy-products">
+  <div class="recommended-products also-buy-products">
     <div class="page-width">
-        <div data-rebuy-id="{{ section.settings.recommended_products_id }}"></div>
-        {% render 'rebuy-templates' %}
-        {% if section.settings.cta_url != blank and section.settings.cta_text != blank %}
+      <div data-rebuy-id="{{ section.settings.recommended_products_id }}"></div>
+      {% render 'rebuy-templates' %}
+      {% if section.settings.cta_url != blank and section.settings.cta_text != blank %}
         <a href="{{ section.settings.cta_url }}" class="view-link">{{ section.settings.cta_text }}</a>
-        {% endif %}
+      {% endif %}
     </div>
-</div>
+  </div>
 {% endif %}
 {% schema %}
 {
   "name": "Recommended Products",
   "tag": "section",
   "settings": [
-     {
+    {
       "type": "liquid",
       "id": "recommended_products_id",
       "label": "Recommended Products Id",
