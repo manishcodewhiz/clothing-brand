@@ -56,7 +56,7 @@
           "settings": {
             "heading": "Description",
             "icon": "none",
-            "content": "",
+            "content": "<p>{{ product.description }}</p>",
             "page": ""
           }
         },
