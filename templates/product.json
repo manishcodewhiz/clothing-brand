@@ -51,6 +51,15 @@
             "show_gift_card_recipient": true
           }
         },
+        "collapsible_tab_jVx7HV": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Description",
+            "icon": "none",
+            "content": "",
+            "page": ""
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
@@ -81,6 +90,7 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "collapsible_tab_jVx7HV",
         "description",
         "share",
         "judge_me_reviews_preview_badge_9J7NTj",
