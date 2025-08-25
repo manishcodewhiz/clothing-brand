@@ -23,6 +23,16 @@
     // $header.on('mouseenter', function () {
     //   clearTimeout(hideTimeout);
     // });
+    
+            $(document).ready(function(){ 
+                  $(".list-menu > li").mouseenter(function(){
+                    $(".list-menu > li").removeClass("active");
+                    $(this).addClass("active");
+                });
+                $(".list-menu > li").mouseleave(function(){
+                    $(this).removeClass("active");
+                })
+            })
   });
 
   $(function () {
