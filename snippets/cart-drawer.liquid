@@ -453,12 +453,12 @@
           </div>
           <div id="CartDrawer-CartErrors" role="alert"></div>
         </form>
+        {%- if settings.rebuy_product -%}
+              <div class="rebuy_product_block">
+                {{ settings.cart_drawer_liquid }}
+              </div>
+            {%- endif -%}
       </cart-drawer-items>
-      {%- if settings.rebuy_product -%}
-            <div class="rebuy_product_block">
-              {{ settings.cart_drawer_liquid }}
-            </div>
-          {%- endif -%}
       <div class="drawer__footer">
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">
