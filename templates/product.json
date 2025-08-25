@@ -53,11 +53,10 @@
         },
         "collapsible_tab_jVx7HV": {
           "type": "collapsible_tab",
-          "disabled": true,
           "settings": {
             "heading": "Description",
             "icon": "none",
-            "content": "<p>description</p>",
+            "content": "",
             "page": ""
           }
         },
