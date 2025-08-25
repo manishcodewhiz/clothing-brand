@@ -3907,3 +3907,7 @@ button::after {
 .needsclick.kl-private-reset-css-Xuajs1 p span span a img:hover{
   transform: scale(1.2);
 }
+
+.needsclick.kl-private-reset-css-Xuajs1 button{
+  transition: all .4s;
+}
