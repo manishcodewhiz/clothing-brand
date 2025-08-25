@@ -56,13 +56,9 @@
           "settings": {
             "heading": "Description",
             "icon": "none",
-            "content": "",
+            "content": "<p>description</p>",
             "page": ""
           }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
         },
         "share": {
           "type": "share",
@@ -91,7 +87,6 @@
         "quantity_selector",
         "buy_buttons",
         "collapsible_tab_jVx7HV",
-        "description",
         "share",
         "judge_me_reviews_preview_badge_9J7NTj",
         "popup_b39c9m"
