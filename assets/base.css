@@ -3885,20 +3885,20 @@ button::after {
     border-bottom-right-radius: 0;
 }
 
-.needsclick.kl-private-reset-css-Xuajs1 p+span{
+.needsclick.kl-private-reset-css-Xuajs1 p span{
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.needsclick.kl-private-reset-css-Xuajs1 p+span span{
+.needsclick.kl-private-reset-css-Xuajs1 p span span{
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.needsclick.kl-private-reset-css-Xuajs1 p+span span a{
+.needsclick.kl-private-reset-css-Xuajs1 p span span a{
   display: block;
 }
-.needsclick.kl-private-reset-css-Xuajs1 p+span span a img{
+.needsclick.kl-private-reset-css-Xuajs1 p span span a img{
   width: 25px;
   height: 25px;
 }
