@@ -148,7 +148,6 @@
     },
     "rebuy_related_products_bGnq7V": {
       "type": "rebuy-related-products",
-      "disabled": true,
       "name": "Rebuy Related Products",
       "settings": {
         "title": "You may also like",
@@ -159,7 +158,7 @@
       "type": "section-recommended-products",
       "name": "Recommended Products",
       "settings": {
-        "recommended_products_id": "234916",
+        "recommended_products_id": "235484",
         "cta_text": "View all",
         "cta_url": "shopify://collections/all"
       }
