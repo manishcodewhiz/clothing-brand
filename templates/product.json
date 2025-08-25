@@ -27,7 +27,7 @@
           "type": "price",
           "settings": {}
         },
-        "short_description_gRimRy": {
+        "short_description_X7iF9e": {
           "type": "short_description",
           "settings": {
             "short_description": true
@@ -56,7 +56,7 @@
           "settings": {
             "heading": "Description",
             "icon": "none",
-            "content": "<p>{{ product.description }}</p>",
+            "content": "{{ product.description }}",
             "page": ""
           }
         },
@@ -82,7 +82,7 @@
         "vendor",
         "title",
         "price",
-        "short_description_gRimRy",
+        "short_description_X7iF9e",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
