@@ -123,6 +123,7 @@
     },
     "quick_order_list_GP4ndm": {
       "type": "quick-order-list",
+      "disabled": true,
       "name": "t:sections.quick-order-list.presets.name",
       "settings": {
         "variants_per_page": 50,
