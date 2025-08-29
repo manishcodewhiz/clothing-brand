@@ -64,7 +64,7 @@
     });
   });
 
-  Mobile menu
+  // Mobile menu
  $(function () {
     $('.first-level-menu_mobile.first-level-mobile > li > a').on('click', function (e) {
       e.preventDefault();
