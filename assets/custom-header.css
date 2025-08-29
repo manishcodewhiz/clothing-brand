@@ -173,11 +173,11 @@ body.gradient.menu-box:before {
     gap: 10px;
     flex-wrap: wrap;
 }
-.section-header .header .main-menu-block .first-level-menu_items.product_list .product-box .card-wrapper .card__inner .card__content{
+.section-header .header .product-box .card-wrapper .card__inner .card__content{
     display: none;
 }
-.section-header .header .main-menu-block .first-level-menu_items.product_list .product-box .card-wrapper .card__media,
-.section-header .header .main-menu-block .first-level-menu_items.product_list .product-box .card-wrapper .card__media .media {
+.section-header .header  .card-wrapper .card__media,
+.section-header .header  .card-wrapper .card__media .media {
     height: -webkit-fill-available;
 }
 .section-header .header .main-menu-block .first-level-menu_items.product_list .product-box .product-card{
