@@ -17,11 +17,25 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
+            "text": "Free shipping on orders +$75",
+            "link": ""
+          }
+        },
+        "announcement_JM4UA4": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on orders +$75",
             "link": ""
           }
         }
       },
       "block_order": [
+        "announcement-bar-0",
+        "announcement_JM4UA4"
+      ],
+      "settings": {
+        "auto_rotate": true,
+        "change_slides_speed": 3,
         "color_scheme": "scheme-1",
         "show_line_separator": true,
         "show_social": false,
@@ -31,6 +45,72 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "menu_FdP8Ti": {
+          "type": "menu",
+          "settings": {
+            "title": "Shop",
+            "enabled_mega_menu": true
+          }
+        },
+        "brand_product_menu_NR4cHL": {
+          "type": "Brand-product-menu",
+          "settings": {
+            "title": "Shop By Brand",
+            "collection_list_heading": "Shop By Brand",
+            "secondary_menu": "shop-shop-by-brand",
+            "buttons": "button"
+          }
+        },
+        "collection_list_NgrNqE": {
+          "type": "collection_list",
+          "settings": {
+            "title": "Shop By Collection",
+            "collection_list": [
+              "rockstar",
+              "honda",
+              "kawasaki",
+              "suzuki",
+              "yamaha"
+            ]
+          }
+        },
+        "product_list_bN6Qph": {
+          "type": "product_list",
+          "settings": {
+            "title": "Shop By Product",
+            "product_list": [
+              "honda-classic-snapback-hat",
+              "honda-icon-womens-t-shirt",
+              "honda-octagon-t-shirt",
+              "honda-octagon-t-shirt-1",
+              "kawasaki-bike-youth-pullover-sweatshirt"
+            ],
+            "buttons": "button"
+          }
+        },
+        "menu_3bXiUc": {
+          "type": "menu",
+          "settings": {
+            "title": "Graphics",
+            "enabled_mega_menu": true
+          }
+        }
+      },
+      "block_order": [
+        "menu_FdP8Ti",
+        "brand_product_menu_NR4cHL",
+        "collection_list_NgrNqE",
+        "product_list_bN6Qph",
+        "menu_3bXiUc"
+      ],
+      "settings": {
+        "featured_image": "shopify://shop_images/image-block.png",
+        "logo_image": "shopify://shop_images/d36998decee9f4f4ce078eb823044154950eb836.png",
+        "product_image": "shopify://shop_images/image-m-6.png",
+        "product_image2": "shopify://shop_images/image-m-7.png",
+        "product_image3": "shopify://shop_images/image-m-9.png",
+        "logo_position": "middle-left",
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "dropdown",
