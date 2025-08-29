@@ -173,7 +173,7 @@ body.gradient.menu-box:before {
     gap: 10px;
     flex-wrap: wrap;
 }
-.section-header .header .product-box .card-wrapper .card__inner .card__content{
+.section-header .header .card-wrapper .card__inner .card__content{
     display: none;
 }
 .section-header .header  .card-wrapper .card__media,
