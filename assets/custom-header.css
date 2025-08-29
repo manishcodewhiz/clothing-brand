@@ -176,7 +176,7 @@ body.gradient.menu-box:before {
 .section-header .header .main-menu-block .first-level-menu_items.product_list .product-box .card-wrapper .card__inner .card__content{
     display: none;
 }
-.section-header .header .main-menu-block .first-level-menu_items.product_list .product-box .card-wrapper .card__media
+.section-header .header .main-menu-block .first-level-menu_items.product_list .product-box .card-wrapper .card__media,
 .section-header .header .main-menu-block .first-level-menu_items.product_list .product-box .card-wrapper .card__media .media {
     height: 100%;
 }
