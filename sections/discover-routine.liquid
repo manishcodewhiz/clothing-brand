@@ -1,0 +1,70 @@
+{{ 'section-discover-routine.css' | asset_url | stylesheet_tag }}
+
+<div class="section-discover-routine">
+  <div class="page-width">
+    <div class="discover-routine-heading">
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+    </div>
+    <div class="discover-routine_products">
+      <div class="row">
+        {% for product in section.settings.product_lists %}
+          <div class="col-2">
+            <div class="product-item_card">
+              <div class="product-block">
+                {% if product.featured_image != blank %}
+                  <a href="{{ product.url }}">
+                    <img
+                      src="{{ product.featured_image | image_url }}"
+                      width=""
+                      height=""
+                      alt="Product Image"
+                      loading="lazy"
+                    >
+                  </a>
+                {% endif %}
+              </div>
+              <div class="product-link">
+                {% if product.url != blank or product.title != blank %}
+                  <div class="product-link">
+                    <a href="{{ product.url }}">
+                      <span>
+                        {{ product.title }}
+                        {{ 'Arrow-white.svg' | inline_asset_content -}}
+                      </span>
+                    </a>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Discover Routine",
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "product_lists",
+      "label": "Select Products"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Discover Routine"
+    }
+  ]
+}
+{% endschema %}

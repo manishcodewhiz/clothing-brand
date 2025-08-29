@@ -1,0 +1,73 @@
+{{ 'section-custome-video.css' | asset_url | stylesheet_tag }}
+
+<div class="section-custome-video">
+  <div class="page-width">
+    <div class="custome-video_title">
+      <div class="left-arrow arrow-style">
+        {{ 'arrow.svg' | inline_asset_content }}
+      </div>
+      <h2>Podcast</h2>
+      <div class="right-arrow arrow-style">
+        {{ 'arrow.svg' | inline_asset_content }}
+      </div>
+    </div>
+
+    <div class="video-slider">
+      {% for video in metaobjects.video_box.values %}
+        <div class="video_card">
+          <div class="video-card_block">
+            {% assign original_link = video.video_links.value | strip %}
+            {% if original_link contains 'youtu.be' %}
+              {% assign video_id = original_link | split: '/' | last | split: '?' | first %}
+              {% assign video_links = 'https://www.youtube.com/embed/' | append: video_id %}
+            {% else %}
+              {% assign video_links = original_link | replace: 'watch?v=', 'embed/' | split: '&' | first %}
+            {% endif %}
+            <iframe
+              width="560"
+              height="315"
+              src="{{ video_links }}"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="video_date">
+            <span>{{ video.video_date }}</span>
+          </div>
+          <div class="video_heading">
+            <h3>{{ video.heading_video }}</h3>
+            <p>{{ video.video_description }}</p>
+            <a href="{{ video.button_url }}" target="_blank">{{ video.button_text }}</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('.video-slider').slick({
+      dots: true,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 3,
+      prevArrow: $('.left-arrow'),
+      nextArrow: $('.right-arrow'),
+      slidesToScroll: 1,
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Video Card",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Video Card"
+    }
+  ]
+}
+{% endschema %}

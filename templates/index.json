@@ -1,75 +1,152 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero_section_7T7jL9": {
+      "type": "hero-section",
+      "name": "Hero Section",
+      "settings": {
+        "hero_image": "shopify://shop_images/image-2.png",
+        "heading": "Cold & flu relief, Same day delivery.",
+        "description": "<p>Get ahead of coughs, chills, and sniffles. Stock up on trusted Aussie brands like Demazin, Difflam, Betadine, and DURO TUSS.</p>",
+        "button_url": "shopify://collections/all",
+        "button_text": "Shop all products",
+        "text_url": "#",
+        "text_title": "HELP ME CHOOSE"
+      }
+    },
+    "cards_item_4BHgrE": {
+      "type": "cards-item",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "card_KKyk9r": {
+          "type": "card",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "card_image": "shopify://shop_images/158772e8bc9e56d8183ad3b449dcf884904db017.png",
+            "heading": "Bestselling Moisturizer",
+            "button_url": "#",
+            "button_text": "Shop Now"
           }
         },
-        "button": {
-          "type": "buttons",
+        "card_LxbqFW": {
+          "type": "card",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "card_image": "shopify://shop_images/a8f61be4e99f97b1ff2f95dd98b40fdfa29be77a.png",
+            "heading": "Bestselling Moisturizer",
+            "button_url": "#",
+            "button_text": "Shop Now"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "card_KKyk9r",
+        "card_LxbqFW"
       ],
+      "name": "Cards Item",
+      "settings": {}
+    },
+    "discover_routine_yMaBLR": {
+      "type": "discover-routine",
+      "name": "Discover Routine",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "product_lists": [
+          "exfoliators",
+          "treatments",
+          "moisturizers",
+          "spot-treatment",
+          "sunscreen",
+          "eye-care"
+        ],
+        "heading": "Discover Your Routine"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "product_cards_mMzHEK": {
+      "type": "product-cards",
+      "blocks": {
+        "cards_CBymCM": {
+          "type": "cards",
+          "settings": {
+            "product_image_item": "shopify://shop_images/p-1.png",
+            "heading": "Diversity, Equity, and Inclusion",
+            "decsription": "<p>Our Point Multiplier Event is ON! Stock up on your faves now with code TIMETOEARN.</p>",
+            "product_item_url": "shopify://products/spot-treatment",
+            "button_text": "shop now"
+          }
+        },
+        "cards_VD443b": {
+          "type": "cards",
+          "settings": {
+            "product_image_item": "shopify://shop_images/p-2.png",
+            "heading": "Pay Later with Shopy Pay",
+            "decsription": "<p>Try Dr. Dennis Gross Skincare's new cleanser or Peter Thomas Roth's visibly firming serum.</p>",
+            "product_item_url": "shopify://products/exfoliators",
+            "button_text": "shop now"
+          }
+        },
+        "cards_PVrMHV": {
+          "type": "cards",
+          "settings": {
+            "product_image_item": "shopify://shop_images/p-3.png",
+            "heading": "Soko Glam Rewards Program",
+            "decsription": "<p>Get 10% off¶ select Vegamour subscription deliveries.</p>",
+            "product_item_url": "shopify://products/treatments",
+            "button_text": "shop now"
+          }
+        }
+      },
+      "block_order": [
+        "cards_CBymCM",
+        "cards_VD443b",
+        "cards_PVrMHV"
+      ],
+      "name": "Product Cards",
+      "settings": {}
+    },
+    "section_video_k8d8gy": {
+      "type": "section-video",
+      "name": "Video Section",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "videos": [
+          "graphic-kit-install-tips",
+          "number-plate-background-install-tips",
+          "seat-cover-install-tips",
+          "number-plate-background-install-tips-1"
+        ]
+      }
+    },
+    "17557582075c4fddae": {
+      "type": "apps",
+      "blocks": {
+        "rebuy_personalization_engine_rebuy_widget_M6b9GQ": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "234908",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        }
+      },
+      "block_order": [
+        "rebuy_personalization_engine_rebuy_widget_M6b9GQ"
+      ],
+      "settings": {
+        "include_margins": true
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "hero_section_7T7jL9",
+    "cards_item_4BHgrE",
+    "discover_routine_yMaBLR",
+    "product_cards_mMzHEK",
+    "section_video_k8d8gy",
+    "17557582075c4fddae"
   ]
 }

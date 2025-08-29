@@ -1,0 +1,74 @@
+{{ 'section-card-item.css' | asset_url | stylesheet_tag }}
+
+<div class="section-card-item">
+  <div class="row">
+    {% for card in section.blocks %}
+      <div class="col-6">
+        <div class="card-main">
+          <div class="card-block">
+            {% if card.settings.card_image != blank %}
+              <img
+                src="{{ card.settings.card_image | image_url }}"
+                width=""
+                height=""
+                alt="{{ card.settings.heading }}"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+          <div class="card-content">
+            {% if card.settings.heading != blank %}
+              <h2>{{ card.settings.heading }}</h2>
+            {% endif %}
+            {% if card.settings.button_url != blank or card.settings.button_text != blank %}
+              <a href="{{ card.settings.button_url }}">
+                {{- card.settings.button_text }}
+                {{ 'Arrow-white.svg' | inline_asset_content -}}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cards Item",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Cards",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button Url"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cards Item"
+    }
+  ]
+}
+{% endschema %}

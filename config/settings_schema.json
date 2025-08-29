@@ -1403,6 +1403,21 @@
     "name": "t:settings_schema.cart.name",
     "settings": [
       {
+        "type": "header",
+        "content": "Rebuy"
+      },
+      {
+        "type": "checkbox",
+        "id": "rebuy_product",
+        "label": "Show Product",
+        "default": true
+      },
+      {
+        "type": "liquid",
+        "id": "cart_drawer_liquid",
+        "label": "Code"
+      },
+      {
         "type": "select",
         "id": "cart_type",
         "options": [

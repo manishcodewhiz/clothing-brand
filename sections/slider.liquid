@@ -1,0 +1,69 @@
+{{ 'section-slider.css' | asset_url | stylesheet_tag }}
+
+<div class="section-slider">
+  <div class="page-width">
+    <div class="slider-title">
+      <h2>Product Slider</h2>
+    </div>
+
+    <div class="product-slider">
+      {% for product in section.settings.selected_products %}
+        <div class="product-card">
+          <a href="{{ product.url }}">
+            <div class="product-block">
+              {% if product.featured_image != blank%}
+                <img
+                  src="{{ product.featured_image | image_url: width: 500 }}"
+                  width=""
+                  height=""
+                  alt="{{ product.featured_image.alt | escape }}"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+            <div class="product-content">
+              <h2>{{ product.title }}</h2>
+              {% if product.price %}
+                <div class="product-price">
+                  {{ product.price | money }}
+                </div>
+              {% endif %}
+              <span>View Product</span>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('.product-slider').slick({
+      dots: true,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Slider",
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "selected_products",
+      "label": "Select Products",
+      "limit": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Slider"
+    }
+  ]
+}
+{% endschema %}

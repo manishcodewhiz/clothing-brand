@@ -1,0 +1,50 @@
+{{ 'section-product-card.css' | asset_url | stylesheet_tag }}
+
+<div class="section-product-card">
+  <div class="page-width">
+    <div class="product-title">
+      <h2>Meet Australia’s favourite cold & flu products.</h2>
+    </div>
+    {% if section.settings.selected_products != blank %}
+      <div class="product-slider">
+        {% for product in section.settings.selected_products %}
+          {%- render 'product-item', product: product, section_id: section.id -%}
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% if section.settings.page_url != blank or section.settings.page_text != blank %}
+      <div class="product-link">
+        <a href="{{ section.settings.page_url }}">{{ section.settings.page_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Card",
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "selected_products",
+      "label": "Select Products",
+      "limit": 10
+    },
+    {
+      "type": "url",
+      "id": "page_url",
+      "label": "Url"
+    },
+    {
+      "type": "text",
+      "id": "page_text",
+      "label": "Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Card"
+    }
+  ]
+}
+{% endschema %}

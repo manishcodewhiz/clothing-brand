@@ -1,0 +1,378 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+{{ 'section-rebuy-related-products.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.image_shape == 'blob' %}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- unless section.settings.quick_add == 'none' -%}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}
+
+{%- if section.settings.quick_add == 'standard' -%}
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if section.settings.quick_add == 'bulk' -%}
+  <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<div
+  class="section-rebuy-related-products {% if template.name == 'product' %}pdp-related-products{% endif %}"
+  data-section-id="{{ section.id }}"
+>
+  <div class="page-width">
+    <div class="section-title">
+      {% if section.settings.title != blank %}
+        <h2>{{ section.settings.title }}</h2>
+      {% endif %}
+      {% if section.settings.button_link != blank %}
+        <a class="link" href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+      {% endif %}
+    </div>
+
+    <div id="related-products-{{ section.id }}">
+      <div class="pro-slider">
+        <div class="related-products-slider" id="relatedProduct-{{ section.id }}"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    let sectionId = `{{ section.id }}`;
+    let current_product_id = `{{ product.id }}`;
+
+    const requestParameters = new URLSearchParams({
+      key: 'ce0b990ddda4b821187fe13f9733becb051378d7',
+      format: 'pretty',
+      shopify_product_ids: current_product_id,
+      limit: 12,
+    });
+
+    fetch(`https://rebuyengine.com/api/v1/products/recommended?${requestParameters}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Rebuy API request failed');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.data && data.data.length > 0) {
+          let html = renderRelatedProductsHtml(data.data, sectionId);
+          let $sliderWrapper = $('#relatedProduct-' + sectionId);
+          $sliderWrapper.html(html);
+
+          let $slider = $('#relatedProduct-' + sectionId);
+          let $progressBar = $('.section-rebuy-related-products[data-section-id="' + sectionId + '"] .progress-bar');
+          let $progressBarLabel = $progressBar.find('.slider__label');
+
+          $slider.slick({
+            dots: false,
+            infinite: true,
+            speed: 300,
+            touchThreshold: 50,
+            slidesToShow: 4,
+            slidesToScroll: 2,
+            autoplaySpeed: 2000,
+            arrows: true,
+            responsive: [
+              { breakpoint: 1200, settings: { slidesToShow: 3, slidesToScroll: 1 } },
+              { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+              // { breakpoint: 768, settings: { slidesToShow: 2, variableWidth: true, arrows: false } },
+              { breakpoint: 400, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+            ],
+          });
+
+          // Set initial progress
+          let initialProgress = 5;
+          $progressBar.css('background-size', initialProgress + '% 100%').attr('data-progress-value', initialProgress);
+          $progressBarLabel.text(initialProgress + '% completed');
+
+          // Update on slide change
+          $slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+            let calc = ((nextSlide + 2) / slick.slideCount) * 100;
+            $progressBar.css('background-size', calc + '% 100%').attr('data-progress-value', calc);
+            $progressBarLabel.text(calc.toFixed(0) + '% completed');
+          });
+
+          // Add click behavior to progress bar
+          $progressBar.on('click', function (e) {
+            const offset = $(this).offset();
+            const clickX = e.pageX - offset.left;
+            const totalWidth = $(this).width();
+            const clickRatio = clickX / totalWidth;
+
+            const totalSlides = $slider.slick('getSlick').slideCount;
+            const targetSlide = Math.floor(clickRatio * totalSlides);
+
+            $slider.slick('slickGoTo', targetSlide);
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('Rebuy API error:', error);
+      });
+  });
+
+  function renderRelatedProductsHtml(products, sectionId) {
+    let html = '';
+    products.forEach((product) => {
+      const availableVariants = product.variants.filter(
+        (variant) =>
+          variant.inventory_management === null ||
+          variant.inventory_management === 'shopify' ||
+          variant.inventory_quantity > 1
+      );
+      const product_form_id = `quick-add-{{ section.id }}-${product.id}`;
+
+      if (availableVariants.length > 0) {
+        let badge = '';
+        if (product.tags.includes('New'))
+          badge =
+            '<span class="svg-wrapper"><img src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/new-tag.svg" width="12" height="15" alt="New Tag"/><span>New</span>';
+        else if (
+          product.tags.includes('New Arrival') ||
+          product.tags.includes('newarrival') ||
+          product.tags.includes('new-arrival')
+        )
+          badge = '<span class="badge">New Arrival</span>';
+        else if (
+          product.tags.includes('BestSeller') ||
+          product.tags.includes('best-seller') ||
+          product.tags.includes('best-seller')
+        )
+          badge = '<span class="badge">Best Seller</span>';
+        else if (product.tags.includes('sale')) badge = '<span class="badge">sale</span>';
+        else if (
+          product.tags.includes('back in stock') ||
+          product.tags.includes('backinstock') ||
+          product.tags.includes('back-in-stock')
+        )
+          badge = '<span class="badge">Back in Stock</span>';
+        else if (
+          product.tags.includes('going fast') ||
+          product.tags.includes('goingfast') ||
+          product.tags.includes('going-fast')
+        )
+          badge = '<span class="badge">Going fast</span>';
+        else if (
+          product.tags.includes('low stock') ||
+          product.tags.includes('lowstock') ||
+          product.tags.includes('low-stock')
+        )
+          badge = '<span class="badge">low stock</span>';
+        else if (
+          product.tags.includes('almost gone') ||
+          product.tags.includes('almostgone') ||
+          product.tags.includes('almost-gone')
+        )
+          badge = '<span class="badge">almost gone</span>';
+        else if (
+          product.tags.includes('20% off') ||
+          product.tags.includes('20%off') ||
+          product.tags.includes('20%-off')
+        )
+          badge = '<span class="badge">20% OFF</span>';
+        else if (
+          product.tags.includes('25% off') ||
+          product.tags.includes('25%off') ||
+          product.tags.includes('25%-off')
+        )
+          badge = '<span class="badge">25% OFF</span>';
+        else if (
+          product.tags.includes('30% off') ||
+          product.tags.includes('30%off') ||
+          product.tags.includes('30%-off')
+        )
+          badge = '<span class="badge">30% OFF</span>';
+        else if (
+          product.tags.includes('50% off') ||
+          product.tags.includes('50%off') ||
+          product.tags.includes('50%-off')
+        )
+          badge = '<span class="badge">50% OFF</span>';
+
+        let imageTag = '';
+        if (product.image) {
+          imageTag = `<img src="${product.image.src}" alt="${product.title}" loading="lazy">`;
+        } else if (product.images.length >= 2) {
+          imageTag = `
+            <img src="${product.images[0].src}" alt="${product.title}" loading="lazy">
+            <img src="${product.images[1].src}" alt="${product.title}" loading="lazy">
+          `;
+        } else {
+          imageTag = `<img src="https://cdn.shopify.com/s/files/1/0707/7756/9461/files/noimage.png" alt="${product.title}" loading="lazy">`;
+        }
+
+        let price = `$${availableVariants[0].price}`;
+        let compare = availableVariants[0].compare_at_price
+          ? `<span class="price-item-sale">$${availableVariants[0].compare_at_price}</span>`
+          : '';
+        let sale_price_class = availableVariants[0].compare_at_price ? `price--on-sale` : '';
+
+        html += `
+            <div>
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media">
+                  <div class="product-tag">${badge}</div>
+                  <div class="card__inner color-scheme-2 gradient">
+                    <div class="card__media">
+                      <a href="${product.link}">
+                        <div class="media media--transparent media--hover-effect">
+                          ${imageTag}
+                        </div>
+                      </a>
+                    </div>
+                    
+                  </div>
+                  
+                  
+                  <div class="card__content">
+                    <div class="card__information">
+                      <h3 class="card__heading h5">
+                        <a href="${product.link}" class="full-unstyled-link">${product.title}</a>
+                      </h3>
+                      <div class="card-information">
+                        <div class="price">
+                          <div class="price__container">
+                            <div class="price__regular ">
+                              <span class="price-item ${sale_price_class}">${price}</span>
+                              ${compare}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="quick-add no-js-hidden">
+                        <form name="customAddToCart" action="/cart/add" method="post" id="quantity-cart" class="quantity-form">
+                                        <input type="hidden" name="form_type" value="product" />
+                                        <input type="hidden" name="utf8" value="✓" />
+                                        <input type="hidden" name="id" value="${availableVariants[0].id}" />
+                                        <input type="hidden" name="product-id" value="${product.id}" class="product-variant-id" />
+                                        <div class="quantity quantity_block" product-id="${product.id}">
+                                            <button class="quantity__button decrease-qty" name="minus" type="button">
+                                                <span class="svg-wrapper">
+                                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M17.5 11C17.5 11.2917 17.4062 11.5312 17.2188 11.7188C17.0312 11.9062 16.7917 12 16.5 12H12H11.5C11 12 11.5 12 11 12C10.5 12 10.7917 12 10.5 12C11 12 10.2083 12 10.5 12C10 12 10.3125 11.8127 10.5 12H10H5.5C5.20833 12 4.96875 11.9062 4.78125 11.7188C4.59375 11.5312 4.5 11.2917 4.5 11C4.5 10.7083 4.59375 10.4688 4.78125 10.2812C4.96875 10.0938 5.20833 10 5.5 10H10L10.5 10C11 10 10.7083 10 11 10C11.2917 10 11 10 11.5 10.0002C12 10.0002 12 10.0002 12 10.0002H16.5C16.7917 10.0002 17.0312 10.0938 17.2188 10.2812C17.4062 10.4688 17.5 10.7083 17.5 11Z" fill="black"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <input class="quantity__input" type="number" name="quantity" value="1" min="1" step="1"/>
+                                            <button class="quantity__button increase-qty" name="plus" type="button">
+                                                <span class="svg-wrapper">
+                                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M17.5 11C17.5 11.2917 17.4062 11.5312 17.2188 11.7188C17.0312 11.9062 16.7917 12 16.5 12H12V16.5C12 16.7917 11.9062 17.0312 11.7188 17.2188C11.5312 17.4062 11.2917 17.5 11 17.5C10.7083 17.5 10.4688 17.4062 10.2812 17.2188C10.0938 17.0312 10 16.7917 10 16.5V12H5.5C5.20833 12 4.96875 11.9062 4.78125 11.7188C4.59375 11.5312 4.5 11.2917 4.5 11C4.5 10.7083 4.59375 10.4688 4.78125 10.2812C4.96875 10.0938 5.20833 10 5.5 10H10V5.5C10 5.20833 10.0938 4.96875 10.2812 4.78125C10.4688 4.59375 10.7083 4.5 11 4.5C11.2917 4.5 11.5312 4.59375 11.7188 4.78125C11.9062 4.96875 12 5.20833 12 5.5V10H16.5C16.7917 10 17.0312 10.0938 17.2188 10.2812C17.4062 10.4688 17.5 10.7083 17.5 11Z" fill="black"></path>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <button id="product_submit" type="submit" class="quick-add__submit add-to-cart button button--full-width button--secondary">
+                                            <span>Add to cart </span>
+                                              <div class="loading__spinner hidden">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="spinner" viewBox="0 0 66 66">
+                                                    <circle stroke-width="6" cx="33" cy="33" r="30" fill="none" class="path"></circle>
+                                                </svg>
+                                              </div>
+                                        </button>
+                                    </form>
+                    </div>
+
+                    <!-- Quick View Button -->
+                  <div class="quick-view-btn">
+                        <modal-opener data-modal="#QuickAdd-${product.id}">
+                            <button
+                            id="${product_form_id}-submit"
+                            type="submit"
+                            name="add"
+                            class="quick-add__submit button button--full-width button--secondary{% if horizontal_quick_add %} card--horizontal__quick-add animate-arrow{% endif %}"
+                            aria-haspopup="dialog"
+                            aria-labelledby="${product_form_id}-submit title-{{ section.id }}-${product.id}"
+                            data-product-url="${product.link}"
+                            >
+                            <span>Quick View</span>
+                            {% if horizontal_quick_add %}
+                                <span class="icon-wrap">
+                                {{ 'icon-arrow.svg' | inline_asset_content }}
+                                </span>
+                            {% endif %}
+                            {% render 'loading-spinner' %}
+                            </button>
+                        </modal-opener>
+
+                        <!-- Quick Add Modal -->
+                        <quick-add-modal id="QuickAdd-${product.id}" class="quick-add-modal">
+                            <div
+                            role="dialog"
+                            aria-label="{{ 'products.product.choose_product_options' | t: product_name: product.title | escape }}"
+                            aria-modal="true"
+                            class="quick-add-modal__content global-settings-popup"
+                            tabindex="-1"
+                            >
+                            <button
+                                id="ModalClose-${product.id}"
+                                type="button"
+                                class="quick-add-modal__toggle"
+                                aria-label="{{ 'accessibility.close' | t }}"
+                            >
+                                {{ 'icon-close.svg' | inline_asset_content }}
+                            </button>
+                            <div id="QuickAddInfo-${product.id}" class="quick-add-modal__content-info"></div>
+                            </div>
+                        </quick-add-modal>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+      }
+    });
+    return html;
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Rebuy Related Products",
+  "tag": "section",
+  "class": "rebuy-featured-products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "quick_add",
+      "default": "none",
+      "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
+        },
+        {
+          "value": "standard",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_2"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rebuy Related Products"
+    }
+  ]
+}
+{% endschema %}

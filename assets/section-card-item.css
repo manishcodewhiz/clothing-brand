@@ -1,0 +1,110 @@
+.section-card-item .row {
+    display: flex;
+}
+
+.section-card-item .row .col-6 {
+    max-width: 50%;
+    width: 100%;
+    position: relative;
+}
+
+.section-card-item .row .col-6:first-child .card-block::before {
+    content: "";
+    position: absolute;
+    background: #0C181C1A;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.section-card-item .card-block img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 740px;
+    object-fit: cover;
+}
+
+.section-card-item .card-main {
+    position: relative;
+}
+
+.section-card-item .card-main .card-content {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    bottom: 64px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.section-card-item .card-main .card-content h2 {
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 100%;
+    color: #FFFFFF;
+}
+
+.section-card-item .card-main .card-content a {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: .96px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all .4s;
+}
+
+.section-card-item .card-main .card-content a:hover {
+    color: #34417E;
+    border-color: #34417E;
+}
+
+.section-card-item .card-main .card-content a:hover svg path {
+    stroke: #34417E;
+}
+
+@media (max-width: 991px) {
+    .section-card-item .row {
+        flex-direction: column;
+    }
+
+    .section-card-item .row .col-6 {
+        max-width: 100%;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .section-card-item .card-block img {
+        max-height: 420px;
+    }
+
+    .section-card-item .card-main .card-content {
+        gap: 14px;
+        justify-content: start;
+        bottom: 32px;
+    }
+
+    .section-card-item .card-main .card-content h2 {
+        font-weight: 800;
+        font-size: 24px;
+    }
+
+    .section-card-item .card-main .card-content a {
+        font-weight: 800;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 6%;
+    }
+}

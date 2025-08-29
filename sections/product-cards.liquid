@@ -1,0 +1,87 @@
+{{ 'section-product-cards.css' | asset_url | stylesheet_tag }}
+
+<div class="section-product-cards">
+  <div class="page-width">
+    <div class="products-item">
+      <div class="row">
+        {% for block in section.blocks %}
+          <div class="col-4">
+            {% if block.settings.product_item_url != blank %}
+              <a href="{{ block.settings.product_item_url }}" class="products_main">
+                <div class="products_block">
+                  {% if block.settings.product_image_item != blank %}
+                    <img
+                      src="{{ block.settings.product_image_item | image_url }}"
+                      width=""
+                      height=""
+                      alt="Image"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                </div>
+                <div class="products_content">
+                  {% if block.settings.heading != blank
+                    or block.settings.decsription != blank
+                    or block.settings.button_text != blank
+                  %}
+                    <h3>{{ block.settings.heading }}</h3>
+                    <p>{{ block.settings.decsription }}</p>
+                    <span>
+                      {{- block.settings.button_text }}
+                      {{ 'Arrow-white.svg' | inline_asset_content -}}
+                    </span>
+                  {% endif %}
+                </div>
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Cards",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "cards",
+      "name": "Cards",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image_item",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "decsription",
+          "label": "Decsription"
+        },
+        {
+          "type": "url",
+          "id": "product_item_url",
+          "label": "Url"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Cards"
+    }
+  ]
+}
+{% endschema %}

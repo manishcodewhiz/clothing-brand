@@ -7,7 +7,7 @@
   media="print"
   onload="this.media='all'"
 >
-
+{{ 'custom-header.css' | asset_url | stylesheet_tag }}
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
@@ -180,15 +180,9 @@
       {%- endif -%}
     {%- endif -%}
 
-    {%- liquid
-      if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
-        endif
-      endif
-    %}
+    {% if section.settings.menu != blank %}
+      {%- render 'header-custom-megamenu', section: section -%}
+    {% endif %}
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -247,7 +241,10 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
+      <div class="spa-locator">
+        <span class="svg-wrapper">{{ 'locator-icon.svg' | inline_asset_content }}</span>
+        <span class="locator-text">Spa Locator</span>
+      </div>
 
       {%- if shop.customer_accounts_enabled -%}
         <a
@@ -284,7 +281,9 @@
             {% render block %}
         {%- endcase -%}
       {%- endfor -%}
-
+      <a href="#">
+        <span>{{ 'wiselist-icon.svg' | inline_asset_content }}</span>
+      </a>
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
@@ -470,8 +469,32 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  "max_blocks": 3,
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image2",
+      "label": "Product Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image3",
+      "label": "Product Image"
+    },
     {
       "type": "select",
       "id": "logo_position",
@@ -652,6 +675,118 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "menu",
+      "name": "Main Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Navigation title(Required)"
+        },
+        {
+          "type": "checkbox",
+          "id": "enabled_mega_menu",
+          "label": "Enable Megamenu",
+          "default": true,
+          "info": "If enabled, the Megamenu nav will be shown on hover"
+        }
+      ]
+    },
+    {
+      "type": "Brand-product-menu",
+      "name": "Brand Product Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Navigation title(Required)"
+        },
+        {
+          "type": "header",
+          "content": "Selected Menu Settings"
+        },
+        {
+          "type": "text",
+          "id": "collection_list_heading",
+          "label": "Menu Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "secondary_menu",
+          "label": "Inner Menu"
+        },
+        {
+          "type": "header",
+          "content": "Product Buttons"
+        },
+        {
+          "type": "select",
+          "id": "buttons",
+          "label": "Buttons",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "button",
+              "label": "Button"
+            }
+          ],
+          "default": "button"
+        }
+      ]
+    },
+    {
+      "type": "collection_list",
+      "name": "Collection List",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Navigation title(Required)"
+        },
+        {
+          "type": "collection_list",
+          "id": "collection_list",
+          "label": "Select Collection"
+        }
+      ]
+    },
+    {
+      "type": "product_list",
+      "name": "Product List",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Navigation title(Required)"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Select Product"
+        },
+        {
+          "type": "select",
+          "id": "buttons",
+          "label": "Buttons",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "button",
+              "label": "Button"
+            }
+          ],
+          "default": "button"
+        }
+      ]
     }
   ]
 }
