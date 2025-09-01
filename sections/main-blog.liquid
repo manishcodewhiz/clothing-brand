@@ -34,12 +34,16 @@
   </div>
 </div>
 <script>
-   $(document).ready(function () {
-    // Hide all articles first
+<script>
+  $(document).ready(function () {
+    // Hide all blog posts
     $('.main-blog .blog-articles__article').hide();
 
-    // Show first 8 with display: list-item
-    $('.main-blog .blog-articles__article').slice(0, 8).css('display', 'list-item');
+    // Show first 8 and add a class
+    $('.main-blog .blog-articles__article')
+      .slice(0, 8)
+      .addClass('first-eight')
+      .css('display', 'list-item');
 
     $('#loadMore').on('click', function (e) {
       e.preventDefault();
@@ -48,13 +52,14 @@
       $('#loadMore').hide();
 
       setTimeout(function () {
-        // Show next 8 hidden items as list-item
-        $('.main-blog .blog-articles__article:hidden').slice(0, 8).css('display', 'list-item');
+        // Show next 8 hidden items
+        $('.main-blog .blog-articles__article:hidden')
+          .slice(0, 8)
+          .css('display', 'list-item');
 
         $('#loader').hide();
         $('#loadMore').show();
 
-        // If no more hidden items, disable button
         if ($('.main-blog .blog-articles__article:hidden').length === 0) {
           $('#loadMore').text('No Content').addClass('noContent').prop('disabled', true);
         }
