@@ -43,9 +43,9 @@
     $('.press-list_iteam .press-main-list').slice(0, 3).show();
     $('#load-more').click(function (e) {
       e.preventDefault();
-      $('.press-listing-list .press-listing-items:hidden').slice(0, 3).fadeIn('slow');
+      $('.press-list_iteam .press-main-list:hidden').slice(0, 3).fadeIn('slow');
 
-      if ($('.press-listing-list .press-listing-items:hidden').length == 0) {
+      if ($('.press-list_iteam .press-main-list:hidden').length == 0) {
         $('#load-more').fadeOut('slow');
       }
     });
