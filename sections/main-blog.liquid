@@ -35,45 +35,24 @@
   </div>
 </div>
 <script>
- document.addEventListener("DOMContentLoaded", function () {
-    const articles = document.querySelectorAll(".blog-articles__article");
-    const loadMoreBtn = document.getElementById("loadMore");
-    const loader = document.getElementById("loader");
-    const batchSize = 2; // how many to show each click
-    let visibleCount = 0;
+  $(document).ready(function () {
+    $('.blog-articles__article').slice(0, 2).show();
 
-    // Hide all, show first 2
-    articles.forEach(el => el.classList.add("is-hidden"));
-    for (let i = 0; i < batchSize && i < articles.length; i++) {
-      articles[i].classList.remove("is-hidden");
-      visibleCount++;
-    }
-
-    loadMoreBtn.addEventListener("click", function (e) {
+    $('#loadMore').on('click', function (e) {
       e.preventDefault();
 
-      // disable to avoid double click
-      loadMoreBtn.disabled = true;
-      loader.style.display = "block";
-      loadMoreBtn.style.display = "none";
+      // Show loader
+      $('#loader').show();
+      $('#loadMore').hide();
 
-      setTimeout(() => {
-        let shown = 0;
-        for (let i = visibleCount; i < articles.length && shown < batchSize; i++) {
-          articles[i].classList.remove("is-hidden");
-          visibleCount++;
-          shown++;
-        }
+      setTimeout(function () {
+        $('.blog-articles__article:hidden').slice(0, 2).slideDown();
+        // Hide loader
+        $('#loader').hide();
+        $('#loadMore').show();
 
-        loader.style.display = "none";
-        loadMoreBtn.style.display = "inline-block";
-        loadMoreBtn.disabled = false;
-
-        // No more left to show
-        if (visibleCount >= articles.length) {
-          loadMoreBtn.innerText = "No Content";
-          loadMoreBtn.disabled = true;
-          loadMoreBtn.classList.add("noContent");
+        if ($('.blog-articles__article:hidden').length === 0) {
+          $('#loadMore').text('No Content').addClass('noContent').prop('disabled', true);
         }
       }, 500);
     });
