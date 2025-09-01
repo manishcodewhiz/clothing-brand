@@ -28,12 +28,6 @@
         </li>
       {%- endfor -%}
     </ul>
-
-    {% comment %}
-      {%- if paginate.pages > 1 -%}
-        {%- render 'pagination', paginate: paginate -%}
-      {%- endif -%}
-    {% endcomment %}
   {%- endpaginate -%}
   <div class="load-more-blog">
     <a href="#" id="loadMore" class="primary-btn black-btn">Load More</a>
@@ -155,3 +149,10 @@
   ]
 }
 {% endschema %}
+
+
+    {% comment %}
+      {%- if paginate.pages > 1 -%}
+        {%- render 'pagination', paginate: paginate -%}
+      {%- endif -%}
+    {% endcomment %}
