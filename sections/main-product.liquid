@@ -720,7 +720,7 @@
             {{- 'icon-arrow.svg' | inline_asset_content -}}
           </a>
             {% comment %} {{  product.metafields.custom.press_entry.values  }} {% endcomment %}
-             {% assign press_entry = product.metafields.custom.press_entry.values %}
+             {% assign press_entry = product.metafields.custom.press_entry.value %}
              {{ press_entry.image }}
         </section>
       </div>
