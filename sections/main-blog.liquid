@@ -36,7 +36,7 @@
 </div>
 <script>
   $(document).ready(function () {
-    $('.blog-articles__article').slice(0, 3).show();
+    $('.blog-articles__article').slice(0, 2).show();
 
     $('#loadMore').on('click', function (e) {
       e.preventDefault();
@@ -46,7 +46,7 @@
       $('#loadMore').hide();
 
       setTimeout(function () {
-        $('.blog-articles__article:hidden').slice(0, 3).slideDown();
+        $('.blog-articles__article:hidden').slice(0, 2).slideDown();
         // Hide loader
         $('#loader').hide();
         $('#loadMore').show();
