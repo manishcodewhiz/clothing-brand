@@ -34,13 +34,13 @@
       {% endfor %}
     </ul>
     <div class="press-load-more">
-      <a href="#" id="load-more" class="primary-btn black-btn">Load More</a>
+      <a href="#" id="load-more" class="load-more">Load More</a>
     </div>
   </div>
 </div>
 
 <script>
-  jQuery(document).ready(function () {
+  {% comment %} jQuery(document).ready(function () {
     $('.press-list_iteam .press-main-list').slice(0, 6).show();
     $('#load-more').click(function (e) {
       e.preventDefault();
@@ -50,7 +50,21 @@
         $('#load-more').fadeOut('slow');
       }
     });
-  });
+  }); {% endcomment %}
+
+  $(function () {
+		$(".press-main-list").slice(0, 3).show();
+		$("body").on('click touchstart', '.load-more', function (e) {
+			e.preventDefault();
+			$(".press-main-list:hidden").slice(0, 3).slideDown();
+			if ($(".press-main-list:hidden").length == 0) {
+				$(".load-more").css('visibility', 'hidden');
+			}
+			$('html,body').animate({
+				scrollTop: $(this).offset().top
+			}, 1000);
+		});
+	});
 </script>
 
 {% schema %}
