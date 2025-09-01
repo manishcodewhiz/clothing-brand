@@ -34,19 +34,20 @@
   </div>
 </div>
 <script>
-  $(document).ready(function () {
+ $(document).ready(function () {
+    // Hide all first, then show first 8
+    $('.main-blog .blog-articles__article').hide();
     $('.main-blog .blog-articles__article').slice(0, 8).show();
 
     $('#loadMore').on('click', function (e) {
       e.preventDefault();
 
-      // Show loader
       $('#loader').show();
       $('#loadMore').hide();
 
       setTimeout(function () {
         $('.main-blog .blog-articles__article:hidden').slice(0, 8).slideDown();
-        // Hide loader
+
         $('#loader').hide();
         $('#loadMore').show();
 
