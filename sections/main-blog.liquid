@@ -40,13 +40,15 @@
             show_author: section.settings.show_author,
             show_excerpt: true
           -%}
-          </li>
+        </li>
       {%- endfor -%}
     </ul>
 
-    {% comment %} {%- if paginate.pages > 1 -%}
-      {%- render 'pagination', paginate: paginate -%}
-    {%- endif -%} {% endcomment %}
+    {% comment %}
+      {%- if paginate.pages > 1 -%}
+        {%- render 'pagination', paginate: paginate -%}
+      {%- endif -%}
+    {% endcomment %}
   </div>
 {%- endpaginate -%}
 <div class="load-more-blog">
@@ -55,39 +57,39 @@
 </div>
 
 <script>
-$(document).ready(function () {
-  $(".blog-articles__article").slice(0, 2).show();
+  {% comment %} $(document).ready(function () {
+    $(".blog-articles__article").slice(0, 2).show();
 
-  $("#loadMore").on("click", function (e) {
-    e.preventDefault();
-
-    // Show loader
-    $("#loader").show();
-    $("#loadMore").hide();
-
-    setTimeout(function () {
-      $(".blog-articles__article:hidden").slice(0, 2).slideDown();
-      // Hide loader
-      $("#loader").hide();
-      $("#loadMore").show();
-
-      if ($(".blog-articles__article:hidden").length === 0) {
-        $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
-      }
-    }, 500);
-  });
-});
-{% comment %} $(document).ready(function(){
-    $(".blog-articles__article").slice(0,2).show();
-    $("#loadMore").click(function(e){
+    $("#loadMore").on("click", function (e) {
       e.preventDefault();
-      $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
 
-      if($(".blog-articles__article:hidden").length == 0){
-         $("#loadMore").fadeOut("slow");
+      // Show loader
+      $("#loader").show();
+      $("#loadMore").hide();
+
+      setTimeout(function () {
+        $(".blog-articles__article:hidden").slice(0, 2).slideDown();
+        // Hide loader
+        $("#loader").hide();
+        $("#loadMore").show();
+
+        if ($(".blog-articles__article:hidden").length === 0) {
+          $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
         }
+      }, 500);
     });
   }); {% endcomment %}
+  $(document).ready(function(){
+      $(".blog-articles__article").slice(0,2).show();
+      $("#loadMore").click(function(e){
+        e.preventDefault();
+        $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
+
+        if($(".blog-articles__article:hidden").length == 0){
+           $("#loadMore").fadeOut("slow");
+          }
+      });
+    });
 </script>
 {% schema %}
 {
