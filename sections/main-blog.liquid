@@ -21,8 +21,8 @@
     <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {{ blog.title | escape }}
     </h1>
- {% comment %} {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %} {% endcomment %}
-    <ul class="blog-articles">
+
+    <ul class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
       {%- for article in blog.articles -%}
         <li
           class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -51,15 +51,9 @@
     {% endcomment %}
   </div>
 {%- endpaginate -%}
-{% comment %}
-  <div class="load-more-blog">
-    <a href="#" id="loadMore" class="primary-btn black-btn">Load More</a>
-    <div id="loader" style="display:none;">Loading...</div>
-  </div>
-{% endcomment %}
-
-<div class="press-load-more">
-  <a href="#" id="load-more_button" class="load-more">Load More</a>
+<div class="load-more-blog">
+  <a href="#" id="loadMore" class="primary-btn black-btn">Load More</a>
+  <div id="loader" style="display:none;">Loading...</div>
 </div>
 <script>
      {% comment %} $(document).ready(function () {
