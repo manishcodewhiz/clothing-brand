@@ -12,9 +12,9 @@
         <li
           class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
-          data-cascade
-          style="--animation-order: {{ forloop.index }};"
-        {% endif %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+          {% endif %}
         >
           {%- render 'article-card',
             article: article,
@@ -34,7 +34,7 @@
   </div>
 </div>
 <script>
-  {% comment %} $(document).ready(function () {
+  $(document).ready(function () {
     $('.main-blog .blog-articles__article').slice(0, 8).show();
 
     $('#loadMore').on('click', function (e) {
@@ -55,22 +55,7 @@
         }
       }, 500);
     });
-  }); {% endcomment %}
-
-
-$(function () {
-    $(".main-blog .blog-articles__article").slice(0, 4).show();
-    $("#loadMore").on('click', function (e) {
-        e.preventDefault();
-        $(".main-blog .blog-articles__article:hidden").slice(0, 4).slideDown();
-        if ($(".main-blog .blog-articles__article:hidden").length == 0) {
-            $("#loadMore").fadeOut('slow');
-        }
-        $('html,body').animate({
-            scrollTop: $(this).offset().top
-        }, 1500);
-    });
-});
+  });
 </script>
 {% schema %}
 {
