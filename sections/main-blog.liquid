@@ -13,7 +13,7 @@
           class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
-            style="--animation-order: {{ forloop.index }};"
+            style="--animation-order: {{ forloop.index }};{% if forloop.index <= 8 %} display: list-item;{% else %} display: none;{% endif %}
           {% endif %}
         >
           {%- render 'article-card',
