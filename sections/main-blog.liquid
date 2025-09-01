@@ -58,38 +58,41 @@
       });
     }); {% endcomment %}
 
-    $(document).ready(function () {
-    // Hide all articles initially
-    $('.blog-articles__article').hide();
+$(document).ready(function () {
+  // Hide all articles first
+  $('.blog-articles__article').hide();
 
-    // Show only first 2
-    $('.blog-articles__article').slice(0, 2).show();
+  // Show only first 2
+  $('.blog-articles__article').slice(0, 2).show();
 
-    $('#loadMore').on('click', function (e) {
-      e.preventDefault();
+  $('#loadMore').on('click', function (e) {
+    e.preventDefault();
 
-      // Show loader
-      $('#loader').show();
-      $('#loadMore').hide();
+    $('#loader').show();
+    $('#loadMore').hide();
 
-      setTimeout(function () {
-        // Show next 2 hidden articles
-        $('.blog-articles__article:hidden').slice(0, 2).slideDown();
+    setTimeout(function () {
+      var $nextArticles = $('.blog-articles__article:hidden').slice(0, 2);
 
-        // Hide loader
-        $('#loader').hide();
-        $('#loadMore').show();
+      // Show with animation
+      $nextArticles.slideDown();
 
-        // If no more hidden, disable button
-        if ($('.blog-articles__article:hidden').length === 0) {
-          $('#loadMore')
-            .text('No Content')
-            .addClass('noContent')
-            .prop('disabled', true);
-        }
-      }, 500);
-    });
+      // 🔥 Force them to be visible (override Dawn's animation delay)
+      $nextArticles.addClass('animate--visible');
+
+      $('#loader').hide();
+      $('#loadMore').show();
+
+      if ($('.blog-articles__article:hidden').length === 0) {
+        $('#loadMore')
+          .text('No Content')
+          .addClass('noContent')
+          .prop('disabled', true);
+      }
+    }, 500);
   });
+});
+
 </script>
 {% schema %}
 {
