@@ -59,10 +59,10 @@
 
 
 $(function () {
-    $(".main-blog .blog-articles__article").slice(4).show();
+    $(".main-blog .blog-articles__article").slice(0, 4).show();
     $("#loadMore").on('click', function (e) {
         e.preventDefault();
-        $(".main-blog .blog-articles__article:hidden").slice(4).slideDown();
+        $(".main-blog .blog-articles__article:hidden").slice(0, 4).slideDown();
         if ($(".main-blog .blog-articles__article:hidden").length == 0) {
             $("#loadMore").fadeOut('slow');
         }
