@@ -41,12 +41,12 @@
 
 <script>
   jQuery(document).ready(function () {
-    $('.press-list_iteam .press-main-list').slice(0, 3).show();
+    $('.press-main-list').slice(0, 3).show();
     $('#load-more').click(function (e) {
       e.preventDefault();
-      $('.press-list_iteam .press-main-list:hidden').slice(0, 3).fadeIn('slow');
+      $('.press-main-list:hidden').slice(0, 3).fadeIn('slow');
 
-      if ($('.press-list_iteam .press-main-list:hidden').length == 0) {
+      if ($('.press-main-list:hidden').length == 0) {
         $('#load-more').fadeOut('slow');
       }
     });
