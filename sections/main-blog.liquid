@@ -58,13 +58,13 @@
   }); {% endcomment %}
 
   $(document).ready(function(){
-  $(".main-blog .blog-articles__article").slice(0,3).show();
-  $("#seeMore").click(function(e){
+  $(".main-blog .blog-articles__article").slice(0,4).show();
+  $("#loadMore").click(function(e){
     e.preventDefault();
-    $(".main-blog .blog-articles__article:hidden").slice(0,3).fadeIn("slow");
+    $(".main-blog .blog-articles__article:hidden").slice(0,4).fadeIn("slow");
     
     if($(".main-blog .blog-articles__article:hidden").length == 0){
-       $("#seeMore").fadeOut("slow");
+       $("#loadMore").fadeOut("slow");
       }
   });
 })
