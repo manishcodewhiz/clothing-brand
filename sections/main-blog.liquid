@@ -36,27 +36,27 @@
 </div>
 <script>
   $(document).ready(function () {
-    $('.main-blog .blog-articles__article').slice(0, 8).show();
+  $(".main-blog .blog-articles__article").slice(0, 8).show();
 
-    $('#loadMore').on('click', function (e) {
-      e.preventDefault();
+  $("#loadMore").on("click", function (e) {
+    e.preventDefault();
 
-      // Show loader
-      $('#loader').show();
-      $('#loadMore').hide();
+    // Show loader
+    $("#loader").show();
+    $("#loadMore").hide();
 
-      setTimeout(function () {
-        $('.main-blog .blog-articles__article:hidden').slice(0, 8).slideDown();
-        // Hide loader
-        $('#loader').hide();
-        $('#loadMore').show();
+    setTimeout(function () {
+      $(".main-blog .blog-articles__article:hidden").slice(0, 8).slideDown();
+      // Hide loader
+      $("#loader").hide();
+      $("#loadMore").show();
 
-        if ($('.main-blog .blog-articles__article:hidden').length === 0) {
-          $('#loadMore').text('No Content').addClass('noContent').prop('disabled', true);
-        }
-      }, 500);
-    });
+      if ($(".main-blog .blog-articles__article:hidden").length === 0) {
+        $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
+      }
+    }, 500);
   });
+});
 </script>
 {% schema %}
 {
