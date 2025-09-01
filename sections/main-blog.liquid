@@ -36,7 +36,7 @@
 </div>
 <script>
   $(document).ready(function () {
-    $('.blog-articles__article').slice(0, 8).show();
+    $('.main-blog .blog-articles__article').slice(0, 8).show();
 
     $('#loadMore').on('click', function (e) {
       e.preventDefault();
@@ -46,12 +46,12 @@
       $('#loadMore').hide();
 
       setTimeout(function () {
-        $('.blog-articles__article:hidden').slice(0, 8).slideDown();
+        $('.main-blog .blog-articles__article:hidden').slice(0, 8).slideDown();
         // Hide loader
         $('#loader').hide();
         $('#loadMore').show();
 
-        if ($('.blog-articles__article:hidden').length === 0) {
+        if ($('.main-blog .blog-articles__article:hidden').length === 0) {
           $('#loadMore').text('No Content').addClass('noContent').prop('disabled', true);
         }
       }, 500);
