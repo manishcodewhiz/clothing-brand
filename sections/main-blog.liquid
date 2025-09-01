@@ -36,23 +36,28 @@
 </div>
 <script>
   $(document).ready(function () {
-    $('.blog-articles__article').slice(0, 2).show();
+    // Hide all articles first, then show only the first 2
+    $('.blog-articles__article').hide().slice(0, 2).show();
 
     $('#loadMore').on('click', function (e) {
       e.preventDefault();
 
-      // Show loader
+      // Disable button immediately to prevent double clicks
+      var $btn = $(this);
+      $btn.prop('disabled', true);
+
       $('#loader').show();
-      $('#loadMore').hide();
+      $btn.hide();
 
       setTimeout(function () {
         $('.blog-articles__article:hidden').slice(0, 2).slideDown();
-        // Hide loader
-        $('#loader').hide();
-        $('#loadMore').show();
 
+        $('#loader').hide();
+        $btn.show().prop('disabled', false);
+
+        // If no more hidden articles, disable permanently
         if ($('.blog-articles__article:hidden').length === 0) {
-          $('#loadMore').text('No Content').addClass('noContent').prop('disabled', true);
+          $btn.text('No Content').addClass('noContent').prop('disabled', true);
         }
       }, 500);
     });
