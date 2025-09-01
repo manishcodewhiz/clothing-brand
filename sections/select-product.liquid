@@ -41,10 +41,10 @@
 
 <script>
   jQuery(document).ready(function () {
-    $('.press-main-list').slice(0, 3).show();
+    $('.press-main-list').slice(0, 6).show();
     $('#load-more').click(function (e) {
       e.preventDefault();
-      $('.press-main-list:hidden').slice(0, 3).fadeIn('slow');
+      $('.press-main-list:hidden').slice(0, 6).fadeIn('slow');
 
       if ($('.press-main-list:hidden').length == 0) {
         $('#load-more').fadeOut('slow');
