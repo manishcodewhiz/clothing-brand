@@ -34,7 +34,7 @@
   </div>
 </div>
 <script>
-  $(document).ready(function () {
+  {% comment %} $(document).ready(function () {
     $('.main-blog .blog-articles__article').slice(0, 8).show();
 
     $('#loadMore').on('click', function (e) {
@@ -55,7 +55,19 @@
         }
       }, 500);
     });
+  }); {% endcomment %}
+
+  $(document).ready(function(){
+  $(".main-blog .blog-articles__article").slice(0,3).show();
+  $("#seeMore").click(function(e){
+    e.preventDefault();
+    $(".main-blog .blog-articles__article:hidden").slice(0,3).fadeIn("slow");
+    
+    if($(".main-blog .blog-articles__article:hidden").length == 0){
+       $("#seeMore").fadeOut("slow");
+      }
   });
+})
 </script>
 {% schema %}
 {
