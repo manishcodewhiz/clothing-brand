@@ -34,29 +34,19 @@
   </div>
 </div>
 <script>
-<script>
   $(document).ready(function () {
-    // Hide all blog posts
-    $('.main-blog .blog-articles__article').hide();
-
-    // Show first 8 and add a class
-    $('.main-blog .blog-articles__article')
-      .slice(0, 8)
-      .addClass('first-eight')
-      .css('display', 'list-item');
+    $('.main-blog .blog-articles__article').slice(0, 8).show();
 
     $('#loadMore').on('click', function (e) {
       e.preventDefault();
 
+      // Show loader
       $('#loader').show();
       $('#loadMore').hide();
 
       setTimeout(function () {
-        // Show next 8 hidden items
-        $('.main-blog .blog-articles__article:hidden')
-          .slice(0, 8)
-          .css('display', 'list-item');
-
+        $('.main-blog .blog-articles__article:hidden').slice(0, 8).slideDown();
+        // Hide loader
         $('#loader').hide();
         $('#loadMore').show();
 
