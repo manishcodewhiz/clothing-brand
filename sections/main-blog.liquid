@@ -8,7 +8,7 @@
   </h1>
   {%- paginate blog.articles by 200 -%}
     <ul class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
-      {{  blog.articles.size | json }}
+      {% comment %} {{  blog.articles.size | json }} {% endcomment %}
       {%- for article in blog.articles -%}
           <li
           class="blog-articles__article article"
