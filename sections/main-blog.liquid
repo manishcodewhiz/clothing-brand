@@ -98,12 +98,12 @@
 
   $(document).ready(function(){
     $(".blog-articles__article").slice(0,2).show();
-    $("#seeMore").click(function(e){
+    $("#load-more_button").click(function(e){
       e.preventDefault();
       $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
 
       if($(".blog-articles__article:hidden").length == 0){
-         $("#seeMore").fadeOut("slow");
+         $("#load-more_button").fadeOut("slow");
         }
     });
   })
