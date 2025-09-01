@@ -3,7 +3,7 @@
 <div class="press-list">
   <div class="page-width">
     <ul class="press-list_iteam">
-    {% comment %} {{ metaobjects.press.values | json }} {% endcomment %}
+      {% comment %} {{ metaobjects.press.values | json }} {% endcomment %}
       {% for press_list in metaobjects.press.values %}
         <li class="press-main-list">
           <div class="press-list_block">
@@ -39,7 +39,7 @@
   </div>
 </div>
 
-{% comment %} <script>
+<script>
   jQuery(document).ready(function () {
     $('.press-list_iteam .press-main-list').slice(0, 3).show();
     $('#load-more').click(function (e) {
@@ -51,7 +51,7 @@
       }
     });
   });
-</script> {% endcomment %}
+</script>
 
 {% schema %}
 {
