@@ -35,64 +35,28 @@
   </div>
 </div>
 <script>
-    {% comment %} $(document).ready(function () {
-      $('.blog-articles__article').slice(0, 2).show();
+  $(document).ready(function () {
+    $('.blog-articles__article').slice(0, 2).show();
 
-      $('#loadMore').on('click', function (e) {
-        e.preventDefault();
+    $('#loadMore').on('click', function (e) {
+      e.preventDefault();
 
-        // Show loader
-        $('#loader').show();
-        $('#loadMore').hide();
+      // Show loader
+      $('#loader').show();
+      $('#loadMore').hide();
 
-        setTimeout(function () {
-          $('.blog-articles__article:hidden').slice(0, 2).slideDown();
-          // Hide loader
-          $('#loader').hide();
-          $('#loadMore').show();
+      setTimeout(function () {
+        $('.blog-articles__article:hidden').slice(0, 2).slideDown();
+        // Hide loader
+        $('#loader').hide();
+        $('#loadMore').show();
 
-          if ($('.blog-articles__article:hidden').length === 0) {
-            $('#loadMore').text('No Content').addClass('noContent').prop('disabled', true);
-          }
-        }, 500);
-      });
-    }); {% endcomment %}
-
-$(document).ready(function () {
-  // Hide all articles first
-  $('.blog-articles__article').hide();
-
-  // Show only first 2
-  $('.blog-articles__article').slice(0, 2).show();
-
-  $('#loadMore').on('click', function (e) {
-    e.preventDefault();
-
-    $('#loader').show();
-    $('#loadMore').hide();
-
-    setTimeout(function () {
-      var $nextArticles = $('.blog-articles__article:hidden').slice(0, 2);
-
-      // Show with animation
-      $nextArticles.slideDown();
-
-      // 🔥 Force them to be visible (override Dawn's animation delay)
-      $nextArticles.addClass('animate--visible');
-
-      $('#loader').hide();
-      $('#loadMore').show();
-
-      if ($('.blog-articles__article:hidden').length === 0) {
-        $('#loadMore')
-          .text('No Content')
-          .addClass('noContent')
-          .prop('disabled', true);
-      }
-    }, 500);
+        if ($('.blog-articles__article:hidden').length === 0) {
+          $('#loadMore').text('No Content').addClass('noContent').prop('disabled', true);
+        }
+      }, 500);
+    });
   });
-});
-
 </script>
 {% schema %}
 {
@@ -162,8 +126,9 @@ $(document).ready(function () {
 }
 {% endschema %}
 
-{% comment %}
-  {%- if paginate.pages > 1 -%}
-    {%- render 'pagination', paginate: paginate -%}
-  {%- endif -%}
-{% endcomment %}
+
+    {% comment %}
+      {%- if paginate.pages > 1 -%}
+        {%- render 'pagination', paginate: paginate -%}
+      {%- endif -%}
+    {% endcomment %}
