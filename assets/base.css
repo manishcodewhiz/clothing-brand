@@ -3914,4 +3914,10 @@ button::after {
 
 .blog-articles.blog-articles--collage{
   display: flex;
+  gap: 10px;
+}
+
+.blog-articles.blog-articles--collage .blog-articles__article.article{
+  max-width: calc(50% - 5px);
+  width: 100%;
 }
