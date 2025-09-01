@@ -102,9 +102,9 @@
       e.preventDefault();
       $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
 
-      {% comment %} if($(".blog-articles__article:hidden").length == 0){
+      if($(".blog-articles__article:hidden").length == 0){
          $("#load-more_button").fadeOut("slow");
-        } {% endcomment %}
+        }
     });
   })
 </script>
