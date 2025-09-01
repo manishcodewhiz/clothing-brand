@@ -6,7 +6,7 @@
   <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     {{ blog.title | escape }}
   </h1>
-  {%- paginate blog.articles by 8 -%}
+  {%- paginate blog.articles by 12 -%}
     <ul class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
       {{  blog.articles.size | json }}
       {%- for article in blog.articles -%}
