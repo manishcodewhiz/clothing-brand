@@ -44,9 +44,9 @@
       {%- endfor -%}
     </ul>
 
-    {%- if paginate.pages > 1 -%}
+    {% comment %} {%- if paginate.pages > 1 -%}
       {%- render 'pagination', paginate: paginate -%}
-    {%- endif -%}
+    {%- endif -%} {% endcomment %}
   </div>
 {%- endpaginate -%}
 <div class="load-more-blog">
