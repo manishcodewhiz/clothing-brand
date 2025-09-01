@@ -3920,6 +3920,7 @@ button::after {
 }
 
 .main-blog .blog-articles .blog-articles__article{
+  display: block;
   max-width: calc(25% - 15px);
   width: 100%;
   display: none;
