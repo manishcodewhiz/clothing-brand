@@ -77,10 +77,10 @@
     }, 500);
   });
 }); {% endcomment %}
-    $(".blog-articles__article").slice(0,3).show();
+    $(".blog-articles__article").slice(0,2).show();
     $("#loadMore").click(function(e){
       e.preventDefault();
-      $(".blog-articles__article:hidden").slice(0,3).fadeIn("slow");
+      $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
 
       if($(".blog-articles__article:hidden").length == 0){
          $("#loadMore").fadeOut("slow");
