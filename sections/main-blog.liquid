@@ -11,7 +11,7 @@
       {{  blog.articles.size | json }}
       {%- for article in blog.articles -%}
         <li
-          class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="blog-articles__article article"  style="display:none;"{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
             style="--animation-order: {{ forloop.index }};"
