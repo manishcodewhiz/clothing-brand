@@ -55,7 +55,7 @@
 </div>
 
 <script>
-  $(document).ready(function () {
+  {% comment %} $(document).ready(function () {
   $(".blog-articles__article").slice(0, 2).show();
 
   $("#loadMore").on("click", function (e) {
@@ -76,7 +76,17 @@
       }
     }, 500);
   });
-});
+}); {% endcomment %}
+    $(".blog-articles__article").slice(0,3).show();
+    $("#loadMore").click(function(e){
+      e.preventDefault();
+      $(".blog-articles__article:hidden").slice(0,3).fadeIn("slow");
+
+      if($(".blog-articles__article:hidden").length == 0){
+         $("#loadMore").fadeOut("slow");
+        }
+    });
+  });
 </script>
 {% schema %}
 {
