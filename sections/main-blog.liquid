@@ -21,8 +21,8 @@
     <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {{ blog.title | escape }}
     </h1>
-
-    <ul class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+ {% comment %} {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %} {% endcomment %}
+    <ul class="blog-articles">
       {%- for article in blog.articles -%}
         <li
           class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
