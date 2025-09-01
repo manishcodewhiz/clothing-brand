@@ -3921,4 +3921,5 @@ button::after {
 .blog-articles.blog-articles--collage .blog-articles__article.article{
   max-width: calc(50% - 5px);
   width: 100%;
+  display: none;
 }
