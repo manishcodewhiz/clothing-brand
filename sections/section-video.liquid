@@ -37,6 +37,9 @@
         </div>
       {% endfor %}
     </div>
+    <div class="press-load-more">
+      <a href="#" id="load-more" class="primary-btn black-btn">Load More</a>
+    </div>
   </div>
 </div>
 
@@ -102,6 +105,18 @@
       $('.video-modal #youtube-frame').attr('src', '');
       $('body').removeClass('modal-main');
     }
+  });
+
+    jQuery(document).ready(function () {
+    $('.row .col-4').slice(0, 3).show();
+    $('#load-more').click(function (e) {
+      e.preventDefault();
+      $('.row .col-4:hidden').slice(0, 3).fadeIn('slow');
+
+      if ($('.row .col-4:hidden').length == 0) {
+        $('#load-more').fadeOut('slow');
+      }
+    });
   });
 </script>
 
