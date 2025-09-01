@@ -97,12 +97,12 @@
        }); {% endcomment %}
 
   $(document).ready(function(){
-    $("div").slice(0,3).show();
+    $(".blog-articles__article").slice(0,2).show();
     $("#seeMore").click(function(e){
       e.preventDefault();
-      $("div:hidden").slice(0,3).fadeIn("slow");
+      $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
 
-      if($("div:hidden").length == 0){
+      if($(".blog-articles__article:hidden").length == 0){
          $("#seeMore").fadeOut("slow");
         }
     });
