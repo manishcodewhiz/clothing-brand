@@ -51,11 +51,16 @@
     {% endcomment %}
   </div>
 {%- endpaginate -%}
-{% comment %} <div class="load-more-blog">
-  <a href="#" id="loadMore" class="primary-btn black-btn">Load More</a>
-  <div id="loader" style="display:none;">Loading...</div>
-</div> {% endcomment %}
+{% comment %}
+  <div class="load-more-blog">
+    <a href="#" id="loadMore" class="primary-btn black-btn">Load More</a>
+    <div id="loader" style="display:none;">Loading...</div>
+  </div>
+{% endcomment %}
 
+<div class="press-load-more">
+  <a href="#" id="load-more_button" class="load-more">Load More</a>
+</div>
 <script>
   {% comment %} $(document).ready(function () {
     $(".blog-articles__article").slice(0, 2).show();
@@ -81,12 +86,12 @@
   }); {% endcomment %}
   $(document).ready(function(){
       $(".blog-articles__article").slice(0,2).show();
-      $("#loadMore").click(function(e){
+      $("#load-more_button").click(function(e){
         e.preventDefault();
         $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
 
         if($(".blog-articles__article:hidden").length == 0){
-           $("#loadMore").fadeOut("slow");
+           $("#load-more_button").fadeOut("slow");
           }
       });
     });
