@@ -12,7 +12,7 @@
       {%- for article in blog.articles -%}
           <li
           class="blog-articles__article article"
-          style="display:none;"  {# hide by default #}
+          style="display:none;"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
             style="--animation-order: {{ forloop.index }};"
