@@ -3,7 +3,7 @@
 <div class="press-list">
   <div class="page-width">
     <ul class="press-list_iteam">
-    {{ metaobjects.press.values | json }}
+    {% comment %} {{ metaobjects.press.values | json }} {% endcomment %}
       {% for press_list in metaobject.press.values %}
         <li class="press-main-list">
           <div class="press-list_block">
