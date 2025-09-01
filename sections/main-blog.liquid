@@ -50,10 +50,10 @@
         // Hide loader
         $('#loader').hide();
         $('#loadMore').show();
-
+{% comment %} 
         if ($('.blog-articles__article:hidden').length === 0) {
           $('#loadMore').text('No Content').addClass('noContent').prop('disabled', true);
-        }
+        } {% endcomment %}
       }, 500);
     });
   });
