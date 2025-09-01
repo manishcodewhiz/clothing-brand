@@ -75,11 +75,6 @@
         "padding_bottom": 36
       }
     },
-    "section_video_AzzEBT": {
-      "type": "section-video",
-      "name": "Video Section",
-      "settings": {}
-    },
     "select_product_qJqcie": {
       "type": "select-product",
       "name": "Press Listing",
@@ -89,7 +84,6 @@
   "order": [
     "main",
     "multirow_RRzKay",
-    "section_video_AzzEBT",
     "select_product_qJqcie"
   ]
 }
