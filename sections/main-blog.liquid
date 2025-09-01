@@ -62,39 +62,53 @@
   <a href="#" id="load-more_button" class="load-more">Load More</a>
 </div>
 <script>
-  {% comment %} $(document).ready(function () {
-    $(".blog-articles__article").slice(0, 2).show();
+   {% comment %} $(document).ready(function () {
+     $(".blog-articles__article").slice(0, 2).show();
 
-    $("#loadMore").on("click", function (e) {
-      e.preventDefault();
+     $("#loadMore").on("click", function (e) {
+       e.preventDefault();
 
-      // Show loader
-      $("#loader").show();
-      $("#loadMore").hide();
+       // Show loader
+       $("#loader").show();
+       $("#loadMore").hide();
 
-      setTimeout(function () {
-        $(".blog-articles__article:hidden").slice(0, 2).slideDown();
-        // Hide loader
-        $("#loader").hide();
-        $("#loadMore").show();
+       setTimeout(function () {
+         $(".blog-articles__article:hidden").slice(0, 2).slideDown();
+         // Hide loader
+         $("#loader").hide();
+         $("#loadMore").show();
 
-        if ($(".blog-articles__article:hidden").length === 0) {
-          $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
-        }
-      }, 500);
-    });
-  }); {% endcomment %}
-  $(document).ready(function(){
-      $(".blog-articles__article").slice(0,2).show();
-      $("#load-more_button").click(function(e){
-        e.preventDefault();
-        $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
+         if ($(".blog-articles__article:hidden").length === 0) {
+           $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
+         }
+       }, 500);
+     });
+   }); {% endcomment %}
+   {% comment %} $(document).ready(function(){
+       $(".blog-articles__article").slice(0,2).show();
+       $("#load-more_button").click(function(e){
+         e.preventDefault();
+         $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
 
-        if($(".blog-articles__article:hidden").length == 0){
-           $("#load-more_button").fadeOut("slow");
-          }
-      });
-    });
+         if($(".blog-articles__article:hidden").length == 0){
+            $("#load-more_button").fadeOut("slow");
+           }
+       });
+     }); {% endcomment %}
+
+     $(function () {
+  	$(".blog-articles__article").slice(0, 3).show();
+  	$("body").on('click touchstart', '.load-more', function (e) {
+  		e.preventDefault();
+  		$(".blog-articles__article:hidden").slice(0, 3).slideDown();
+  		if ($(".blog-articles__article:hidden").length == 0) {
+  			$(".load-more").css('visibility', 'hidden');
+  		}
+  		$('html,body').animate({
+  			scrollTop: $(this).offset().top
+  		}, 1000);
+  	});
+  });
 </script>
 {% schema %}
 {
