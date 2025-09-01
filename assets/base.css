@@ -3924,7 +3924,7 @@ button::after {
   display: none;
 }
 
-.blog-articles__article.animate--visible {
+/* .blog-articles__article.animate--visible {
   opacity: 1 !important;
   transform: none !important;
-}
+} */
