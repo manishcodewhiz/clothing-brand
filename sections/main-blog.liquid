@@ -35,29 +35,46 @@
   </div>
 </div>
 <script>
-  $(document).ready(function () {
-    // Hide all articles first, then show only the first 2
-    $('.blog-articles__article').hide().slice(0, 2).show();
+  document.addEventListener("DOMContentLoaded", function () {
+    let articles = document.querySelectorAll(".blog-articles__article");
+    let loadMoreBtn = document.getElementById("loadMore");
+    let loader = document.getElementById("loader");
+    let visibleCount = 2; // show 2 posts initially
 
-    $('#loadMore').on('click', function (e) {
+    // Hide all, then show only first 2
+    articles.forEach((el, i) => {
+      if (i < visibleCount) {
+        el.style.display = "list-item"; // keep LI visible
+      } else {
+        el.style.display = "none";
+      }
+    });
+
+    loadMoreBtn.addEventListener("click", function (e) {
       e.preventDefault();
 
-      // Disable button immediately to prevent double clicks
-      var $btn = $(this);
-      $btn.prop('disabled', true);
+      // Prevent double-clicks
+      loadMoreBtn.disabled = true;
+      loader.style.display = "block";
+      loadMoreBtn.style.display = "none";
 
-      $('#loader').show();
-      $btn.hide();
+      setTimeout(() => {
+        let hidden = document.querySelectorAll(".blog-articles__article[style*='display: none']");
+        hidden.forEach((el, i) => {
+          if (i < 2) {
+            el.style.display = "list-item"; // reveal next 2
+          }
+        });
 
-      setTimeout(function () {
-        $('.blog-articles__article:hidden').slice(0, 2).slideDown();
+        loader.style.display = "none";
+        loadMoreBtn.style.display = "inline-block";
+        loadMoreBtn.disabled = false;
 
-        $('#loader').hide();
-        $btn.show().prop('disabled', false);
-
-        // If no more hidden articles, disable permanently
-        if ($('.blog-articles__article:hidden').length === 0) {
-          $btn.text('No Content').addClass('noContent').prop('disabled', true);
+        // If no more hidden posts left → disable button
+        if (document.querySelectorAll(".blog-articles__article[style*='display: none']").length === 0) {
+          loadMoreBtn.innerText = "No Content";
+          loadMoreBtn.disabled = true;
+          loadMoreBtn.classList.add("noContent");
         }
       }, 500);
     });
