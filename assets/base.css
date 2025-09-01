@@ -3912,10 +3912,11 @@ button::after {
   transition: all .4s;
 }
 
-.blog-articles.blog-articles--collage{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.main-blog .blog-articles{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
 }
 
 .main-blog .blog-articles .blog-articles__article{
