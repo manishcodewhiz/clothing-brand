@@ -15,7 +15,7 @@
                         <span>{{ press_list.brand_name }}</span>
                         <span>{{ press_list.published_date }}</span>
                         <h2>{{ press_list.title }}</h2>
-                        <a href="" ></a>
+                        <a href="{{ press_list.cta_link }}" >{{ press_list.cta_text }}</a>
                     </div>
                 </li>
             {% endfor %}
