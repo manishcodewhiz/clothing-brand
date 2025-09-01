@@ -1,28 +1,56 @@
 {{ 'select-product.css' | asset_url | stylesheet_tag }}
 
 <div class="press-list">
-    <div class="page-width">
-        <ul class="press-list_iteam">
-            {% for press_list in metaobject.press.values %}
-                <li class="press-main-list">
-                    <div class="press-list_block">
-                        <img src="{{ press_list.image | image_url }}" width="" height="" loading="lazy" alt="{{ press_list.image.alt | default: shop.name }}">
-                        <div class="press_logo">
-                            <img src="{{ press_list.brand_logo | image_url }}" width="" height="" loading="lazy" alt="{{ press_list.brand_logo.alt | default: shop.name }}">
-                        </div>
-                    </div>
-                    <div class="press_content">
-                        <span>{{ press_list.brand_name }}</span>
-                        <span>{{ press_list.published_date }}</span>
-                        <h2>{{ press_list.title }}</h2>
-                        <a href="{{ press_list.cta_link }}" >{{ press_list.cta_text }}</a>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-        </div>
+  <div class="page-width">
+    <ul class="press-list_iteam">
+      {% for press_list in metaobject.press.values %}
+        <li class="press-main-list">
+          <div class="press-list_block">
+            <img
+              src="{{ press_list.image | image_url }}"
+              width=""
+              height=""
+              loading="lazy"
+              alt="{{ press_list.image.alt | default: shop.name }}"
+            >
+            <div class="press_logo">
+              <img
+                src="{{ press_list.brand_logo | image_url }}"
+                width=""
+                height=""
+                loading="lazy"
+                alt="{{ press_list.brand_logo.alt | default: shop.name }}"
+              >
+            </div>
+          </div>
+          <div class="press_content">
+            <span>{{ press_list.brand_name }}</span>
+            <span>{{ press_list.published_date }}</span>
+            <h2>{{ press_list.title }}</h2>
+            <a href="{{ press_list.cta_link }}">{{ press_list.cta_text }}</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+    <div class="press-load-more">
+      <a href="#" id="load-more" class="primary-btn black-btn">Load More</a>
+    </div>
+  </div>
 </div>
 
+<script>
+  jQuery(document).ready(function () {
+    $('.press-listing-list .press-listing-items').slice(0, 6).show();
+    $('#load-more').click(function (e) {
+      e.preventDefault();
+      $('.press-listing-list .press-listing-items:hidden').slice(0, 6).fadeIn('slow');
+
+      if ($('.press-listing-list .press-listing-items:hidden').length == 0) {
+        $('#load-more').fadeOut('slow');
+      }
+    });
+  });
+</script>
 
 {% schema %}
 {
