@@ -62,39 +62,51 @@
   <a href="#" id="load-more_button" class="load-more">Load More</a>
 </div>
 <script>
-   {% comment %} $(document).ready(function () {
-     $(".blog-articles__article").slice(0, 2).show();
+     {% comment %} $(document).ready(function () {
+       $(".blog-articles__article").slice(0, 2).show();
 
-     $("#loadMore").on("click", function (e) {
-       e.preventDefault();
-
-       // Show loader
-       $("#loader").show();
-       $("#loadMore").hide();
-
-       setTimeout(function () {
-         $(".blog-articles__article:hidden").slice(0, 2).slideDown();
-         // Hide loader
-         $("#loader").hide();
-         $("#loadMore").show();
-
-         if ($(".blog-articles__article:hidden").length === 0) {
-           $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
-         }
-       }, 500);
-     });
-   }); {% endcomment %}
-   {% comment %} $(document).ready(function(){
-       $(".blog-articles__article").slice(0,2).show();
-       $("#load-more_button").click(function(e){
+       $("#loadMore").on("click", function (e) {
          e.preventDefault();
-         $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
 
-         if($(".blog-articles__article:hidden").length == 0){
-            $("#load-more_button").fadeOut("slow");
+         // Show loader
+         $("#loader").show();
+         $("#loadMore").hide();
+
+         setTimeout(function () {
+           $(".blog-articles__article:hidden").slice(0, 2).slideDown();
+           // Hide loader
+           $("#loader").hide();
+           $("#loadMore").show();
+
+           if ($(".blog-articles__article:hidden").length === 0) {
+             $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
            }
+         }, 500);
        });
      }); {% endcomment %}
+     {% comment %} $(document).ready(function(){
+         $(".blog-articles__article").slice(0,2).show();
+         $("#load-more_button").click(function(e){
+           e.preventDefault();
+           $(".blog-articles__article:hidden").slice(0,2).fadeIn("slow");
+
+           if($(".blog-articles__article:hidden").length == 0){
+              $("#load-more_button").fadeOut("slow");
+             }
+         });
+       }); {% endcomment %}
+
+  $(document).ready(function(){
+    $("div").slice(0,3).show();
+    $("#seeMore").click(function(e){
+      e.preventDefault();
+      $("div:hidden").slice(0,3).fadeIn("slow");
+
+      if($("div:hidden").length == 0){
+         $("#seeMore").fadeOut("slow");
+        }
+    });
+  })
 </script>
 {% schema %}
 {
