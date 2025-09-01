@@ -3911,3 +3911,7 @@ button::after {
 .needsclick.kl-private-reset-css-Xuajs1 button{
   transition: all .4s;
 }
+
+.blog-articles.blog-articles--collage{
+  display: flex;
+}
