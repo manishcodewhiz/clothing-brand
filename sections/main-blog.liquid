@@ -35,58 +35,26 @@
   </div>
 </div>
 <script>
-      {% comment %} $(document).ready(function () {
-        $('.blog-articles__article').slice(0, 2).show();
-
-        $('#loadMore').on('click', function (e) {
-          e.preventDefault();
-
-          // Show loader
-          $('#loader').show();
-          $('#loadMore').hide();
-
-          setTimeout(function () {
-            $('.blog-articles__article:hidden').slice(0, 2).slideDown();
-            // Hide loader
-            $('#loader').hide();
-            $('#loadMore').show();
-    {% comment %}
-            if ($('.blog-articles__article:hidden').length === 0) {
-              $('#loadMore').text('No Content').addClass('noContent').prop('disabled', true);
-            } {% endcomment %}
-          }, 500);
-        });
-      }); {% endcomment %}
-
-      $(document).ready(function () {
-    var $articles = $('.blog-articles__article');
-
-    if ($articles.length) {
-      // Hide all, then show only first 2
-      $articles.hide().slice(0, 2).show().addClass('animate--visible');
-    }
+  $(document).ready(function () {
+    $('.blog-articles__article').slice(0, 2).show();
 
     $('#loadMore').on('click', function (e) {
       e.preventDefault();
 
+      // Show loader
       $('#loader').show();
       $('#loadMore').hide();
 
       setTimeout(function () {
-        var $nextArticles = $articles.filter(':hidden').slice(0, 2);
-
-        // Show with animation
-        $nextArticles.slideDown().addClass('animate--visible');
-
+        $('.blog-articles__article:hidden').slice(0, 2).slideDown();
+        // Hide loader
         $('#loader').hide();
+        $('#loadMore').show();
 
-        if ($articles.filter(':hidden').length === 0) {
-          // Hide the button completely when no more posts
-          $('#loadMore').hide();
-        } else {
-          $('#loadMore').show();
+        if ($('.blog-articles__article:hidden').length === 0) {
+          $('#loadMore').text('No Content').addClass('noContent').prop('disabled', true);
         }
-      }, 400);
+      }, 500);
     });
   });
 </script>
