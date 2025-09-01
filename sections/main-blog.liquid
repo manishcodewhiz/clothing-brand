@@ -10,7 +10,7 @@
     <ul class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
       {{  blog.articles.size | json }}
       {%- for article in blog.articles -%}
-        <li
+          <li
           class="blog-articles__article article"
           style="display:none;"  {# hide by default #}
           {% if settings.animations_reveal_on_scroll %}
