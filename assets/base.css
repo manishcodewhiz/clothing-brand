@@ -3918,8 +3918,8 @@ button::after {
   gap: 10px;
 }
 
-.blog-articles.blog-articles--collage .blog-articles__article.article{
-  max-width: calc(50% - 5px);
+.main-blog .blog-articles .blog-articles__article{
+  max-width: calc(25% - 5px);
   width: 100%;
   display: none;
 }
