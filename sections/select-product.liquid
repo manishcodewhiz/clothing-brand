@@ -6,9 +6,9 @@
             {% for press_list in metaobject.press.values %}
                 <li class="press-main-list">
                     <div class="press-list_block">
-                        <img src="{{ press_list.image | image_url }}" width="" height="" loading="lazy" alt="">
+                        <img src="{{ press_list.image | image_url }}" width="" height="" loading="lazy" alt="{{ press_list.image.alt | default: shop.name }}">
                         <div class="press_logo">
-                            <img src="{{ press_list.brand_logo }}" width="" height="" loading="lazy" alt="">
+                            <img src="{{ press_list.brand_logo }}" width="" height="" loading="lazy" alt="{{ press_list.brand_logo.alt | default: shop.name }}">
                         </div>
                     </div>
                     <div class="press_content">
