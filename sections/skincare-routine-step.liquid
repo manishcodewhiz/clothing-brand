@@ -7,21 +7,20 @@
         <div class="tab-list">
           <ul>
             {% for block in section.blocks %}
-                <h3>
-                  {% if block.type == 'prep' %}
-                    {{ section.settings.prep_heading | default: block.type | upcase }}
-                  {% elsif block.type == 'nourish' %}
-                    {{ section.settings.nourish_heading | default: block.type | upcase }}
-                  {% elsif block.type == 'protect' %}
-                    {{ section.settings.protect_heading | default: block.type | upcase }}
-                  {% elsif block.type == 'cleanse' %}
-                    {{ section.settings.cleanse_heading | default: block.type | upcase }}
-                  {% endif %}
-                </h3>
-                <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
-                  <span>{{ block.settings.step_title }}</span>
-                </li>
-          
+              <h3>
+                {% if section.settings.prep_heading %}
+                  {{ section.settings.prep_heading | upcase }}
+                {% elsif section.settings.nourish_heading %}
+                  {{ section.settings.nourish_heading | upcase }}
+                {% elsif section.settings.protect_heading %}
+                  {{ section.settings.protect_heading | upcase }}
+                {% elsif section.settings.cleanse_heading %}
+                  {{ section.settings.cleanse_heading | upcase }}
+                {% endif %}
+              </h3>
+              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+                <span>{{ block.settings.step_title }}</span>
+              </li>
             {% endfor %}
             {% comment %}
               <li data-tab="Water_Based_cleanser"><span>Water Based cleanser</span></li>
