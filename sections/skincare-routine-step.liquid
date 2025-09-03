@@ -9,7 +9,7 @@
           <ul>
             {% for block in section.blocks %}
               <h3>{{  block.settings.tab_title }}</h3>
-              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"><span>{{ block.settings.step_title }}</span></li>
+              <li data-tab="content_{{ block.settings.step_title |  handleize }}"><span>{{ block.settings.step_title }}</span></li>
               {% comment %} <li data-tab="Water_Based_cleanser"><span>Stap 2</span></li>
               <li data-tab="Exfoliator"><span>Stap 3</span></li>
               <h3>PREP</h3>
@@ -22,7 +22,7 @@
       </div>
       <div class="col-9">
         <div class="tab-main-content">
-          <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+          <div class="step-tab-content" id="content_{{ block.settings.step_title |  handleize }}">
             <div class="row">
               <div class="col-6">
                 <div class="tab-text_details">
