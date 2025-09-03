@@ -52,12 +52,12 @@
         $("#loader").hide();
         $("#loadMore").show();
 
-           if ($(".main-blog .blog-articles__article:hidden").length === 0) {
+           {% comment %} if ($(".main-blog .blog-articles__article:hidden").length === 0) {
           $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
-        }
-        {% comment %} if ($(".main-blog .blog-articles__article:hidden").length === 0) {
-          $("#loadMore").fadeOut();
         } {% endcomment %}
+        if ($(".main-blog .blog-articles__article:hidden").length === 0) {
+          $("#loadMore").fadeOut();
+        } 
       }, 500);
     });
   });
