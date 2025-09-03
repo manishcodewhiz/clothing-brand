@@ -855,8 +855,8 @@
       $(this).addClass('active');
 
       $('.step-tab-content').removeClass('active');
-      {% comment %} const tabId = $(this).data('tab'); {% endcomment %}
-      $('.step-tab-content').addClass('active');
+      const tabId = $(this).data('tab');
+      $('#' + tabId).addClass('active');
     });
   });
 </script>
