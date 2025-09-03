@@ -5,21 +5,24 @@
     <div class="row">
       <div class="col-3">
         <div class="tab-list">
+
           <ul>
-            <h3>CLEANSE</h3>
-            <li data-tab="Makeup_remover_&_oil_cleanser"><span>Stap 1</span></li>
-            <li data-tab="Water_Based_cleanser"><span>Stap 2</span></li>
-            <li data-tab="Exfoliator"><span>Stap 3</span></li>
-            <h3>PREP</h3>
-            <li data-tab="Toner"><span>Stap 4</span></li>
-            <h3>NOURISH</h3>
-            <li data-tab="Essence"><span>Stap 5</span></li>
+            {% for block in section.blocks %}
+              <h3>{{  block.settings.tab_title }}</h3>
+              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"><span>{{ block.settings.step_title }}</span></li>
+              {% comment %} <li data-tab="Water_Based_cleanser"><span>Stap 2</span></li>
+              <li data-tab="Exfoliator"><span>Stap 3</span></li>
+              <h3>PREP</h3>
+              <li data-tab="Toner"><span>Stap 4</span></li>
+              <h3>NOURISH</h3>
+              <li data-tab="Essence"><span>Stap 5</span></li> {% endcomment %}
+            {% endfor %}
           </ul>
         </div>
       </div>
       <div class="col-9">
         <div class="tab-main-content">
-          <div class="step-tab-content" id="Makeup_remover_&_oil_cleanser">
+          <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
             <div class="row">
               <div class="col-6">
                 <div class="tab-text_details">
