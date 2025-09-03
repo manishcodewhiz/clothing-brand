@@ -35,7 +35,7 @@
       </div>
       <div class="col-9">
         {% assign cleanse_blocks = section.blocks | where: 'type', 'cleanse' %}
-        <div class="step-tab-mobile">
+        <div class="tab-list step-tab-mobile">
           <ul>
             {% for block in cleanse_blocks %}
               {% if block.settings.tab_title != blank %}
