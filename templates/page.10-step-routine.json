@@ -23,7 +23,7 @@
         "cleanse_yCzc94": {
           "type": "cleanse",
           "settings": {
-            "tab_title": "",
+            "tab_title": "CLEANSE",
             "step_title": "Makeup remover & oil cleanser",
             "decsription": "<p>Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup, sunscreen, and other oil-based impurities.</p>"
           }
@@ -47,7 +47,7 @@
         "prep_w4MNzQ": {
           "type": "prep",
           "settings": {
-            "tab_title": "",
+            "tab_title": "PREP",
             "step_title": "Toner",
             "decsription": "<p>Toners are the essential prep step, sweeping away any remaining residue from cleansing while supporting your skin’s barrier for better absorption of the products that follow. Think of your skin like a sponge - it’s much easier to hydrate when it’s slightly damp than when it’s dry and tight.</p>"
           }
@@ -55,7 +55,7 @@
         "nourish_7e3aaw": {
           "type": "nourish",
           "settings": {
-            "tab_title": "",
+            "tab_title": "NOURISH",
             "step_title": "Essence",
             "decsription": "<p>Essences are lightweight but potent, often concentrated with hydrating, slow-aging, and skin-replenishing ingredients to smooth, brighten, and prep your skin for what’s next.</p>"
           }
@@ -87,7 +87,7 @@
         "protect_Vrpaq8": {
           "type": "protect",
           "settings": {
-            "tab_title": "",
+            "tab_title": "PROTECT",
             "step_title": "Moisturizer",
             "decsription": "<p>Whether it’s a lightweight gel or a rich cream, moisturizers deliver lasting hydration, strengthen the skin barrier, and seal in the steps that come before. They help smooth texture, soften fine lines, and keep skin balanced and healthy around the clock.</p>"
           }
