@@ -11,7 +11,6 @@
             {% for block in section.blocks %}
               {% assign group = block.type | upcase %}
               {% if group != current_group %}
-                {% assign current_group = group %}
                 <h3>
                   {% if block.type == 'prep' %}
                     {{ section.settings.prep_heading | default: block.type | upcase }}
