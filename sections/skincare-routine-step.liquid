@@ -831,15 +831,15 @@
   $(document).ready(function () {
     $('.tab-list ul li').first().addClass('active');
     $('.step-tab-content').first().addClass('active');
-    
+
     $('.tab-list ul li').on('click', function () {
       $('.tab-list ul li').removeClass('active');
       $(this).addClass('active');
 
-      $('.step-tab-content').removeClass('active'); // hide all
-      const tabId = $(this).data('tab');
-      $('#' + tabId).addClass('active'); // show only clicked one
-    });
+     $('.step-tab-content').removeClass('active');
+    const tabId = $(this).data('tab');
+    console.log('Clicked tabId:', tabId);
+    $('#' + tabId).addClass('active');
   });
 </script>
 {% schema %}
