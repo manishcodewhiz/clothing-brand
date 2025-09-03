@@ -36,8 +36,8 @@
         </div>
       </div>
       <div class="col-9">
+        {% assign cleanse_blocks = section.blocks | where: 'type', 'cleanse' %}
         <div class="tab-main-content">
-           {% assign cleanse_blocks = section.blocks | where: 'type', 'cleanse' %}
            {% for block in cleanse_blocks %}
              <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}" >
                <div class="row">
@@ -274,8 +274,10 @@
             </div>
           </div> {% endcomment %}
         </div>
+        {% assign prep_blocks = section.blocks | where: 'type', 'prep' %}
         <div class="tab-main-content">
-          <div class="step-tab-content" id="Toner">
+
+          <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
             <div class="row">
               <div class="col-6">
                 <div class="tab-text_details">
