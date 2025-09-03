@@ -872,6 +872,13 @@
       const tabId = $(this).data('tab');
       $('#' + tabId).addClass('active');
     });
+
+    $('.step-tab-mobile h3').on('click', function(){
+    $('.step-tab-mobile h3').removeClass('active-tabs'):
+    $(this).addClass('active-tabs');
+
+    $('.tab-main-content').toggle()
+    })
   });
 </script>
 {% schema %}
