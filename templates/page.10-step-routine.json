@@ -19,6 +19,37 @@
     },
     "skincare_routine_step_KchkaY": {
       "type": "skincare-routine-step",
+      "blocks": {
+        "step_routine_DyLQGb": {
+          "type": "step_routine",
+          "settings": {
+            "tab_title": "CLEANSE",
+            "step_title": "Makeup remover & oil cleanser",
+            "decsription": "<p>Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup, sunscreen, and other oil-based impurities.</p>"
+          }
+        },
+        "step_routine_UzyXiG": {
+          "type": "step_routine",
+          "settings": {
+            "tab_title": "",
+            "step_title": "Water Based cleanser",
+            "decsription": "<p>The second step of the double cleanse. Cleansing twice is recommended by aestheticians and dermatologists because it helps to thoroughly remove any impurities that can cause breakouts. Water-based cleansers dissolve the water-based impurities such as dirt and sweat that your oil cleanser didn’t pick up.</p>"
+          }
+        },
+        "step_routine_mQ9Kdd": {
+          "type": "step_routine",
+          "settings": {
+            "tab_title": "",
+            "step_title": "Exfoliator",
+            "decsription": "<p>Physical and chemical exfoliants help unclog pores and remove dead skin cells, revealing a brighter, smoother complexion. Regular exfoliation also enhances the effectiveness of your skincare routine by allowing products to absorb more easily.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_routine_DyLQGb",
+        "step_routine_UzyXiG",
+        "step_routine_mQ9Kdd"
+      ],
       "name": "Skincare Routine Steps",
       "settings": {}
     }
