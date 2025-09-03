@@ -37,7 +37,7 @@
         {% assign cleanse_blocks = section.blocks | where: 'type', 'cleanse' %}
         <div class="tab-list">
           <ul>
-            {% for block in section.blocks %}
+            {% for block in cleanse_blocks %}
               {% if block.settings.tab_title != blank %}
                 <h3>
                   {{ block.settings.tab_title }}
