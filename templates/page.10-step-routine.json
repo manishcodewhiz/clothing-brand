@@ -16,9 +16,15 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "skincare_routine_step_KchkaY": {
+      "type": "skincare-routine-step",
+      "name": "Skincare Routine Steps",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "skincare_routine_step_KchkaY"
   ]
 }
