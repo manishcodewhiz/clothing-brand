@@ -292,6 +292,20 @@
         </div>
 
         {% assign prep_blocks = section.blocks | where: 'type', 'prep' %}
+        <div class="tab-list step-tab-mobile">
+          <ul>
+            {% for block in cleanse_blocks %}
+              {% if block.settings.tab_title != blank %}
+                <h3>
+                  {{ block.settings.tab_title }}
+                </h3>
+              {% endif %}
+              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+                <span>{{ block.settings.step_title }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
         <div class="tab-main-content">
           {% for block in prep_blocks %}
             <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
@@ -374,6 +388,20 @@
           {% endfor %}
         </div>
         {% assign nourish_blocks = section.blocks | where: 'type', 'nourish' %}
+        <div class="tab-list step-tab-mobile">
+          <ul>
+            {% for block in cleanse_blocks %}
+              {% if block.settings.tab_title != blank %}
+                <h3>
+                  {{ block.settings.tab_title }}
+                </h3>
+              {% endif %}
+              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+                <span>{{ block.settings.step_title }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
         <div class="tab-main-content">
           {% for block in nourish_blocks %}
             <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
@@ -695,6 +723,20 @@
           {% endcomment %}
         </div>
         {% assign protect_blocks = section.blocks | where: 'type', 'protect' %}
+        <div class="tab-list step-tab-mobile">
+          <ul>
+            {% for block in cleanse_blocks %}
+              {% if block.settings.tab_title != blank %}
+                <h3>
+                  {{ block.settings.tab_title }}
+                </h3>
+              {% endif %}
+              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+                <span>{{ block.settings.step_title }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
         <div class="tab-main-content">
           {% for block in protect_blocks %}
             <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
@@ -873,10 +915,10 @@
       const tabId = $(this).data('tab');
       $('#' + tabId).addClass('active');
     });
-    
-      $('.step-tab-mobile h3').on('click', function () {
-        $('.tab-main-content').toggle();
-      }); 
+
+    $('.step-tab-mobile h3').on('click', function () {
+      $('.tab-main-content').toggle();
+    });
   });
 </script>
 {% schema %}
