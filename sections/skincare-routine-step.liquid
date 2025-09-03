@@ -6,26 +6,26 @@
       <div class="col-3">
         <div class="tab-list">
           <ul>
-             {% assign current_group = '' %}
+            {% assign current_group = '' %}
             {% comment %} {% assign first_li = true %} {% endcomment %}
             {% for block in section.blocks %}
               {% assign group = block.type | upcase %}
               {% if group != current_group %}
                 {% assign current_group = group %}
-              <h3>
-                {% if block.type == 'prep' %}
-                  {{ section.settings.prep_heading | default: block.type | upcase }}
-                {% elsif block.type == 'nourish' %}
-                  {{ section.settings.nourish_heading | default: block.type | upcase }}
-                {% elsif block.type == 'protect' %}
-                  {{ section.settings.protect_heading | default: block.type | upcase }}
-                {% elsif block.type == 'cleanse' %}
-                  {{ section.settings.cleanse_heading | default: block.type | upcase }}
-                {% endif %}
-              </h3>
-              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
-                <span>{{ block.settings.step_title }}</span>
-              </li>
+                <h3>
+                  {% if block.type == 'prep' %}
+                    {{ section.settings.prep_heading | default: block.type | upcase }}
+                  {% elsif block.type == 'nourish' %}
+                    {{ section.settings.nourish_heading | default: block.type | upcase }}
+                  {% elsif block.type == 'protect' %}
+                    {{ section.settings.protect_heading | default: block.type | upcase }}
+                  {% elsif block.type == 'cleanse' %}
+                    {{ section.settings.cleanse_heading | default: block.type | upcase }}
+                  {% endif %}
+                </h3>
+                <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+                  <span>{{ block.settings.step_title }}</span>
+                </li>
               {% endif %}
             {% endfor %}
             {% comment %}
@@ -104,24 +104,26 @@
                     </ul>
                   </div>
                 </div>
-                {% comment %} <div class="col-6">
-                  <div class="tab-text_media">
-                    <img
-                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
-                      width=""
-                      height=""
-                      alt=""
-                      loading="lazy"
-                    >
-                    <img
-                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
-                      width=""
-                      height=""
-                      alt=""
-                      loading="lazy"
-                    >
+                {% comment %}
+                  <div class="col-6">
+                    <div class="tab-text_media">
+                      <img
+                        src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                        width=""
+                        height=""
+                        alt=""
+                        loading="lazy"
+                      >
+                      <img
+                        src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                        width=""
+                        height=""
+                        alt=""
+                        loading="lazy"
+                      >
+                    </div>
                   </div>
-                </div> {% endcomment %}
+                {% endcomment %}
               </div>
             </div>
           {% endfor %}
@@ -295,53 +297,55 @@
                   <div class="tab-text_details">
                     <h2>{{ block.settings.step_title }}</h2>
                     {{ block.settings.decsription }}
-                    {% comment %} <ul>
-                      <li>
-                        <div class="svg-icon">
-                          <img
-                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
-                            width="43"
-                            height="43"
-                            alt=""
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="svg-text">
-                          <h5>What it does</h5>
-                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="svg-icon">
-                          <img
-                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
-                            width="43"
-                            height="43"
-                            alt=""
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="svg-text">
-                          <h5>What it does</h5>
-                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="svg-icon">
-                          <img
-                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
-                            width="43"
-                            height="43"
-                            alt=""
-                            loading="lazy"
-                          >
-                        </div>
-                        <div class="svg-text">
-                          <h5>What it does</h5>
-                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
-                        </div>
-                      </li>
-                    </ul> {% endcomment %}
+                    {% comment %}
+                      <ul>
+                        <li>
+                          <div class="svg-icon">
+                            <img
+                              src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                              width="43"
+                              height="43"
+                              alt=""
+                              loading="lazy"
+                            >
+                          </div>
+                          <div class="svg-text">
+                            <h5>What it does</h5>
+                            <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="svg-icon">
+                            <img
+                              src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                              width="43"
+                              height="43"
+                              alt=""
+                              loading="lazy"
+                            >
+                          </div>
+                          <div class="svg-text">
+                            <h5>What it does</h5>
+                            <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="svg-icon">
+                            <img
+                              src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                              width="43"
+                              height="43"
+                              alt=""
+                              loading="lazy"
+                            >
+                          </div>
+                          <div class="svg-text">
+                            <h5>What it does</h5>
+                            <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                          </div>
+                        </li>
+                      </ul>
+                    {% endcomment %}
                   </div>
                 </div>
                 <div class="col-6">
@@ -433,13 +437,15 @@
                       alt=""
                       loading="lazy"
                     >
-                    {% comment %} <img
-                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
-                      width=""
-                      height=""
-                      alt=""
-                      loading="lazy"
-                    > {% endcomment %}
+                    {% comment %}
+                      <img
+                        src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                        width=""
+                        height=""
+                        alt=""
+                        loading="lazy"
+                      >
+                    {% endcomment %}
                   </div>
                 </div>
               </div>
