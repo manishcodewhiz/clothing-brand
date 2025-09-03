@@ -10,7 +10,8 @@
             {% comment %} {% assign first_li = true %} {% endcomment %}
             {% for block in section.blocks %}
               {% assign group = block.type | upcase %}
-              {% if group != current_group %}
+    
+                {% assign current_group = group %}
                 <h3>
                   {% if block.type == 'prep' %}
                     {{ section.settings.prep_heading | default: block.type | upcase }}
@@ -25,7 +26,7 @@
                 <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                   <span>{{ block.settings.step_title }}</span>
                 </li>
-              {% endif %}
+          
             {% endfor %}
             {% comment %}
               <li data-tab="Water_Based_cleanser"><span>Water Based cleanser</span></li>
