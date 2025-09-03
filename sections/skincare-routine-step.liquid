@@ -5,29 +5,31 @@
     <div class="row">
       <div class="col-3">
         <div class="tab-list">
-
+          
           <ul>
-            {% for block in section.blocks %}
-              <h3>{{  block.settings.tab_title }}</h3>
-              <li data-tab="content_{{ block.settings.step_title |  handleize }}"><span>{{ block.settings.step_title }}</span></li>
-              {% comment %} <li data-tab="Water_Based_cleanser"><span>Stap 2</span></li>
-              <li data-tab="Exfoliator"><span>Stap 3</span></li>
-              <h3>PREP</h3>
-              <li data-tab="Toner"><span>Stap 4</span></li>
-              <h3>NOURISH</h3>
-              <li data-tab="Essence"><span>Stap 5</span></li> {% endcomment %}
-            {% endfor %}
+            <h3>CLEANSE</h3>
+            <li data-tab="Makeup_remover_&_oil_cleanser"><span>Stap 1</span></li>
+            <li data-tab="Water_Based_cleanser"><span>Stap 2</span></li>
+            <li data-tab="Exfoliator"><span>Stap 3</span></li>
+            <h3>PREP</h3>
+            <li data-tab="Toner"><span>Stap 4</span></li>
+            <h3>NOURISH</h3>
+            <li data-tab="Essence"><span>Stap 5</span></li>
           </ul>
         </div>
       </div>
       <div class="col-9">
         <div class="tab-main-content">
-          <div class="step-tab-content" data-tab="content_{{ block.settings.step_title |  handleize }}"">
+          <div class="step-tab-content" id="Makeup_remover_&_oil_cleanser">
             <div class="row">
               <div class="col-6">
                 <div class="tab-text_details">
-                  <h2>{{ block.settings.step_title }}</h2>
-                 {{ block.settings.Decsription }}
+                  <h2>Makeup remover & oil cleanser</h2>
+                  <p>
+                    Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the
+                    double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup,
+                    sunscreen, and other oil-based impurities.
+                  </p>
                   <ul>
                     <li>
                       <div class="svg-icon">
