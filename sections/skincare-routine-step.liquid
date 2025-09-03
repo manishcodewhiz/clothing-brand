@@ -6,12 +6,7 @@
       <div class="col-3">
         <div class="tab-list">
           <ul>
-            {% assign current_group = '' %}
-            {% comment %} {% assign first_li = true %} {% endcomment %}
             {% for block in section.blocks %}
-              {% assign group = block.type | upcase %}
-    
-                {% assign current_group = group %}
                 <h3>
                   {% if block.type == 'prep' %}
                     {{ section.settings.prep_heading | default: block.type | upcase }}
