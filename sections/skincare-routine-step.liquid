@@ -873,17 +873,6 @@
       $('#' + tabId).addClass('active');
     });
 
-    $('.step-tab-mobile ul h3').on('click', function () {
-      $('.step-tab-mobile ul h3').removeClass('active');
-      $(this).addClass('active');
-      let dataTab = $(this).next('li').data('tab');
-      $('.tab-main-content .step-tab-content').hide();
-      $('#' + dataTab).show();
-    });
-
-    $('.step-tab-mobile ul h3:first').addClass('active');
-    let firstDataTab = $('.step-tab-mobile ul h3:first').next('li').data('tab');
-    $('#' + firstDataTab).show();
   });
 </script>
 {% schema %}
