@@ -903,33 +903,35 @@
 </div>
 
 <script>
-  $(document).ready(function () {
-    $('.tab-list ul li').first().addClass('active');
-    $('.step-tab-content').first().addClass('active');
+    $(document).ready(function () {
+      $('.tab-list ul li').first().addClass('active');
+      $('.step-tab-content').first().addClass('active');
 
-    $('.tab-list ul li').on('click', function () {
-      $('.tab-list ul li').removeClass('active');
-      $(this).addClass('active');
+      $('.tab-list ul li').on('click', function () {
+        $('.tab-list ul li').removeClass('active');
+        $(this).addClass('active');
 
-      $('.step-tab-content').removeClass('active');
-      const tabId = $(this).data('tab');
-      $('#' + tabId).addClass('active');
+        $('.step-tab-content').removeClass('active');
+        const tabId = $(this).data('tab');
+        $('#' + tabId).addClass('active');
+      });
+
+     $('.step-tab-mobile h3').on('click', function () {
+        $(this).toggleClass('active');
+        $('.tab-main-content').toggle();
+      });
+      $('.step-tab-mobile h3').on('click', function () {
+        $('.step-tab-mobile ul li').toggle();
+      });
+
+  {% comment %}
+      $('.step-tab-mobile h3').on('click', function () {
+        $(this).toggleClass('active');
+        $(this).siblings('.tab-main-content').toggle();
+        $(this).siblings('ul').find('li').toggle();
+      }); {% endcomment %}
+
     });
-
-    {% comment %} $('.step-tab-mobile h3').on('click', function () {
-      $('.tab-main-content').toggle();
-    });
-    $('.step-tab-mobile h3').on('click', function () {
-      $('.step-tab-mobile ul li').toggle();
-    }); {% endcomment %}
-
-    $('.step-tab-mobile h3').on('click', function () {
-      $(this).toggleClass('active');
-      $(this).siblings('.tab-main-content').toggle();
-      $(this).siblings('ul').find('li').toggle();
-    });
-
-  });
 </script>
 {% schema %}
 {
