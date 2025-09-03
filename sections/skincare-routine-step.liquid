@@ -828,15 +828,16 @@
 </div>
 
 <script>
-  $(document).ready(function () {
-    $('.tab-list ul li').on('click', function () {
-      $('.tab-list ul li').removeClass('active');
-      $(this).addClass('active');
-      $('.step-tab-content').hide();
-      const tabId = $(this).data('tab');
-      $('#' + tabId).show();
-    });
+$(document).ready(function () {
+  $('.tab-list ul li').on('click', function () {
+    $('.tab-list ul li').removeClass('active');
+    $(this).addClass('active');
+
+    $('.step-tab-content').removeClass('active'); // hide all
+    const tabId = $(this).data('tab');
+    $('#' + tabId).addClass('active'); // show only clicked one
   });
+});
 </script>
 {% schema %}
 {
