@@ -433,19 +433,7 @@
     const tabId = $(this).data('tab');
     $('#' + tabId).show();
 
-    {% comment %} $('html, body').animate({
-      scrollTop: $('#' + tabId).offset().top - 140
-    }, 600); {% endcomment %}
   });
-
-  {% comment %} $('.desktop-primary-btn').on('click', function(e) {
-    e.preventDefault();
-    var activeTabLiItem = $('li.step-tab-item.active');
-    var nextTabLiItem = activeTabLiItem.nextAll('li.step-tab-item').first();
-    if (nextTabLiItem.length) {
-      nextTabLiItem.trigger('click');
-    }
-  }); {% endcomment %}
   })
 </script>
 {% schema %}
