@@ -8,7 +8,7 @@
           <ul>
             {% for block in section.blocks %}
                 <h3>
-                  {% if block.type == 'prep' %}
+                  {% comment %} {% if block.type == 'prep' %}
                     {{ section.settings.prep_heading | default: block.type | upcase }}
                   {% elsif block.type == 'nourish' %}
                     {{ section.settings.nourish_heading | default: block.type | upcase }}
@@ -16,7 +16,8 @@
                     {{ section.settings.protect_heading | default: block.type | upcase }}
                   {% elsif block.type == 'cleanse' %}
                     {{ section.settings.cleanse_heading | default: block.type | upcase }}
-                  {% endif %}
+                  {% endif %} {% endcomment %}
+                   {{ block.settings.tab_title }}
                 </h3>
                 <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                   <span>{{ block.settings.step_title }}</span>
