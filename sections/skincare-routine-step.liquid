@@ -98,7 +98,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="step-tab-content" id="Water_Based_cleanser">
             <div class="row">
               <div class="col-6">
@@ -426,21 +426,42 @@
 </div>
 
 <script>
-  $(document).ready(function(){
-    $('.tab-list ul li').on('click', function() {
-    $('.tab-list ul li').removeClass('active');
-    $(this).addClass('active');
-    $('.step-tab-content').hide();
-    const tabId = $(this).data('tab');
-    $('#' + tabId).show();
-
+  $(document).ready(function () {
+    $('.tab-list ul li').on('click', function () {
+      $('.tab-list ul li').removeClass('active');
+      $(this).addClass('active');
+      $('.step-tab-content').hide();
+      const tabId = $(this).data('tab');
+      $('#' + tabId).show();
+    });
   });
-  })
 </script>
 {% schema %}
 {
   "name": "Skincare Routine Steps",
   "settings": [],
+  "blocks": [
+    {
+      "type": "step_routine",
+      "name": "Step Routine",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Tab Settings"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title"
+        },
+        {
+          "type": "richtext",
+          "id": "decsription",
+          "label": "Decsription"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "Skincare Routine Steps"
