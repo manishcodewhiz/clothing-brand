@@ -426,8 +426,8 @@
 
 <script>
   $(document).ready(function(){
-      $('.step-tab-item').on('click', function() {
-    $('.step-tab-item').removeClass('active');
+      $('.tab-list ul li').on('click', function() {
+    $('.tab-list ul li').removeClass('active');
     $(this).addClass('active');
     $('.step-tab-content').hide();
     const tabId = $(this).data('tab');
@@ -438,14 +438,14 @@
     }, 600); {% endcomment %}
   });
 
-  $('.desktop-primary-btn').on('click', function(e) {
+  {% comment %} $('.desktop-primary-btn').on('click', function(e) {
     e.preventDefault();
     var activeTabLiItem = $('li.step-tab-item.active');
     var nextTabLiItem = activeTabLiItem.nextAll('li.step-tab-item').first();
     if (nextTabLiItem.length) {
       nextTabLiItem.trigger('click');
     }
-  });
+  }); {% endcomment %}
   })
 </script>
 {% schema %}
