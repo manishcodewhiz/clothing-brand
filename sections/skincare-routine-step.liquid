@@ -9,17 +9,6 @@
             {% for block in section.blocks %}
               {% if block.settings.tab_title != blank %}
                 <h3>
-                  {% comment %}
-                    {% if block.type == 'prep' %}
-                      {{ section.settings.prep_heading | default: block.type | upcase }}
-                    {% elsif block.type == 'nourish' %}
-                      {{ section.settings.nourish_heading | default: block.type | upcase }}
-                    {% elsif block.type == 'protect' %}
-                      {{ section.settings.protect_heading | default: block.type | upcase }}
-                    {% elsif block.type == 'cleanse' %}
-                      {{ section.settings.cleanse_heading | default: block.type | upcase }}
-                    {% endif %}
-                  {% endcomment %}
                   {{ block.settings.tab_title }}
                 </h3>
               {% endif %}
