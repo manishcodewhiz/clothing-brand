@@ -10,7 +10,7 @@
     <ul class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
       {% comment %} {{  blog.articles.size | json }} {% endcomment %}
       {%- for article in blog.articles -%}
-          <li
+        <li
           class="blog-articles__article article"
           style="display:none;"
           {% if settings.animations_reveal_on_scroll %}
@@ -36,28 +36,31 @@
   </div>
 </div>
 <script>
-  $(document).ready(function () {
-  $(".main-blog .blog-articles__article").slice(0, 4).show();
+    $(document).ready(function () {
+    $(".main-blog .blog-articles__article").slice(0, 4).show();
 
-  $("#loadMore").on("click", function (e) {
-    e.preventDefault();
+    $("#loadMore").on("click", function (e) {
+      e.preventDefault();
 
-    // Show loader
-    $("#loader").show();
-    $("#loadMore").hide();
+      // Show loader
+      $("#loader").show();
+      $("#loadMore").hide();
 
-    setTimeout(function () {
-      $(".main-blog .blog-articles__article:hidden").slice(0, 4).slideDown();
-      // Hide loader
-      $("#loader").hide();
-      $("#loadMore").show();
+      setTimeout(function () {
+        $(".main-blog .blog-articles__article:hidden").slice(0, 4).slideDown();
+        // Hide loader
+        $("#loader").hide();
+        $("#loadMore").show();
 
-      if ($(".main-blog .blog-articles__article:hidden").length === 0) {
-        $("#loadMore").fadeOut();
-      }
-    }, 500);
+           if ($(".main-blog .blog-articles__article:hidden").length === 0) {
+          $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
+        }
+        {% comment %} if ($(".main-blog .blog-articles__article:hidden").length === 0) {
+          $("#loadMore").fadeOut();
+        } {% endcomment %}
+      }, 500);
+    });
   });
-});
 </script>
 {% schema %}
 {
