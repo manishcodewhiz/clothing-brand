@@ -7,10 +7,20 @@
         <div class="tab-list">
           <ul>
             {% for block in section.blocks %}
-              <h3>CLEANSE</h3>
-              <li data-tab="Makeup_remover_oil_cleanser"><span>Makeup remover & oil cleanser</span></li>
+              <h3>
+                {% if block.type == 'prep' %}
+                  {{ section.settings.prep_heading | default: block.type | upcase }}
+                {% elsif block.type == 'nourish' %}
+                  {{ section.settings.nourish_heading | default: block.type | upcase }}
+                {% elsif block.type == 'protect' %}
+                  {{ section.settings.protect_heading | default: block.type | upcase }}
+                {% elsif block.type == 'cleanse' %}
+                  {{ section.settings.cleanse_heading | default: block.type | upcase }}
+                {% endif %}
+              </h3>
+              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"><span>{{ block.settings.step_title }}</span></li>
             {% endfor %}
-            <li data-tab="Water_Based_cleanser"><span>Water Based cleanser</span></li>
+            {% comment %} <li data-tab="Water_Based_cleanser"><span>Water Based cleanser</span></li>
             <li data-tab="Exfoliator"><span>Exfoliator</span></li>
             <h3>PREP</h3>
             <li data-tab="Toner"><span>Toner</span></li>
@@ -21,7 +31,7 @@
             <li data-tab="Eye_Cream"><span>Eye Cream</span></li>
             <h3>PROTECT</h3>
             <li data-tab="Moisturizer"><span>Moisturizer</span></li>
-            <li data-tab="Sun_protection"><span>Sun protection</span></li>
+            <li data-tab="Sun_protection"><span>Sun protection</span></li> {% endcomment %}
           </ul>
         </div>
       </div>
