@@ -32,24 +32,56 @@
         </li>
       {% endfor %}
     </ul>
-    <div class="press-load-more">
-      <a href="#" id="load-more_button" class="load-more">Load More</a>
+    {% comment %}
+      <div class="press-load-more">
+        <a href="#" id="load-more_button" class="load-more">Load More</a>
+      </div>
+    {% endcomment %}
+    <div class="load-more-blog">
+      <a href="#" id="loadMore" class="primary-btn black-btn">Load More</a>
+      <div id="loader" style="display:none;">Loading...</div>
     </div>
   </div>
 </div>
 
 <script>
-$(document).ready(function(){
-    $(".press-main-list").slice(0,3).show();
-    $("#load-more_button").click(function(e){
-      e.preventDefault();
-      $(".press-main-list:hidden").slice(0,3).fadeIn("slow");
+  {% comment %} $(document).ready(function(){
+      $(".press-main-list").slice(0,3).show();
+      $("#load-more_button").click(function(e){
+        e.preventDefault();
+        $(".press-main-list:hidden").slice(0,3).fadeIn("slow");
 
-      if($(".press-main-list:hidden").length == 0){
-         $("#load-more_button").fadeOut("slow");
-        }
+        if($(".press-main-list:hidden").length == 0){
+           $("#load-more_button").fadeOut("slow");
+          }
+      });
+    }); {% endcomment %}
+
+     $(document).ready(function () {
+      $(".main-blog .blog-articles__article").slice(0, 4).show();
+
+      $("#loadMore").on("click", function (e) {
+        e.preventDefault();
+
+        // Show loader
+        $("#loader").show();
+        $("#loadMore").hide();
+
+        setTimeout(function () {
+          $(".main-blog .blog-articles__article:hidden").slice(0, 4).slideDown();
+          // Hide loader
+          $("#loader").hide();
+          $("#loadMore").show();
+
+             if ($(".main-blog .blog-articles__article:hidden").length === 0) {
+            $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
+          }
+          {% comment %} if ($(".main-blog .blog-articles__article:hidden").length === 0) {
+            $("#loadMore").fadeOut();
+          } {% endcomment %}
+        }, 500);
+      });
     });
-  });
 </script>
 
 {% schema %}
