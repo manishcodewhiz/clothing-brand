@@ -58,7 +58,7 @@
     }); {% endcomment %}
 
      $(document).ready(function () {
-      $(".main-blog .blog-articles__article").slice(0, 4).show();
+      $(".press-main-list").slice(0, 3).show();
 
       $("#loadMore").on("click", function (e) {
         e.preventDefault();
@@ -68,12 +68,12 @@
         $("#loadMore").hide();
 
         setTimeout(function () {
-          $(".main-blog .blog-articles__article:hidden").slice(0, 4).slideDown();
+          $(".press-main-list:hidden").slice(0, 3).slideDown();
           // Hide loader
           $("#loader").hide();
           $("#loadMore").show();
 
-             if ($(".main-blog .blog-articles__article:hidden").length === 0) {
+             if ($(".press-main-list:hidden").length === 0) {
             $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
           }
           {% comment %} if ($(".main-blog .blog-articles__article:hidden").length === 0) {
