@@ -294,7 +294,7 @@
         {% assign prep_blocks = section.blocks | where: 'type', 'prep' %}
         <div class="tab-list step-tab-mobile">
           <ul>
-            {% for block in cleanse_blocks %}
+            {% for block in prep_blocks %}
               {% if block.settings.tab_title != blank %}
                 <h3>
                   {{ block.settings.tab_title }}
@@ -390,7 +390,7 @@
         {% assign nourish_blocks = section.blocks | where: 'type', 'nourish' %}
         <div class="tab-list step-tab-mobile">
           <ul>
-            {% for block in cleanse_blocks %}
+            {% for block in nourish_blocks %}
               {% if block.settings.tab_title != blank %}
                 <h3>
                   {{ block.settings.tab_title }}
@@ -725,7 +725,7 @@
         {% assign protect_blocks = section.blocks | where: 'type', 'protect' %}
         <div class="tab-list step-tab-mobile">
           <ul>
-            {% for block in cleanse_blocks %}
+            {% for block in protect_blocks %}
               {% if block.settings.tab_title != blank %}
                 <h3>
                   {{ block.settings.tab_title }}
