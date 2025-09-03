@@ -74,7 +74,7 @@
           $("#loadMore").show();
 
              if ($(".press-main-list:hidden").length === 0) {
-            $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
+             $("#loadMore").fadeOut();
           }
           {% comment %} if ($(".main-blog .blog-articles__article:hidden").length === 0) {
             $("#loadMore").fadeOut();
