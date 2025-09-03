@@ -873,11 +873,11 @@
       const tabId = $(this).data('tab');
       $('#' + tabId).addClass('active');
     });
+    
+      $('.step-tab-mobile h3').on('click', function () {
+        $('.tab-main-content').toggle();
+      }); 
   });
-
-  $('.step-tab-mobile h3').on('click', function () {
-    $('.tab-main-content').toggle();
-  }); 
 </script>
 {% schema %}
 {
