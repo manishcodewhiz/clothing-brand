@@ -121,7 +121,14 @@
                         {%- assign video_poster_url = block.settings.video_poster | image_url -%}
                         {{
                           block.settings.video_url
-                          | video_tag: width: 500, height: 340, poster: video_poster_url, class: 'my_video', autoplay: true, muted: true, loop: true
+                          | video_tag:
+                            width: 500,
+                            height: 340,
+                            poster: video_poster_url,
+                            class: 'my_video',
+                            autoplay: true,
+                            muted: true,
+                            loop: true
                         }}
                       {% endif %}
                     </div>
