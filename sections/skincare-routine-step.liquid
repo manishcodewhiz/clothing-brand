@@ -936,25 +936,9 @@
         $('.step-tab-mobile h3').on('click', function () {
           $(this).toggleClass('active');
           $(".tab-main-content").slideToggle()
-          $(this).siblings("ul").slideToggle()
-          {% comment %} $('.tab-main-content').toggle();
-          $('.step-tab-mobile ul').toggle(); {% endcomment %}
         });
 
       });
-
-      {% comment %} $(document).ready(function () {
-    $(".step-tab-mobile h3").on("click", function () {
-      // Toggle active class on the heading
-      $(this).toggleClass("active");
-
-      // Toggle the li items just inside this .step-tab-mobile
-      $(this).siblings("li").slideToggle();
-
-      // Toggle the tab-main-content (show/hide)
-      $(".tab-main-content").slideToggle();
-    });
-  }); {% endcomment %}
 </script>
 {% schema %}
 {
