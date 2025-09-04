@@ -956,18 +956,18 @@
         parentTab.removeClass("active-tab");
         contentBox.slideUp();
       } else {
-        // Close other open tabs
+
         $(".step-tab-mobile").removeClass("active-tab");
         $(".tab-main-content").slideUp();
 
-        // Open the clicked one
+
         parentTab.addClass("active-tab");
         contentBox.slideDown(function () {
-          // ✅ Default open first step-tab-content
+
           contentBox.find(".step-tab-content").removeClass("active").hide();
           contentBox.find(".mobile-content-tabs li").removeClass("active");
 
-          // activate first li + first content
+
           let firstLi = parentTab.find(".mobile-content-tabs li").first();
           let firstContentId = firstLi.data("tab");
 
