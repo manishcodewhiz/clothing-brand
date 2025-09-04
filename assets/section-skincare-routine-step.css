@@ -57,4 +57,7 @@
     .section-skincare-routine-step .step-tab-mobile.active-tab .mobile-content-tabs{
         max-height: 1000px
     }
+    .section-skincare-routine-step .step-tab-content.active{
+        display: block;
+    }
 }
