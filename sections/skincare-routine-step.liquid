@@ -948,6 +948,15 @@
 
             }); {% endcomment %}
 
+    $('.next_button').on('click', function(e) {
+      e.preventDefault();
+      var activeTabLiItem = $('li.step-tab-item.active');
+      var nextTabLiItem = activeTabLiItem.nextAll('li.step-tab-item').first();
+      if (nextTabLiItem.length) {
+        nextTabLiItem.trigger('click');
+      }
+    });
+
           });
 
   $(document).ready(function () {
@@ -955,7 +964,7 @@
       let parentTab = $(this).closest(".step-tab-mobile");
       let contentBox = parentTab.next(".tab-main-content");
 
-      
+
       if (parentTab.hasClass("active-tab")) {
         parentTab.removeClass("active-tab");
         contentBox.slideUp();
@@ -987,8 +996,7 @@
 {% schema %}
 {
   "name": "Skincare Routine Steps",
-  "settings": [
-  ],
+  "settings": [],
   "blocks": [
     {
       "type": "cleanse",
