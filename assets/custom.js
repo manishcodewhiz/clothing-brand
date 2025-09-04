@@ -39,7 +39,7 @@
       $firstLi.addClass('active');
       const tabId = $firstLi.data('tabid');
       $('.first-level-menu_items').removeClass('show-menu');
-      $('.first-level-menu_items.' + tabId).addClass('show-menu');
+      $( '#' + tabId).addClass('show-menu');
       $('.first-level-menu_items').first().addClass('show-menu');
 
     $(' .first-level-desktop li').on('mouseenter', function () {
