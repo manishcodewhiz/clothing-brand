@@ -54,7 +54,7 @@
           {% endcomment %}
         </div>
         <div class="tab-main-content">
-          <ul>
+          <ul class="tab-ac">
             {% for block in cleanse_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
@@ -429,7 +429,7 @@
           {% endcomment %}
         </div>
         <div class="tab-main-content">
-          <ul>
+          <ul class="tab-ac">
             {% for block in nourish_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
