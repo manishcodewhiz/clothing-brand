@@ -122,9 +122,9 @@
                         {{ block.settings.video_url | video_tag: width: 500, height: 340, poster: video_poster_url, class: 'my_video' }}
                         {% endif %}
                       </div>
-                      <div class="image_content">
+                      {% comment %} <div class="image_content">
                         <img src="{{ block.settings.image_url | image_url }}" width="500" height="340" loading="lazy" alt="{{ block.settings.image_url.alt | default: block.settings.step_title | escape }}">
-                      </div>
+                      </div> {% endcomment %}
                     </div>
                 </div>
                 {% comment %}
