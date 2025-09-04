@@ -3,8 +3,8 @@
     <div class="menu-dropdown-content">
       <div class="main-menu-block">
         <ul class="first-level-menu first-level-desktop">
-          {% for linki in link.links %}
-            <li data-tabid="header_{{ block.type }}--{{ link.title | handleize }}">
+          {% for link in link.links %}
+            <li data-tabid="{{ link.title | handleize }}">
               <a href="{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
@@ -12,7 +12,7 @@
 
         {% for block in section.blocks %}
           {% if block.type == 'Brand-product-menu' %}
-            <div class="first-level-menu_items logo-item {{ link.title | handleize }}" id="header_{{ block.type }}--{{ link.title | handleize }}">
+            <div class="first-level-menu_items logo-item {{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
               <div class="first-level-shop_list">
                 <h3>{{ block.settings.title }}</h3>
                 <ul class="second-level-menu-list">
@@ -46,7 +46,7 @@
         {% endfor %}
         {% for block in section.blocks %}
           {% if block.type == 'collection_list' %}
-            <div class="first-level-menu_items collection--lists {{ link.title | handleize }}" id="header_{{ block.type }}--{{ link.title | handleize }}">
+            <div class="first-level-menu_items collection--lists {{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
               {% for collection in block.settings.collection_list %}
                 <div class="collection-list">
                   <a href="{{ collection.url }}">
@@ -77,7 +77,7 @@
         {% endfor %}
         {% for block in section.blocks %}
           {% if block.type == 'product_list' %}
-            <div class="first-level-menu_items product_list {{ link.title | handleize }}" id="header_{{ block.type }}--{{ link.title | handleize }}">
+            <div class="first-level-menu_items product_list {{ link.title | handleize }}" data-tabid="{{ link.title | handleize }}">
               <div class="product-box">
                 {% for product in block.settings.product_list %}
                   <div class="product-card">
