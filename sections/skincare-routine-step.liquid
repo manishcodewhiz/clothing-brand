@@ -293,13 +293,13 @@
 
         {% assign prep_blocks = section.blocks | where: 'type', 'prep' %}
         <div class="tab-list step-tab-mobile">
+          {% if block.settings.tab_title != blank %}
+            <h3>
+              {{ block.settings.tab_title }}
+            </h3>
+          {% endif %}
           <ul>
             {% for block in prep_blocks %}
-              {% if block.settings.tab_title != blank %}
-                <h3>
-                  {{ block.settings.tab_title }}
-                </h3>
-              {% endif %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
               </li>
@@ -389,13 +389,13 @@
         </div>
         {% assign nourish_blocks = section.blocks | where: 'type', 'nourish' %}
         <div class="tab-list step-tab-mobile">
+          {% if block.settings.tab_title != blank %}
+            <h3>
+              {{ block.settings.tab_title }}
+            </h3>
+          {% endif %}
           <ul>
             {% for block in nourish_blocks %}
-              {% if block.settings.tab_title != blank %}
-                <h3>
-                  {{ block.settings.tab_title }}
-                </h3>
-              {% endif %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
               </li>
@@ -724,13 +724,13 @@
         </div>
         {% assign protect_blocks = section.blocks | where: 'type', 'protect' %}
         <div class="tab-list step-tab-mobile">
+          {% if block.settings.tab_title != blank %}
+            <h3>
+              {{ block.settings.tab_title }}
+            </h3>
+          {% endif %}
           <ul>
             {% for block in protect_blocks %}
-              {% if block.settings.tab_title != blank %}
-                <h3>
-                  {{ block.settings.tab_title }}
-                </h3>
-              {% endif %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
               </li>
