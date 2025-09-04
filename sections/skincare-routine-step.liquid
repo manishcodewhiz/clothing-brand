@@ -43,6 +43,17 @@
               </h3>
             {% endif %}
           {% endfor %}
+          {% comment %}
+            <ul>
+              {% for block in cleanse_blocks %}
+                <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+                  <span>{{ block.settings.step_title }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endcomment %}
+        </div>
+        <div class="tab-main-content">
           <ul>
             {% for block in cleanse_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
@@ -50,8 +61,6 @@
               </li>
             {% endfor %}
           </ul>
-        </div>
-        <div class="tab-main-content">
           {% for block in cleanse_blocks %}
             <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
               <div class="row">
@@ -302,6 +311,17 @@
               </h3>
             {% endif %}
           {% endfor %}
+          {% comment %}
+            <ul>
+              {% for block in prep_blocks %}
+                <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+                  <span>{{ block.settings.step_title }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endcomment %}
+        </div>
+        <div class="tab-main-content">
           <ul>
             {% for block in prep_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
@@ -309,8 +329,6 @@
               </li>
             {% endfor %}
           </ul>
-        </div>
-        <div class="tab-main-content">
           {% for block in prep_blocks %}
             <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
               <div class="row">
@@ -400,16 +418,18 @@
               </h3>
             {% endif %}
           {% endfor %}
-          {% comment %} <ul>
-            {% for block in nourish_blocks %}
-              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
-                <span>{{ block.settings.step_title }}</span>
-              </li>
-            {% endfor %}
-          </ul> {% endcomment %}
+          {% comment %}
+            <ul>
+              {% for block in nourish_blocks %}
+                <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+                  <span>{{ block.settings.step_title }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endcomment %}
         </div>
         <div class="tab-main-content">
-           <ul>
+          <ul>
             {% for block in nourish_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
@@ -744,16 +764,18 @@
               </h3>
             {% endif %}
           {% endfor %}
-          {% comment %} <ul>
-            {% for block in protect_blocks %}
-              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
-                <span>{{ block.settings.step_title }}</span>
-              </li>
-            {% endfor %}
-          </ul> {% endcomment %}
+          {% comment %}
+            <ul>
+              {% for block in protect_blocks %}
+                <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+                  <span>{{ block.settings.step_title }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endcomment %}
         </div>
         <div class="tab-main-content">
-            <ul>
+          <ul>
             {% for block in protect_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
@@ -950,7 +972,7 @@
         $('.step-tab-mobile h3').on('click', function () {
           $(this).toggleClass('active');
           $(".tab-main-content").slideToggle()
-          $(this).siblings("ul").slideToggle() 
+          $(this).siblings("ul").slideToggle()
           {% comment %} $('.tab-main-content').toggle();
           $('.step-tab-mobile ul').toggle(); {% endcomment %}
         });
