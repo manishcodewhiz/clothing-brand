@@ -154,7 +154,6 @@
     },
     "rebuy_related_products_bGnq7V": {
       "type": "rebuy-related-products",
-      "disabled": true,
       "name": "Rebuy Related Products",
       "settings": {
         "title": "You may also like",
@@ -163,7 +162,6 @@
     },
     "section_recommended_products_G6VXjr": {
       "type": "section-recommended-products",
-      "disabled": true,
       "name": "Recommended Products",
       "settings": {
         "recommended_products_id": "235484",
