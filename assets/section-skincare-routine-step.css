@@ -50,7 +50,11 @@
         display: block;
     }
 
-    .section-skincare-routine-step .mobile-content-tabs{
+    .section-skincare-routine-step .step-tab-mobile .mobile-content-tabs{
         max-height: 0;
+        overflow: hidden;
+    }
+    .section-skincare-routine-step .step-tab-mobile.active-tab .mobile-content-tabs{
+        max-height: 1000px
     }
 }
