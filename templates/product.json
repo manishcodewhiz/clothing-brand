@@ -215,14 +215,7 @@
       "type": "slider-box",
       "name": "Best Seller",
       "settings": {
-        "product_list": [
-          "honda-classic-snapback-hat",
-          "honda-icon-womens-t-shirt",
-          "honda-octagon-t-shirt",
-          "honda-octagon-t-shirt-1",
-          "kawasaki-bike-youth-pullover-sweatshirt",
-          "kawasaki-youth-team-green-t-shirt"
-        ],
+        "collection": "colla",
         "show_secondary_image": true,
         "quick_add": "standard"
       }
