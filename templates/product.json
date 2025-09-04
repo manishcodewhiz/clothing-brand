@@ -154,6 +154,7 @@
     },
     "rebuy_related_products_bGnq7V": {
       "type": "rebuy-related-products",
+      "disabled": true,
       "name": "Rebuy Related Products",
       "settings": {
         "title": "You may also like",
@@ -162,6 +163,7 @@
     },
     "section_recommended_products_G6VXjr": {
       "type": "section-recommended-products",
+      "disabled": true,
       "name": "Recommended Products",
       "settings": {
         "recommended_products_id": "235484",
@@ -208,6 +210,20 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "slider_box_36b7UV": {
+      "type": "slider-box",
+      "name": "Best Seller",
+      "settings": {
+        "product_list": [
+          "honda-classic-snapback-hat",
+          "honda-icon-womens-t-shirt",
+          "honda-octagon-t-shirt",
+          "honda-octagon-t-shirt-1",
+          "kawasaki-bike-youth-pullover-sweatshirt",
+          "kawasaki-youth-team-green-t-shirt"
+        ]
+      }
     }
   },
   "order": [
@@ -218,6 +234,7 @@
     "rebuy_related_products_bGnq7V",
     "section_recommended_products_G6VXjr",
     "1755761471c17d9912",
-    "17459101958e382654"
+    "17459101958e382654",
+    "slider_box_36b7UV"
   ]
 }
