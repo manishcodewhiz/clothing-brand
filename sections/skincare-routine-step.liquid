@@ -293,11 +293,13 @@
 
         {% assign prep_blocks = section.blocks | where: 'type', 'prep' %}
         <div class="tab-list step-tab-mobile">
+          {% for block in prep_blocks %}
           {% if block.settings.tab_title != blank %}
             <h3>
               {{ block.settings.tab_title }}
             </h3>
           {% endif %}
+          {% endfor %}
           <ul>
             {% for block in prep_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
@@ -389,11 +391,13 @@
         </div>
         {% assign nourish_blocks = section.blocks | where: 'type', 'nourish' %}
         <div class="tab-list step-tab-mobile">
+          {% for block in nourish_blocks %}
           {% if block.settings.tab_title != blank %}
             <h3>
               {{ block.settings.tab_title }}
             </h3>
           {% endif %}
+          {% endfor %}
           <ul>
             {% for block in nourish_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
@@ -724,11 +728,13 @@
         </div>
         {% assign protect_blocks = section.blocks | where: 'type', 'protect' %}
         <div class="tab-list step-tab-mobile">
+          {% for block in protect_blocks %}
           {% if block.settings.tab_title != blank %}
             <h3>
               {{ block.settings.tab_title }}
             </h3>
           {% endif %}
+          {% endfor %}
           <ul>
             {% for block in protect_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
