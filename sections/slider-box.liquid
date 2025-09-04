@@ -6,11 +6,15 @@
       <div class="slider-box">
         {% comment %} limit: section.settings.products_to_show  {% endcomment %}
         {%- if section.settings.collection.products.size > 0 -%}
-          {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-            <div class="slick-slide">
-              {% render 'card-product' %}
+          {% for product in block.settings.product_list %}
+            <div class="product-card">
+              {% render 'card-product',
+                card_product: product,
+                buttons: block.settings.buttons,
+                section_id: section.id
+              %}
             </div>
-          {%- endfor -%}
+          {% endfor %}
         {%- endif -%}
       </div>
     </div>
@@ -22,8 +26,8 @@
   "name": "Best Seller",
   "settings": [
     {
-      "type": "collection",
-      "id": "collection",
+      "type": "product_list",
+      "id": "product_list",
       "label": "Product"
     },
     {
@@ -41,6 +45,22 @@
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_2"
         }
       ]
+    },
+    {
+      "type": "select",
+      "id": "buttons",
+      "label": "Buttons",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "button",
+          "label": "Button"
+        }
+      ],
+      "default": "button"
     }
   ],
   "presets": [
