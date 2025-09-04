@@ -25,7 +25,10 @@
           "settings": {
             "tab_title": "CLEANSE",
             "step_title": "Makeup remover & oil cleanser",
-            "decsription": "<p>Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup, sunscreen, and other oil-based impurities.</p>"
+            "decsription": "<p>Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup, sunscreen, and other oil-based impurities.</p>",
+            "video_url": "shopify://files/videos/-35f5-4cd0-bd41-9f2f4306db84.mp4",
+            "video_poster": "shopify://shop_images/install-video-two.webp",
+            "image_url": "shopify://shop_images/cd065fea04fc386610a10d053ac21c419ac046d9.png"
           }
         },
         "cleanse_4bgtPF": {
