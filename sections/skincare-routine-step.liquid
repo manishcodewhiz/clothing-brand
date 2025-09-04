@@ -946,26 +946,6 @@
 
 
       });
-      $(document).on('click', '.heading-main', function () {
-       var heading = $(this);
-       var parentTab = heading.closest('.step-tab-mobile');
-       var tablListUl = parentTab.find('.mobile-content-tabs');
-       var mainContentTab = parentTab.next('.tab-main-content');
-
-       parentTab.toggleClass('active-tab');
-
-       if (parentTab.hasClass('active-tab')) {
-         tablListUl.slideDown();
-         mainContentTab.slideDown();
-         var checkIfstepTabContentVisible = mainContentTab.find('.step-tab-content:visible');
-         if (checkIfstepTabContentVisible.length === 0) {
-           mainContentTab.find('.step-tab-content').first().css('display', 'block');
-         }
-       } else {
-         mainContentTab.slideUp();
-         tablListUl.slideUp();
-       }
-     });
 </script>
 {% schema %}
 {
