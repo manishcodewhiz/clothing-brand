@@ -43,7 +43,7 @@
               </h3>
             {% endif %}
           {% endfor %}
-          <ul>
+          <ul class="mobile-content-tabs">
             {% for block in cleanse_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
@@ -302,7 +302,7 @@
               </h3>
             {% endif %}
           {% endfor %}
-          <ul>
+          <ul class="mobile-content-tabs">
             {% for block in prep_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
@@ -944,7 +944,7 @@
 
         }); {% endcomment %}
 
-            $(document).on('click', '.mobile-acc-heading', function () {
+            $(document).on('click', '.heading-main', function () {
       var heading = $(this);
       var parentTab = heading.closest('.step-tab-mobile');
       var tablListUl = parentTab.find('.mobile-content-tabs');
