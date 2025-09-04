@@ -63,6 +63,7 @@
     }
     .section-skincare-routine-step .tab-main-content{
         display: block;
+        transition: all .4s;
     }
     /* .section-skincare-routine-step.active-tab .tab-main-content{
         display: block;
