@@ -940,11 +940,11 @@
           $('.step-tab-mobile').toggleClass('active');
           $(".tab-main-content").slideToggle(); {% endcomment %}
 
-          
+
 
         }); {% endcomment %}
 
-            $(document).on('click', '.heading-main', function () {
+     $(document).on('click', '.heading-main', function () {
       var heading = $(this);
       var parentTab = heading.closest('.step-tab-mobile');
       var tablListUl = parentTab.find('.mobile-content-tabs');
@@ -954,13 +954,13 @@
 
       if (parentTab.hasClass('active-tab')) {
         tablListUl.slideDown();
-        mainContentTab.slideDown(); 
+        mainContentTab.slideDown();
         var checkIfstepTabContentVisible = mainContentTab.find('.step-tab-content:visible');
         if (checkIfstepTabContentVisible.length === 0) {
           mainContentTab.find('.step-tab-content').first().css('display', 'block');
         }
       } else {
-        mainContentTab.slideUp(); 
+        mainContentTab.slideUp();
         tablListUl.slideUp();
       }
     });
