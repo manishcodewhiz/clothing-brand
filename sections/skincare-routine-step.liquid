@@ -400,7 +400,7 @@
               </h3>
             {% endif %}
           {% endfor %}
-          <ul>
+          <ul class="mobile-content-tabs">
             {% for block in nourish_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
@@ -737,7 +737,7 @@
               </h3>
             {% endif %}
           {% endfor %}
-          <ul>
+          <ul class="mobile-content-tabs">
             {% for block in protect_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
