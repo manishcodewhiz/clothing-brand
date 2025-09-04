@@ -948,11 +948,11 @@
 
 <script>
   $(document).ready(function () {
-    $('.tab-list ul li', '.tab-main-content .tab-ac li').first().addClass('active');
+    $('.tab-list ul li').first().addClass('active');
     $('.step-tab-content').first().addClass('active');
 
-    $('.tab-list ul li', '.tab-main-content .tab-ac li').on('click', function () {
-      $('.tab-list ul li', '.tab-main-content .tab-ac li').removeClass('active');
+    $('.tab-list ul li').on('click', function () {
+      $('.tab-list ul li').removeClass('active');
       $(this).addClass('active');
 
       $('.step-tab-content').removeClass('active');
