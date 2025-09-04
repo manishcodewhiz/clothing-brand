@@ -113,7 +113,9 @@
                       </li>
                     </ul>
                   </div>
+                   {% unless forloop.last %}
                   <a href="javascript:void(0)" class="next_button">Next Step</a>
+                  {% endunless %}
                 </div>
                 {% comment %}
                   <div class="col-6">
@@ -378,7 +380,9 @@
                       </ul>
                     {% endcomment %}
                   </div>
+                   {% unless forloop.last %}
                   <a href="javascript:void(0)" class="next_button">Next Step</a>
+                  {% endunless %}
                 </div>
                 <div class="col-6">
                   <div class="tab-text_media">
