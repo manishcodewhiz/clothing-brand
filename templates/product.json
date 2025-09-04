@@ -222,7 +222,9 @@
           "honda-octagon-t-shirt-1",
           "kawasaki-bike-youth-pullover-sweatshirt",
           "kawasaki-youth-team-green-t-shirt"
-        ]
+        ],
+        "show_secondary_image": true,
+        "quick_add": "standard"
       }
     }
   },
