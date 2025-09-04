@@ -38,7 +38,7 @@
         <div class="tab-list step-tab-mobile">
           {% for block in cleanse_blocks %}
             {% if block.settings.tab_title != blank %}
-              <h3>
+              <h3 class="heading-main">
                 {{ block.settings.tab_title }}
               </h3>
             {% endif %}
@@ -297,7 +297,7 @@
         <div class="tab-list step-tab-mobile">
           {% for block in prep_blocks %}
             {% if block.settings.tab_title != blank %}
-              <h3>
+              <h3 class="heading-main">
                 {{ block.settings.tab_title }}
               </h3>
             {% endif %}
@@ -395,7 +395,7 @@
         <div class="tab-list step-tab-mobile">
           {% for block in nourish_blocks %}
             {% if block.settings.tab_title != blank %}
-              <h3>
+              <h3 class="heading-main">
                 {{ block.settings.tab_title }}
               </h3>
             {% endif %}
@@ -732,7 +732,7 @@
         <div class="tab-list step-tab-mobile">
           {% for block in protect_blocks %}
             {% if block.settings.tab_title != blank %}
-              <h3>
+              <h3 class="heading-main">
                 {{ block.settings.tab_title }}
               </h3>
             {% endif %}
@@ -923,7 +923,7 @@
           const tabId = $(this).data('tab');
           $('#' + tabId).addClass('active');
         });
-  {% comment %}
+  {% comment %} {% comment %}
        $('.step-tab-mobile h3').on('click', function () {
           $(this).toggleClass('active');
           $('.tab-main-content').toggle();
@@ -942,7 +942,28 @@
 
           
 
-        });
+        }); {% endcomment %}
+
+            $(document).on('click', '.mobile-acc-heading', function () {
+      var heading = $(this);
+      var parentTab = heading.closest('.step-tab-mobile');
+      var tablListUl = parentTab.find('.mobile-content-tabs');
+      var mainContentTab = parentTab.next('.tab-main-content');
+
+      parentTab.toggleClass('active-tab');
+
+      if (parentTab.hasClass('active-tab')) {
+        tablListUl.slideDown();
+        mainContentTab.slideDown(); 
+        var checkIfstepTabContentVisible = mainContentTab.find('.step-tab-content:visible');
+        if (checkIfstepTabContentVisible.length === 0) {
+          mainContentTab.find('.step-tab-content').first().css('display', 'block');
+        }
+      } else {
+        mainContentTab.slideUp(); 
+        tablListUl.slideUp();
+      }
+    });
 
       });
 </script>
