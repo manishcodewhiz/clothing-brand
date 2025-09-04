@@ -91,14 +91,6 @@
             "step_title": "Moisturizer",
             "decsription": "<p>Whether it’s a lightweight gel or a rich cream, moisturizers deliver lasting hydration, strengthen the skin barrier, and seal in the steps that come before. They help smooth texture, soften fine lines, and keep skin balanced and healthy around the clock.</p>"
           }
-        },
-        "protect_EHLppQ": {
-          "type": "protect",
-          "settings": {
-            "tab_title": "",
-            "step_title": "Sun protection",
-            "decsription": "<p>Sunscreen is a daily essential in your AM routine and one of the most effective ways to protect your skin from premature aging, UV damage, and pigmentation. Always apply it as the final step to create a protective barrier and lock in all the benefits of your skincare.</p>"
-          }
         }
       },
       "block_order": [
@@ -110,16 +102,10 @@
         "nourish_6M9VKa",
         "nourish_PEJBbU",
         "nourish_dtFw6R",
-        "protect_Vrpaq8",
-        "protect_EHLppQ"
+        "protect_Vrpaq8"
       ],
       "name": "Skincare Routine Steps",
-      "settings": {
-        "cleanse_heading": "",
-        "prep_heading": "",
-        "nourish_heading": "",
-        "protect_heading": ""
-      }
+      "settings": {}
     }
   },
   "order": [
