@@ -911,70 +911,58 @@
 </div>
 
 <script>
-          $(document).ready(function () {
-            $('.tab-list ul li').first().addClass('active');
-            $('.step-tab-content').first().addClass('active');
+            $(document).ready(function () {
+              $('.tab-list ul li').first().addClass('active');
+              $('.step-tab-content').first().addClass('active');
 
-            $('.tab-list ul li').on('click', function () {
-              $('.tab-list ul li').removeClass('active');
-              $(this).addClass('active');
+              $('.tab-list ul li').on('click', function () {
+                $('.tab-list ul li').removeClass('active');
+                $(this).addClass('active');
 
-              $('.step-tab-content').removeClass('active');
-              const tabId = $(this).data('tab');
-              $('#' + tabId).addClass('active');
-            });
-      {% comment %} {% comment %}
-           $('.step-tab-mobile h3').on('click', function () {
-              $(this).toggleClass('active');
-              $('.tab-main-content').toggle();
-            });
-            $('.step-tab-mobile h3').on('click', function () {
-              $('.step-tab-mobile ul li').toggle();
-            }); {% endcomment %}
-
+                $('.step-tab-content').removeClass('active');
+                const tabId = $(this).data('tab');
+                $('#' + tabId).addClass('active');
+              });
+        {% comment %} {% comment %}
              $('.step-tab-mobile h3').on('click', function () {
-              $('.step-tab-mobile').removeClass('active');
-              $(this).addClass('active');
+                $(this).toggleClass('active');
+                $('.tab-main-content').toggle();
+              });
+              $('.step-tab-mobile h3').on('click', function () {
+                $('.step-tab-mobile ul li').toggle();
+              }); {% endcomment %}
 
-            {% comment %} $('.step-tab-mobile h3').on('click', function () {
-              $('.step-tab-mobile').toggleClass('active');
-              $(".tab-main-content").slideToggle(); {% endcomment %}
+               $('.step-tab-mobile h3').on('click', function () {
+                $('.step-tab-mobile').removeClass('active');
+                $(this).addClass('active');
+
+              {% comment %} $('.step-tab-mobile h3').on('click', function () {
+                $('.step-tab-mobile').toggleClass('active');
+                $(".tab-main-content").slideToggle(); {% endcomment %}
 
 
 
-            }); {% endcomment %}
+              }); {% endcomment %}
 
-          });
+            });
 
-  $(document).ready(function () {
+  $(function () {
     $(".heading-main").on("click", function () {
-      let parentTab = $(this).closest(".step-tab-mobile");
-      let contentBox = parentTab.next(".tab-main-content");
+      const parent = $(this).closest(".step-tab-mobile");
+      const content = parent.next(".tab-main-content");
 
-      
-      if (parentTab.hasClass("active-tab")) {
-        parentTab.removeClass("active-tab");
-        contentBox.slideUp();
+      if (parent.hasClass("active-tab")) {
+        parent.removeClass("active-tab");
+        content.slideUp();
       } else {
-
         $(".step-tab-mobile").removeClass("active-tab");
         $(".tab-main-content").slideUp();
 
-
-        parentTab.addClass("active-tab");
-        contentBox.slideDown(function () {
-
-          contentBox.find(".step-tab-content").removeClass("active").hide();
-          contentBox.find(".mobile-content-tabs li").removeClass("active");
-
-
-          let firstLi = parentTab.find(".mobile-content-tabs li").first();
-          let firstContentId = firstLi.data("tab");
-
-          firstLi.addClass("active");
-          $("#" + firstContentId)
-            .addClass("active")
-            .show();
+        parent.addClass("active-tab");
+        content.slideDown(() => {
+          const firstLi = parent.find(".mobile-content-tabs li").removeClass("active").first().addClass("active");
+          content.find(".step-tab-content").removeClass("active").hide();
+          $("#" + firstLi.data("tab")).addClass("active").show();
         });
       }
     });
