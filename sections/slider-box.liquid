@@ -6,11 +6,11 @@
       <div class="slider-box">
         {% comment %} limit: section.settings.products_to_show  {% endcomment %}
         {%- if section.settings.collection.products.size > 0 -%}
-          {% for product in block.settings.product_list %}
+          {% for product in product.settings.product_list %}
             <div class="product-card">
               {% render 'card-product',
                 card_product: product,
-                buttons: block.settings.buttons,
+                buttons: product.settings.buttons,
                 section_id: section.id
               %}
             </div>
