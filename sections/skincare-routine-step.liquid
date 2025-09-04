@@ -972,9 +972,41 @@
       }
     });
 
+
+       $(".heading-main").on("click", function () {
+      let parentTab = $(this).closest(".step-tab-mobile");
+      let contentBox = parentTab.next(".tab-main-content");
+
+
+      if (parentTab.hasClass("active-tab")) {
+        parentTab.removeClass("active-tab");
+        contentBox.slideUp();
+      } else {
+
+        $(".step-tab-mobile").removeClass("active-tab");
+        $(".tab-main-content").slideUp();
+
+
+        parentTab.addClass("active-tab");
+        contentBox.slideDown(function () {
+
+          contentBox.find(".step-tab-content").removeClass("active").hide();
+          contentBox.find(".mobile-content-tabs li").removeClass("active");
+
+
+          let firstLi = parentTab.find(".mobile-content-tabs li").first();
+          let firstContentId = firstLi.data("tab");
+
+          firstLi.addClass("active");
+          $("#" + firstContentId)
+            .addClass("active")
+            .show();
+        });
+      }
+    });
           });
 
-  $(document).ready(function () {
+  {% comment %} $(document).ready(function () {
     $(".heading-main").on("click", function () {
       let parentTab = $(this).closest(".step-tab-mobile");
       let contentBox = parentTab.next(".tab-main-content");
@@ -1006,7 +1038,7 @@
         });
       }
     });
-  });
+  }); {% endcomment %}
 </script>
 {% schema %}
 {
