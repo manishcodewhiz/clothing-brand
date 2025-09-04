@@ -932,16 +932,16 @@
           $('.step-tab-mobile ul li').toggle();
         }); {% endcomment %}
 
-    {% comment %}
+   
         $('.step-tab-mobile h3').on('click', function () {
           $(this).toggleClass('active');
           $(this).siblings('.tab-main-content').toggle();
           $(this).siblings('ul').find('li').toggle();
-        }); {% endcomment %}
+        }); 
 
       });
 
-      $(document).ready(function () {
+      {% comment %} $(document).ready(function () {
     $(".step-tab-mobile h3").on("click", function () {
       // Toggle active class on the heading
       $(this).toggleClass("active");
@@ -952,7 +952,7 @@
       // Toggle the tab-main-content (show/hide)
       $(".tab-main-content").slideToggle();
     });
-  });
+  }); {% endcomment %}
 </script>
 {% schema %}
 {
