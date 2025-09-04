@@ -49,4 +49,7 @@
     .section-skincare-routine-step .tab-main-content{
         display: none;
     }
+    .section-skincare-routine-step .tab-list.step-tab-mobile h3.active ul li{
+        display: block;
+    }
 }
