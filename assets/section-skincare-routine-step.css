@@ -58,6 +58,6 @@
         max-height: 1000px
     }
     .section-skincare-routine-step .step-tab-content.active{
-        display: block;
+        display: block !important;
     }
 }
