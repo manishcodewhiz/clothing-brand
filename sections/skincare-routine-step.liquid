@@ -12,7 +12,10 @@
                   {{ block.settings.tab_title }}
                 </h3>
               {% endif %}
-              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}" class="step-tab-item">
+              <li
+                data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"
+                class="step-tab-item"
+              >
                 <span>{{ block.settings.step_title }}</span>
               </li>
             {% endfor %}
@@ -45,7 +48,10 @@
           {% endfor %}
           <ul class="mobile-content-tabs">
             {% for block in cleanse_blocks %}
-              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+              <li
+                data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"
+                class="step-tab-item"
+              >
                 <span>{{ block.settings.step_title }}</span>
               </li>
             {% endfor %}
@@ -305,7 +311,10 @@
           {% endfor %}
           <ul class="mobile-content-tabs">
             {% for block in prep_blocks %}
-              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+              <li
+                data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"
+                class="step-tab-item"
+              >
                 <span>{{ block.settings.step_title }}</span>
               </li>
             {% endfor %}
@@ -404,7 +413,10 @@
           {% endfor %}
           <ul class="mobile-content-tabs">
             {% for block in nourish_blocks %}
-              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+              <li
+                data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"
+                class="step-tab-item"
+              >
                 <span>{{ block.settings.step_title }}</span>
               </li>
             {% endfor %}
@@ -742,7 +754,10 @@
           {% endfor %}
           <ul class="mobile-content-tabs">
             {% for block in protect_blocks %}
-              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+              <li
+                data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"
+                class="step-tab-item"
+              >
                 <span>{{ block.settings.step_title }}</span>
               </li>
             {% endfor %}
