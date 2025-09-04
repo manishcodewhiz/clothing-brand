@@ -4,7 +4,7 @@
   <div class="page-width">
     <div class="main-slider">
       <div class="slider-box">
-        {% for product in product.settings.product_list %}
+        {% for product in product.settings.product_list limit: section.settings.products_to_show %}
           <div class="product-card">
             {% render 'card-product',
               card_product: product,
