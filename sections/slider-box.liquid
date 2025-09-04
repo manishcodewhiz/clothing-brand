@@ -4,18 +4,15 @@
   <div class="page-width">
     <div class="main-slider">
       <div class="slider-box">
-
-   
-          {% for product in product.settings.product_list %}
-            <div class="product-card">
-              {% render 'card-product',
-                card_product: product,
-                buttons: product.settings.buttons,
-                section_id: section.id
-              %}
-            </div>
-          {% endfor %}
-    
+        {% for product in product.settings.product_list %}
+          <div class="product-card">
+            {% render 'card-product',
+              card_product: product,
+              buttons: product.settings.buttons,
+              section_id: section.id
+            %}
+          </div>
+        {% endfor %}
       </div>
     </div>
   </div>
