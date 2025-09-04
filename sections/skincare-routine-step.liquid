@@ -43,24 +43,15 @@
               </h3>
             {% endif %}
           {% endfor %}
-          {% comment %}
-            <ul>
-              {% for block in cleanse_blocks %}
-                <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
-                  <span>{{ block.settings.step_title }}</span>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endcomment %}
-        </div>
-        <div class="tab-main-content">
-          <ul class="tab-ac">
+          <ul>
             {% for block in cleanse_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
               </li>
             {% endfor %}
           </ul>
+        </div>
+        <div class="tab-main-content">
           {% for block in cleanse_blocks %}
             <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
               <div class="row">
@@ -311,24 +302,15 @@
               </h3>
             {% endif %}
           {% endfor %}
-          {% comment %}
-            <ul>
-              {% for block in prep_blocks %}
-                <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
-                  <span>{{ block.settings.step_title }}</span>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endcomment %}
-        </div>
-        <div class="tab-main-content">
-          <ul class="tab-ac">
+          <ul>
             {% for block in prep_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
               </li>
             {% endfor %}
           </ul>
+        </div>
+        <div class="tab-main-content">
           {% for block in prep_blocks %}
             <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
               <div class="row">
@@ -418,24 +400,15 @@
               </h3>
             {% endif %}
           {% endfor %}
-          {% comment %}
-            <ul>
-              {% for block in nourish_blocks %}
-                <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
-                  <span>{{ block.settings.step_title }}</span>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endcomment %}
-        </div>
-        <div class="tab-main-content">
-          <ul class="tab-ac">
+          <ul>
             {% for block in nourish_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
               </li>
             {% endfor %}
           </ul>
+        </div>
+        <div class="tab-main-content">
           {% for block in nourish_blocks %}
             <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
               <div class="row">
@@ -764,24 +737,15 @@
               </h3>
             {% endif %}
           {% endfor %}
-          {% comment %}
-            <ul>
-              {% for block in protect_blocks %}
-                <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
-                  <span>{{ block.settings.step_title }}</span>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endcomment %}
-        </div>
-        <div class="tab-main-content">
-          <ul class="tab-ac">
+          <ul>
             {% for block in protect_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
               </li>
             {% endfor %}
           </ul>
+        </div>
+        <div class="tab-main-content">
           {% for block in protect_blocks %}
             <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
               <div class="row">
@@ -947,24 +911,50 @@
 </div>
 
 <script>
-  $(document).ready(function () {
-    $('.tab-list ul li').first().addClass('active');
-    $('.step-tab-content').first().addClass('active');
+      $(document).ready(function () {
+        $('.tab-list ul li').first().addClass('active');
+        $('.step-tab-content').first().addClass('active');
 
-    $('.tab-list ul li').on('click', function () {
-      $('.tab-list ul li').removeClass('active');
-      $(this).addClass('active');
+        $('.tab-list ul li').on('click', function () {
+          $('.tab-list ul li').removeClass('active');
+          $(this).addClass('active');
 
-      $('.step-tab-content').removeClass('active');
-      const tabId = $(this).data('tab');
-      $('#' + tabId).addClass('active');
+          $('.step-tab-content').removeClass('active');
+          const tabId = $(this).data('tab');
+          $('#' + tabId).addClass('active');
+        });
+  {% comment %}
+       $('.step-tab-mobile h3').on('click', function () {
+          $(this).toggleClass('active');
+          $('.tab-main-content').toggle();
+        });
+        $('.step-tab-mobile h3').on('click', function () {
+          $('.step-tab-mobile ul li').toggle();
+        }); {% endcomment %}
+
+
+        $('.step-tab-mobile h3').on('click', function () {
+          $(this).toggleClass('active');
+          $(".tab-main-content").slideToggle()
+          $(this).siblings("ul").slideToggle()
+          {% comment %} $('.tab-main-content').toggle();
+          $('.step-tab-mobile ul').toggle(); {% endcomment %}
+        });
+
+      });
+
+      {% comment %} $(document).ready(function () {
+    $(".step-tab-mobile h3").on("click", function () {
+      // Toggle active class on the heading
+      $(this).toggleClass("active");
+
+      // Toggle the li items just inside this .step-tab-mobile
+      $(this).siblings("li").slideToggle();
+
+      // Toggle the tab-main-content (show/hide)
+      $(".tab-main-content").slideToggle();
     });
-
-    $('.step-tab-mobile h3').on('click', function () {
-      $(this).toggleClass('active');
-      $('.tab-main-content').slideToggle();
-    });
-  });
+  }); {% endcomment %}
 </script>
 {% schema %}
 {
