@@ -113,19 +113,24 @@
                       </li>
                     </ul>
                   </div>
-                    <a href="javascript:void(0)" class="next_button">Next Step</a>
+                  <a href="javascript:void(0)" class="next_button">Next Step</a>
 
-                    <div class="media_content">
-                      <div class="video_content">
-                        {% if block.settings.video_url != blank and block.settings.video_poster != blank %}
+                  <div class="media_content">
+                    <div class="video_content">
+                      {% if block.settings.video_url != blank and block.settings.video_poster != blank %}
                         {%- assign video_poster_url = block.settings.video_poster | image_url -%}
-                        {{ block.settings.video_url | video_tag: width: 500, height: 340, poster: video_poster_url, class: 'my_video' }}
-                        {% endif %}
-                      </div>
-                      {% comment %} <div class="image_content">
-                        <img src="{{ block.settings.image_url | image_url }}" width="500" height="340" loading="lazy" alt="{{ block.settings.image_url.alt | default: block.settings.step_title | escape }}">
-                      </div> {% endcomment %}
+                        {{
+                          block.settings.video_url
+                          | video_tag: width: 500, height: 340, poster: video_poster_url, class: 'my_video', autoplay: true, muted: true, loop: true
+                        }}
+                      {% endif %}
                     </div>
+                    {% comment %}
+                      <div class="image_content">
+                        <img src="{{ block.settings.image_url | image_url }}" width="500" height="340" loading="lazy" alt="{{ block.settings.image_url.alt | default: block.settings.step_title | escape }}">
+                      </div>
+                    {% endcomment %}
+                  </div>
                 </div>
                 {% comment %}
                   <div class="col-6">
@@ -390,7 +395,7 @@
                       </ul>
                     {% endcomment %}
                   </div>
-                    <a href="javascript:void(0)" class="next_button">Next Step</a>
+                  <a href="javascript:void(0)" class="next_button">Next Step</a>
                 </div>
                 <div class="col-6">
                   <div class="tab-text_media">
@@ -490,7 +495,7 @@
                       </li>
                     </ul>
                   </div>
-                    <a href="javascript:void(0)" class="next_button">Next Step</a>
+                  <a href="javascript:void(0)" class="next_button">Next Step</a>
                 </div>
                 <div class="col-6">
                   <div class="tab-text_media">
@@ -1087,7 +1092,7 @@
           "id": "image_icon",
           "label": "Image"
         },
-          {
+        {
           "type": "header",
           "content": "Media Settings"
         },
