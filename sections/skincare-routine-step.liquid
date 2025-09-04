@@ -37,11 +37,11 @@
         {% assign cleanse_blocks = section.blocks | where: 'type', 'cleanse' %}
         <div class="tab-list step-tab-mobile">
           {% for block in cleanse_blocks %}
-          {% if block.settings.tab_title != blank %}
-            <h3>
-              {{ block.settings.tab_title }}
-            </h3>
-          {% endif %}
+            {% if block.settings.tab_title != blank %}
+              <h3>
+                {{ block.settings.tab_title }}
+              </h3>
+            {% endif %}
           {% endfor %}
           <ul>
             {% for block in cleanse_blocks %}
@@ -296,11 +296,11 @@
         {% assign prep_blocks = section.blocks | where: 'type', 'prep' %}
         <div class="tab-list step-tab-mobile">
           {% for block in prep_blocks %}
-          {% if block.settings.tab_title != blank %}
-            <h3>
-              {{ block.settings.tab_title }}
-            </h3>
-          {% endif %}
+            {% if block.settings.tab_title != blank %}
+              <h3>
+                {{ block.settings.tab_title }}
+              </h3>
+            {% endif %}
           {% endfor %}
           <ul>
             {% for block in prep_blocks %}
@@ -394,11 +394,11 @@
         {% assign nourish_blocks = section.blocks | where: 'type', 'nourish' %}
         <div class="tab-list step-tab-mobile">
           {% for block in nourish_blocks %}
-          {% if block.settings.tab_title != blank %}
-            <h3>
-              {{ block.settings.tab_title }}
-            </h3>
-          {% endif %}
+            {% if block.settings.tab_title != blank %}
+              <h3>
+                {{ block.settings.tab_title }}
+              </h3>
+            {% endif %}
           {% endfor %}
           <ul>
             {% for block in nourish_blocks %}
@@ -731,11 +731,11 @@
         {% assign protect_blocks = section.blocks | where: 'type', 'protect' %}
         <div class="tab-list step-tab-mobile">
           {% for block in protect_blocks %}
-          {% if block.settings.tab_title != blank %}
-            <h3>
-              {{ block.settings.tab_title }}
-            </h3>
-          {% endif %}
+            {% if block.settings.tab_title != blank %}
+              <h3>
+                {{ block.settings.tab_title }}
+              </h3>
+            {% endif %}
           {% endfor %}
           <ul>
             {% for block in protect_blocks %}
@@ -932,12 +932,14 @@
           $('.step-tab-mobile ul li').toggle();
         }); {% endcomment %}
 
-   
+
         $('.step-tab-mobile h3').on('click', function () {
           $(this).toggleClass('active');
-          $(this).siblings('.tab-main-content').toggle();
-          $(this).siblings('ul').toggle();
-        }); 
+          {% comment %} $(this).siblings('.tab-main-content').toggle();
+          $(this).siblings('ul').toggle(); {% endcomment %}
+          $('.tab-main-content').toggle();
+          $('ul').toggle();
+        });
 
       });
 
