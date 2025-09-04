@@ -4,7 +4,7 @@
       <div class="main-menu-block">
         <ul class="first-level-menu first-level-desktop">
           {% for link in link.links %}
-            <li data-tabid="{{ link.title | handleize }}">
+            <li data-tabid="header_{{ block.type }}--{{ link.title | handleize }}">
               <a href="{{ link.url }}">{{ link.title }}</a>
             </li>
           {% endfor %}
@@ -12,7 +12,7 @@
 
         {% for block in section.blocks %}
           {% if block.type == 'Brand-product-menu' %}
-            <div class="first-level-menu_items logo-item {{ link.title | handleize }}" id="{{ link.title | handleize }}">
+            <div class="first-level-menu_items logo-item {{ link.title | handleize }}" id="header_{{ block.type }}--{{ link.title | handleize }}">
               <div class="first-level-shop_list">
                 <h3>{{ block.settings.title }}</h3>
                 <ul class="second-level-menu-list">
