@@ -322,7 +322,7 @@
           {% endcomment %}
         </div>
         <div class="tab-main-content">
-          <ul>
+          <ul class="tab-ac">
             {% for block in prep_blocks %}
               <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
                 <span>{{ block.settings.step_title }}</span>
@@ -948,11 +948,11 @@
 
 <script>
   $(document).ready(function () {
-    $('.tab-list ul li').first().addClass('active');
+    $('.tab-list ul li', '.tab-main-content .tab-ac li').first().addClass('active');
     $('.step-tab-content').first().addClass('active');
 
-    $('.tab-list ul li').on('click', function () {
-      $('.tab-list ul li').removeClass('active');
+    $('.tab-list ul li', '.tab-main-content .tab-ac li').on('click', function () {
+      $('.tab-list ul li', '.tab-main-content .tab-ac li').removeClass('active');
       $(this).addClass('active');
 
       $('.step-tab-content').removeClass('active');
