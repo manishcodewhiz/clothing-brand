@@ -935,10 +935,10 @@
 
         $('.step-tab-mobile h3').on('click', function () {
           $(this).toggleClass('active');
-          {% comment %} $(this).siblings('.tab-main-content').toggle();
-          $(this).siblings('ul').toggle(); {% endcomment %}
-          $('.tab-main-content').toggle();
-          $('.step-tab-mobile ul').toggle();
+          $(".tab-main-content").slideToggle()
+          $(this).siblings("ul").slideToggle() 
+          {% comment %} $('.tab-main-content').toggle();
+          $('.step-tab-mobile ul').toggle(); {% endcomment %}
         });
 
       });
