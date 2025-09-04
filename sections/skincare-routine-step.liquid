@@ -117,7 +117,10 @@
 
                     <div class="media_content">
                       <div class="video_content">
-
+                        {% if block.settings.video_url != blank and block.settings.video_poster != blank %}
+                        {%- assign video_poster_url = block.settings.video_poster | image_url -%}
+                        {{ block.settings.video_url | video_tag: width: 500, height: 340, poster: video_poster_url, class: 'my_video' }}
+                        {% endif %}
                       </div>
                       <div class="image_content"></div>
                     </div>
