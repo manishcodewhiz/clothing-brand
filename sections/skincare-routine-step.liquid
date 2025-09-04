@@ -932,10 +932,16 @@
           $('.step-tab-mobile ul li').toggle();
         }); {% endcomment %}
 
+         $('.step-tab-mobile h3').on('click', function () {
+          $('.step-tab-mobile').removeClass('active');
+          $(this).addClass('active');
 
-        $('.step-tab-mobile h3').on('click', function () {
+        {% comment %} $('.step-tab-mobile h3').on('click', function () {
           $('.step-tab-mobile').toggleClass('active');
-          $(".tab-main-content").slideToggle();
+          $(".tab-main-content").slideToggle(); {% endcomment %}
+
+          
+
         });
 
       });
