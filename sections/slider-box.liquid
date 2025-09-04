@@ -1,1 +1,22 @@
 {{ 'section-slider-box.css' | asset_url | stylesheet_tag }}
+
+<div class="section-slider-box">
+  <div class="page-width">
+    <div class="main-slider">
+      <div class="slider-box">
+        {%- if section.settings.collection.products.size > 0 -%}
+          {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+            <div class="slick-slide">
+              {% render 'card-product',
+                card_product: product,
+                section_id: section.id,
+                quick_add: section.settings.quick_add,
+                show_secondary_image: section.settings.show_secondary_image
+              %}
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
