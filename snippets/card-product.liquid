@@ -58,7 +58,7 @@
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         {%- if card_product.featured_media -%}
-           <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
+          <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
             <div
               class="media media--transparent media--hover-effect"
               {% if product_card_background_color != blank %}
@@ -115,6 +115,18 @@
                   height="{{ hover_image.height }}"
                 >
               {%- endif -%}
+            </div>
+          </div>
+        {%- else -%}
+          <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
+            <div class="media media--transparent media--hover-effect">
+              <img
+                src="https://cdn.shopify.com/s/files/1/2657/6552/files/noimage.png?v=1750328086"
+                height="345"
+                width="345"
+                alt="Placeholder Image"
+                loading="lazy"
+              >
             </div>
           </div>
         {%- endif -%}
@@ -300,9 +312,9 @@
             {%- endif -%}
           </div>
         </div>
-         {% if buttons == 'button' %}
-            <a href="{{ card_product.url }}" class="btn">Shop Now</a>
-          {% endif %}
+        {% if buttons == 'button' %}
+          <a href="{{ card_product.url }}" class="btn">Shop Now</a>
+        {% endif %}
         {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
         {% if quick_add == 'standard' %}
           <div class="quick-add no-js-hidden">
