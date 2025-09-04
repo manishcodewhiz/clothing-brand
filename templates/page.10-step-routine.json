@@ -91,6 +91,14 @@
             "step_title": "Moisturizer",
             "decsription": "<p>Whether it’s a lightweight gel or a rich cream, moisturizers deliver lasting hydration, strengthen the skin barrier, and seal in the steps that come before. They help smooth texture, soften fine lines, and keep skin balanced and healthy around the clock.</p>"
           }
+        },
+        "protect_WUfe3i": {
+          "type": "protect",
+          "settings": {
+            "tab_title": "",
+            "step_title": "Sun protection",
+            "decsription": "<p>Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup, sunscreen, and other oil-based impurities.</p>"
+          }
         }
       },
       "block_order": [
@@ -102,7 +110,8 @@
         "nourish_6M9VKa",
         "nourish_PEJBbU",
         "nourish_dtFw6R",
-        "protect_Vrpaq8"
+        "protect_Vrpaq8",
+        "protect_WUfe3i"
       ],
       "name": "Skincare Routine Steps",
       "settings": {}
