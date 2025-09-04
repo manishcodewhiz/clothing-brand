@@ -12,7 +12,7 @@
                   {{ block.settings.tab_title }}
                 </h3>
               {% endif %}
-              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+              <li data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}" class="step-tab-item">
                 <span>{{ block.settings.step_title }}</span>
               </li>
             {% endfor %}
