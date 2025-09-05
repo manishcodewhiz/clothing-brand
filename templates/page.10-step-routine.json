@@ -12,10 +12,6 @@
     "main": {
       "type": "main-page",
       "disabled": true,
-      "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
-      }
     },
     "skincare_routine_step_KchkaY": {
       "type": "skincare-routine-step",
@@ -123,5 +119,9 @@
   "order": [
     "main",
     "skincare_routine_step_KchkaY"
+    }
+  },
+  "order": [
+    "main"
   ]
 }
