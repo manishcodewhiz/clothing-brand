@@ -1,0 +1,71 @@
+{{ 'section-slider-box.css' | asset_url | stylesheet_tag }}
+
+<div class="section-slider-box">
+  <div class="page-width">
+    <div class="main-slider">
+      <div class="slider-box">
+        {%- if section.settings.product_list.products.size > 0 -%}
+          {% for product in product.settings.product_list limit: section.settings.products_to_show %}
+            <div class="product-card">
+              {% render 'card-product',
+                card_product: product,
+                buttons: product.settings.buttons,
+                section_id: section.id
+              %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Best Seller",
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Product List"
+    },
+    {
+      "type": "select",
+      "id": "quick_add",
+      "default": "none",
+      "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
+        },
+        {
+          "value": "standard",
+          "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_2"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "buttons",
+      "label": "Buttons",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "button",
+          "label": "Button"
+        }
+      ],
+      "default": "button"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Seller"
+    }
+  ]
+}
+{% endschema %}

@@ -204,9 +204,24 @@
       "block_order": [
         "judge_me_reviews_review_widget_CmbgCM"
       ],
-      "disabled": true,
       "settings": {
         "include_margins": true
+      }
+    },
+    "slider_box_36b7UV": {
+      "type": "slider-box",
+      "name": "Best Seller",
+      "settings": {
+        "product_list": [
+          "honda-classic-snapback-hat",
+          "honda-icon-womens-t-shirt",
+          "honda-octagon-t-shirt",
+          "honda-octagon-t-shirt-1",
+          "kawasaki-bike-youth-pullover-sweatshirt",
+          "kawasaki-youth-team-green-t-shirt"
+        ],
+        "quick_add": "standard",
+        "buttons": "button"
       }
     }
   },
@@ -218,6 +233,7 @@
     "rebuy_related_products_bGnq7V",
     "section_recommended_products_G6VXjr",
     "1755761471c17d9912",
-    "17459101958e382654"
+    "17459101958e382654",
+    "slider_box_36b7UV"
   ]
 }

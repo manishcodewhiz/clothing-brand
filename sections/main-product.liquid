@@ -152,6 +152,8 @@
                     {%- endform -%}
                   </div>
                 {% endcomment %}
+
+              
               {%- when 'inventory' -%}
                 <p
                   class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
@@ -717,6 +719,11 @@
             {{ 'products.product.view_full_details' | t }}
             {{- 'icon-arrow.svg' | inline_asset_content -}}
           </a>
+            {% comment %} {{  product.metafields.custom.press_entry.values  }} {% endcomment %}
+             {% assign press_entry = product.metafields.custom.press_entry.value %}
+             {{ press_entry.published_date }}
+
+             
         </section>
       </div>
     </div>

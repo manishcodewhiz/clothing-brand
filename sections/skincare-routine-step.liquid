@@ -1,0 +1,1054 @@
+{{ 'section-skincare-routine-step.css' | asset_url | stylesheet_tag }}
+
+<div class="section-skincare-routine-step">
+  <div class="page-width">
+    <div class="row">
+      <div class="col-3">
+        <div class="tab-list">
+          <ul>
+            {% for block in section.blocks %}
+              {% if block.settings.tab_title != blank %}
+                <h3>
+                  {{ block.settings.tab_title }}
+                </h3>
+              {% endif %}
+              <li
+                data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"
+                class="step-tab-item"
+              >
+                <span>{{ block.settings.step_title }}</span>
+              </li>
+            {% endfor %}
+            {% comment %}
+              <li data-tab="Water_Based_cleanser"><span>Water Based cleanser</span></li>
+              <li data-tab="Exfoliator"><span>Exfoliator</span></li>
+              <h3>PREP</h3>
+              <li data-tab="Toner"><span>Toner</span></li>
+              <h3>NOURISH</h3>
+              <li data-tab="Essence"><span>Essence</span></li>
+              <li data-tab="Treatments"><span>Treatments</span></li>
+              <li data-tab="Sheet_Masks"><span>Sheet Masks</span></li>
+              <li data-tab="Eye_Cream"><span>Eye Cream</span></li>
+              <h3>PROTECT</h3>
+              <li data-tab="Moisturizer"><span>Moisturizer</span></li>
+              <li data-tab="Sun_protection"><span>Sun protection</span></li>
+            {% endcomment %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-9">
+        {% assign cleanse_blocks = section.blocks | where: 'type', 'cleanse' %}
+        <div class="tab-list step-tab-mobile active-tab">
+          {% for block in cleanse_blocks %}
+            {% if block.settings.tab_title != blank %}
+              <h3 class="heading-main">
+                {{ block.settings.tab_title }}
+              </h3>
+            {% endif %}
+          {% endfor %}
+          <ul class="mobile-content-tabs">
+            {% for block in cleanse_blocks %}
+              <li
+                data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"
+                class="step-tab-item"
+              >
+                <span>{{ block.settings.step_title }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="tab-main-content">
+          {% for block in cleanse_blocks %}
+            <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+              <div class="row">
+                <div class="col-6">
+                  <div class="tab-text_details">
+                    <h2>{{ block.settings.step_title }}</h2>
+                    {{ block.settings.decsription }}
+                    <ul>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <a href="javascript:void(0)" class="next_button">Next Step</a>
+                  <div class="media_content">
+                    <div class="video_content">
+                      {% if block.settings.video_url != blank and block.settings.video_poster != blank %}
+                        {%- assign video_poster_url = block.settings.video_poster | image_url -%}
+                        {{
+                          block.settings.video_url
+                          | video_tag:
+                            width: 500,
+                            height: 340,
+                            poster: video_poster_url,
+                            class: 'my_video',
+                            autoplay: true,
+                            muted: true,
+                            loop: true
+                        }}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        {% assign prep_blocks = section.blocks | where: 'type', 'prep' %}
+        <div class="tab-list step-tab-mobile">
+          {% for block in prep_blocks %}
+            {% if block.settings.tab_title != blank %}
+              <h3 class="heading-main">
+                {{ block.settings.tab_title }}
+              </h3>
+            {% endif %}
+          {% endfor %}
+          <ul class="mobile-content-tabs">
+            {% for block in prep_blocks %}
+              <li
+                data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"
+                class="step-tab-item"
+              >
+                <span>{{ block.settings.step_title }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="tab-main-content">
+          {% for block in prep_blocks %}
+            <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+              <div class="row">
+                <div class="col-6">
+                  <div class="tab-text_details">
+                    <h2>{{ block.settings.step_title }}</h2>
+                    {{ block.settings.decsription }}
+                    {% comment %}
+                      <ul>
+                        <li>
+                          <div class="svg-icon">
+                            <img
+                              src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                              width="43"
+                              height="43"
+                              alt=""
+                              loading="lazy"
+                            >
+                          </div>
+                          <div class="svg-text">
+                            <h5>What it does</h5>
+                            <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="svg-icon">
+                            <img
+                              src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                              width="43"
+                              height="43"
+                              alt=""
+                              loading="lazy"
+                            >
+                          </div>
+                          <div class="svg-text">
+                            <h5>What it does</h5>
+                            <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="svg-icon">
+                            <img
+                              src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                              width="43"
+                              height="43"
+                              alt=""
+                              loading="lazy"
+                            >
+                          </div>
+                          <div class="svg-text">
+                            <h5>What it does</h5>
+                            <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                          </div>
+                        </li>
+                      </ul>
+                    {% endcomment %}
+                  </div>
+                  <a href="javascript:void(0)" class="next_button">Next Step</a>
+                </div>
+                <div class="col-6">
+                  <div class="tab-text_media">
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        {% assign nourish_blocks = section.blocks | where: 'type', 'nourish' %}
+        <div class="tab-list step-tab-mobile">
+          {% for block in nourish_blocks %}
+            {% if block.settings.tab_title != blank %}
+              <h3 class="heading-main">
+                {{ block.settings.tab_title }}
+              </h3>
+            {% endif %}
+          {% endfor %}
+          <ul class="mobile-content-tabs">
+            {% for block in nourish_blocks %}
+              <li
+                data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"
+                class="step-tab-item"
+              >
+                <span>{{ block.settings.step_title }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="tab-main-content">
+          {% for block in nourish_blocks %}
+            <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+              <div class="row">
+                <div class="col-6">
+                  <div class="tab-text_details">
+                    <h2>{{ block.settings.step_title }}</h2>
+                    {{ block.settings.decsription }}
+                    <ul>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <a href="javascript:void(0)" class="next_button">Next Step</a>
+                </div>
+                <div class="col-6">
+                  <div class="tab-text_media">
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                    {% comment %}
+                      <img
+                        src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                        width=""
+                        height=""
+                        alt=""
+                        loading="lazy"
+                      >
+                    {% endcomment %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          {% comment %}
+            <div class="step-tab-content" id="Treatments">
+              <div class="row">
+                <div class="col-6">
+                  <div class="tab-text_details">
+                    <h2>Treatments</h2>
+                    <p>
+                      Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the
+                      double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup,
+                      sunscreen, and other oil-based impurities.
+                    </p>
+                    <ul>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="tab-text_media">
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="step-tab-content" id="Sheet_Masks">
+              <div class="row">
+                <div class="col-6">
+                  <div class="tab-text_details">
+                    <h2>Sheet Masks</h2>
+                    <p>
+                      Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the
+                      double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup,
+                      sunscreen, and other oil-based impurities.
+                    </p>
+                    <ul>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="tab-text_media">
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="step-tab-content" id="Eye_Cream">
+              <div class="row">
+                <div class="col-6">
+                  <div class="tab-text_details">
+                    <h2>Eye Cream</h2>
+                    <p>
+                      Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the
+                      double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup,
+                      sunscreen, and other oil-based impurities.
+                    </p>
+                    <ul>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="tab-text_media">
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endcomment %}
+        </div>
+        {% assign protect_blocks = section.blocks | where: 'type', 'protect' %}
+        <div class="tab-list step-tab-mobile">
+          {% for block in protect_blocks %}
+            {% if block.settings.tab_title != blank %}
+              <h3 class="heading-main">
+                {{ block.settings.tab_title }}
+              </h3>
+            {% endif %}
+          {% endfor %}
+          <ul class="mobile-content-tabs">
+            {% for block in protect_blocks %}
+              <li
+                data-tab="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}"
+                class="step-tab-item"
+              >
+                <span>{{ block.settings.step_title }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="tab-main-content">
+          {% for block in protect_blocks %}
+            <div class="step-tab-content" id="content_{{ block.type }}--{{ block.settings.step_title |  handleize }}">
+              <div class="row">
+                <div class="col-6">
+                  <div class="tab-text_details">
+                    <h2>{{ block.settings.step_title }}</h2>
+                    {{ block.settings.decsription }}
+                    <ul>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  {% unless forloop.last %}
+                    <a href="javascript:void(0)" class="next_button">Next Step</a>
+                  {% endunless %}
+                </div>
+                <div class="col-6">
+                  <div class="tab-text_media">
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          {% comment %}
+            <div class="step-tab-content" id="Sun_protection">
+              <div class="row">
+                <div class="col-6">
+                  <div class="tab-text_details">
+                    <h2>Sun Protection</h2>
+                    <p>
+                      Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the
+                      double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup,
+                      sunscreen, and other oil-based impurities.
+                    </p>
+                    <ul>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="svg-icon">
+                          <img
+                            src="https://sokoglam.com/cdn/shop/files/Union.png?v=1749818556"
+                            width="43"
+                            height="43"
+                            alt=""
+                            loading="lazy"
+                          >
+                        </div>
+                        <div class="svg-text">
+                          <h5>What it does</h5>
+                          <p>Breaks down oil-based debris such as makeup and sunscreen</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="tab-text_media">
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                    <img
+                      src="https://sokoglam.com/cdn/shop/files/preview_images/31053707e1704cc383de22ee10f5f25c.thumbnail.0000000000_small.jpg?v=1750165233"
+                      width=""
+                      height=""
+                      alt=""
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+           $(document).ready(function () {
+             $('.tab-list ul li').first().addClass('active');
+             $('.step-tab-content').first().addClass('active');
+
+             $('.tab-list ul li').on('click', function () {
+               $('.tab-list ul li').removeClass('active');
+               $(this).addClass('active');
+
+               $('.step-tab-content').removeClass('active');
+               const tabId = $(this).data('tab');
+               $('#' + tabId).addClass('active');
+             });
+       {% comment %} {% comment %}
+            $('.step-tab-mobile h3').on('click', function () {
+               $(this).toggleClass('active');
+               $('.tab-main-content').toggle();
+             });
+             $('.step-tab-mobile h3').on('click', function () {
+               $('.step-tab-mobile ul li').toggle();
+             }); {% endcomment %}
+
+              $('.step-tab-mobile h3').on('click', function () {
+               $('.step-tab-mobile').removeClass('active');
+               $(this).addClass('active');
+
+             {% comment %} $('.step-tab-mobile h3').on('click', function () {
+               $('.step-tab-mobile').toggleClass('active');
+               $(".tab-main-content").slideToggle(); {% endcomment %}
+
+
+
+       }); {% endcomment %}
+
+     $('.next_button').on('click', function(e) {
+       e.preventDefault();
+       var activeTabLiItem = $('li.step-tab-item.active');
+       var nextTabLiItem = activeTabLiItem.nextAll('li.step-tab-item').first();
+       if (nextTabLiItem.length) {
+         nextTabLiItem.trigger('click');
+       }
+     });
+
+
+        $(".heading-main").on("click", function () {
+       let parentTab = $(this).closest(".step-tab-mobile");
+       let contentBox = parentTab.next(".tab-main-content");
+
+
+       if (parentTab.hasClass("active-tab")) {
+         parentTab.removeClass("active-tab");
+         contentBox.slideUp();
+       } else {
+
+         $(".step-tab-mobile").removeClass("active-tab");
+         $(".tab-main-content").slideUp();
+
+
+         parentTab.addClass("active-tab");
+         contentBox.slideDown(function () {
+
+           contentBox.find(".step-tab-content").removeClass("active").hide();
+           contentBox.find(".mobile-content-tabs li").removeClass("active");
+
+
+           let firstLi = parentTab.find(".mobile-content-tabs li").first();
+           let firstContentId = firstLi.data("tab");
+
+           firstLi.addClass("active");
+           $("#" + firstContentId)
+             .addClass("active")
+             .show();
+         });
+       }
+     });
+  });
+
+   {% comment %} $(document).ready(function () {
+     $(".heading-main").on("click", function () {
+       let parentTab = $(this).closest(".step-tab-mobile");
+       let contentBox = parentTab.next(".tab-main-content");
+
+
+       if (parentTab.hasClass("active-tab")) {
+         parentTab.removeClass("active-tab");
+         contentBox.slideUp();
+       } else {
+
+         $(".step-tab-mobile").removeClass("active-tab");
+         $(".tab-main-content").slideUp();
+
+
+         parentTab.addClass("active-tab");
+         contentBox.slideDown(function () {
+
+           contentBox.find(".step-tab-content").removeClass("active").hide();
+           contentBox.find(".mobile-content-tabs li").removeClass("active");
+
+
+           let firstLi = parentTab.find(".mobile-content-tabs li").first();
+           let firstContentId = firstLi.data("tab");
+
+           firstLi.addClass("active");
+           $("#" + firstContentId)
+             .addClass("active")
+             .show();
+         });
+       }
+     });
+   }); {% endcomment %}
+</script>
+{% schema %}
+{
+  "name": "Skincare Routine Steps",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "cleanse",
+      "name": "Cleanse",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Tab Settings"
+        },
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title"
+        },
+        {
+          "type": "richtext",
+          "id": "decsription",
+          "label": "Decsription"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Media Settings"
+        },
+        {
+          "type": "video",
+          "id": "video_url",
+          "label": "Video URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "video_poster",
+          "label": "Video Poster"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_url",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_main",
+          "label": "image left"
+        }
+      ]
+    },
+    {
+      "type": "prep",
+      "name": "Prep",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Tab Settings"
+        },
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title"
+        },
+        {
+          "type": "richtext",
+          "id": "decsription",
+          "label": "Decsription"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_main",
+          "label": "image left"
+        }
+      ]
+    },
+    {
+      "type": "nourish",
+      "name": "Nourish",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Tab Settings"
+        },
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title"
+        },
+        {
+          "type": "richtext",
+          "id": "decsription",
+          "label": "Decsription"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_main",
+          "label": "image left"
+        }
+      ]
+    },
+    {
+      "type": "protect",
+      "name": "Protect",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Tab Settings"
+        },
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title"
+        },
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title"
+        },
+        {
+          "type": "richtext",
+          "id": "decsription",
+          "label": "Decsription"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_icon",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_main",
+          "label": "image left"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Skincare Routine Steps"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,94 @@
+{{ 'select-product.css' | asset_url | stylesheet_tag }}
+
+<div class="press-list">
+  <div class="page-width">
+    <ul class="press-list_iteam">
+      {% for press_list in metaobjects.press.values %}
+        <li class="press-main-list">
+          <div class="press-list_block">
+            <img
+              src="{{ press_list.image | image_url }}"
+              width="200"
+              height="200"
+              loading="lazy"
+              alt="{{ press_list.image.alt | default: shop.name }}"
+            >
+            <div class="press_logo">
+              <img
+                src="{{ press_list.brand_logo | image_url }}"
+                width="50"
+                height="50"
+                loading="lazy"
+                alt="{{ press_list.brand_logo.alt | default: shop.name }}"
+              >
+            </div>
+          </div>
+          <div class="press_content">
+            <span>{{ press_list.brand_name }}</span>
+            <span>{{ press_list.published_date }}</span>
+            <h2>{{ press_list.title }}</h2>
+            <a href="{{ press_list.cta_link }}">{{ press_list.cta_text }}</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+    {% comment %}
+      <div class="press-load-more">
+        <a href="#" id="load-more_button" class="load-more">Load More</a>
+      </div>
+    {% endcomment %}
+    <div class="load-more-blog">
+      <a href="#" id="loadMore" class="primary-btn black-btn">Load More</a>
+      <div id="loader" style="display:none;">Loading...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  {% comment %} $(document).ready(function(){
+      $(".press-main-list").slice(0,3).show();
+      $("#load-more_button").click(function(e){
+        e.preventDefault();
+        $(".press-main-list:hidden").slice(0,3).fadeIn("slow");
+
+        if($(".press-main-list:hidden").length == 0){
+           $("#load-more_button").fadeOut("slow");
+          }
+      });
+    }); {% endcomment %}
+
+     $(document).ready(function () {
+      $(".press-main-list").slice(0, 3).show();
+
+      $("#loadMore").on("click", function (e) {
+        e.preventDefault();
+
+        // Show loader
+        $("#loader").show();
+        $("#loadMore").hide();
+
+        setTimeout(function () {
+          $(".press-main-list:hidden").slice(0, 3).slideDown();
+          // Hide loader
+          $("#loader").hide();
+          $("#loadMore").show();
+
+             if ($(".press-main-list:hidden").length === 0) {
+             $("#loadMore").fadeOut();
+          }
+        }, 500);
+      });
+    });
+</script>
+
+{% schema %}
+{
+  "name": "Press Listing",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Press Listing"
+    }
+  ]
+}
+{% endschema %}

@@ -2,30 +2,17 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
-
-{%- paginate blog.articles by 6 -%}
-  <div class="main-blog page-width section-{{ section.id }}-padding">
-    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {{ blog.title | escape }}
-    </h1>
-
-    <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+<div class="main-blog page-width section-{{ section.id }}-padding">
+  <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    {{ blog.title | escape }}
+  </h1>
+  {%- paginate blog.articles by 200 -%}
+    <ul class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+      {% comment %} {{  blog.articles.size | json }} {% endcomment %}
       {%- for article in blog.articles -%}
-        <div
-          class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        <li
+          class="blog-articles__article article"
+          style="display:none;"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
             style="--animation-order: {{ forloop.index }};"
@@ -33,23 +20,48 @@
         >
           {%- render 'article-card',
             article: article,
-            media_height: section.settings.image_height,
-            media_aspect_ratio: article.image.aspect_ratio,
             show_image: section.settings.show_image,
             show_date: section.settings.show_date,
             show_author: section.settings.show_author,
-            show_excerpt: true
+            show_excerpt: true,
+            show_read_more: true
           -%}
-        </div>
+        </li>
       {%- endfor -%}
-    </div>
-
-    {%- if paginate.pages > 1 -%}
-      {%- render 'pagination', paginate: paginate -%}
-    {%- endif -%}
+    </ul>
+  {%- endpaginate -%}
+  <div class="load-more-blog">
+    <a href="#" id="loadMore" class="primary-btn black-btn">Load More</a>
+    <div id="loader" style="display:none;">Loading...</div>
   </div>
-{%- endpaginate -%}
+</div>
+<script>
+    $(document).ready(function () {
+    $(".main-blog .blog-articles__article").slice(0, 4).show();
 
+    $("#loadMore").on("click", function (e) {
+      e.preventDefault();
+
+      // Show loader
+      $("#loader").show();
+      $("#loadMore").hide();
+
+      setTimeout(function () {
+        $(".main-blog .blog-articles__article:hidden").slice(0, 4).slideDown();
+        // Hide loader
+        $("#loader").hide();
+        $("#loadMore").show();
+
+           {% comment %} if ($(".main-blog .blog-articles__article:hidden").length === 0) {
+          $("#loadMore").text("No Content").addClass("noContent").prop("disabled", true);
+        } {% endcomment %}
+        if ($(".main-blog .blog-articles__article:hidden").length === 0) {
+          $("#loadMore").fadeOut();
+        } 
+      }, 500);
+    });
+  });
+</script>
 {% schema %}
 {
   "name": "t:sections.main-blog.name",
@@ -113,31 +125,13 @@
       "id": "show_author",
       "default": false,
       "label": "t:sections.main-blog.settings.show_author.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
     }
   ]
 }
 {% endschema %}
+
+{% comment %}
+  {%- if paginate.pages > 1 -%}
+    {%- render 'pagination', paginate: paginate -%}
+  {%- endif -%}
+{% endcomment %}

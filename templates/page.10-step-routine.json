@@ -11,10 +11,114 @@
   "sections": {
     "main": {
       "type": "main-page",
-      "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
-      }
+      "disabled": true,
+    },
+    "skincare_routine_step_KchkaY": {
+      "type": "skincare-routine-step",
+      "blocks": {
+        "cleanse_yCzc94": {
+          "type": "cleanse",
+          "settings": {
+            "tab_title": "CLEANSE",
+            "step_title": "Makeup remover & oil cleanser",
+            "decsription": "<p>Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup, sunscreen, and other oil-based impurities.</p>",
+            "video_url": "shopify://files/videos/-35f5-4cd0-bd41-9f2f4306db84.mp4",
+            "video_poster": "shopify://shop_images/install-video-two.webp",
+            "image_url": "shopify://shop_images/cd065fea04fc386610a10d053ac21c419ac046d9.png"
+          }
+        },
+        "cleanse_4bgtPF": {
+          "type": "cleanse",
+          "settings": {
+            "tab_title": "",
+            "step_title": "Water Based cleanser",
+            "decsription": "<p>The second step of the double cleanse. Cleansing twice is recommended by aestheticians and dermatologists because it helps to thoroughly remove any impurities that can cause breakouts. Water-based cleansers dissolve the water-based impurities such as dirt and sweat that your oil cleanser didn’t pick up.</p>"
+          }
+        },
+        "cleanse_BWE6gm": {
+          "type": "cleanse",
+          "settings": {
+            "tab_title": "",
+            "step_title": "Exfoliator",
+            "decsription": "<p>Physical and chemical exfoliants help unclog pores and remove dead skin cells, revealing a brighter, smoother complexion. Regular exfoliation also enhances the effectiveness of your skincare routine by allowing products to absorb more easily.</p>"
+          }
+        },
+        "prep_w4MNzQ": {
+          "type": "prep",
+          "settings": {
+            "tab_title": "PREP",
+            "step_title": "Toner",
+            "decsription": "<p>Toners are the essential prep step, sweeping away any remaining residue from cleansing while supporting your skin’s barrier for better absorption of the products that follow. Think of your skin like a sponge - it’s much easier to hydrate when it’s slightly damp than when it’s dry and tight.</p>"
+          }
+        },
+        "nourish_7e3aaw": {
+          "type": "nourish",
+          "settings": {
+            "tab_title": "NOURISH",
+            "step_title": "Essence",
+            "decsription": "<p>Essences are lightweight but potent, often concentrated with hydrating, slow-aging, and skin-replenishing ingredients to smooth, brighten, and prep your skin for what’s next.</p>"
+          }
+        },
+        "nourish_6M9VKa": {
+          "type": "nourish",
+          "settings": {
+            "tab_title": "",
+            "step_title": "Treatments",
+            "decsription": "<p>Boosters, serums, and ampoules are the ultimate skin perfectors. Packed with powerhouse ingredients, they target specific skin concerns such as acne, fine lines, and hyperpigmentation.</p>"
+          }
+        },
+        "nourish_PEJBbU": {
+          "type": "nourish",
+          "settings": {
+            "tab_title": "",
+            "step_title": "Sheet Masks",
+            "decsription": "<p>If essences are the heart of the Korean skincare routine, sheet masks are the soul. They deliver a concentrated dose of ingredients designed to hydrate, brighten, calm, or firm—depending on what your skin needs most. It’s an effortless way to give your skin a boost, while inviting a moment of quiet self care.</p>"
+          }
+        },
+        "nourish_dtFw6R": {
+          "type": "nourish",
+          "settings": {
+            "tab_title": "",
+            "step_title": "Eye Cream",
+            "decsription": "<p>The skin around your eyes is the most delicate, making it more prone to dryness, puffiness, and fine lines. A well-formulated eye cream targets these concerns with concentrated ingredients while staying gentle and non-irritating for daily use.</p>"
+          }
+        },
+        "protect_Vrpaq8": {
+          "type": "protect",
+          "settings": {
+            "tab_title": "PROTECT",
+            "step_title": "Moisturizer",
+            "decsription": "<p>Whether it’s a lightweight gel or a rich cream, moisturizers deliver lasting hydration, strengthen the skin barrier, and seal in the steps that come before. They help smooth texture, soften fine lines, and keep skin balanced and healthy around the clock.</p>"
+          }
+        },
+        "protect_WUfe3i": {
+          "type": "protect",
+          "settings": {
+            "tab_title": "",
+            "step_title": "Sun protection",
+            "decsription": "<p>Oil cleansers are the foundation of the Korean skincare routine and the essential first step in the double cleanse. As you gently massage them into dry skin, they effectively dissolve makeup, sunscreen, and other oil-based impurities.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "cleanse_yCzc94",
+        "cleanse_4bgtPF",
+        "cleanse_BWE6gm",
+        "prep_w4MNzQ",
+        "nourish_7e3aaw",
+        "nourish_6M9VKa",
+        "nourish_PEJBbU",
+        "nourish_dtFw6R",
+        "protect_Vrpaq8",
+        "protect_WUfe3i"
+      ],
+      "name": "Skincare Routine Steps",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "skincare_routine_step_KchkaY"
     }
   },
   "order": [

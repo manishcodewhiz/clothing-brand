@@ -59,7 +59,12 @@
       >
         {%- if card_product.featured_media -%}
           <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
-            <div class="media media--transparent media--hover-effect">
+            <div
+              class="media media--transparent media--hover-effect"
+              {% if product_card_background_color != blank %}
+                style="background-color:{{ product_card_background_color }};"
+              {% endif %}
+            >
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img
                 srcset="
@@ -73,36 +78,55 @@
                 "
                 src="{{ card_product.featured_media | image_url: width: 533 }}"
                 sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                alt="{{ card_product.featured_media.alt | escape }}"
                 class="motion-reduce"
                 {% unless lazy_load == false %}
                   loading="lazy"
                 {% endunless %}
                 width="{{ card_product.featured_media.width }}"
                 height="{{ card_product.featured_media.height }}"
+                alt="{{ card_product.featured_media.alt | escape }}"
               >
               {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
 
-              {%- if card_product.media[1] != null and show_secondary_image -%}
+              {%- assign hover_image_index = 1 -%}
+              {%- if card_product.tags contains 'Parent Listing' -%}
+                {%- assign hover_image_index = 2 -%}
+              {%- endif -%}
+
+              {%- assign hover_image = card_product.media[hover_image_index] -%}
+
+              {%- if hover_image != null and show_secondary_image -%}
                 <img
                   srcset="
-                    {%- if card_product.media[1].width >= 165 -%}{{ card_product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 360 -%}{{ card_product.media[1] | image_url: width: 360 }} 360w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 533 -%}{{ card_product.media[1] | image_url: width: 533 }} 533w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 720 -%}{{ card_product.media[1] | image_url: width: 720 }} 720w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 940 -%}{{ card_product.media[1] | image_url: width: 940 }} 940w,{%- endif -%}
-                    {%- if card_product.media[1].width >= 1066 -%}{{ card_product.media[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
-                    {{ card_product.media[1] | image_url }} {{ card_product.media[1].width }}w
+                    {%- if hover_image.width >= 165 -%}{{ hover_image | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if hover_image.width >= 360 -%}{{ hover_image | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if hover_image.width >= 533 -%}{{ hover_image | image_url: width: 533 }} 533w,{%- endif -%}
+                    {%- if hover_image.width >= 720 -%}{{ hover_image | image_url: width: 720 }} 720w,{%- endif -%}
+                    {%- if hover_image.width >= 940 -%}{{ hover_image | image_url: width: 940 }} 940w,{%- endif -%}
+                    {%- if hover_image.width >= 1066 -%}{{ hover_image | image_url: width: 1066 }} 1066w,{%- endif -%}
+                    {{ hover_image | image_url }} {{ hover_image.width }}w
                   "
-                  src="{{ card_product.media[1] | image_url: width: 533 }}"
+                  src="{{ hover_image | image_url: width: 533 }}"
                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                  alt="{{ card_product.media[1].alt | escape }}"
+                  alt="{{ hover_image.alt | escape }}"
                   class="motion-reduce"
                   loading="lazy"
-                  width="{{ card_product.media[1].width }}"
-                  height="{{ card_product.media[1].height }}"
+                  width="{{ hover_image.width }}"
+                  height="{{ hover_image.height }}"
                 >
               {%- endif -%}
+            </div>
+          </div>
+        {%- else -%}
+          <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
+            <div class="media media--transparent media--hover-effect">
+              <img
+                src="https://cdn.shopify.com/s/files/1/2657/6552/files/noimage.png?v=1750328086"
+                height="345"
+                width="345"
+                alt="Placeholder Image"
+                loading="lazy"
+              >
             </div>
           </div>
         {%- endif -%}
@@ -288,9 +312,9 @@
             {%- endif -%}
           </div>
         </div>
-         {% if buttons == 'button' %}
-            <a href="{{ card_product.url }}" class="btn">Shop Now</a>
-          {% endif %}
+        {% if buttons == 'button' %}
+          <a href="{{ card_product.url }}" class="btn">Shop Now</a>
+        {% endif %}
         {% assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id %}
         {% if quick_add == 'standard' %}
           <div class="quick-add no-js-hidden">
