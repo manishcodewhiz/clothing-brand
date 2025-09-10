@@ -54,7 +54,7 @@
   $(document).ready(function () {
     $('.first-level-menu_items').hide().first().show();
 
-    $('.first-level-desktop li').on('click', function () {
+    $('.first-level-desktop li').on('mouseenter', function () {
         $('.first-level-desktop li').removeClass('active');
         $('.first-level-menu_items').removeClass('active').hide();
         $(this).addClass('active');
