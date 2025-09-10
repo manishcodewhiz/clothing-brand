@@ -52,16 +52,16 @@
   // });
 
   $(document).ready(function () {
-    $('.first-level-desktop li').hide().first().show();
+    $('.first-level-menu_items').hide().first().show();
 
-    $('.tab-list li').on('click', function () {
-        $('.tab-list li').removeClass('active');
-        $('.first-level-desktop li').removeClass('active').hide();
+    $('.first-level-desktop li').on('click', function () {
+        $('.first-level-desktop li').removeClass('active');
+        $('.first-level-menu_items').removeClass('active').hide();
         $(this).addClass('active');
 
         let tabid = $(this).data('tabid');
 
-        $('.first-level-desktop li[data-tabid="' + tabid + '"]').addClass('active').show();
+        $('.first-level-menu_items[data-tabid="' + tabid + '"]').addClass('active').show();
     })
 })
 
