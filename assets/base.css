@@ -3950,6 +3950,7 @@ product-form{
 .variant-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  display: none;
 }
 .quantity-wrapper {
   display: flex;
