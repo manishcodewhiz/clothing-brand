@@ -96,29 +96,55 @@
 
 
 
-  document.addEventListener("DOMContentLoaded", function () {
-  const forms = document.querySelectorAll('[data-type="add-to-cart-form"]');
+document.addEventListener("DOMContentLoaded", function () {
+  const productForms = document.querySelectorAll('[data-type="add-to-cart-form"]');
 
-  forms.forEach((form) => {
+  productForms.forEach((form) => {
+    const hiddenInput = form.querySelector('input[name="id"]');
+    const buttons = form.querySelectorAll(".variant-button");
+
+    // Handle variant button selection
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        hiddenInput.value = btn.dataset.variantId;
+      });
+    });
+
+    // Handle quantity controls
+    const qtyInput = form.querySelector(".qty-input");
+    const minus = form.querySelector(".qty-btn.minus");
+    const plus = form.querySelector(".qty-btn.plus");
+
+    minus.addEventListener("click", () => {
+      let val = parseInt(qtyInput.value) || 1;
+      if (val > 1) qtyInput.value = val - 1;
+    });
+
+    plus.addEventListener("click", () => {
+      let val = parseInt(qtyInput.value) || 1;
+      qtyInput.value = val + 1;
+    });
+
+    // Ajax add to cart
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
-      const select = form.querySelector(".select__select");
-      const variantId = select.value;
+      const variantId = hiddenInput.value;
+      const quantity = parseInt(qtyInput.value);
 
       fetch("/cart/add.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id: variantId,
-          quantity: 1
+          quantity: quantity
         }),
       })
       .then(res => res.json())
       .then(data => {
         console.log("Added to cart:", data);
-
-        // Open cart drawer if theme supports it
+        // Open cart drawer
         const cartDrawer = document.querySelector("cart-drawer");
         if (cartDrawer) {
           cartDrawer.classList.add("active");
