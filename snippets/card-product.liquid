@@ -312,6 +312,7 @@
             {%- endif -%}
           </div>
         </div>
+
         {%- assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id -%}
 
         <product-form data-section-id="{{ section.id }}">
@@ -322,28 +323,33 @@
             novalidate: 'novalidate',
             data-type: 'add-to-cart-form'
           -%}
-            <!-- Variant selector -->
-            <div class="select">
-              <select class="select__select" name="id" id="VariantSelector-{{ card_product.id }}">
+            <!-- Variant buttons -->
+            <div class="variant-options">
+              <p class="variant-label">Size</p>
+              <div class="variant-buttons">
                 {% for variant in card_product.variants %}
-                  <option
-                    value="{{ variant.id }}"
-                    {% if variant == card_product.selected_or_first_available_variant %}
-                      selected
-                    {% endif %}
+                  <button
+                    type="button"
+                    class="variant-button {% if forloop.first %}active{% endif %}"
+                    data-variant-id="{{ variant.id }}"
                     {% unless variant.available %}
                       disabled
                     {% endunless %}
                   >
                     {{ variant.title }}
-                  </option>
+                  </button>
                 {% endfor %}
-              </select>
-              <span class="svg-wrapper">
-                <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L7 7L13 1" stroke="#091D4B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-              </span>
+              </div>
+            </div>
+
+            <!-- Hidden input for variant ID -->
+            <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}">
+
+            <!-- Quantity selector -->
+            <div class="quantity-wrapper">
+              <button type="button" class="qty-btn minus">−</button>
+              <input type="number" name="quantity" value="1" min="1" class="qty-input">
+              <button type="button" class="qty-btn plus">+</button>
             </div>
 
             <!-- Add to cart button -->
@@ -355,17 +361,7 @@
                 disabled
               {% endif %}
             >
-              <span>
-                {%- if card_product.selected_or_first_available_variant.available -%}
-                  {{ 'products.product.add_to_cart' | t }}
-                {%- else -%}
-                  {{ 'products.product.sold_out' | t }}
-                {%- endif -%}
-              </span>
-              <span class="sold-out-message hidden">
-                {{ 'products.product.sold_out' | t }}
-              </span>
-              {%- render 'loading-spinner' -%}
+              {{ 'products.product.add_to_cart' | t }}
             </button>
           {%- endform -%}
         </product-form>
