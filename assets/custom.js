@@ -100,10 +100,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const productForms = document.querySelectorAll('[data-type="add-to-cart-form"]');
 
   productForms.forEach((form) => {
+    // Remove Dawn's built-in listener
+    form.replaceWith(form.cloneNode(true));
+  });
+
+  // Re-select after clone
+  const cleanForms = document.querySelectorAll('[data-type="add-to-cart-form"]');
+
+  cleanForms.forEach((form) => {
     const hiddenInput = form.querySelector('input[name="id"]');
     const buttons = form.querySelectorAll(".variant-button");
+    const qtyInput = form.querySelector(".qty-input");
+    const minus = form.querySelector(".qty-btn.minus");
+    const plus = form.querySelector(".qty-btn.plus");
 
-    // Handle variant button selection
+    // Variant button handling
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
         buttons.forEach(b => b.classList.remove("active"));
@@ -112,25 +123,19 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Handle quantity controls
-    const qtyInput = form.querySelector(".qty-input");
-    const minus = form.querySelector(".qty-btn.minus");
-    const plus = form.querySelector(".qty-btn.plus");
-
+    // Quantity controls
     minus.addEventListener("click", () => {
       let val = parseInt(qtyInput.value) || 1;
       if (val > 1) qtyInput.value = val - 1;
     });
-
     plus.addEventListener("click", () => {
       let val = parseInt(qtyInput.value) || 1;
       qtyInput.value = val + 1;
     });
 
-    // Ajax add to cart
+    // Custom Add to Cart
     form.addEventListener("submit", function (e) {
-      e.preventDefault();   // ✅ stop page reload
-      e.stopImmediatePropagation(); // ✅ stop Shopify’s built-in handler
+      e.preventDefault();
 
       const variantId = hiddenInput.value;
       const quantity = parseInt(qtyInput.value);
@@ -138,16 +143,13 @@ document.addEventListener("DOMContentLoaded", function () {
       fetch("/cart/add.js", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: variantId,
-          quantity: quantity
-        }),
+        body: JSON.stringify({ id: variantId, quantity }),
       })
       .then(res => res.json())
       .then(data => {
         console.log("Added to cart:", data);
 
-        // ✅ Refresh & open cart drawer
+        // Refresh cart drawer
         const cartDrawer = document.querySelector("cart-drawer");
         if (cartDrawer) {
           cartDrawer.dispatchEvent(new CustomEvent("cart:refresh", { bubbles: true }));
@@ -158,3 +160,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+

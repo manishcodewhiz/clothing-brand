@@ -353,16 +353,11 @@
             </div>
 
             <!-- Add to cart button -->
-            <button
-              type="submit"
-              class="quick-add__submit button button--full-width button--secondary"
-              aria-live="polite"
-              {% if card_product.selected_or_first_available_variant.available == false %}
-                disabled
-              {% endif %}
-            >
-              {{ 'products.product.add_to_cart' | t }}
-            </button>
+            <form class="custom-atc-form" data-type="add-to-cart-form">
+              <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}">
+              <!-- your variant buttons + qty here -->
+              <button type="submit">Add to Cart</button>
+            </form>
           {%- endform -%}
         </product-form>
       </div>
