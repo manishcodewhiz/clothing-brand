@@ -96,68 +96,68 @@
 
 
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   const productForms = document.querySelectorAll('[data-type="add-to-cart-form"]');
+document.addEventListener("DOMContentLoaded", function () {
+  const productForms = document.querySelectorAll('[data-type="add-to-cart-form"]');
 
-//   productForms.forEach((form) => {
-//     // Remove Dawn's built-in listener
-//     form.replaceWith(form.cloneNode(true));
-//   });
+  productForms.forEach((form) => {
+    // Remove Dawn's built-in listener
+    form.replaceWith(form.cloneNode(true));
+  });
 
-//   // Re-select after clone
-//   const cleanForms = document.querySelectorAll('[data-type="add-to-cart-form"]');
+  // Re-select after clone
+  const cleanForms = document.querySelectorAll('[data-type="add-to-cart-form"]');
 
-//   cleanForms.forEach((form) => {
-//     const hiddenInput = form.querySelector('input[name="id"]');
-//     const buttons = form.querySelectorAll(".variant-button");
-//     const qtyInput = form.querySelector(".qty-input");
-//     const minus = form.querySelector(".qty-btn.minus");
-//     const plus = form.querySelector(".qty-btn.plus");
+  cleanForms.forEach((form) => {
+    const hiddenInput = form.querySelector('input[name="id"]');
+    const buttons = form.querySelectorAll(".variant-button");
+    const qtyInput = form.querySelector(".qty-input");
+    const minus = form.querySelector(".qty-btn.minus");
+    const plus = form.querySelector(".qty-btn.plus");
 
-//     // Variant button handling
-//     buttons.forEach((btn) => {
-//       btn.addEventListener("click", () => {
-//         buttons.forEach(b => b.classList.remove("active"));
-//         btn.classList.add("active");
-//         hiddenInput.value = btn.dataset.variantId;
-//       });
-//     });
+    // Variant button handling
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        hiddenInput.value = btn.dataset.variantId;
+      });
+    });
 
-//     // Quantity controls
-//     minus.addEventListener("click", () => {
-//       let val = parseInt(qtyInput.value) || 1;
-//       if (val > 1) qtyInput.value = val - 1;
-//     });
-//     plus.addEventListener("click", () => {
-//       let val = parseInt(qtyInput.value) || 1;
-//       qtyInput.value = val + 1;
-//     });
+    // Quantity controls
+    minus.addEventListener("click", () => {
+      let val = parseInt(qtyInput.value) || 1;
+      if (val > 1) qtyInput.value = val - 1;
+    });
+    plus.addEventListener("click", () => {
+      let val = parseInt(qtyInput.value) || 1;
+      qtyInput.value = val + 1;
+    });
 
-//     // Custom Add to Cart
-//     form.addEventListener("submit", function (e) {
-//       e.preventDefault();
+    // Custom Add to Cart
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-//       const variantId = hiddenInput.value;
-//       const quantity = parseInt(qtyInput.value);
+      const variantId = hiddenInput.value;
+      const quantity = parseInt(qtyInput.value);
 
-//       fetch("/cart/add.js", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({ id: variantId, quantity }),
-//       })
-//       .then(res => res.json())
-//       .then(data => {
-//         console.log("Added to cart:", data);
+      fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: variantId, quantity }),
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log("Added to cart:", data);
 
-//         // Refresh cart drawer
-//         const cartDrawer = document.querySelector("cart-drawer");
-//         if (cartDrawer) {
-//           cartDrawer.dispatchEvent(new CustomEvent("cart:refresh", { bubbles: true }));
-//           cartDrawer.classList.add("active");
-//         }
-//       })
-//       .catch(err => console.error("Error adding to cart:", err));
-//     });
-//   });
-// });
+        // Refresh cart drawer
+        const cartDrawer = document.querySelector("cart-drawer");
+        if (cartDrawer) {
+          cartDrawer.dispatchEvent(new CustomEvent("cart:refresh", { bubbles: true }));
+          cartDrawer.classList.add("active");
+        }
+      })
+      .catch(err => console.error("Error adding to cart:", err));
+    });
+  });
+});
 
