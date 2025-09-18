@@ -94,3 +94,38 @@
     });
   });
 
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const forms = document.querySelectorAll('[data-type="add-to-cart-form"]');
+
+  forms.forEach((form) => {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const select = form.querySelector(".select__select");
+      const variantId = select.value;
+
+      fetch("/cart/add.js", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: variantId,
+          quantity: 1
+        }),
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log("Added to cart:", data);
+
+        // Open cart drawer if theme supports it
+        const cartDrawer = document.querySelector("cart-drawer");
+        if (cartDrawer) {
+          cartDrawer.classList.add("active");
+          cartDrawer.dispatchEvent(new CustomEvent("cart:refresh", { bubbles: true }));
+        }
+      })
+      .catch(err => console.error("Error adding to cart:", err));
+    });
+  });
+});
