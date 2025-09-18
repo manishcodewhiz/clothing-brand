@@ -129,7 +129,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Ajax add to cart
     form.addEventListener("submit", function (e) {
-      e.preventDefault();
+      e.preventDefault();   // ✅ stop page reload
+      e.stopImmediatePropagation(); // ✅ stop Shopify’s built-in handler
+
       const variantId = hiddenInput.value;
       const quantity = parseInt(qtyInput.value);
 
@@ -144,11 +146,12 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(res => res.json())
       .then(data => {
         console.log("Added to cart:", data);
-        // Open cart drawer
+
+        // ✅ Refresh & open cart drawer
         const cartDrawer = document.querySelector("cart-drawer");
         if (cartDrawer) {
-          cartDrawer.classList.add("active");
           cartDrawer.dispatchEvent(new CustomEvent("cart:refresh", { bubbles: true }));
+          cartDrawer.classList.add("active");
         }
       })
       .catch(err => console.error("Error adding to cart:", err));
