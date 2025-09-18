@@ -3925,3 +3925,8 @@ button::after {
   width: 100%;
   display: none;
 }
+
+product-form{
+  position: relative;
+  z-index: 5;
+}
