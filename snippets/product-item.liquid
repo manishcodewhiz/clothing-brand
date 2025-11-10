@@ -1,4 +1,5 @@
 <div class="product-card cstm-product-card" product-id="{{ product.selected_or_first_available_variant.id }}">
+  {% render 'wishlisthero-collection-product' with product: product %}
   {% assign product_sku_last_character = product.selected_or_first_available_variant.sku | slice: -1, 1 %}
   {% assign show_price = true %}
   {% assign show_atc = true %}
