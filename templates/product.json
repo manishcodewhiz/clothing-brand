@@ -76,6 +76,22 @@
             "text": "Pop-up link text",
             "page": "contact"
           }
+        },
+        "wishlist_hero_custom_product_button_LrRiRf": {
+          "type": "shopify://apps/wishlist-hero/blocks/custom-product-button/a9a5079b-59e8-47cb-b659-ecf1c60b9b72",
+          "settings": {
+            "displayButtonMode": "~",
+            "contentAlignment": "center",
+            "buttonAlignment": "center",
+            "overrideFont": false,
+            "customFont": "sans_serif_n4",
+            "buttonFullwidth": true,
+            "removeBoxShadowAndBorder": false,
+            "horizontalPadding": 20,
+            "iconTopOffset": 0,
+            "addedCssClassNames": "",
+            "addedContainerStyles": ""
+          }
         }
       },
       "block_order": [
@@ -89,7 +105,8 @@
         "collapsible_tab_jVx7HV",
         "share",
         "judge_me_reviews_preview_badge_9J7NTj",
-        "popup_b39c9m"
+        "popup_b39c9m",
+        "wishlist_hero_custom_product_button_LrRiRf"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -197,7 +214,9 @@
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "sample_data",
-            "max_width": 1200
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
           }
         }
       },
