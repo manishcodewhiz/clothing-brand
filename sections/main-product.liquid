@@ -114,7 +114,7 @@
                     price_class: 'price--large'
                   -%}
                   <div class="star-box">
-                    <span>{% render 'okendo-reviews-product-rating-summary', product: product %}</span>
+                    <span>{% render 'okendo-reviews', product: product %}</span>
                   </div>
                   {%- if product.quantity_price_breaks_configured? -%}
                     <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
