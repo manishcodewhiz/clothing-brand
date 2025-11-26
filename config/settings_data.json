@@ -9,6 +9,11 @@
  */
 {
   "current": {
+    "logo": "shopify://shop_images/e51d190f97119af95b17d0cef4524126d6244ba4_1.png",
+    "logo_width": 190,
+    "type_header_font": "sans-serif",
+    "heading_scale": 100,
+    "type_body_font": "sans-serif",
     "body_scale": 100,
     "page_width": 1200,
     "spacing_sections": 0,
@@ -23,6 +28,13 @@
     "buttons_shadow_horizontal_offset": 0,
     "buttons_shadow_vertical_offset": 4,
     "buttons_shadow_blur": 5,
+    "variant_pills_border_thickness": 12,
+    "variant_pills_border_opacity": 100,
+    "variant_pills_radius": 40,
+    "variant_pills_shadow_opacity": 100,
+    "variant_pills_shadow_horizontal_offset": 12,
+    "variant_pills_shadow_vertical_offset": 12,
+    "variant_pills_shadow_blur": 0,
     "inputs_border_thickness": 1,
     "inputs_border_opacity": 55,
     "inputs_radius": 0,
@@ -110,6 +122,8 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": true,
+    "cart_drawer_liquid": "<div data-rebuy-id=\"234898\"></div>",
+    "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": false,
     "cart_drawer_collection": "",
@@ -130,7 +144,31 @@
     },
     "content_for_index": [],
     "blocks": {
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
+        "settings": {}
+      },
+      "1232542678405107163": {
+        "type": "shopify://apps/instafeed/blocks/head-block/c447db20-095d-4a10-9725-b5977662c9d5",
+        "disabled": false,
+        "settings": {}
+      },
+      "10641372206048101839": {
+        "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-global-embed/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+        "disabled": false,
+        "settings": {}
+      },
+      "733389323033596483": {
+        "type": "shopify://apps/okendo/blocks/theme-settings/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+        "disabled": false,
+        "settings": {
+          "show_preview_data": true
+        }
+      },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
         "settings": {}
       }
     },
