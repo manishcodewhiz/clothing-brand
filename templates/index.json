@@ -141,7 +141,7 @@
             "instafeed_margin_top": 0,
             "instafeed_margin_bottom": 0,
             "instafeed_margin_sides": 0,
-            "show_instagram_link": true,
+            "show_instagram_link": false,
             "link_alignment": "left",
             "link_color": "#000000",
             "background_color": "",
