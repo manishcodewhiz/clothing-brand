@@ -7,7 +7,6 @@
     </div>
     {% if section.settings.selected_products != blank %}
       <div class="product-slider">
-        {% render 'wishlisthero-collection-product' with product: product %}
         {% for product in section.settings.selected_products %}
           {%- render 'product-item', product: product, section_id: section.id -%}
         {% endfor %}

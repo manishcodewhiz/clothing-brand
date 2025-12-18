@@ -55,13 +55,7 @@
     >
       <div class="card__media">
 
-      <button
-        class="wishlist-hero-button"
-        data-product-id="{{ product.id }}"
-        data-variant-id="{{ product.selected_or_first_available_variant.id }}">
-      </button>
-
-      {{ product.featured_image | image_url: width: 400 | image_tag }}
+      {% render 'wishlisthero-collection-product' with product: card_product %}
 
     </div>
       <div
