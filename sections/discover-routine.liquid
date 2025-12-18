@@ -11,7 +11,33 @@
       <div class="row">
         {% for product in section.settings.product_lists %}
           <div class="col-2">
-         {% render 'card-product', show_vendor: section.settings.show_vendor %}
+            <div class="product-item_card">
+              <div class="product-block">
+                {% if product.featured_image != blank %}
+                  <a href="{{ product.url }}">
+                    <img
+                      src="{{ product.featured_image | image_url }}"
+                      width=""
+                      height=""
+                      alt="Product Image"
+                      loading="lazy"
+                    >
+                  </a>
+                {% endif %}
+              </div>
+              <div class="product-link">
+                {% if product.url != blank or product.title != blank %}
+                  <div class="product-link">
+                    <a href="{{ product.url }}">
+                      <span>
+                        {{ product.title }}
+                        {{ 'Arrow-white.svg' | inline_asset_content -}}
+                      </span>
+                    </a>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
           </div>
         {% endfor %}
       </div>
