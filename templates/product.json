@@ -103,6 +103,13 @@
         },
         "okendo_star_rating_arJUFg": {
           "type": "shopify://apps/okendo/blocks/star-rating/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "disabled": true,
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "klaviyo_reviews_average_rating_frf6mx": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/average-rating/db20e365-d984-4ac4-9655-e1588d951ca9",
           "settings": {
             "product": "{{product}}"
           }
@@ -122,7 +129,8 @@
         "popup_b39c9m",
         "wishlist_hero_custom_product_button_LrRiRf",
         "okendo_star_rating_mf8hFD",
-        "okendo_star_rating_arJUFg"
+        "okendo_star_rating_arJUFg",
+        "klaviyo_reviews_average_rating_frf6mx"
       ],
       "settings": {
         "enable_sticky_info": true,
