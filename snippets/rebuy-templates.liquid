@@ -66,6 +66,7 @@
                     rel="nofollow"
                   >
                     <div class="rebuy-image-wrapper">
+                       {% render 'wishlisthero-collection-product' with product: card_product %}
                       <img
                         class="primary-image"
                         v-bind:loading="product_index > 1 ? 'lazy' : 'eager'"
