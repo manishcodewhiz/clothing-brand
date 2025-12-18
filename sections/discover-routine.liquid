@@ -13,6 +13,7 @@
           <div class="col-2">
             <div class="product-item_card">
               <div class="product-block">
+                {% render 'wishlisthero-collection-product' with product: card_product %}
                 {% if product.featured_image != blank %}
                   <a href="{{ product.url }}">
                     <img
