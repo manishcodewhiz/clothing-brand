@@ -1,6 +1,6 @@
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
+{% comment %} {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -133,8 +133,9 @@
       </div>
     {%- endform -%}
   </div>
-</div>
+</div> {% endcomment %}
 
+<div class="powr-form-builder" id="48e28164_1766146307"></div><script src="https://www.powr.io/powr.js?platform=shopify"></script>
 {% schema %}
 {
   "name": "t:sections.contact-form.name",
