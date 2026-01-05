@@ -122,6 +122,7 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": true,
+    "rebuy_product": true,
     "cart_drawer_liquid": "<div data-rebuy-id=\"264662\"></div>",
     "cart_type": "drawer",
     "show_vendor": false,
@@ -232,6 +233,11 @@
       },
       "11348531219507317188": {
         "type": "shopify://apps/eb-easy-bundle-builder/blocks/app-embed/05b1325c-6303-4da5-8e2f-b13ab2a50e1a",
+        "disabled": false,
+        "settings": {}
+      },
+      "10641372206048101839": {
+        "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-global-embed/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
         "disabled": false,
         "settings": {}
       }
