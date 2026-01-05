@@ -124,6 +124,7 @@
       "block_order": [
         "rebuy_personalization_engine_rebuy_widget_M6b9GQ"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
@@ -153,6 +154,25 @@
       "block_order": [
         "instafeed_app_block_LW6mfm"
       ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1767595842efde0223": {
+      "type": "apps",
+      "blocks": {
+        "eb_easy_bundle_builder_app_block_bundle_page_VE6V9t": {
+          "type": "shopify://apps/eb-easy-bundle-builder/blocks/app-block-bundlePage/05b1325c-6303-4da5-8e2f-b13ab2a50e1a",
+          "settings": {
+            "bundle_id": 1,
+            "loadingUrl": "https://d3ks0ngva6go34.cloudfront.net/public/Loading_Spinner.gif"
+          }
+        }
+      },
+      "block_order": [
+        "eb_easy_bundle_builder_app_block_bundle_page_VE6V9t"
+      ],
       "settings": {
         "include_margins": true
       }
@@ -164,6 +184,7 @@
     "discover_routine_yMaBLR",
     "product_cards_mMzHEK",
     "17557582075c4fddae",
-    "176485428597c796c1"
+    "176485428597c796c1",
+    "1767595842efde0223"
   ]
 }
