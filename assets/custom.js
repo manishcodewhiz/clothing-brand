@@ -95,6 +95,8 @@
   });
 
 
+  // This is rebuy widget Add to cart redirect to cart drawer 
+
   $(document).on('click', '.rebuy-product-actions, .rebuy-bundle-builder__cta-container', function (e) {
 	if ($(e.target).closest(".rebuy-bundle-builder__product-quantity").length) {
     return;
