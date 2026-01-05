@@ -114,11 +114,6 @@
             "product": "{{product}}"
           }
         },
-        "eb_easy_bundle_builder_app_block_mix_and_match_bundle_PQqmRw": {
-          "type": "shopify://apps/eb-easy-bundle-builder/blocks/app-block-mixAndMatchBundle/05b1325c-6303-4da5-8e2f-b13ab2a50e1a",
-          "disabled": true,
-          "settings": {}
-        },
         "eb_easy_bundle_builder_app_block_mix_and_match_bundle_DjDyc6": {
           "type": "shopify://apps/eb-easy-bundle-builder/blocks/app-block-mixAndMatchBundle/05b1325c-6303-4da5-8e2f-b13ab2a50e1a",
           "settings": {}
@@ -140,7 +135,6 @@
         "okendo_star_rating_mf8hFD",
         "okendo_star_rating_arJUFg",
         "klaviyo_reviews_average_rating_frf6mx",
-        "eb_easy_bundle_builder_app_block_mix_and_match_bundle_PQqmRw",
         "eb_easy_bundle_builder_app_block_mix_and_match_bundle_DjDyc6"
       ],
       "settings": {
