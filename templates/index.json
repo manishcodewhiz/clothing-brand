@@ -124,7 +124,6 @@
       "block_order": [
         "rebuy_personalization_engine_rebuy_widget_M6b9GQ"
       ],
-      "disabled": true,
       "settings": {
         "include_margins": true
       }
@@ -154,7 +153,6 @@
       "block_order": [
         "instafeed_app_block_LW6mfm"
       ],
-      "disabled": true,
       "settings": {
         "include_margins": true
       }
