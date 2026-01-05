@@ -219,6 +219,26 @@
           "PriceFontSize": 16,
           "PriceColor": ""
         }
+      },
+      "11348531219507317188": {
+        "type": "shopify://apps/eb-easy-bundle-builder/blocks/app-embed/05b1325c-6303-4da5-8e2f-b13ab2a50e1a",
+        "disabled": false,
+        "settings": {}
+      },
+      "13375078075628245689": {
+        "type": "shopify://apps/powr-form-builder/blocks/app-embed/1412fe37-d89c-4706-a797-6e2b53cb4a69",
+        "disabled": false,
+        "settings": {}
+      },
+      "13880449186847910618": {
+        "type": "shopify://apps/ai-accessibility/blocks/star_rating/dc9533bd-2222-409c-ba87-8e789e0d25e9",
+        "disabled": false,
+        "settings": {}
+      },
+      "13768625480086291342": {
+        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
