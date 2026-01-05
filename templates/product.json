@@ -53,6 +53,7 @@
         },
         "eb_easy_bundle_builder_app_block_bundle_upsell_bzdtam": {
           "type": "shopify://apps/eb-easy-bundle-builder/blocks/app-block-bundleUpsell/05b1325c-6303-4da5-8e2f-b13ab2a50e1a",
+          "disabled": true,
           "settings": {}
         },
         "collapsible_tab_jVx7HV": {
