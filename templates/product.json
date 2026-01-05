@@ -201,6 +201,7 @@
     },
     "rebuy_related_products_bGnq7V": {
       "type": "rebuy-related-products",
+      "disabled": true,
       "name": "Rebuy Related Products",
       "settings": {
         "title": "You may also like",
@@ -209,6 +210,7 @@
     },
     "section_recommended_products_G6VXjr": {
       "type": "section-recommended-products",
+      "disabled": true,
       "name": "Recommended Products",
       "settings": {
         "recommended_products_id": "235484",
@@ -260,6 +262,7 @@
     },
     "slider_box_36b7UV": {
       "type": "slider-box",
+      "disabled": true,
       "name": "Best Seller",
       "settings": {
         "product_list": [
@@ -272,6 +275,26 @@
         ],
         "quick_add": "standard",
         "buttons": "button"
+      }
+    },
+    "1767613990c7ae44e7": {
+      "type": "apps",
+      "blocks": {
+        "rebuy_personalization_engine_rebuy_widget_ryiVE3": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "234897",
+            "product_id_enabled": true,
+            "collection_id_enabled": false
+          }
+        }
+      },
+      "block_order": [
+        "rebuy_personalization_engine_rebuy_widget_ryiVE3"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "1764852787c88b8650": {
@@ -288,6 +311,7 @@
       "block_order": [
         "okendo_reviews_widget_gUBUFt"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
@@ -318,6 +342,7 @@
     "1755761471c17d9912",
     "17459101958e382654",
     "slider_box_36b7UV",
+    "1767613990c7ae44e7",
     "1764852787c88b8650",
     "1766051408a541e6dc"
   ]
