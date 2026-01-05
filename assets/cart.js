@@ -292,3 +292,15 @@ if (!customElements.get('cart-note')) {
     }
   );
 }
+
+document.addEventListener('rebuy:cart.add', function (event) {
+  // Dawn / OS 2.0
+  const cartDrawer = document.querySelector('cart-drawer');
+  if (cartDrawer) {
+    cartDrawer.open();
+  }
+
+  // Fallback (some themes)
+  document.body.dispatchEvent(new Event('cart:open'));
+});
+
