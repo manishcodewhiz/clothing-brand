@@ -284,7 +284,7 @@
           "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
             "enabled": true,
-            "id": "234897",
+            "id": "235484",
             "product_id_enabled": true,
             "collection_id_enabled": false
           }
