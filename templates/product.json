@@ -51,6 +51,10 @@
             "show_gift_card_recipient": true
           }
         },
+        "eb_easy_bundle_builder_app_block_bundle_upsell_bzdtam": {
+          "type": "shopify://apps/eb-easy-bundle-builder/blocks/app-block-bundleUpsell/05b1325c-6303-4da5-8e2f-b13ab2a50e1a",
+          "settings": {}
+        },
         "collapsible_tab_jVx7HV": {
           "type": "collapsible_tab",
           "settings": {
@@ -114,10 +118,6 @@
             "product": "{{product}}"
           }
         },
-        "eb_easy_bundle_builder_app_block_bundle_upsell_bzdtam": {
-          "type": "shopify://apps/eb-easy-bundle-builder/blocks/app-block-bundleUpsell/05b1325c-6303-4da5-8e2f-b13ab2a50e1a",
-          "settings": {}
-        },
         "eb_easy_bundle_builder_app_block_mix_and_match_bundle_CNkzkF": {
           "type": "shopify://apps/eb-easy-bundle-builder/blocks/app-block-mixAndMatchBundle/05b1325c-6303-4da5-8e2f-b13ab2a50e1a",
           "settings": {}
@@ -131,6 +131,7 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "eb_easy_bundle_builder_app_block_bundle_upsell_bzdtam",
         "collapsible_tab_jVx7HV",
         "share",
         "judge_me_reviews_preview_badge_9J7NTj",
@@ -139,7 +140,6 @@
         "okendo_star_rating_mf8hFD",
         "okendo_star_rating_arJUFg",
         "klaviyo_reviews_average_rating_frf6mx",
-        "eb_easy_bundle_builder_app_block_bundle_upsell_bzdtam",
         "eb_easy_bundle_builder_app_block_mix_and_match_bundle_CNkzkF"
       ],
       "settings": {
