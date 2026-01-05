@@ -173,6 +173,7 @@
       "block_order": [
         "eb_easy_bundle_builder_app_block_bundle_page_VE6V9t"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
