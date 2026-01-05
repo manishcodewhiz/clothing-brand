@@ -44,7 +44,9 @@ class CartItems extends HTMLElement {
 
   resetQuantityInput(id) {
     const input = this.querySelector(`#Quantity-${id}`);
-    input.value = input.getAttribute('value');
+    if (input) {
+      input.value = input.getAttribute('value');
+    }
     this.isEnterPressed = false;
   }
 
@@ -261,7 +263,9 @@ class CartItems extends HTMLElement {
 
   disableLoading(line) {
     const mainCartItems = document.getElementById('main-cart-items') || document.getElementById('CartDrawer-CartItems');
-    mainCartItems.classList.remove('cart__items--disabled');
+    if (mainCartItems) {
+      mainCartItems.classList.remove('cart__items--disabled');
+    }
 
     const cartItemElements = this.querySelectorAll(`#CartItem-${line} .loading__spinner`);
     const cartDrawerItemElements = this.querySelectorAll(`#CartDrawer-Item-${line} .loading__spinner`);
