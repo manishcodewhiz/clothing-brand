@@ -341,7 +341,59 @@
   }
 </script>
 
-{% comment %} <script>
+{% comment %}
+  <script>
+    document.addEventListener('submit', function (e) {
+      const form = e.target.closest('form.quantity-form');
+      if (!form) return;
+
+      e.preventDefault();
+
+      const variantId = form.querySelector('input[name="id"]')?.value;
+      const quantity = parseInt(form.querySelector('input[name="quantity"]')?.value || 1, 10);
+
+      if (!variantId) return;
+
+      const spinner = form.querySelector('.loading__spinner');
+      if (spinner) spinner.classList.remove('hidden');
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          id: variantId,
+          quantity: quantity,
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error('Cart add failed');
+          return res.json();
+        })
+        .then(() => {
+          // 🔑 STEP 1: FORCE REBUY TO REFRESH CART
+          document.dispatchEvent(new CustomEvent('rebuy:cart.change'));
+
+          // 🔑 STEP 2: WAIT FOR REBUY TO RE-RENDER
+          setTimeout(() => {
+            if (window.Rebuy?.Cart?.open) {
+              window.Rebuy.Cart.open();
+            }
+          }, 300); // timing is VERY important
+        })
+        .catch((err) => {
+          console.error('Add to cart error:', err);
+        })
+        .finally(() => {
+          if (spinner) spinner.classList.add('hidden');
+        });
+    });
+  </script>
+{% endcomment %}
+
+<script>
   document.addEventListener('submit', function (e) {
     const form = e.target.closest('form.quantity-form');
     if (!form) return;
@@ -350,11 +402,7 @@
 
     const variantId = form.querySelector('input[name="id"]')?.value;
     const quantity = parseInt(form.querySelector('input[name="quantity"]')?.value || 1, 10);
-
     if (!variantId) return;
-
-    const spinner = form.querySelector('.loading__spinner');
-    if (spinner) spinner.classList.remove('hidden');
 
     fetch('/cart/add.js', {
       method: 'POST',
@@ -362,34 +410,28 @@
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify({
-        id: variantId,
-        quantity: quantity,
-      }),
+      body: JSON.stringify({ id: variantId, quantity }),
     })
-      .then((res) => {
-        if (!res.ok) throw new Error('Cart add failed');
-        return res.json();
-      })
+      .then((res) => res.json())
       .then(() => {
-        // 🔑 STEP 1: FORCE REBUY TO REFRESH CART
-        document.dispatchEvent(new CustomEvent('rebuy:cart.change'));
-
-        // 🔑 STEP 2: WAIT FOR REBUY TO RE-RENDER
+        // 🔑 WAIT for cart state update
         setTimeout(() => {
-          if (window.Rebuy?.Cart?.open) {
-            window.Rebuy.Cart.open();
+          // 1️⃣ Dawn / modern themes
+          const drawerToggle =
+            document.querySelector('button[aria-controls="cart-drawer"]') ||
+            document.querySelector('[data-cart-drawer-toggle]') ||
+            document.querySelector('a[href="/cart"]');
+
+          if (drawerToggle) {
+            drawerToggle.click(); // ✅ THIS OPENS THE DRAWER
+          } else {
+            console.warn('Cart drawer toggle not found');
           }
-        }, 300); // timing is VERY important
+        }, 300);
       })
-      .catch((err) => {
-        console.error('Add to cart error:', err);
-      })
-      .finally(() => {
-        if (spinner) spinner.classList.add('hidden');
-      });
+      .catch((err) => console.error('Add to cart error:', err));
   });
-</script> {% endcomment %}
+</script>
 
 {% schema %}
 {
