@@ -348,13 +348,10 @@
 
     e.preventDefault();
 
-    const variantInput = form.querySelector('input[name="id"]');
-    const qtyInput = form.querySelector('input[name="quantity"]');
+    const variantId = form.querySelector('input[name="id"]')?.value;
+    const quantity = parseInt(form.querySelector('input[name="quantity"]')?.value || 1, 10);
 
-    if (!variantInput) return;
-
-    const variantId = variantInput.value;
-    const quantity = qtyInput ? parseInt(qtyInput.value, 10) : 1;
+    if (!variantId) return;
 
     const spinner = form.querySelector('.loading__spinner');
     if (spinner) spinner.classList.remove('hidden');
@@ -371,17 +368,19 @@
       }),
     })
       .then((res) => {
-        if (!res.ok) throw new Error('Add to cart failed');
+        if (!res.ok) throw new Error('Cart add failed');
         return res.json();
       })
       .then(() => {
-        // ✅ MOST IMPORTANT PART
-        if (window.Rebuy && window.Rebuy.Cart && typeof window.Rebuy.Cart.open === 'function') {
-          window.Rebuy.Cart.open();
-        } else {
-          // fallback (some themes need this)
-          document.dispatchEvent(new CustomEvent('cart:open'));
-        }
+        // 🔑 STEP 1: FORCE REBUY TO REFRESH CART
+        document.dispatchEvent(new CustomEvent('rebuy:cart.change'));
+
+        // 🔑 STEP 2: WAIT FOR REBUY TO RE-RENDER
+        setTimeout(() => {
+          if (window.Rebuy?.Cart?.open) {
+            window.Rebuy.Cart.open();
+          }
+        }, 300); // timing is VERY important
       })
       .catch((err) => {
         console.error('Add to cart error:', err);
