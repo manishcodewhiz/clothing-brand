@@ -346,7 +346,7 @@
     const form = e.target.closest('form.quantity-form');
     if (!form) return;
 
-    e.preventDefault(); // STOP normal form redirect
+    e.preventDefault();
 
     const variantInput = form.querySelector('input[name="id"]');
     const qtyInput = form.querySelector('input[name="quantity"]');
@@ -356,7 +356,6 @@
     const variantId = variantInput.value;
     const quantity = qtyInput ? parseInt(qtyInput.value, 10) : 1;
 
-    // Show loader
     const spinner = form.querySelector('.loading__spinner');
     if (spinner) spinner.classList.remove('hidden');
 
@@ -364,30 +363,32 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        Accept: 'application/json',
       },
       body: JSON.stringify({
         id: variantId,
-        quantity: quantity
+        quantity: quantity,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Add to cart failed');
+        return res.json();
       })
-    })
-    .then(response => {
-      if (!response.ok) throw new Error('Add to cart failed');
-      return response.json();
-    })
-    .then(() => {
-      // ✅ OPEN REBUY CART DRAWER
-      document.dispatchEvent(new CustomEvent('rebuy:cart.open'));
-
-      // Optional cart refresh (safe)
-      document.dispatchEvent(new CustomEvent('cart:refresh'));
-    })
-    .catch(err => {
-      console.error('Add to cart error:', err);
-    })
-    .finally(() => {
-      if (spinner) spinner.classList.add('hidden');
-    });
+      .then(() => {
+        // ✅ MOST IMPORTANT PART
+        if (window.Rebuy && window.Rebuy.Cart && typeof window.Rebuy.Cart.open === 'function') {
+          window.Rebuy.Cart.open();
+        } else {
+          // fallback (some themes need this)
+          document.dispatchEvent(new CustomEvent('cart:open'));
+        }
+      })
+      .catch((err) => {
+        console.error('Add to cart error:', err);
+      })
+      .finally(() => {
+        if (spinner) spinner.classList.add('hidden');
+      });
   });
 </script>
 
