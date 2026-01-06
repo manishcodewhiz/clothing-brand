@@ -135,3 +135,41 @@ document.addEventListener('DOMContentLoaded', function () {
 		reinitializeRebuy();
 	}, 1000);
 });
+
+
+
+
+
+function updateCartProgress(cart) {
+  const wrapper = document.querySelector('.cart-progress-wrapper');
+  if (!wrapper) return;
+
+  const goal = parseInt(wrapper.dataset.freeShipping) * 100;
+  const total = cart.total_price;
+
+  const text = wrapper.querySelector('.cart-progress-text');
+  const fill = wrapper.querySelector('.cart-progress-fill');
+
+  let progress = Math.min((total / goal) * 100, 100);
+  fill.style.width = progress + '%';
+
+  if (total >= goal) {
+    text.innerHTML = "🎉 You unlocked <strong>FREE Shipping</strong>";
+  } else {
+    let remaining = ((goal - total) / 100).toFixed(2);
+    text.innerHTML = `Add <strong>₹${remaining}</strong> more to get FREE Shipping 🚚`;
+  }
+}
+
+/* Fetch cart */
+function refreshCartProgress() {
+  fetch('/cart.js')
+    .then(res => res.json())
+    .then(cart => updateCartProgress(cart));
+}
+
+/* On page load */
+document.addEventListener('DOMContentLoaded', refreshCartProgress);
+
+/* After add to cart */
+document.addEventListener('cart:refresh', refreshCartProgress);
