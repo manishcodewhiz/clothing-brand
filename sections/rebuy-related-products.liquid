@@ -393,68 +393,6 @@
   </script>
 {% endcomment %}
 
-<script>
-  (function () {
-    document.addEventListener('click', function (e) {
-      const submitBtn = e.target.closest('.quick-add__submit');
-      if (!submitBtn) return;
-
-      const form = submitBtn.closest('form.quantity-form');
-      if (!form) return;
-
-      e.preventDefault();
-
-      const variantInput = form.querySelector('input[name="id"]');
-      if (!variantInput || !variantInput.value) {
-        console.error('Variant ID missing');
-        return;
-      }
-
-      const qtyInput = form.querySelector('input[name="quantity"]');
-      const quantity = qtyInput ? parseInt(qtyInput.value, 10) : 1;
-
-      // Prevent double click
-      submitBtn.disabled = true;
-
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          id: variantInput.value,
-          quantity: quantity,
-        }),
-      })
-        .then((res) => {
-          if (!res.ok) throw new Error('Add to cart failed');
-          return res.json();
-        })
-        .then(() => {
-          // ✅ OPEN THEME CART DRAWER (RELIABLE)
-          setTimeout(() => {
-            const cartToggle =
-              document.querySelector('button[aria-controls="cart-drawer"]') ||
-              document.querySelector('[data-cart-drawer-toggle]') ||
-              document.querySelector('a[href="/cart"]');
-
-            if (cartToggle) {
-              cartToggle.click();
-            } else {
-              console.warn('Cart drawer toggle not found');
-            }
-          }, 200);
-        })
-        .catch((err) => {
-          console.error(err);
-        })
-        .finally(() => {
-          submitBtn.disabled = false;
-        });
-    });
-  })();
-</script>
 
 {% schema %}
 {
