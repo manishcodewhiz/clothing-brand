@@ -341,7 +341,7 @@
   }
 </script>
 
-<script>
+{% comment %} <script>
   document.addEventListener('submit', function (e) {
     const form = e.target.closest('form.quantity-form');
     if (!form) return;
@@ -389,7 +389,7 @@
         if (spinner) spinner.classList.add('hidden');
       });
   });
-</script>
+</script> {% endcomment %}
 
 {% schema %}
 {
