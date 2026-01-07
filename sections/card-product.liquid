@@ -8,8 +8,14 @@
 
         {% if products != blank %}
           {% for product in products %}
-            <div class="col-3" {{ block.shopify_attributes }}>
-              <div class="product_card" data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+            <div
+              class="col-3"
+              {{ block.shopify_attributes }}
+            >
+              <div
+                class="product_card"
+                data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+              >
                 <div class="product_block">
                   <a href="{{ product.url }}">
                     <img
