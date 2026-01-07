@@ -3943,7 +3943,7 @@ button::after {
   position: relative;
 }
 
-
+/* 
 .cart-drawer .freshipping {
   padding: 24px 30px 18px;
 }
@@ -3956,9 +3956,9 @@ button::after {
   font-size: 15px;
 }
 
-/* .cart-drawer .freshipping .shipping-savings-message strong {
+.cart-drawer .freshipping .shipping-savings-message strong {
   font-weight: 500;
-} */
+}
 
 .cart-drawer .freshipping .progressbar {
   display: flex;
@@ -4005,5 +4005,32 @@ button::after {
 .cart-drawer .drawer__inner .cart-drawer__form {
   background-color: var(--light-grey-color);
   padding: 30px;
+} */
+
+
+.progressbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
+#Progress_Status {
+  flex: 1;
+  height: 8px;
+  background: #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#myprogressBar {
+  height: 100%;
+  width: 0%;
+  background: #000;
+  transition: width 0.4s ease;
+}
+
+.free_shipping_notice {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
