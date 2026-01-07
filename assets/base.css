@@ -3949,7 +3949,7 @@ button::after {
 }
 
 .cart-drawer .freshipping .shipping-savings-message {
-  color: var(--text-secondary-color);
+  color: #000;
   font-size: 1.6rem;
   line-height: normal;
   text-align: center;
@@ -3958,7 +3958,7 @@ button::after {
 
 .cart-drawer .freshipping .shipping-savings-message strong {
   font-family: var(--font-family-runddisplay-bold);
-  color: var(--black-color);
+  color: #000;
 }
 
 .cart-drawer .freshipping .progressbar {
@@ -3972,12 +3972,12 @@ button::after {
   font-family: var(--font-family-runddisplay-semibold);
   font-size: 1.4rem;
   line-height: 1.0rem;
-  color: var(--black-color);
+  color: #000;
 }
 
 .cart-drawer .freshipping div#Progress_Status {
   width: 100%;
-  background-color: var(--border-color);
+  background-color: #dddddd;
   border-radius: 1.0rem;
   position: relative;
   height: 0.4rem;
@@ -3988,7 +3988,7 @@ button::after {
 .cart-drawer .freshipping div#myprogressBar {
   width: 2%;
   height: 100%;
-  background-color: var(--pink-secondary-color);
+  background-color: #ff00ff;
   position: relative;
   top: 0;
   color: transparent;
@@ -3998,14 +3998,14 @@ button::after {
 }
 
 .cart-drawer .freshipping div#myprogressBar {
-  background-color: var(--pink-secondary-color) !important;
+  background-color: #ff00ff !important;
 }
 
 .cart-drawer .freshipping .free-gift{
   font-size: 1.4rem;
   text-transform: capitalize;
   line-height: normal;
-  color: var(--pink-secondary-color);
+  color: #ff00ff;
   display: flex;
   width: 100%;
   justify-content: flex-end;
