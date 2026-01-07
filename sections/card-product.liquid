@@ -1,33 +1,24 @@
 {{ 'section-card-product.css' | asset_url | stylesheet_tag }}
 
-
 <div class="section-card-product">
-    <div class="page-width">
-
-    </div>
+  <div class="page-width"></div>
 </div>
-
 
 {% schema %}
 {
   "name": "Custome Product",
-  "tag": "section",
-  "settings": [
+  "settings": [],
+  "blocks": [
     {
-      "type": "liquid",
-      "id": "recommended_products_id",
-      "label": "Recommended Products Id",
-      "info": "Enter the Rebuy widget Id to display the 'Recommended Products' section."
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "Button Text"
-    },
-    {
-      "type": "url",
-      "id": "cta_url",
-      "label": "Button URL"
+      "type": "product_list",
+      "name": "Product List",
+      "settings": [
+        {
+          "type": "product_list",
+          "id": "product_item",
+          "label": "Product Item"
+        }
+      ]
     }
   ],
   "presets": [
