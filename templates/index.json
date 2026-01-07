@@ -108,6 +108,27 @@
       "name": "Product Cards",
       "settings": {}
     },
+    "card_product_YMTRCf": {
+      "type": "card-product",
+      "blocks": {
+        "product_epHkBh": {
+          "type": "product",
+          "settings": {
+            "product_item": [
+              "honda-classic-snapback-hat",
+              "honda-icon-womens-t-shirt",
+              "honda-octagon-t-shirt",
+              "geometric-jacquard-shirt"
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "product_epHkBh"
+      ],
+      "name": "Custom Product Cards",
+      "settings": {}
+    },
     "17557582075c4fddae": {
       "type": "apps",
       "blocks": {
@@ -182,6 +203,7 @@
     "cards_item_4BHgrE",
     "discover_routine_yMaBLR",
     "product_cards_mMzHEK",
+    "card_product_YMTRCf",
     "17557582075c4fddae",
     "176485428597c796c1",
     "1767595842efde0223"
