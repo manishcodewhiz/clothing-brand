@@ -53,13 +53,16 @@
                   {% endcomment %}
 
                   <div class="act-button">
-                    <button
-                      type="button"
-                      class="custom-atc-btn"
-                      data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                    <form
+                      method="post"
+                      action="/cart/add"
+                      class="product-form product-form--custom"
+                      data-type="add-to-cart"
+                      hidden
                     >
-                      Add to cart
-                    </button>
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                      <button type="submit" class="theme-atc-submit"></button>
+                    </form>
                   </div>
                 </div>
               </div>
