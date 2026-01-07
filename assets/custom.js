@@ -167,7 +167,7 @@ function updateFreeGiftProgress(cart) {
 
   if (total < goal) {
     const remaining = ((goal - total) / 100).toFixed(2);
-    notice.innerHTML = `You are <strong>$${remaining} away</strong> from being eligible for gift`;
+    notice.innerHTML = `You are <strong>$${remaining} away</strong> from being eligible for gi`;
   } else {
     notice.innerHTML = `Congrats! You're eligible for <strong>FREE SHIPPING</strong>`;
   }
