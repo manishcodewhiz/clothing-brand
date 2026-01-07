@@ -3,18 +3,15 @@
 <div class="section-card-product">
   <div class="page-width">
     <div class="row">
-
       {% for block in section.blocks %}
         {% assign products = block.settings.product_item %}
         {% if products != blank %}
           {% for product in products %}
-
             <div class="col-3" {{ block.shopify_attributes }}>
               <div
                 class="product_card"
                 data-variant-id="{{ product.selected_or_first_available_variant.id }}"
               >
-
                 <div class="product_block">
                   <a href="{{ product.url }}">
                     <img
@@ -41,68 +38,67 @@
 
                   <!-- CUSTOM ATC -->
                   <div class="act-button">
-                    <button type="button" class="custom-atc-btn">
-                      Add to cart
-                    </button>
+                    <button type="button" class="custom-atc-btn">Add to cart</button>
                   </div>
-
                 </div>
               </div>
             </div>
-
           {% endfor %}
         {% endif %}
       {% endfor %}
-
     </div>
   </div>
 </div>
 
 <script>
-  document.addEventListener('click', function (e) {
+  document.addEventListener('click', async function (e) {
     const btn = e.target.closest('.custom-atc-btn');
     if (!btn) return;
 
     e.preventDefault();
 
-    const productCard = btn.closest('.product_card');
-    if (!productCard) return;
+    const card = btn.closest('.product_card');
+    if (!card) return;
 
-    const variantId = productCard.dataset.variantId;
+    const variantId = card.dataset.variantId;
     if (!variantId) return;
 
-    // 1️⃣ Add product via AJAX
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        id: variantId,
-        quantity: 1,
-      }),
-    })
-      .then(() => {
-        // 2️⃣ Fetch updated cart sections (native Shopify way)
-        return fetch('/?sections=cart-drawer,cart-icon-bubble');
-      })
-      .then((res) => res.json())
-      .then((sections) => {
-        // 3️⃣ Update cart drawer HTML
-        const drawer = document.querySelector('cart-drawer');
-        if (drawer && sections['cart-drawer']) {
-          drawer.innerHTML = sections['cart-drawer'];
-          drawer.open();
-          return;
-        }
+    try {
+      // 1️⃣ Add product
+      await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          id: variantId,
+          quantity: 1,
+        }),
+      });
 
-        // 4️⃣ Fallback (open drawer button)
-        document.querySelector('[aria-controls="CartDrawer"]')?.click();
-      })
-      .catch(console.error);
+      // 2️⃣ Get updated cart drawer HTML (Dawn native)
+      const res = await fetch('/?sections=cart-drawer,cart-icon-bubble');
+      const sections = await res.json();
+
+      // 3️⃣ Replace cart drawer content
+      const drawer = document.querySelector('cart-drawer');
+      if (drawer && sections['cart-drawer']) {
+        drawer.innerHTML = sections['cart-drawer'];
+        drawer.open();
+      }
+
+      // 4️⃣ Update cart icon bubble
+      const bubble = document.querySelector('#cart-icon-bubble');
+      if (bubble && sections['cart-icon-bubble']) {
+        bubble.innerHTML = sections['cart-icon-bubble'];
+      }
+    } catch (err) {
+      console.error('ATC error:', err);
+    }
   });
 </script>
+
 {% schema %}
 {
   "name": "Custom Product Cards",
