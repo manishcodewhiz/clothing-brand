@@ -86,6 +86,36 @@
           class=" is-empty"
         {% endif %}
       >
+
+          {%- if cart != empty -%}
+            <div class="freshipping" data-cart_total="{{ cart.total_price }}">
+              {% assign shipping_value = settings.free_shipping_value | times: 100 %}
+              {% assign cart_total = cart.total_price %}
+              {% assign shipping_value_left = shipping_value | minus: cart_total %}
+              <p class="shipping-savings-message">
+                {% if shipping_value > cart_total %}
+                  <span class="free_shipping_notice">
+                    You are {{ shipping_value_left | money }} away from eligible for FREE SHIPPING
+                  </span>
+                {% elsif shipping_value < cart_total %}
+                  <span class="free_shipping_notice">Congrats! You're eligible for FREE SHIPPING! </span>
+                {% endif %}
+              </p>
+              <div class="progressbar" id="freeprogressbar">
+                <span class="progress_price">$0</span>
+                <div id="Progress_Status">
+                  {% assign progress = cart_total | times: 100 | divided_by: shipping_value %}
+                  <div
+                    id="myprogressBar"
+                    style="width:{% if progress <= 100 %}{{ progress }}%{% else %}100%{% endif %}"
+                  >
+                    x
+                  </div>
+                </div>
+                <span class="progress_price"> ${{ shipping_value | divided_by: 100 }} </span>
+              </div>
+            </div>
+          {%- endif -%}
         <form
           action="{{ routes.cart_url }}"
           id="CartDrawer-Form"
