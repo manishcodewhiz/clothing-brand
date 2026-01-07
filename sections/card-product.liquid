@@ -23,28 +23,13 @@
                   <h3>{{ product.title }}</h3>
                   <div class="price">{{ product.price | money }}</div>
 
-                  <!-- ✅ REAL SHOPIFY PRODUCT FORM (DO NOT REMOVE) -->
-                  <form
-                    method="post"
-                    action="/cart/add"
-                    class="product-form"
+                  <button
+                    type="button"
+                    class="custom-atc-btn"
+                    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
                   >
-                    <input
-                      type="hidden"
-                      name="id"
-                      value="{{ product.selected_or_first_available_variant.id }}"
-                    >
-
-                    <!-- THIS IS THE REAL THEME BUTTON -->
-                    <button
-                      type="submit"
-                      class="product-form__submit"
-                    >
-                      Add to cart
-                    </button>
-                  </form>
-
-                  <button type="button" class="custom-atc-btn">Add to cart</button>
+                    Add to cart
+                  </button>
                 </div>
               </div>
             </div>
