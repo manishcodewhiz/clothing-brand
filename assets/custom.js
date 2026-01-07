@@ -137,6 +137,63 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+function updateFreeGiftProgress(cart) {
+  const wrapper = document.getElementById('freeGiftBar');
+  if (!wrapper) return;
+
+  const goal = parseInt(wrapper.dataset.goal, 10);
+  const total = cart.total_price;
+
+  const notice = wrapper.querySelector('.free_shipping_notice');
+  const bar = wrapper.querySelector('#myprogressBar');
+
+  let percent = (total / goal) * 100;
+  percent = percent > 100 ? 100 : percent;
+
+  bar.style.width = percent + '%';
+
+  if (total < goal) {
+    const remaining = ((goal - total) / 100).toFixed(2);
+    notice.innerHTML = `You are <strong>$${remaining} away</strong> from being eligible for gift`;
+  } else {
+    notice.innerHTML = `Congrats! You're eligible for <strong>FREE SHIPPING</strong>`;
+  }
+}
+
+/* Fetch cart */
+function refreshFreeGiftBar() {
+  fetch('/cart.js')
+    .then(res => res.json())
+    .then(cart => updateFreeGiftProgress(cart));
+}
+
+/* Initial load */
+document.addEventListener('DOMContentLoaded', refreshFreeGiftBar);
+
+/* Dawn / cart drawer refresh */
+document.addEventListener('cart:refresh', refreshFreeGiftBar);
+
+/* Ajax fallback */
+document.addEventListener('ajaxProduct:added', refreshFreeGiftBar);
+document.addEventListener('ajaxProduct:removed', refreshFreeGiftBar);
+
+
+
+
+
 // function updateFreeGiftProgress(cart) {
 //   const wrapper = document.getElementById('freeGiftBar');
 //   if (!wrapper) return;
