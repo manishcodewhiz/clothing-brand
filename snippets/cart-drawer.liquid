@@ -17,9 +17,11 @@
   }
 </style>
 
-{% assign shipping_value = settings.free_shipping_value | times: 100 %}
-{% assign cart_total = cart.total_price %}
-{% assign shipping_value_left = shipping_value | minus: cart_total %}
+{% comment %}
+  {% assign shipping_value = settings.free_shipping_value | times: 100 %}
+  {% assign cart_total = cart.total_price %}
+  {% assign shipping_value_left = shipping_value | minus: cart_total %}
+{% endcomment %}
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}" id="CartDrawer">
   <div id="CartDrawer" class="cart-drawer">
@@ -92,7 +94,7 @@
           class=" is-empty"
         {% endif %}
       >
-
+        {% comment %}
           {%- if cart != empty -%}
             <div class="freshipping" data-cart_total="{{ cart.total_price }}">
               <p class="shipping-savings-message">
@@ -120,7 +122,44 @@
               <p class="free-gift">{{ settings.free_gift_text }}</p>
             </div>
           {%- endif -%}
-    
+        {% endcomment %}
+
+        {% if cart != empty %}
+          <div
+            id="freeGiftBar"
+            class="freshipping"
+            data-goal="{{ shipping_value }}"
+          >
+            <p class="shipping-savings-message">
+              <span class="free_shipping_notice">
+                {% if cart_total < shipping_value %}
+                  You are <strong>{{ shipping_value_left | money }} away</strong> from being eligible for gift
+                {% else %}
+                  {{ settings.free_shipping_text }}
+                {% endif %}
+              </span>
+            </p>
+
+            <div class="progressbar" id="freeprogressbar">
+              <span class="progress_price">$0</span>
+
+              <div id="Progress_Status">
+                {% assign progress = cart_total | times: 100 | divided_by: shipping_value %}
+                <div
+                  id="myprogressBar"
+                  style="width:{% if progress < 100 %}{{ progress }}%{% else %}100%{% endif %}"
+                ></div>
+              </div>
+
+              <span class="progress_price">
+                {{ shipping_value | money }}
+              </span>
+            </div>
+
+            <p class="free-gift">{{ settings.free_gift_text }}</p>
+          </div>
+        {% endif %}
+
         <form
           action="{{ routes.cart_url }}"
           id="CartDrawer-Form"
