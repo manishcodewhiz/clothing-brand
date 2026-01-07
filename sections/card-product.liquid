@@ -3,19 +3,18 @@
 <div class="section-card-product">
   <div class="page-width">
     <div class="row">
+
       {% for block in section.blocks %}
         {% assign products = block.settings.product_item %}
-
         {% if products != blank %}
           {% for product in products %}
-            <div
-              class="col-3"
-              {{ block.shopify_attributes }}
-            >
+
+            <div class="col-3" {{ block.shopify_attributes }}>
               <div
                 class="product_card"
                 data-variant-id="{{ product.selected_or_first_available_variant.id }}"
               >
+
                 <div class="product_block">
                   <a href="{{ product.url }}">
                     <img
@@ -35,24 +34,26 @@
 
                   <div class="price">
                     {% if product.compare_at_price > product.price %}
-                      <span class="compare-price">
-                        {{ product.compare_at_price | money }}
-                      </span>
+                      <span class="compare-price">{{ product.compare_at_price | money }}</span>
                     {% endif %}
-                    <span class="sale-price">
-                      {{ product.price | money }}
-                    </span>
+                    <span class="sale-price">{{ product.price | money }}</span>
                   </div>
 
+                  <!-- CUSTOM ATC -->
                   <div class="act-button">
-                    <button type="button" class="custom-atc-btn">Add to cart</button>
+                    <button type="button" class="custom-atc-btn">
+                      Add to cart
+                    </button>
                   </div>
+
                 </div>
               </div>
             </div>
+
           {% endfor %}
         {% endif %}
       {% endfor %}
+
     </div>
   </div>
 </div>
