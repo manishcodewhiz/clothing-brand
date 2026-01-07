@@ -19,13 +19,13 @@
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}" id="CartDrawer">
   <div id="CartDrawer" class="cart-drawer">
-      <div class="cart-progress-wrapper" data-free-shipping="999">
+      {% comment %} <div class="cart-progress-wrapper" data-free-shipping="999">
       <p class="cart-progress-text"></p>
 
       <div class="cart-progress-bar">
         <span class="cart-progress-fill"></span>
       </div>
-    </div>
+    </div> {% endcomment %}
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
     <div
       class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
