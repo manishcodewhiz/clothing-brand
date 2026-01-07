@@ -3,48 +3,81 @@
 <div class="section-card-product">
   <div class="page-width">
     <div class="row">
-        <div class="col-3">
-            <div class="product_card">
-                <div class="product_block">
-                    <img src="" alt="" width="" height="">
-                </div>
-                <div class="product_content">
-                    <h3></h3>
-                    <div class="price">
-                        <span></span>
-                        <span></span>
-                    </div>
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product_item %}
 
-                    <div class="act-button">
-                        <button>Add to card</button>
-                    </div>
+        {% if product != blank %}
+          <div class="col-3" {{ block.shopify_attributes }}>
+            <div class="product_card">
+              <div class="product_block">
+                <a href="{{ product.url }}">
+                  <img
+                    src="{{ product.featured_image | image_url: width: 400 }}"
+                    alt="{{ product.title }}"
+                    width="400"
+                    height="400"
+                    loading="lazy"
+                  >
+                </a>
+              </div>
+
+              <div class="product_content">
+                <h3>
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+
+                <div class="price">
+                  {% if product.compare_at_price > product.price %}
+                    <span class="compare-price">
+                      {{ product.compare_at_price | money }}
+                    </span>
+                  {% endif %}
+
+                  <span class="sale-price">
+                    {{ product.price | money }}
+                  </span>
                 </div>
+
+                <div class="act-button">
+                  <form method="post" action="/cart/add">
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    <button type="submit">Add to cart</button>
+                  </form>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Custome Product",
+  "name": "Custom Product Cards",
   "settings": [],
   "blocks": [
     {
-      "type": "product_list",
-      "name": "Product List",
+      "type": "product",
+      "name": "Product Card",
       "settings": [
         {
-          "type": "product_list",
+          "type": "product",
           "id": "product_item",
-          "label": "Product Item"
+          "label": "Select product"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Custome Product"
+      "name": "Custom Product Cards",
+      "blocks": [
+        {
+          "type": "product"
+        }
+      ]
     }
   ]
 }
