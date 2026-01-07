@@ -39,15 +39,27 @@
                     </span>
                   </div>
 
+                  {% comment %}
+                    <div class="act-button">
+                      <form method="post" action="/cart/add">
+                        <input
+                          type="hidden"
+                          name="id"
+                          value="{{ product.selected_or_first_available_variant.id }}"
+                        >
+                        <button type="submit">Add to cart</button>
+                      </form>
+                    </div>
+                  {% endcomment %}
+
                   <div class="act-button">
-                    <form method="post" action="/cart/add">
-                      <input
-                        type="hidden"
-                        name="id"
-                        value="{{ product.selected_or_first_available_variant.id }}"
-                      >
-                      <button type="submit">Add to cart</button>
-                    </form>
+                    <button
+                      type="button"
+                      class="custom-atc-btn"
+                      data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                    >
+                      Add to cart
+                    </button>
                   </div>
                 </div>
               </div>
@@ -58,6 +70,49 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.custom-atc-btn');
+    if (!btn) return;
+
+    e.preventDefault();
+
+    const variantId = btn.dataset.variantId;
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        id: variantId,
+        quantity: 1,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        // ✅ Open cart drawer (Dawn + most themes)
+        if (window.Shopify && Shopify.theme && Shopify.theme.cartDrawer) {
+          Shopify.theme.cartDrawer.open();
+        }
+
+        // Dawn theme fallback
+        const drawer = document.querySelector('cart-drawer');
+        if (drawer) {
+          drawer.open();
+        }
+
+        // Generic fallback (click cart icon)
+        const cartIcon = document.querySelector('[href="/cart"]');
+        if (cartIcon) {
+          cartIcon.click();
+        }
+      })
+      .catch((error) => console.error('Add to cart error:', error));
+  });
+</script>
 
 {% schema %}
 {
