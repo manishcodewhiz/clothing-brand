@@ -53,13 +53,14 @@
                   {% endcomment %}
 
                   <div class="act-button">
-                    <button
-                      type="button"
-                      class="custom-atc-btn"
-                    >
-                      Add to cart
-                    </button>
+                    <button type="button" class="custom-atc-btn">Add to cart</button>
                   </div>
+
+                  <!-- 🔴 hidden Shopify form -->
+                  <form method="post" action="/cart/add" class="product-form product-form--custom" hidden>
+                    <input type="hidden" name="id" value="VARIANT_ID">
+                    <button type="submit"></button>
+                  </form>
                 </div>
               </div>
             </div>
