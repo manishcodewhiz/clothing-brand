@@ -137,48 +137,45 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function updateFreeGiftProgress(cart) {
+  const wrapper = document.getElementById('freeGiftBar');
+  if (!wrapper) return;
 
-function updateFreeShippingBar(cart) {
-  const bar = document.getElementById('freeShippingBar');
-  if (!bar) return;
+  const goal = parseInt(wrapper.dataset.goal, 10);
+  const total = cart.total_price;
 
-  const freeShipping = parseInt(bar.dataset.freeShipping, 10);
-  const cartTotal = cart.total_price;
+  const notice = wrapper.querySelector('.free_shipping_notice');
+  const bar = wrapper.querySelector('#myprogressBar');
 
-  const notice = bar.querySelector('.free_shipping_notice');
-  const fill = bar.querySelector('.progress-fill');
+  let percent = (total / goal) * 100;
+  percent = percent > 100 ? 100 : percent;
 
-  let progress = (cartTotal / freeShipping) * 100;
-  progress = progress > 100 ? 100 : progress;
+  bar.style.width = percent + '%';
 
-  fill.style.width = progress + '%';
-
-  if (cartTotal < freeShipping) {
-    const remaining = (freeShipping - cartTotal) / 100;
-    notice.textContent = `You are $${remaining.toFixed(2)} away from eligible for FREE SHIPPING`;
+  if (total < goal) {
+    const remaining = (goal - total) / 100;
+    notice.innerHTML = `You are <strong>$${remaining.toFixed(2)} away</strong> from being eligible for gift`;
   } else {
-    notice.textContent = `Congrats! You're eligible for FREE SHIPPING!`;
+    notice.innerHTML = '{{ settings.free_shipping_text }}';
   }
 }
 
-/* Fetch cart and update */
-function refreshCartProgress() {
+/* Fetch latest cart */
+function refreshFreeGiftBar() {
   fetch('/cart.js')
-    .then(res => res.json())
-    .then(cart => {
-      updateFreeShippingBar(cart);
-    });
+    .then(r => r.json())
+    .then(cart => updateFreeGiftProgress(cart));
 }
 
-/* Initial load */
-document.addEventListener('DOMContentLoaded', refreshCartProgress);
+/* Initial */
+document.addEventListener('DOMContentLoaded', refreshFreeGiftBar);
 
-/* Shopify Ajax cart event (most themes) */
-document.addEventListener('cart:refresh', refreshCartProgress);
+/* Dawn + modern themes */
+document.addEventListener('cart:refresh', refreshFreeGiftBar);
 
-/* Fallback – after add to cart */
-document.addEventListener('ajaxProduct:added', refreshCartProgress);
-
+/* Ajax add to cart fallback */
+document.addEventListener('ajaxProduct:added', refreshFreeGiftBar);
+document.addEventListener('ajaxProduct:removed', refreshFreeGiftBar);
 
 
 
