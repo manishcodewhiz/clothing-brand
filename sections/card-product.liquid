@@ -23,15 +23,11 @@
                   <h3>{{ product.title }}</h3>
                   <div class="price">{{ product.price | money }}</div>
 
-                  <!-- ✅ CUSTOM VISIBLE BUTTON -->
-                  <button type="button" class="custom-atc-btn">Add to cart</button>
-
                   <!-- ✅ REAL SHOPIFY PRODUCT FORM (DO NOT REMOVE) -->
                   <form
                     method="post"
                     action="/cart/add"
-                    class="native-product-form"
-                    data-product-form
+                    class="product-form"
                   >
                     <input
                       type="hidden"
@@ -39,9 +35,16 @@
                       value="{{ product.selected_or_first_available_variant.id }}"
                     >
 
-                    <!-- REAL SUBMIT BUTTON (hidden visually) -->
-                    <button type="submit" class="native-submit-btn">Add to cart</button>
+                    <!-- THIS IS THE REAL THEME BUTTON -->
+                    <button
+                      type="submit"
+                      class="product-form__submit"
+                    >
+                      Add to cart
+                    </button>
                   </form>
+
+                  <button type="button" class="custom-atc-btn">Add to cart</button>
                 </div>
               </div>
             </div>
@@ -62,14 +65,18 @@
     const card = customBtn.closest('.product_card');
     if (!card) return;
 
-    const form = card.querySelector('form[data-product-form]');
-    if (!form) return;
+    // 🔥 Find the REAL theme ATC button
+    const realAtc = card.querySelector('.product-form__submit');
+    if (!realAtc) {
+      console.error('Native ATC button not found');
+      return;
+    }
 
-    // 🔥 THIS IS THE KEY
-    // Triggers EXACT same behavior as native ATC
-    form.requestSubmit();
+    // 🔥 THIS triggers cart drawer + bundle + app logic
+    realAtc.click();
   });
 </script>
+
 {% schema %}
 {
   "name": "Custom Product Cards",
