@@ -33,32 +33,28 @@
                         {{ product.compare_at_price | money }}
                       </span>
                     {% endif %}
-
                     <span class="sale-price">
                       {{ product.price | money }}
                     </span>
                   </div>
 
-                  {% comment %}
-                    <div class="act-button">
-                      <form method="post" action="/cart/add">
-                        <input
-                          type="hidden"
-                          name="id"
-                          value="{{ product.selected_or_first_available_variant.id }}"
-                        >
-                        <button type="submit">Add to cart</button>
-                      </form>
-                    </div>
-                  {% endcomment %}
-
+                  <!-- ✅ CUSTOM VISIBLE ATC BUTTON -->
                   <div class="act-button">
                     <button type="button" class="custom-atc-btn">Add to cart</button>
                   </div>
 
-                  <!-- 🔴 hidden Shopify form -->
-                  <form method="post" action="/cart/add" class="product-form product-form--custom" hidden>
-                    <input type="hidden" name="id" value="VARIANT_ID">
+                  <!-- ✅ HIDDEN NATIVE SHOPIFY ATC FORM -->
+                  <form
+                    method="post"
+                    action="/cart/add"
+                    class="product-form"
+                    hidden
+                  >
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="{{ product.selected_or_first_available_variant.id }}"
+                    >
                     <button type="submit"></button>
                   </form>
                 </div>
@@ -71,6 +67,7 @@
   </div>
 </div>
 
+<!-- ✅ JS: Trigger native Shopify ATC (cart drawer opens) -->
 <script>
   document.addEventListener('click', function (e) {
     const btn = e.target.closest('.custom-atc-btn');
@@ -81,7 +78,7 @@
     const productCard = btn.closest('.product_card');
     if (!productCard) return;
 
-    const form = productCard.querySelector('.product-form--custom');
+    const form = productCard.querySelector('.product-form');
     if (!form) return;
 
     form.querySelector('button[type="submit"]').click();
