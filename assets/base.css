@@ -3943,45 +3943,44 @@ button::after {
   position: relative;
 }
 
-/* 
+/* progress bar */
 .cart-drawer .freshipping {
-  padding: 24px 30px 18px;
+  padding: 2.4rem 3.0rem 1.0rem;
 }
 
 .cart-drawer .freshipping .shipping-savings-message {
-  font-size: 16px;
+  color: var(--text-secondary-color);
+  font-size: 1.6rem;
+  line-height: normal;
   text-align: center;
-  margin: 0 0 8px;
-  font-weight: 500;
-  font-size: 15px;
+  margin-bottom: 1.0rem;
 }
 
 .cart-drawer .freshipping .shipping-savings-message strong {
-  font-weight: 500;
+  font-family: var(--font-family-runddisplay-bold);
+  color: var(--black-color);
 }
 
 .cart-drawer .freshipping .progressbar {
   display: flex;
-  gap: 16px;
+  gap: 1.4rem;
   align-items: center;
   transition: var(--webkit-transition-all);
 }
 
 .cart-drawer .freshipping .progress_price {
-  font-family: var(--font-robotocondensed);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  text-align: center;
-  color: var(--dark-gray-color);
+  font-family: var(--font-family-runddisplay-semibold);
+  font-size: 1.4rem;
+  line-height: 1.0rem;
+  color: var(--black-color);
 }
 
 .cart-drawer .freshipping div#Progress_Status {
   width: 100%;
-  background-color: #2b282929;
-  border-radius: 1rem;
+  background-color: var(--border-color);
+  border-radius: 1.0rem;
   position: relative;
-  height: .4rem;
+  height: 0.4rem;
   overflow: hidden;
   transition: var(--webkit-transition-all);
 }
@@ -3989,48 +3988,27 @@ button::after {
 .cart-drawer .freshipping div#myprogressBar {
   width: 2%;
   height: 100%;
-  background-color: var(--dark-gray-color);
+  background-color: var(--pink-secondary-color);
   position: relative;
   top: 0;
   color: transparent;
   left: 0;
   transition: var(--webkit-transition-all);
-  border-radius: 1rem;
+  border-radius: 1.0rem;
 }
 
 .cart-drawer .freshipping div#myprogressBar {
-  background-color: var(--dark-gray-color) !important;
+  background-color: var(--pink-secondary-color) !important;
 }
 
-.cart-drawer .drawer__inner .cart-drawer__form {
-  background-color: var(--light-grey-color);
-  padding: 30px;
-} */
-
-
-.progressbar {
+.cart-drawer .freshipping .free-gift{
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  line-height: normal;
+  color: var(--pink-secondary-color);
   display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-#Progress_Status {
-  flex: 1;
-  height: 8px;
-  background: #e5e5e5;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-#myprogressBar {
-  height: 100%;
-  width: 0%;
-  background: #000;
-  transition: width 0.4s ease;
-}
-
-.free_shipping_notice {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
+  width: 100%;
+  justify-content: flex-end;
+  font-family: var(--font-family-runddisplay-semibold);
+  margin-top: 0.6rem;
 }
