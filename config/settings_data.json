@@ -124,7 +124,7 @@
     "currency_code_enabled": true,
     "free_shipping_text": "Congrats! You're eligible for <strong>FREE SHIPPING</strong>",
     "free_gift_text": "FREE SHIPPING",
-    "free_shipping_value": "1000",
+    "free_shipping_value": "50",
     "rebuy_product": true,
     "cart_drawer_liquid": "<div data-rebuy-id=\"264662\"></div>",
     "cart_type": "drawer",
