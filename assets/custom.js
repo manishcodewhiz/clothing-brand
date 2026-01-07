@@ -137,78 +137,43 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function updateFreeGiftProgress(cart) {
-  const wrapper = document.getElementById('freeGiftBar');
-  if (!wrapper) return;
-
-  const goal = parseInt(wrapper.dataset.goal, 10);
-  const total = cart.total_price;
-
-  const notice = wrapper.querySelector('.free_shipping_notice');
-  const bar = wrapper.querySelector('#myprogressBar');
-
-  let percent = (total / goal) * 100;
-  percent = percent > 100 ? 100 : percent;
-
-  bar.style.width = percent + '%';
-
-  if (total < goal) {
-    const remaining = (goal - total) / 100;
-    notice.innerHTML = `You are <strong>$${remaining.toFixed(2)} away</strong> from being eligible for gift`;
-  } else {
-    notice.innerHTML = '{{ settings.free_shipping_text }}';
-  }
-}
-
-/* Fetch latest cart */
-function refreshFreeGiftBar() {
-  fetch('/cart.js')
-    .then(r => r.json())
-    .then(cart => updateFreeGiftProgress(cart));
-}
-
-/* Initial */
-document.addEventListener('DOMContentLoaded', refreshFreeGiftBar);
-
-/* Dawn + modern themes */
-document.addEventListener('cart:refresh', refreshFreeGiftBar);
-
-/* Ajax add to cart fallback */
-document.addEventListener('ajaxProduct:added', refreshFreeGiftBar);
-document.addEventListener('ajaxProduct:removed', refreshFreeGiftBar);
-
-
-
-// function updateCartProgress(cart) {
-//   const wrapper = document.querySelector('.cart-progress-wrapper');
+// function updateFreeGiftProgress(cart) {
+//   const wrapper = document.getElementById('freeGiftBar');
 //   if (!wrapper) return;
 
-//   const goal = parseInt(wrapper.dataset.freeShipping) * 100;
+//   const goal = parseInt(wrapper.dataset.goal, 10);
 //   const total = cart.total_price;
 
-//   const text = wrapper.querySelector('.cart-progress-text');
-//   const fill = wrapper.querySelector('.cart-progress-fill');
+//   const notice = wrapper.querySelector('.free_shipping_notice');
+//   const bar = wrapper.querySelector('#myprogressBar');
 
-//   let progress = Math.min((total / goal) * 100, 100);
-//   fill.style.width = progress + '%';
+//   let percent = (total / goal) * 100;
+//   percent = percent > 100 ? 100 : percent;
 
-//   if (total >= goal) {
-//     text.innerHTML = "🎉 You unlocked <strong>FREE Shipping</strong>";
+//   bar.style.width = percent + '%';
+
+//   if (total < goal) {
+//     const remaining = (goal - total) / 100;
+//     notice.innerHTML = `You are <strong>$${remaining.toFixed(2)} away</strong> from being eligible for gift`;
 //   } else {
-//     let remaining = ((goal - total) / 100).toFixed(2);
-//     text.innerHTML = `Add <strong>₹${remaining}</strong> more to get FREE Shipping 🚚`;
+//     notice.innerHTML = '{{ settings.free_shipping_text }}';
 //   }
 // }
 
-// /* Fetch cart */
-// function refreshCartProgress() {
+// /* Fetch latest cart */
+// function refreshFreeGiftBar() {
 //   fetch('/cart.js')
-//     .then(res => res.json())
-//     .then(cart => updateCartProgress(cart));
+//     .then(r => r.json())
+//     .then(cart => updateFreeGiftProgress(cart));
 // }
 
-// /* On page load */
-// document.addEventListener('DOMContentLoaded', refreshCartProgress);
+// /* Initial */
+// document.addEventListener('DOMContentLoaded', refreshFreeGiftBar);
 
-// /* After add to cart */
-// document.addEventListener('cart:refresh', refreshCartProgress);
+// /* Dawn + modern themes */
+// document.addEventListener('cart:refresh', refreshFreeGiftBar);
+
+// /* Ajax add to cart fallback */
+// document.addEventListener('ajaxProduct:added', refreshFreeGiftBar);
+// document.addEventListener('ajaxProduct:removed', refreshFreeGiftBar);
+
