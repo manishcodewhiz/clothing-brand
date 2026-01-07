@@ -88,7 +88,7 @@
           class=" is-empty"
         {% endif %}
       >
-        {% comment %}
+
           {%- if cart != empty -%}
             <div class="freshipping" data-cart_total="{{ cart.total_price }}">
               <p class="shipping-savings-message">
@@ -116,35 +116,7 @@
               <p class="free-gift">{{ settings.free_gift_text }}</p>
             </div>
           {%- endif -%}
-        {% endcomment %}
-
-        {%- if cart != empty -%}
-          {% assign shipping_value = settings.free_shipping_value | times: 100 %}
-
-          <div
-            class="freshipping"
-            id="freeGiftBar"
-            data-goal="{{ shipping_value }}"
-          >
-            <p class="shipping-savings-message">
-              <span class="free_shipping_notice"></span>
-            </p>
-
-            <div class="progressbar">
-              <span class="progress_price">$0</span>
-
-              <div id="Progress_Status">
-                <div id="myprogressBar"></div>
-              </div>
-
-              <span class="progress_price">
-                {{ shipping_value | divided_by: 100 | money }}
-              </span>
-            </div>
-
-            <p class="free-gift">{{ settings.free_gift_text }}</p>
-          </div>
-        {%- endif -%}
+    
         <form
           action="{{ routes.cart_url }}"
           id="CartDrawer-Form"
