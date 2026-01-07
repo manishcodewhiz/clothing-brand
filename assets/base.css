@@ -3965,7 +3965,7 @@ button::after {
   display: flex;
   gap: 1.4rem;
   align-items: center;
-  transition: var(--webkit-transition-all);
+  transition: all .4s;
 }
 
 .cart-drawer .freshipping .progress_price {
@@ -3982,7 +3982,7 @@ button::after {
   position: relative;
   height: 0.4rem;
   overflow: hidden;
-  transition: var(--webkit-transition-all);
+  transition: all .4s;
 }
 
 .cart-drawer .freshipping div#myprogressBar {
@@ -3993,8 +3993,9 @@ button::after {
   top: 0;
   color: transparent;
   left: 0;
-  transition: var(--webkit-transition-all);
+  transition: all .4s;
   border-radius: 1.0rem;
+  display: block;
 }
 
 .cart-drawer .freshipping div#myprogressBar {
