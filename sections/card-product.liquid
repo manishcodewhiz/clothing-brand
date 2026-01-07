@@ -76,44 +76,21 @@
 
 <script>
   document.addEventListener('click', function (e) {
-    const btn = e.target.closest('.custom-atc-btn');
-    if (!btn) return;
+    const customBtn = e.target.closest('.custom-atc-btn');
+    if (!customBtn) return;
 
     e.preventDefault();
 
-    const variantId = btn.dataset.variantId;
+    // Find the hidden theme form in the same product card
+    const productCard = customBtn.closest('.product_card');
+    if (!productCard) return;
 
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        id: variantId,
-        quantity: 1,
-      }),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        // ✅ Open cart drawer (Dawn + most themes)
-        if (window.Shopify && Shopify.theme && Shopify.theme.cartDrawer) {
-          Shopify.theme.cartDrawer.open();
-        }
+    const themeForm = productCard.querySelector('.product-form--custom');
+    if (!themeForm) return;
 
-        // Dawn theme fallback
-        const drawer = document.querySelector('cart-drawer');
-        if (drawer) {
-          drawer.open();
-        }
-
-        // Generic fallback (click cart icon)
-        const cartIcon = document.querySelector('[href="/cart"]');
-        if (cartIcon) {
-          cartIcon.click();
-        }
-      })
-      .catch((error) => console.error('Add to cart error:', error));
+    // 🔥 Trigger native Shopify theme ATC
+    const submitBtn = themeForm.querySelector('button[type="submit"]');
+    submitBtn.click();
   });
 </script>
 
