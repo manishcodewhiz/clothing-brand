@@ -67,11 +67,10 @@
     const productCard = btn.closest('.product_card');
     if (!productCard) return;
 
-    const variantId =
-      productCard.querySelector('[data-variant-id]')?.dataset.variantId || productCard.getAttribute('data-variant-id');
-
+    const variantId = productCard.dataset.variantId;
     if (!variantId) return;
 
+    // 1️⃣ Add product via AJAX
     fetch('/cart/add.js', {
       method: 'POST',
       headers: {
@@ -84,26 +83,25 @@
       }),
     })
       .then(() => {
-        // ✅ DAWN + MOST THEMES
+        // 2️⃣ Fetch updated cart sections (native Shopify way)
+        return fetch('/?sections=cart-drawer,cart-icon-bubble');
+      })
+      .then((res) => res.json())
+      .then((sections) => {
+        // 3️⃣ Update cart drawer HTML
         const drawer = document.querySelector('cart-drawer');
-        if (drawer && drawer.open) {
+        if (drawer && sections['cart-drawer']) {
+          drawer.innerHTML = sections['cart-drawer'];
           drawer.open();
           return;
         }
 
-        // ✅ THEME WITH JS DRAWER
-        if (window.Shopify?.theme?.cartDrawer?.open) {
-          Shopify.theme.cartDrawer.open();
-          return;
-        }
-
-        // ✅ LAST FALLBACK
+        // 4️⃣ Fallback (open drawer button)
         document.querySelector('[aria-controls="CartDrawer"]')?.click();
       })
       .catch(console.error);
   });
 </script>
-
 {% schema %}
 {
   "name": "Custom Product Cards",
