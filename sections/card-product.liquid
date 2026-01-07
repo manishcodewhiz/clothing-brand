@@ -73,21 +73,18 @@
 
 <script>
   document.addEventListener('click', function (e) {
-    const customBtn = e.target.closest('.custom-atc-btn');
-    if (!customBtn) return;
+    const btn = e.target.closest('.custom-atc-btn');
+    if (!btn) return;
 
     e.preventDefault();
 
-    // Find the hidden theme form in the same product card
-    const productCard = customBtn.closest('.product_card');
+    const productCard = btn.closest('.product_card');
     if (!productCard) return;
 
-    const themeForm = productCard.querySelector('.product-form--custom');
-    if (!themeForm) return;
+    const form = productCard.querySelector('.product-form--custom');
+    if (!form) return;
 
-    // 🔥 Trigger native Shopify theme ATC
-    const submitBtn = themeForm.querySelector('button[type="submit"]');
-    submitBtn.click();
+    form.querySelector('button[type="submit"]').click();
   });
 </script>
 
