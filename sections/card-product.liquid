@@ -4,49 +4,55 @@
   <div class="page-width">
     <div class="row">
       {% for block in section.blocks %}
-        {% assign product = block.settings.product_item %}
+        {% assign products = block.settings.product_item %}
 
-        {% if product != blank %}
-          <div class="col-3" {{ block.shopify_attributes }}>
-            <div class="product_card">
-              <div class="product_block">
-                <a href="{{ product.url }}">
-                  <img
-                    src="{{ product.featured_image | image_url: width: 400 }}"
-                    alt="{{ product.title }}"
-                    width="400"
-                    height="400"
-                    loading="lazy"
-                  >
-                </a>
-              </div>
-
-              <div class="product_content">
-                <h3>
-                  <a href="{{ product.url }}">{{ product.title }}</a>
-                </h3>
-
-                <div class="price">
-                  {% if product.compare_at_price > product.price %}
-                    <span class="compare-price">
-                      {{ product.compare_at_price | money }}
-                    </span>
-                  {% endif %}
-
-                  <span class="sale-price">
-                    {{ product.price | money }}
-                  </span>
+        {% if products != blank %}
+          {% for product in products %}
+            <div class="col-3" {{ block.shopify_attributes }}>
+              <div class="product_card">
+                <div class="product_block">
+                  <a href="{{ product.url }}">
+                    <img
+                      src="{{ product.featured_image | image_url: width: 400 }}"
+                      alt="{{ product.title }}"
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                    >
+                  </a>
                 </div>
 
-                <div class="act-button">
-                  <form method="post" action="/cart/add">
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    <button type="submit">Add to cart</button>
-                  </form>
+                <div class="product_content">
+                  <h3>
+                    <a href="{{ product.url }}">{{ product.title }}</a>
+                  </h3>
+
+                  <div class="price">
+                    {% if product.compare_at_price > product.price %}
+                      <span class="compare-price">
+                        {{ product.compare_at_price | money }}
+                      </span>
+                    {% endif %}
+
+                    <span class="sale-price">
+                      {{ product.price | money }}
+                    </span>
+                  </div>
+
+                  <div class="act-button">
+                    <form method="post" action="/cart/add">
+                      <input
+                        type="hidden"
+                        name="id"
+                        value="{{ product.selected_or_first_available_variant.id }}"
+                      >
+                      <button type="submit">Add to cart</button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          {% endfor %}
         {% endif %}
       {% endfor %}
     </div>
