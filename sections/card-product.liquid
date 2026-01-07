@@ -8,38 +8,40 @@
         {% if products != blank %}
           {% for product in products %}
             <div class="col-3" {{ block.shopify_attributes }}>
-              <div
-                class="product_card"
-                data-variant-id="{{ product.selected_or_first_available_variant.id }}"
-              >
+              <div class="product_card">
                 <div class="product_block">
                   <a href="{{ product.url }}">
                     <img
                       src="{{ product.featured_image | image_url: width: 400 }}"
                       alt="{{ product.title }}"
-                      width="400"
-                      height="400"
                       loading="lazy"
                     >
                   </a>
                 </div>
 
                 <div class="product_content">
-                  <h3>
-                    <a href="{{ product.url }}">{{ product.title }}</a>
-                  </h3>
+                  <h3>{{ product.title }}</h3>
+                  <div class="price">{{ product.price | money }}</div>
 
-                  <div class="price">
-                    {% if product.compare_at_price > product.price %}
-                      <span class="compare-price">{{ product.compare_at_price | money }}</span>
-                    {% endif %}
-                    <span class="sale-price">{{ product.price | money }}</span>
-                  </div>
+                  <!-- ✅ CUSTOM VISIBLE BUTTON -->
+                  <button type="button" class="custom-atc-btn">Add to cart</button>
 
-                  <!-- CUSTOM ATC -->
-                  <div class="act-button">
-                    <button type="button" class="custom-atc-btn">Add to cart</button>
-                  </div>
+                  <!-- ✅ REAL SHOPIFY PRODUCT FORM (DO NOT REMOVE) -->
+                  <form
+                    method="post"
+                    action="/cart/add"
+                    class="native-product-form"
+                    data-product-form
+                  >
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="{{ product.selected_or_first_available_variant.id }}"
+                    >
+
+                    <!-- REAL SUBMIT BUTTON (hidden visually) -->
+                    <button type="submit" class="native-submit-btn">Add to cart</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -51,54 +53,23 @@
 </div>
 
 <script>
-  document.addEventListener('click', async function (e) {
-    const btn = e.target.closest('.custom-atc-btn');
-    if (!btn) return;
+  document.addEventListener('click', function (e) {
+    const customBtn = e.target.closest('.custom-atc-btn');
+    if (!customBtn) return;
 
     e.preventDefault();
 
-    const card = btn.closest('.product_card');
+    const card = customBtn.closest('.product_card');
     if (!card) return;
 
-    const variantId = card.dataset.variantId;
-    if (!variantId) return;
+    const form = card.querySelector('form[data-product-form]');
+    if (!form) return;
 
-    try {
-      // 1️⃣ Add product
-      await fetch('/cart/add.js', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          id: variantId,
-          quantity: 1,
-        }),
-      });
-
-      // 2️⃣ Get updated cart drawer HTML (Dawn native)
-      const res = await fetch('/?sections=cart-drawer,cart-icon-bubble');
-      const sections = await res.json();
-
-      // 3️⃣ Replace cart drawer content
-      const drawer = document.querySelector('cart-drawer');
-      if (drawer && sections['cart-drawer']) {
-        drawer.innerHTML = sections['cart-drawer'];
-        drawer.open();
-      }
-
-      // 4️⃣ Update cart icon bubble
-      const bubble = document.querySelector('#cart-icon-bubble');
-      if (bubble && sections['cart-icon-bubble']) {
-        bubble.innerHTML = sections['cart-icon-bubble'];
-      }
-    } catch (err) {
-      console.error('ATC error:', err);
-    }
+    // 🔥 THIS IS THE KEY
+    // Triggers EXACT same behavior as native ATC
+    form.requestSubmit();
   });
 </script>
-
 {% schema %}
 {
   "name": "Custom Product Cards",
