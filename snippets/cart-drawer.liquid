@@ -19,13 +19,15 @@
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}" id="CartDrawer">
   <div id="CartDrawer" class="cart-drawer">
-      {% comment %} <div class="cart-progress-wrapper" data-free-shipping="999">
-      <p class="cart-progress-text"></p>
+    {% comment %}
+      <div class="cart-progress-wrapper" data-free-shipping="999">
+        <p class="cart-progress-text"></p>
 
-      <div class="cart-progress-bar">
-        <span class="cart-progress-fill"></span>
+        <div class="cart-progress-bar">
+          <span class="cart-progress-fill"></span>
+        </div>
       </div>
-    </div> {% endcomment %}
+    {% endcomment %}
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
     <div
       class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
@@ -86,36 +88,33 @@
           class=" is-empty"
         {% endif %}
       >
-
-          {%- if cart != empty -%}
-            <div class="freshipping" data-cart_total="{{ cart.total_price }}">
-              {% assign shipping_value = settings.free_shipping_value | times: 100 %}
-              {% assign cart_total = cart.total_price %}
-              {% assign shipping_value_left = shipping_value | minus: cart_total %}
-              <p class="shipping-savings-message">
-                {% if shipping_value > cart_total %}
-                  <span class="free_shipping_notice">
-                    You are {{ shipping_value_left | money }} away from eligible for FREE SHIPPING
-                  </span>
-                {% elsif shipping_value < cart_total %}
-                  <span class="free_shipping_notice">Congrats! You're eligible for FREE SHIPPING! </span>
-                {% endif %}
-              </p>
-              <div class="progressbar" id="freeprogressbar">
-                <span class="progress_price">$0</span>
-                <div id="Progress_Status">
-                  {% assign progress = cart_total | times: 100 | divided_by: shipping_value %}
-                  <div
-                    id="myprogressBar"
-                    style="width:{% if progress <= 100 %}{{ progress }}%{% else %}100%{% endif %}"
-                  >
-                    x
-                  </div>
+        {%- if cart != empty -%}
+          <div class="freshipping" data-cart_total="{{ cart.total_price }}">
+            <p class="shipping-savings-message">
+              {% if shipping_value > cart_total %}
+                <span class="free_shipping_notice">
+                  You are <strong>{{ shipping_value_left | money }} away</strong> from being eligible for gift
+                </span>
+              {% elsif shipping_value < cart_total %}
+                <span class="free_shipping_notice">{{ settings.free_shipping_text }}</span>
+              {% endif %}
+            </p>
+            <div class="progressbar" id="freeprogressbar">
+              <span class="progress_price">$0</span>
+              <div id="Progress_Status">
+                {% assign progress = cart_total | times: 100 | divided_by: shipping_value %}
+                <div
+                  id="myprogressBar"
+                  style="width:{% if progress <= 100 %}{{ progress }}%{% else %}100%{% endif %}"
+                >
+                  x
                 </div>
-                <span class="progress_price"> ${{ shipping_value | divided_by: 100 }} </span>
               </div>
+              <span class="progress_price"> ${{ shipping_value | divided_by: 100 }} </span>
             </div>
-          {%- endif -%}
+            <p class="free-gift">{{ settings.free_gift_text }}</p>
+          </div>
+        {%- endif -%}
         <form
           action="{{ routes.cart_url }}"
           id="CartDrawer-Form"
@@ -492,9 +491,9 @@
         </form>
         {%- if settings.rebuy_product -%}
           <div class="rebuy_product_block">
-              {{ settings.cart_drawer_liquid }}
+            {{ settings.cart_drawer_liquid }}
           </div>
-            {%- endif -%}
+        {%- endif -%}
       </cart-drawer-items>
       <div class="drawer__footer">
         {%- if settings.show_cart_note -%}
