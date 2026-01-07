@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+// Cart Drawer Progress bar
 
 function updateFreeGiftProgress(cart) {
   const wrapper = document.getElementById('freeGiftBar');
