@@ -138,6 +138,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+function updateFreeShippingBar(cart) {
+  const bar = document.getElementById('freeShippingBar');
+  if (!bar) return;
+
+  const freeShipping = parseInt(bar.dataset.freeShipping, 10);
+  const cartTotal = cart.total_price;
+
+  const notice = bar.querySelector('.free_shipping_notice');
+  const fill = bar.querySelector('.progress-fill');
+
+  let progress = (cartTotal / freeShipping) * 100;
+  progress = progress > 100 ? 100 : progress;
+
+  fill.style.width = progress + '%';
+
+  if (cartTotal < freeShipping) {
+    const remaining = (freeShipping - cartTotal) / 100;
+    notice.textContent = `You are $${remaining.toFixed(2)} away from eligible for FREE SHIPPING`;
+  } else {
+    notice.textContent = `Congrats! You're eligible for FREE SHIPPING!`;
+  }
+}
+
+/* Fetch cart and update */
+function refreshCartProgress() {
+  fetch('/cart.js')
+    .then(res => res.json())
+    .then(cart => {
+      updateFreeShippingBar(cart);
+    });
+}
+
+/* Initial load */
+document.addEventListener('DOMContentLoaded', refreshCartProgress);
+
+/* Shopify Ajax cart event (most themes) */
+document.addEventListener('cart:refresh', refreshCartProgress);
+
+/* Fallback – after add to cart */
+document.addEventListener('ajaxProduct:added', refreshCartProgress);
+
+
 
 
 // function updateCartProgress(cart) {
