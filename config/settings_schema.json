@@ -1402,6 +1402,26 @@
   {
     "name": "t:settings_schema.cart.name",
     "settings": [
+       {
+        "type": "header",
+        "content": "Free Shipping"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "free_shipping_text",
+        "label": "Free Shipping Text"
+      },
+      {
+        "type": "text",
+        "id": "free_gift_text",
+        "label": "Free Gift Text"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_value",
+        "label": "Free Shipping Price",
+        "default": "120",
+      },
       {
         "type": "header",
         "content": "Rebuy"
