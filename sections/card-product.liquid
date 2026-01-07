@@ -42,23 +42,31 @@
 
 <script>
   document.addEventListener('click', function (e) {
-    const customBtn = e.target.closest('.custom-atc-btn');
-    if (!customBtn) return;
+    const btn = e.target.closest('.custom-atc-btn');
+    if (!btn) return;
 
     e.preventDefault();
 
-    const card = customBtn.closest('.product_card');
-    if (!card) return;
+    const variantId = btn.dataset.variantId;
+    if (!variantId) return;
 
-    // 🔥 Find the REAL theme ATC button
-    const realAtc = card.querySelector('.product-form__submit');
-    if (!realAtc) {
-      console.error('Native ATC button not found');
-      return;
-    }
-
-    // 🔥 THIS triggers cart drawer + bundle + app logic
-    realAtc.click();
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        id: variantId,
+        quantity: 1,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        // 🔥 THIS IS THE KEY LINE (Shopify native drawer trigger)
+        document.dispatchEvent(new Event('cart:refresh'));
+      })
+      .catch((error) => console.error('ATC error:', error));
   });
 </script>
 
