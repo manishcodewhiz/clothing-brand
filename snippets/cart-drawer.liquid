@@ -17,6 +17,10 @@
   }
 </style>
 
+{% assign shipping_value = settings.free_shipping_value | times: 100 %}
+{% assign cart_total = cart.total_price %}
+{% assign shipping_value_left = shipping_value | minus: cart_total %}
+
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}" id="CartDrawer">
   <div id="CartDrawer" class="cart-drawer">
     {% comment %}
