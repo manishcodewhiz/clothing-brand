@@ -137,10 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
-
-
 function updateFreeGiftProgress(cart) {
   const wrapper = document.getElementById('freeGiftBar');
   if (!wrapper) return;
@@ -157,27 +153,27 @@ function updateFreeGiftProgress(cart) {
   bar.style.width = percent + '%';
 
   if (total < goal) {
-    const remaining = ((goal - total) / 100).toFixed(2);
-    notice.innerHTML = `You are <strong>$${remaining} away</strong> from being eligible for gift`;
+    const remaining = (goal - total) / 100;
+    notice.innerHTML = `You are <strong>$${remaining.toFixed(2)} away</strong> from being eligible for gift`;
   } else {
-    notice.innerHTML = `Congrats! You're eligible for <strong>FREE SHIPPING</strong>`;
+    notice.innerHTML = '{{ settings.free_shipping_text }}';
   }
 }
 
-/* Fetch cart */
+/* Fetch latest cart */
 function refreshFreeGiftBar() {
   fetch('/cart.js')
-    .then(res => res.json())
+    .then(r => r.json())
     .then(cart => updateFreeGiftProgress(cart));
 }
 
-/* Initial load */
+/* Initial */
 document.addEventListener('DOMContentLoaded', refreshFreeGiftBar);
 
-/* Dawn / cart drawer refresh */
+/* Dawn + modern themes */
 document.addEventListener('cart:refresh', refreshFreeGiftBar);
 
-/* Ajax fallback */
+/* Ajax add to cart fallback */
 document.addEventListener('ajaxProduct:added', refreshFreeGiftBar);
 document.addEventListener('ajaxProduct:removed', refreshFreeGiftBar);
 
