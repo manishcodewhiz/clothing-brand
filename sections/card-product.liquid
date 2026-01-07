@@ -9,7 +9,7 @@
         {% if products != blank %}
           {% for product in products %}
             <div class="col-3" {{ block.shopify_attributes }}>
-              <div class="product_card">
+              <div class="product_card" data-variant-id="{{ product.selected_or_first_available_variant.id }}">
                 <div class="product_block">
                   <a href="{{ product.url }}">
                     <img
@@ -38,25 +38,9 @@
                     </span>
                   </div>
 
-                  <!-- ✅ CUSTOM VISIBLE ATC BUTTON -->
                   <div class="act-button">
                     <button type="button" class="custom-atc-btn">Add to cart</button>
                   </div>
-
-                  <!-- ✅ HIDDEN NATIVE SHOPIFY ATC FORM -->
-                  <form
-                    method="post"
-                    action="/cart/add"
-                    class="product-form"
-                    hidden
-                  >
-                    <input
-                      type="hidden"
-                      name="id"
-                      value="{{ product.selected_or_first_available_variant.id }}"
-                    >
-                    <button type="submit"></button>
-                  </form>
                 </div>
               </div>
             </div>
@@ -67,7 +51,6 @@
   </div>
 </div>
 
-<!-- ✅ JS: Trigger native Shopify ATC (cart drawer opens) -->
 <script>
   document.addEventListener('click', function (e) {
     const btn = e.target.closest('.custom-atc-btn');
@@ -78,10 +61,40 @@
     const productCard = btn.closest('.product_card');
     if (!productCard) return;
 
-    const form = productCard.querySelector('.product-form');
-    if (!form) return;
+    const variantId =
+      productCard.querySelector('[data-variant-id]')?.dataset.variantId || productCard.getAttribute('data-variant-id');
 
-    form.querySelector('button[type="submit"]').click();
+    if (!variantId) return;
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        id: variantId,
+        quantity: 1,
+      }),
+    })
+      .then(() => {
+        // ✅ DAWN + MOST THEMES
+        const drawer = document.querySelector('cart-drawer');
+        if (drawer && drawer.open) {
+          drawer.open();
+          return;
+        }
+
+        // ✅ THEME WITH JS DRAWER
+        if (window.Shopify?.theme?.cartDrawer?.open) {
+          Shopify.theme.cartDrawer.open();
+          return;
+        }
+
+        // ✅ LAST FALLBACK
+        document.querySelector('[aria-controls="CartDrawer"]')?.click();
+      })
+      .catch(console.error);
   });
 </script>
 
