@@ -24,14 +24,12 @@
                 <div class="product_content">
                   <h3>{{ product.title }}</h3>
                   <div class="price">{{ product.price | money }}</div>
-                  
-                <form method="post" action="/cart/add" id="custom-product-form-{{ product.id }}">
-                  <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-                  <input min="1" type="number" id="quantity" name="quantity" value="1"/>
-                  <button type="submit" name="add" class="custom-add-to-cart-btn">
-                    Add to Cart
-                  </button>
-                </form>
+
+                  <form method="post" action="/cart/add" id="custom-product-form-{{ product.id }}">
+                    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                    <input min="1" type="number" id="quantity" name="quantity" value="1">
+                    <button type="submit" name="add" class="custom-add-to-cart-btn">Add to Cart</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -43,41 +41,39 @@
 </div>
 
 <script>
-  document.addEventListener('submit', async function (e) {
-    const form = e.target.closest('.custom-atc-form');
-    if (!form) return;
+  document.addEventListener('submit', function (e) {
+    const form = e.target;
+
+    if (!form.action.includes('/cart/add')) return;
 
     e.preventDefault();
 
-    // 🔥 EXACT SHOPIFY NATIVE WAY
     const formData = new FormData(form);
 
-    // Required for cart drawer refresh
-    const drawer = document.querySelector('cart-drawer');
-    if (drawer && drawer.getSectionsToRender) {
-      const sections = drawer.getSectionsToRender().map((s) => s.id);
-      formData.append('sections', sections.join(','));
-      formData.append('sections_url', window.location.pathname);
-    }
-
-    // 1️⃣ ADD PRODUCT (CORRECTLY)
-    const response = await fetch('/cart/add', {
+    fetch('/cart/add.js', {
       method: 'POST',
       body: formData,
-    });
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    })
+      .then((response) => response.json())
+      .then(() => {
+        // 🔥 OPEN SHOPIFY CART DRAWER (DAWN + MOST THEMES)
+        if (window.Shopify && Shopify.theme && Shopify.theme.cartDrawer) {
+          Shopify.theme.cartDrawer.open();
+        }
 
-    if (!response.ok) {
-      console.error('Add to cart failed');
-      return;
-    }
+        // Fallback for themes using <cart-drawer>
+        const cartDrawer = document.querySelector('cart-drawer');
+        if (cartDrawer) {
+          cartDrawer.open();
+        }
 
-    const state = await response.json();
-
-    // 2️⃣ RENDER CART DRAWER CONTENTS
-    if (drawer && drawer.renderContents) {
-      drawer.renderContents(state);
-      drawer.open();
-    }
+        // Refresh cart sections
+        document.dispatchEvent(new CustomEvent('cart:refresh'));
+      })
+      .catch((error) => console.error('Add to cart error:', error));
   });
 </script>
 
