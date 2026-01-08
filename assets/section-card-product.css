@@ -11,3 +11,8 @@
   max-width: calc(25% - 5px);
   width: 100%;
 }
+
+.section-card-product .product_card .product_block img{
+  width: 100%;
+  height: auto;
+}
