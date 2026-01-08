@@ -25,9 +25,17 @@
                   <h3>{{ product.title }}</h3>
                   <div class="price">{{ product.price | money }}</div>
 
-                  <form class="custom-atc-form">
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    <button type="submit" class="custom-atc-btn">Add to cart</button>
+                  <form method="post" action="/cart/add" id="custom-product-form-{{ product.id }}">
+                    <!-- Hidden input for the product variant ID -->
+                    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+
+                    <!-- Optional: Quantity selector -->
+                    <input min="1" type="number" id="quantity" name="quantity" value="1"/>
+
+                    <!-- Your custom button -->
+                    <button type="submit" name="add" class="custom-add-to-cart-btn">
+                      Add to Cart
+                    </button>
                   </form>
                 </div>
               </div>
