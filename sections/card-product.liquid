@@ -110,52 +110,74 @@
 {% endcomment %}
 
 <script>
-  document.addEventListener('click', function (e) {
-    const btn = e.target.closest('.custom-atc-btn');
-    if (!btn) return;
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest('.custom-atc-btn');
+      if (!btn) return;
 
-    const form = btn.closest('.custom-atc-form');
-    const variantId = form.querySelector('[name="id"]').value;
-    const quantity = form.querySelector('[name="quantity"]').value;
+      const form = btn.closest('.custom-atc-form');
+      const variantId = form.querySelector('[name="id"]').value;
+      const quantity = form.querySelector('[name="quantity"]').value;
 
-    btn.disabled = true;
+      btn.disabled = true;
 
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id: variantId,
-        quantity: quantity,
-      }),
-    })
-      .then(() => fetch('/?sections=cart-drawer'))
-      .then((res) => res.json())
-      .then((sections) => {
-        const html = sections['cart-drawer'];
-        if (!html) return;
-
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        const newDrawer = doc.querySelector('cart-drawer');
-        const oldDrawer = document.querySelector('cart-drawer');
-
-        /* 🔥 EMPTY CART FIX */
-        if (!oldDrawer && newDrawer) {
-          document.body.appendChild(newDrawer);
-          newDrawer.open();
-          return;
-        }
-
-        if (oldDrawer && newDrawer) {
-          oldDrawer.replaceWith(newDrawer);
-          newDrawer.open();
-        }
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: variantId,
+          quantity: quantity,
+        }),
       })
-      .catch((err) => console.error('ATC error:', err))
-      .finally(() => {
-        btn.disabled = false;
-      });
+        .then(() => fetch('/?sections=cart-drawer'))
+        .then((res) => res.json())
+        .then((sections) => {
+          const html = sections['cart-drawer'];
+          if (!html) return;
+
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          const newDrawer = doc.querySelector('cart-drawer');
+          const oldDrawer = document.querySelector('cart-drawer');
+
+          /* 🔥 EMPTY CART FIX */
+          if (!oldDrawer && newDrawer) {
+            document.body.appendChild(newDrawer);
+            newDrawer.open();
+            return;
+          }
+
+          if (oldDrawer && newDrawer) {
+            oldDrawer.replaceWith(newDrawer);
+            newDrawer.open();
+          }
+        })
+        .catch((err) => console.error('ATC error:', err))
+        .finally(() => {
+          btn.disabled = false;
+        });
+    });
+
+    document.addEventListener('change', function (e) {
+    const select = e.target.closest('.variant-select');
+    if (!select) return;
+
+    const form = select.closest('.custom-atc-form');
+
+    const selectedValues = [];
+    form.querySelectorAll('.variant-select').forEach(el => {
+      selectedValues.push(el.value);
+    });
+
+    const variants = {{ product.variants | json }};
+
+    const matched = variants.find(variant =>
+      variant.options.every((opt, i) => opt === selectedValues[i])
+    );
+
+    if (matched) {
+      form.querySelector('[name="id"]').value = matched.id;
+    }
   });
 </script>
 {% schema %}
