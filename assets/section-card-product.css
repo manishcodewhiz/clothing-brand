@@ -5,10 +5,11 @@
 .section-card-product .row{
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .section-card-product .row .col-3{
-  max-width: calc(25% - 5px);
+  max-width: calc(25% - 8px);
   width: 100%;
 }
 
