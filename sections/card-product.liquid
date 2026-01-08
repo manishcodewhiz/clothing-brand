@@ -25,27 +25,20 @@
                   <h3>{{ product.title }}</h3>
                   <div class="price">{{ product.price | money }}</div>
 
-                  <form class="custom-atc-form">
-                    {% if product.has_only_default_variant == false %}
-                      <div class="variant-wrapper" data-product="{{ product | json }}">
-                        {% for option in product.options_with_values %}
-                          <select
-                            class="variant-select"
-                            data-option-position="{{ option.position }}"
-                          >
-                            {% for value in option.values %}
-                              <option value="{{ value }}">{{ value }}</option>
-                            {% endfor %}
-                          </select>
-                        {% endfor %}
-                      </div>
-                    {% endif %}
+                  <form
+                    class="custom-atc-form"
+                    data-product-id="{{ product.id }}"
+                  >
+                    {% render 'product-variant-picker',
+                      product: product,
+                      block: block,
+                      product_form_id: product_form_id
+                    %}
 
-                    <!-- ALWAYS REQUIRED -->
+                    <!-- REQUIRED -->
                     <input
                       type="hidden"
                       name="id"
-                      class="selected-variant-id"
                       value="{{ product.selected_or_first_available_variant.id }}"
                     >
 
@@ -208,7 +201,20 @@
       })
       .catch((err) => console.error('Cart count error:', err));
   }
-  
+
+  document.addEventListener('variant:change', function (event) {
+    const variant = event.detail.variant;
+    if (!variant) return;
+
+    const form = document.querySelector(`.custom-atc-form input[value="${variant.id}"]`)?.closest('.custom-atc-form');
+
+    if (!form) return;
+
+    const variantInput = form.querySelector('[name="id"]');
+    if (variantInput) {
+      variantInput.value = variant.id;
+    }
+  });
 </script>
 
 {% schema %}
