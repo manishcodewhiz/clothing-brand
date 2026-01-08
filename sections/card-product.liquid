@@ -168,37 +168,6 @@
   });
 
   /* =========================
-   VARIANT CHANGE LOGIC
-========================= */
-  document.addEventListener('change', function (e) {
-    const select = e.target.closest('.variant-select');
-    if (!select) return;
-
-    const form = select.closest('.custom-atc-form');
-    if (!form) return;
-
-    const hiddenInput = form.querySelector('[name="id"]');
-    if (!hiddenInput) return;
-
-    const selectedOptions = [];
-
-    form.querySelectorAll('.variant-select').forEach((el) => {
-      const position = parseInt(el.dataset.optionPosition, 10) - 1;
-      selectedOptions[position] = el.value;
-    });
-
-    const variants = window.productVariants || [];
-
-    const matchedVariant = variants.find((variant) =>
-      variant.options.every((opt, index) => opt === selectedOptions[index])
-    );
-
-    if (matchedVariant) {
-      hiddenInput.value = matchedVariant.id;
-    }
-  });
-
-  /* =========================
    CART COUNT BUBBLE UPDATE
 ========================= */
   function updateCartCountBubble() {
