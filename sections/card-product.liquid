@@ -25,11 +25,19 @@
                   <h3>{{ product.title }}</h3>
                   <div class="price">{{ product.price | money }}</div>
 
-                  <form method="post" action="/cart/add" id="custom-product-form-{{ product.id }}">
-                    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                    <input min="1" type="number" id="quantity" name="quantity" value="1">
-                    <button type="submit" name="add" class="custom-add-to-cart-btn">Add to Cart</button>
+                  <form id="add-to-cart-form">
+                    <label for="variant-{{ product.id }}">Choose an option:</label>
+                    <select name="id" id="variant-{{ product.id }}">
+                      {% for variant in product.variants %}
+                        <option value="{{ variant.id }}">{{ variant.title }}</option>
+                      {% endfor %}
+                    </select>
+                    <label for="quantity-{{ product.id }}">Quantity:</label>
+                    <input type="number" name="quantity" id="quantity-{{ product.id }}" value="1" min="1" />
+                    <button type="button" id="add-to-cart-button" class="button">Add to Cart</button>
                   </form>
+
+                  <div id="cart-feedback" style="display: none;">Product added to cart!</div>
                 </div>
               </div>
             </div>
