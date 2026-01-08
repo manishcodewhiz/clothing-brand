@@ -27,7 +27,7 @@
 
                   <form class="custom-atc-form">
                     {% if product.has_only_default_variant == false %}
-                      <div class="variant-wrapper" data-product="{{ product | json }}">
+                      <div class="variant-wrapper" data-product="{{ product }}">
                         {% for option in product.options_with_values %}
                           <select
                             class="variant-select"
