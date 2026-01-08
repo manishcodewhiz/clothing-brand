@@ -111,20 +111,15 @@
     "card_product_YMTRCf": {
       "type": "card-product",
       "blocks": {
-        "product_epHkBh": {
+        "product_BtmPRX": {
           "type": "product",
           "settings": {
-            "product_item": [
-              "honda-classic-snapback-hat",
-              "honda-icon-womens-t-shirt",
-              "honda-octagon-t-shirt",
-              "geometric-jacquard-shirt"
-            ]
+            "product_item": []
           }
         }
       },
       "block_order": [
-        "product_epHkBh"
+        "product_BtmPRX"
       ],
       "name": "Custom Product Cards",
       "settings": {}
