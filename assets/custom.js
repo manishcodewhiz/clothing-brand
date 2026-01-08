@@ -181,25 +181,4 @@ document.addEventListener('ajaxProduct:removed', refreshFreeGiftBar);
 
 
 
-  function updateCartCount() {
-  fetch('/cart.js')
-    .then(res => res.json())
-    .then(cart => {
-      const count = cart.item_count;
 
-      document.querySelectorAll('.cart-count-bubble').forEach(bubble => {
-        if (count > 0) {
-          bubble.style.display = '';
-          const countSpan = bubble.querySelector('[aria-hidden="true"]');
-          const hiddenSpan = bubble.querySelector('.visually-hidden');
-
-          if (countSpan) countSpan.textContent = count;
-          if (hiddenSpan) {
-            hiddenSpan.textContent = `Cart (${count})`;
-          }
-        } else {
-          bubble.style.display = 'none';
-        }
-      });
-    });
-}
