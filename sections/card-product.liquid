@@ -23,25 +23,27 @@
                   <h3>{{ product.title }}</h3>
                   <div class="price">{{ product.price | money }}</div>
 
-               <form class="custom-atc-form" data-product-form>
-                  <input
-                    type="hidden"
-                    name="id"
-                    value="{{ product.selected_or_first_available_variant.id }}"
-                  >
+                  <form class="custom-atc-form" data-product-form>
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="{{ product.selected_or_first_available_variant.id }}"
+                    >
 
-                  <button
-                    type="submit"
-                    class="custom-atc-btn button button--primary"
-                    {% unless product.available %}disabled{% endunless %}
-                  >
-                    {% if product.available %}
-                      Add to cart
-                    {% else %}
-                      Sold out
-                    {% endif %}
-                  </button>
-                </form>
+                    <button
+                      type="submit"
+                      class="custom-atc-btn button button--primary"
+                      {% unless product.available %}
+                        disabled
+                      {% endunless %}
+                    >
+                      {% if product.available %}
+                        Add to cart
+                      {% else %}
+                        Sold out
+                      {% endif %}
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -53,14 +55,15 @@
 </div>
 
 <script>
-  document.addEventListener('click', function (e) {
-    const btn = e.target.closest('.custom-atc-btn');
-    if (!btn) return;
+  document.addEventListener('submit', function (e) {
+    const form = e.target.closest('.custom-atc-form');
+    if (!form) return;
 
     e.preventDefault();
 
-    const variantId = btn.dataset.variantId;
-    if (!variantId) return;
+    const button = form.querySelector('button');
+    button.setAttribute('aria-disabled', 'true');
+    button.classList.add('loading');
 
     fetch('/cart/add.js', {
       method: 'POST',
@@ -69,16 +72,25 @@
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        id: variantId,
+        id: form.querySelector('[name="id"]').value,
         quantity: 1,
       }),
     })
       .then((response) => response.json())
       .then(() => {
-        // 🔥 THIS IS THE KEY LINE (Shopify native drawer trigger)
-        document.dispatchEvent(new Event('cart:refresh'));
+        // 🔥 OPEN SHOPIFY CART DRAWER (NATIVE)
+        if (window.Shopify && Shopify.theme && Shopify.theme.cartDrawer) {
+          Shopify.theme.cartDrawer.open();
+        } else {
+          document.dispatchEvent(new CustomEvent('cart:refresh'));
+          document.dispatchEvent(new CustomEvent('cart:open'));
+        }
       })
-      .catch((error) => console.error('ATC error:', error));
+      .catch((error) => console.error(error))
+      .finally(() => {
+        button.classList.remove('loading');
+        button.removeAttribute('aria-disabled');
+      });
   });
 </script>
 
