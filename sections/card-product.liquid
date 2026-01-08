@@ -26,11 +26,18 @@
                   <div class="price">{{ product.price | money }}</div>
 
                   <form class="custom-atc-form">
-                    <select name="id">
-                      {% for variant in product.variants %}
-                        <option value="{{ variant.id }}">{{ variant.title }}</option>
-                      {% endfor %}
-                    </select>
+                    {%- if product.variants.size > 1 -%}
+                      <select name="id">
+                        {% for variant in product.variants %}
+                          <option value="{{ variant.id }}">
+                            {{ variant.title }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    {%- else -%}
+                      <!-- Single variant product -->
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    {%- endif -%}
 
                     <input type="number" name="quantity" value="1" min="1">
 
