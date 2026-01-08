@@ -65,25 +65,25 @@
         quantity: quantity,
       }),
     })
-      .then((res) => {
-        if (!res.ok) throw new Error('Add failed');
-        return res.json();
+      .then(() => {
+        /* 🔥 FETCH UPDATED CART DRAWER HTML */
+        return fetch('/?sections=cart-drawer');
       })
-      .then(() => fetch('/cart.js'))
       .then((res) => res.json())
-      .then((cart) => {
-        /* 🔥 OPEN CART DRAWER — REAL METHOD */
+      .then((sections) => {
         const cartDrawer = document.querySelector('cart-drawer');
-        if (cartDrawer) {
+        if (!cartDrawer) return;
+
+        const parser = new DOMParser();
+        const html = parser.parseFromString(sections['cart-drawer'], 'text/html');
+
+        const newDrawer = html.querySelector('cart-drawer');
+        if (newDrawer) {
+          cartDrawer.innerHTML = newDrawer.innerHTML;
           cartDrawer.open();
-        } else {
-          /* fallback */
-          window.location.href = '/cart';
         }
       })
-      .catch((err) => {
-        console.error('ATC error:', err);
-      })
+      .catch((err) => console.error('ATC error:', err))
       .finally(() => {
         btn.disabled = false;
       });
