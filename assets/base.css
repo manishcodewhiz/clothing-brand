@@ -4013,3 +4013,22 @@ button::after {
   font-family: var(--font-family-runddisplay-semibold);
   margin-top: 0.6rem;
 }
+
+
+
+/* Example CSS for a custom button */
+.custom-add-to-cart-btn {
+  background-color: #ff0000; /* Custom color */
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  text-transform: uppercase;
+  /* Add hover effects, margins, etc. as needed */
+}
+
+.custom-add-to-cart-btn:hover {
+  background-color: #cc0000; /* Darker color on hover */
+}
