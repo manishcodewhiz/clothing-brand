@@ -24,19 +24,14 @@
                 <div class="product_content">
                   <h3>{{ product.title }}</h3>
                   <div class="price">{{ product.price | money }}</div>
-
-                  <form method="post" action="/cart/add" id="custom-product-form-{{ product.id }}">
-                    <!-- Hidden input for the product variant ID -->
-                    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-
-                    <!-- Optional: Quantity selector -->
-                    <input min="1" type="number" id="quantity" name="quantity" value="1"/>
-
-                    <!-- Your custom button -->
-                    <button type="submit" name="add" class="custom-add-to-cart-btn">
-                      Add to Cart
-                    </button>
-                  </form>
+                  
+                <form method="post" action="/cart/add" id="custom-product-form-{{ product.id }}">
+                  <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                  <input min="1" type="number" id="quantity" name="quantity" value="1"/>
+                  <button type="submit" name="add" class="custom-add-to-cart-btn">
+                    Add to Cart
+                  </button>
+                </form>
                 </div>
               </div>
             </div>
