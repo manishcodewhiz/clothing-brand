@@ -26,30 +26,15 @@
                   <div class="price">{{ product.price | money }}</div>
 
                   <form class="custom-atc-form">
-                    {% comment %} {% if product.has_only_default_variant == false %}
-                      <div class="variant-wrapper" data-product="{{ product | json }}">
-                        {% for option in product.options_with_values %}
-                          <select
-                            class="variant-select"
-                            data-option-position="{{ option.position }}"
-                          >
-                            {% for value in option.values %}
-                              <option value="{{ value }}">{{ value }}</option>
-                            {% endfor %}
-                          </select>
-                        {% endfor %}
-                      </div>
-                    {% endif %} {% endcomment %}
+                    
 
-                    <!-- ALWAYS REQUIRED -->
-                    {% comment %} <input
+                     {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+                     <input
                       type="hidden"
                       name="id"
                       class="selected-variant-id"
                       value="{{ product.selected_or_first_available_variant.id }}"
-                    > {% endcomment %}
-
-                     {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+                    >
 
                     <input type="number" name="quantity" value="1" min="1">
 
