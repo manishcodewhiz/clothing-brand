@@ -46,6 +46,52 @@
   </div>
 </div>
 
+{% comment %}
+  <script>
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest('.custom-atc-btn');
+      if (!btn) return;
+
+      const form = btn.closest('.custom-atc-form');
+      const variantId = form.querySelector('[name="id"]').value;
+      const quantity = form.querySelector('[name="quantity"]').value;
+
+      btn.disabled = true;
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: variantId,
+          quantity: quantity,
+        }),
+      })
+        .then(() => {
+          /* 🔥 FETCH UPDATED CART DRAWER HTML */
+          return fetch('/?sections=cart-drawer');
+        })
+        .then((res) => res.json())
+        .then((sections) => {
+          const cartDrawer = document.querySelector('cart-drawer');
+          if (!cartDrawer) return;
+
+          const parser = new DOMParser();
+          const html = parser.parseFromString(sections['cart-drawer'], 'text/html');
+
+          const newDrawer = html.querySelector('cart-drawer');
+          if (newDrawer) {
+            cartDrawer.innerHTML = newDrawer.innerHTML;
+            cartDrawer.open();
+          }
+        })
+        .catch((err) => console.error('ATC error:', err))
+        .finally(() => {
+          btn.disabled = false;
+        });
+    });
+  </script>
+{% endcomment %}
+
 <script>
   document.addEventListener('click', function (e) {
     const btn = e.target.closest('.custom-atc-btn');
@@ -65,22 +111,28 @@
         quantity: quantity,
       }),
     })
-      .then(() => {
-        /* 🔥 FETCH UPDATED CART DRAWER HTML */
-        return fetch('/?sections=cart-drawer');
-      })
+      .then(() => fetch('/?sections=cart-drawer'))
       .then((res) => res.json())
       .then((sections) => {
-        const cartDrawer = document.querySelector('cart-drawer');
-        if (!cartDrawer) return;
+        const html = sections['cart-drawer'];
+        if (!html) return;
 
         const parser = new DOMParser();
-        const html = parser.parseFromString(sections['cart-drawer'], 'text/html');
+        const doc = parser.parseFromString(html, 'text/html');
 
-        const newDrawer = html.querySelector('cart-drawer');
-        if (newDrawer) {
-          cartDrawer.innerHTML = newDrawer.innerHTML;
-          cartDrawer.open();
+        const newDrawer = doc.querySelector('cart-drawer');
+        const oldDrawer = document.querySelector('cart-drawer');
+
+        /* 🔥 EMPTY CART FIX */
+        if (!oldDrawer && newDrawer) {
+          document.body.appendChild(newDrawer);
+          newDrawer.open();
+          return;
+        }
+
+        if (oldDrawer && newDrawer) {
+          oldDrawer.replaceWith(newDrawer);
+          newDrawer.open();
         }
       })
       .catch((err) => console.error('ATC error:', err))
