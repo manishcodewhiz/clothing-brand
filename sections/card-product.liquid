@@ -27,22 +27,25 @@
 
                   <form class="custom-atc-form">
                     {% if product.has_only_default_variant == false %}
-                      {% for option in product.options_with_values %}
-                        <select
-                          class="variant-select"
-                          data-option-position="{{ option.position }}"
-                        >
-                          {% for value in option.values %}
-                            <option value="{{ value }}">{{ value }}</option>
-                          {% endfor %}
-                        </select>
-                      {% endfor %}
+                      <div class="variant-wrapper" data-product="{{ product | json }}">
+                        {% for option in product.options_with_values %}
+                          <select
+                            class="variant-select"
+                            data-option-position="{{ option.position }}"
+                          >
+                            {% for value in option.values %}
+                              <option value="{{ value }}">{{ value }}</option>
+                            {% endfor %}
+                          </select>
+                        {% endfor %}
+                      </div>
                     {% endif %}
 
                     <!-- ALWAYS REQUIRED -->
                     <input
                       type="hidden"
                       name="id"
+                      class="selected-variant-id"
                       value="{{ product.selected_or_first_available_variant.id }}"
                     >
 
@@ -205,6 +208,29 @@
       })
       .catch((err) => console.error('Cart count error:', err));
   }
+
+  document.addEventListener('change', function (e) {
+    if (!e.target.classList.contains('variant-select')) return;
+
+    const wrapper = e.target.closest('.variant-wrapper');
+    const productData = JSON.parse(wrapper.dataset.product);
+
+    let selectedOptions = [];
+
+    wrapper.querySelectorAll('.variant-select').forEach((select) => {
+      selectedOptions.push(select.value);
+    });
+
+    const matchedVariant = productData.variants.find((variant) => {
+      return variant.options.every((option, index) => {
+        return option === selectedOptions[index];
+      });
+    });
+
+    if (matchedVariant) {
+      document.querySelector('.selected-variant-id').value = matchedVariant.id;
+    }
+  });
 </script>
 
 {% schema %}
