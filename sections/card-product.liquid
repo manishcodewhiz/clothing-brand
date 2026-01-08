@@ -40,7 +40,7 @@
 </div>
 
 <script>
-  document.addEventListener('submit', async (e) => {
+  document.addEventListener('submit', async function (e) {
     const form = e.target.closest('.custom-atc-form');
     if (!form) return;
 
@@ -48,6 +48,7 @@
 
     const variantId = form.querySelector('[name="id"]').value;
 
+    // 1️⃣ ADD PRODUCT
     await fetch('/cart/add.js', {
       method: 'POST',
       headers: {
@@ -60,29 +61,30 @@
       }),
     });
 
-    /*
-   🔥 THIS IS THE KEY PART
-   This mimics Shopify native behavior
-  */
+    // 2️⃣ FETCH CART DRAWER SECTIONS (THIS WAS MISSING)
+    const sections = document.querySelector('cart-drawer')?.getSectionsToRender?.();
 
-    // 1. Re-render cart sections (drawer)
-    if (window.Shopify && Shopify.theme && Shopify.theme.cartDrawer) {
-      Shopify.theme.cartDrawer.renderContents();
-      Shopify.theme.cartDrawer.open();
+    if (!sections) {
+      console.error('Cart drawer not found');
       return;
     }
 
-    // 2. Dawn / OS 2.0 fallback
-    const cartDrawer = document.querySelector('cart-drawer');
-    if (cartDrawer) {
-      cartDrawer.renderContents();
-      cartDrawer.open();
-      return;
-    }
+    const sectionIds = sections.map((section) => section.id).join(',');
 
-    // 3. Final fallback
-    document.dispatchEvent(new CustomEvent('cart:refresh'));
-    document.dispatchEvent(new CustomEvent('cart:open'));
+    const response = await fetch(`/cart?sections=${sectionIds}`);
+    const cartSections = await response.json();
+
+    // 3️⃣ RENDER DRAWER CONTENTS
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id);
+      if (!element) return;
+
+      element.innerHTML = cartSections[section.id].replace(new RegExp(`^<div[^>]*>|</div>$`, 'g'), '');
+    });
+
+    // 4️⃣ OPEN CART DRAWER
+    const drawer = document.querySelector('cart-drawer');
+    if (drawer) drawer.open();
   });
 </script>
 
