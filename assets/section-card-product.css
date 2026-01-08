@@ -21,3 +21,7 @@
   width: 100%;
   height: auto;
 }
+
+.quantity_input{
+  display: none;
+}
