@@ -25,19 +25,25 @@
                   <h3>{{ product.title }}</h3>
                   <div class="price">{{ product.price | money }}</div>
 
-                  <form id="add-to-cart-form">
-                    <label for="variant-{{ product.id }}">Choose an option:</label>
-                    <select name="id" id="variant-{{ product.id }}">
+                  <form id="add-to-cart-form-{{ product.id }}">
+                    <label>Choose an option:</label>
+                    <select name="id">
                       {% for variant in product.variants %}
                         <option value="{{ variant.id }}">{{ variant.title }}</option>
                       {% endfor %}
                     </select>
-                    <label for="quantity-{{ product.id }}">Quantity:</label>
-                    <input type="number" name="quantity" id="quantity-{{ product.id }}" value="1" min="1">
-                    <button type="button" id="add-to-cart-button" class="button">Add to Cart</button>
-                  </form>
 
-                  <div id="cart-feedback" style="display: none;">Product added to cart!</div>
+                    <label>Quantity:</label>
+                    <input type="number" name="quantity" value="1" min="1">
+
+                    <button
+                      type="button"
+                      class="button add-to-cart-button"
+                      data-product-id="{{ product.id }}"
+                    >
+                      Add to Cart
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -49,38 +55,50 @@
 </div>
 
 <script>
-  document.getElementById('add-to-cart-button').addEventListener('click', function () {
-    const form = document.getElementById('add-to-cart-form');
-    const variantId = form.querySelector('select[name="id"]').value;
-    const quantity = form.querySelector('input[name="quantity"]').value;
-    const formData = {
-      id: variantId,
-      quantity: quantity,
-    };
+  document.addEventListener('click', function (e) {
+    const button = e.target.closest('.add-to-cart-button');
+    if (!button) return;
+
+    const form = button.closest('form');
+    const variantId = form.querySelector('[name="id"]').value;
+    const quantity = form.querySelector('[name="quantity"]').value;
+
     fetch('/cart/add.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        id: variantId,
+        quantity: quantity,
+      }),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to add to cart');
+      .then((response) => response.json())
+      .then(() => {
+        // Get updated cart
+        return fetch('/cart.js');
+      })
+      .then((response) => response.json())
+      .then((cart) => {
+        // 🔥 OPEN CART DRAWER (DAWN / OS 2.0)
+        document.dispatchEvent(
+          new CustomEvent('cart:refresh', {
+            bubbles: true,
+          })
+        );
+
+        document.dispatchEvent(
+          new CustomEvent('cart:open', {
+            bubbles: true,
+          })
+        );
+
+        // Fallback (important)
+        if (window.Shopify && Shopify.theme && Shopify.theme.cartDrawer) {
+          Shopify.theme.cartDrawer.open();
         }
-        return response.json();
       })
-      .then((data) => {
-        console.log('Product added to cart:', data);
-        document.getElementById('cart-feedback').style.display = 'block';
-        setTimeout(() => {
-          document.getElementById('cart-feedback').style.display = 'none';
-        }, 3000);
-      })
-      .catch((error) => {
-        console.error('Error adding product to cart:', error);
-      });
+      .catch((error) => console.error('ATC error:', error));
   });
 </script>
 
