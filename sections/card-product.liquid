@@ -108,7 +108,7 @@
 
 <script>
   /* =========================
-     ADD TO CART (UNCHANGED)
+     ADD TO CART (FIXED, LOGIC SAME)
   ========================= */
   document.addEventListener('click', function (e) {
     const btn = e.target.closest('.custom-atc-btn');
@@ -119,8 +119,10 @@
 
     const variantInput = form.querySelector('[name="id"]');
     const qtyInput = form.querySelector('[name="quantity"]');
-
     if (!variantInput || !qtyInput) return;
+
+    /* 🔥 ENSURE CORRECT VARIANT BEFORE ADD */
+    updateVariantId(form);
 
     const variantId = variantInput.value;
     const quantity = qtyInput.value;
@@ -147,7 +149,6 @@
         const newDrawer = doc.querySelector('cart-drawer');
         const oldDrawer = document.querySelector('cart-drawer');
 
-        /* 🔥 EMPTY CART + NORMAL CART FIX */
         if (!oldDrawer && newDrawer) {
           document.body.appendChild(newDrawer);
           newDrawer.open();
@@ -167,7 +168,7 @@
 
 
   /* =========================
-     VARIANT CHANGE LOGIC
+     VARIANT CHANGE + FORCE UPDATE
   ========================= */
   document.addEventListener('change', function (e) {
     const select = e.target.closest('.variant-select');
@@ -176,18 +177,27 @@
     const form = select.closest('.custom-atc-form');
     if (!form) return;
 
+    updateVariantId(form);
+  });
+
+
+  /* =========================
+     SHARED VARIANT FUNCTION
+  ========================= */
+  function updateVariantId(form) {
     const hiddenInput = form.querySelector('[name="id"]');
     if (!hiddenInput) return;
 
-    /* option position ke hisaab se values set karo */
+    const selects = form.querySelectorAll('.variant-select');
+    if (!selects.length) return;
+
     const selectedOptions = [];
 
-    form.querySelectorAll('.variant-select').forEach(el => {
+    selects.forEach(el => {
       const position = parseInt(el.dataset.optionPosition, 10) - 1;
       selectedOptions[position] = el.value;
     });
 
-    /* 🔥 product variants */
     const variants = {{ product.variants | json }};
 
     const matchedVariant = variants.find(variant =>
@@ -197,7 +207,7 @@
     if (matchedVariant) {
       hiddenInput.value = matchedVariant.id;
     }
-  });
+  }
 </script>
 
 {% schema %}
