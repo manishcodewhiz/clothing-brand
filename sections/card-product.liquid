@@ -26,23 +26,38 @@
                   <div class="price">{{ product.price | money }}</div>
 
                   <form class="custom-atc-form">
-                    {%- if product.variants.size > 1 -%}
-                      <select name="id">
-                        {% for variant in product.variants %}
-                          <option value="{{ variant.id }}">
-                            {{ variant.title }}
-                          </option>
-                        {% endfor %}
-                      </select>
-                    {%- else -%}
-                      <!-- Single variant product -->
-                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    {%- endif -%}
+                    {% for option in product.options_with_values %}
+                      <div class="variant-option">
+                        <label>{{ option.name }}</label>
 
-                    <input type="number" name="quantity" value="1" min="1" class="quantity_input">
+                        <select
+                          name="options[{{ option.name }}]"
+                          data-option-position="{{ option.position }}"
+                          class="variant-select"
+                        >
+                          {% for value in option.values %}
+                            <option value="{{ value }}">
+                              {{ value }}
+                            </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    {% endfor %}
+
+                    <!-- REAL VARIANT ID (auto update hoga) -->
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="{{ product.selected_or_first_available_variant.id }}"
+                    >
+
+                    <input type="number" name="quantity" value="1" min="1">
 
                     <button type="button" class="custom-atc-btn">Add to Cart</button>
                   </form>
+
+
+                  
                 </div>
               </div>
             </div>
