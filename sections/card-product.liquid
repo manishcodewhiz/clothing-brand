@@ -23,25 +23,10 @@
                   <h3>{{ product.title }}</h3>
                   <div class="price">{{ product.price | money }}</div>
 
-                  <form class="custom-atc-form" data-product-form>
-                    <input
-                      type="hidden"
-                      name="id"
-                      value="{{ product.selected_or_first_available_variant.id }}"
-                    >
-
-                    <button
-                      type="submit"
-                      class="custom-atc-btn button button--primary"
-                      {% unless product.available %}
-                        disabled
-                      {% endunless %}
-                    >
-                      {% if product.available %}
-                        Add to cart
-                      {% else %}
-                        Sold out
-                      {% endif %}
+                  <form class="custom-atc-form">
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    <button type="submit" class="custom-atc-btn">
+                      Add to cart
                     </button>
                   </form>
                 </div>
