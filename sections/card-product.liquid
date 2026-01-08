@@ -108,7 +108,7 @@
 
 <script>
   /* =========================
-     ADD TO CART (FIXED, LOGIC SAME)
+     ADD TO CART (UNCHANGED)
   ========================= */
   document.addEventListener('click', function (e) {
     const btn = e.target.closest('.custom-atc-btn');
@@ -119,10 +119,8 @@
 
     const variantInput = form.querySelector('[name="id"]');
     const qtyInput = form.querySelector('[name="quantity"]');
-    if (!variantInput || !qtyInput) return;
 
-    /* 🔥 ENSURE CORRECT VARIANT BEFORE ADD */
-    updateVariantId(form);
+    if (!variantInput || !qtyInput) return;
 
     const variantId = variantInput.value;
     const quantity = qtyInput.value;
@@ -149,6 +147,7 @@
         const newDrawer = doc.querySelector('cart-drawer');
         const oldDrawer = document.querySelector('cart-drawer');
 
+        /* 🔥 EMPTY CART + NORMAL CART FIX */
         if (!oldDrawer && newDrawer) {
           document.body.appendChild(newDrawer);
           newDrawer.open();
@@ -165,49 +164,6 @@
         btn.disabled = false;
       });
   });
-
-
-  /* =========================
-     VARIANT CHANGE + FORCE UPDATE
-  ========================= */
-  document.addEventListener('change', function (e) {
-    const select = e.target.closest('.variant-select');
-    if (!select) return;
-
-    const form = select.closest('.custom-atc-form');
-    if (!form) return;
-
-    updateVariantId(form);
-  });
-
-
-  /* =========================
-     SHARED VARIANT FUNCTION
-  ========================= */
-  function updateVariantId(form) {
-    const hiddenInput = form.querySelector('[name="id"]');
-    if (!hiddenInput) return;
-
-    const selects = form.querySelectorAll('.variant-select');
-    if (!selects.length) return;
-
-    const selectedOptions = [];
-
-    selects.forEach(el => {
-      const position = parseInt(el.dataset.optionPosition, 10) - 1;
-      selectedOptions[position] = el.value;
-    });
-
-    const variants = {{ product.variants | json }};
-
-    const matchedVariant = variants.find(variant =>
-      variant.options.every((opt, index) => opt === selectedOptions[index])
-    );
-
-    if (matchedVariant) {
-      hiddenInput.value = matchedVariant.id;
-    }
-  }
 </script>
 
 {% schema %}
