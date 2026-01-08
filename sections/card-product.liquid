@@ -26,15 +26,20 @@
                   <div class="price">{{ product.price | money }}</div>
 
                   <form class="custom-atc-form">
-                    <div class="variant-wrapper" data-product="{{ product | json }}">
-                      {% for option in product.options_with_values %}
-                        <select class="variant-select" data-option-position="{{ option.position }}">
-                          {% for value in option.values %}
-                            <option value="{{ value }}">{{ value }}</option>
-                          {% endfor %}
-                        </select>
-                      {% endfor %}
-                    </div>
+                    {% if product.has_only_default_variant == false %}
+                      <div class="variant-wrapper" data-product="{{ product | json }}">
+                        {% for option in product.options_with_values %}
+                          <select
+                            class="variant-select"
+                            data-option-position="{{ option.position }}"
+                          >
+                            {% for value in option.values %}
+                              <option value="{{ value }}">{{ value }}</option>
+                            {% endfor %}
+                          </select>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
 
                     <!-- ALWAYS REQUIRED -->
                     <input
@@ -104,141 +109,7 @@
   </script>
 {% endcomment %}
 
-{% comment %}
-  <script>
-    /* =========================
-     ADD TO CART
-  ========================= */
-    document.addEventListener('click', function (e) {
-      const btn = e.target.closest('.custom-atc-btn');
-      if (!btn) return;
-
-      const form = btn.closest('.custom-atc-form');
-      if (!form) return;
-
-      const variantInput = form.querySelector('[name="id"]');
-      const qtyInput = form.querySelector('[name="quantity"]');
-
-      if (!variantInput || !qtyInput) return;
-
-      const variantId = variantInput.value;
-      const quantity = qtyInput.value;
-
-      btn.disabled = true;
-
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: variantId,
-          quantity: quantity,
-        }),
-      })
-        .then(() => fetch('/?sections=cart-drawer'))
-        .then((res) => res.json())
-        .then((sections) => {
-          const html = sections['cart-drawer'];
-          if (!html) return;
-
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-
-          const newDrawer = doc.querySelector('cart-drawer');
-          const oldDrawer = document.querySelector('cart-drawer');
-
-          /* EMPTY CART + NORMAL CART */
-          if (!oldDrawer && newDrawer) {
-            document.body.appendChild(newDrawer);
-            newDrawer.open();
-            updateCartCountBubble();
-            return;
-          }
-
-          if (oldDrawer && newDrawer) {
-            oldDrawer.replaceWith(newDrawer);
-            newDrawer.open();
-            updateCartCountBubble();
-          }
-        })
-        .catch((err) => console.error('ATC error:', err))
-        .finally(() => {
-          btn.disabled = false;
-        });
-    });
-
-    /* =========================
-     CART COUNT BUBBLE UPDATE
-  ========================= */
-    function updateCartCountBubble() {
-      fetch('/cart.js')
-        .then((res) => res.json())
-        .then((cart) => {
-          const count = cart.item_count;
-
-          const cartIcon = document.querySelector('.header__icon--cart') || document.querySelector('a[href="/cart"]');
-
-          if (!cartIcon) return;
-
-          let bubble = cartIcon.querySelector('.cart-count-bubble');
-
-          if (!bubble && count > 0) {
-            bubble = document.createElement('div');
-            bubble.className = 'cart-count-bubble';
-            bubble.innerHTML = `
-            <span aria-hidden="true">${count}</span>
-            <span class="visually-hidden">Cart (${count})</span>
-          `;
-            cartIcon.appendChild(bubble);
-            return;
-          }
-
-          if (bubble) {
-            if (count > 0) {
-              bubble.querySelector('[aria-hidden="true"]').textContent = count;
-              bubble.querySelector('.visually-hidden').textContent = `Cart (${count})`;
-              bubble.style.display = '';
-            } else {
-              bubble.remove();
-            }
-          }
-        })
-        .catch((err) => console.error('Cart count error:', err));
-    }
-  </script>
-{% endcomment %}
-
 <script>
-  /* =========================
-   VARIANT CHANGE
-========================= */
-  document.addEventListener('change', function (e) {
-    if (!e.target.classList.contains('variant-select')) return;
-
-    const wrapper = e.target.closest('.variant-wrapper');
-    if (!wrapper) return;
-
-    const productData = JSON.parse(wrapper.dataset.product);
-    const card = wrapper.closest('.product-card');
-    if (!card) return;
-
-    const form = card.querySelector('.custom-atc-form');
-    const variantInput = form.querySelector('[name="id"]');
-
-    let selectedOptions = [];
-
-    wrapper.querySelectorAll('.variant-select').forEach((select) => {
-      selectedOptions.push(select.value);
-    });
-
-    const matchedVariant = productData.variants.find((variant) =>
-      variant.options.every((opt, i) => opt === selectedOptions[i])
-    );
-
-    if (matchedVariant && variantInput) {
-      variantInput.value = matchedVariant.id;
-    }
-  });
-
   /* =========================
    ADD TO CART
 ========================= */
@@ -252,7 +123,10 @@
     const variantInput = form.querySelector('[name="id"]');
     const qtyInput = form.querySelector('[name="quantity"]');
 
-    if (!variantInput || !variantInput.value) return;
+    if (!variantInput || !qtyInput) return;
+
+    const variantId = variantInput.value;
+    const quantity = qtyInput.value;
 
     btn.disabled = true;
 
@@ -260,8 +134,8 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        id: variantInput.value,
-        quantity: qtyInput ? qtyInput.value : 1,
+        id: variantId,
+        quantity: quantity,
       }),
     })
       .then(() => fetch('/?sections=cart-drawer'))
@@ -270,21 +144,25 @@
         const html = sections['cart-drawer'];
         if (!html) return;
 
-        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
         const newDrawer = doc.querySelector('cart-drawer');
         const oldDrawer = document.querySelector('cart-drawer');
 
+        /* EMPTY CART + NORMAL CART */
         if (!oldDrawer && newDrawer) {
           document.body.appendChild(newDrawer);
           newDrawer.open();
+          updateCartCountBubble();
+          return;
         }
 
         if (oldDrawer && newDrawer) {
           oldDrawer.replaceWith(newDrawer);
           newDrawer.open();
+          updateCartCountBubble();
         }
-
-        updateCartCountBubble();
       })
       .catch((err) => console.error('ATC error:', err))
       .finally(() => {
@@ -293,13 +171,14 @@
   });
 
   /* =========================
-   CART COUNT UPDATE
+   CART COUNT BUBBLE UPDATE
 ========================= */
   function updateCartCountBubble() {
     fetch('/cart.js')
       .then((res) => res.json())
       .then((cart) => {
         const count = cart.item_count;
+
         const cartIcon = document.querySelector('.header__icon--cart') || document.querySelector('a[href="/cart"]');
 
         if (!cartIcon) return;
@@ -314,18 +193,22 @@
           <span class="visually-hidden">Cart (${count})</span>
         `;
           cartIcon.appendChild(bubble);
+          return;
         }
 
         if (bubble) {
           if (count > 0) {
             bubble.querySelector('[aria-hidden="true"]').textContent = count;
             bubble.querySelector('.visually-hidden').textContent = `Cart (${count})`;
+            bubble.style.display = '';
           } else {
             bubble.remove();
           }
         }
-      });
+      })
+      .catch((err) => console.error('Cart count error:', err));
   }
+  
 </script>
 
 {% schema %}
