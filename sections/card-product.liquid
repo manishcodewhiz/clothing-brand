@@ -106,105 +106,9 @@
   </script>
 {% endcomment %}
 
-{% comment %}
-  <script>
-    /* =========================
-       ADD TO CART (UNCHANGED)
-    ========================= */
-    document.addEventListener('click', function (e) {
-      const btn = e.target.closest('.custom-atc-btn');
-      if (!btn) return;
-
-      const form = btn.closest('.custom-atc-form');
-      if (!form) return;
-
-      const variantInput = form.querySelector('[name="id"]');
-      const qtyInput = form.querySelector('[name="quantity"]');
-
-      if (!variantInput || !qtyInput) return;
-
-      const variantId = variantInput.value;
-      const quantity = qtyInput.value;
-
-      btn.disabled = true;
-
-      fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: variantId,
-          quantity: quantity
-        })
-      })
-        .then(() => fetch('/?sections=cart-drawer'))
-        .then(res => res.json())
-        .then(sections => {
-          const html = sections['cart-drawer'];
-          if (!html) return;
-
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-
-          const newDrawer = doc.querySelector('cart-drawer');
-          const oldDrawer = document.querySelector('cart-drawer');
-
-          /* 🔥 EMPTY CART + NORMAL CART FIX */
-          if (!oldDrawer && newDrawer) {
-            document.body.appendChild(newDrawer);
-            newDrawer.open();
-            return;
-          }
-
-          if (oldDrawer && newDrawer) {
-            oldDrawer.replaceWith(newDrawer);
-            newDrawer.open();
-          }
-        })
-        .catch(err => console.error('ATC error:', err))
-        .finally(() => {
-          btn.disabled = false;
-        });
-    });
-
-
-    /* =========================
-       VARIANT CHANGE LOGIC
-    ========================= */
-    document.addEventListener('change', function (e) {
-      const select = e.target.closest('.variant-select');
-      if (!select) return;
-
-      const form = select.closest('.custom-atc-form');
-      if (!form) return;
-
-      const hiddenInput = form.querySelector('[name="id"]');
-      if (!hiddenInput) return;
-
-      /* option position ke hisaab se values set karo */
-      const selectedOptions = [];
-
-      form.querySelectorAll('.variant-select').forEach(el => {
-        const position = parseInt(el.dataset.optionPosition, 10) - 1;
-        selectedOptions[position] = el.value;
-      });
-
-      /* 🔥 product variants */
-      const variants = {{ product.variants | json }};
-
-      const matchedVariant = variants.find(variant =>
-        variant.options.every((opt, index) => opt === selectedOptions[index])
-      );
-
-      if (matchedVariant) {
-        hiddenInput.value = matchedVariant.id;
-      }
-    });
-  </script>
-{% endcomment %}
-
 <script>
   /* =========================
-     ADD TO CART LOGIC
+     ADD TO CART (UNCHANGED)
   ========================= */
   document.addEventListener('click', function (e) {
     const btn = e.target.closest('.custom-atc-btn');
@@ -247,14 +151,12 @@
         if (!oldDrawer && newDrawer) {
           document.body.appendChild(newDrawer);
           newDrawer.open();
-          modifyCartDrawerOptions(newDrawer);
           return;
         }
 
         if (oldDrawer && newDrawer) {
           oldDrawer.replaceWith(newDrawer);
           newDrawer.open();
-          modifyCartDrawerOptions(newDrawer);
         }
       })
       .catch(err => console.error('ATC error:', err))
@@ -265,7 +167,7 @@
 
 
   /* =========================
-     VARIANT SELECTION LOGIC
+     VARIANT CHANGE LOGIC
   ========================= */
   document.addEventListener('change', function (e) {
     const select = e.target.closest('.variant-select');
@@ -277,14 +179,15 @@
     const hiddenInput = form.querySelector('[name="id"]');
     if (!hiddenInput) return;
 
-    /* store selected options by option position */
+    /* option position ke hisaab se values set karo */
     const selectedOptions = [];
+
     form.querySelectorAll('.variant-select').forEach(el => {
       const position = parseInt(el.dataset.optionPosition, 10) - 1;
       selectedOptions[position] = el.value;
     });
 
-    /* get product variants */
+    /* 🔥 product variants */
     const variants = {{ product.variants | json }};
 
     const matchedVariant = variants.find(variant =>
@@ -295,36 +198,6 @@
       hiddenInput.value = matchedVariant.id;
     }
   });
-
-
-  /* =========================
-     MODIFY CART DRAWER DISPLAY
-  ========================= */
-  function modifyCartDrawerOptions(drawer) {
-    if (!drawer) return;
-
-    // Option names (Color, Size, etc.)
-    const optionNames = {{ product.options | json }};
-
-    const allItems = drawer.querySelectorAll('.cart-item__title');
-    allItems.forEach(item => {
-      const variantTitle = item.textContent.trim(); // e.g., "Red / M"
-      if (!variantTitle.includes('/')) return;
-
-      const parts = variantTitle.split(' / '); // ["Red", "M"]
-      item.textContent = ''; // remove combined text
-
-      // Add separate spans
-      parts.forEach((part, i) => {
-        const span = document.createElement('span');
-        span.className = 'cart-item__option';
-        span.textContent = optionNames[i] ? optionNames[i] + ': ' + part : part;
-        item.appendChild(span);
-
-        if (i < parts.length - 1) item.appendChild(document.createElement('br'));
-      });
-    });
-  }
 </script>
 
 {% schema %}
