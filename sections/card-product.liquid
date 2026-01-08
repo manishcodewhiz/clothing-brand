@@ -26,20 +26,15 @@
                   <div class="price">{{ product.price | money }}</div>
 
                   <form class="custom-atc-form">
-                    {% if product.has_only_default_variant == false %}
-                      <div class="variant-wrapper" data-product="{{ product | json }}">
-                        {% for option in product.options_with_values %}
-                          <select
-                            class="variant-select"
-                            data-option-position="{{ option.position }}"
-                          >
-                            {% for value in option.values %}
-                              <option value="{{ value }}">{{ value }}</option>
-                            {% endfor %}
-                          </select>
-                        {% endfor %}
-                      </div>
-                    {% endif %}
+                  <div class="variant-wrapper" data-product='{{ product | json }}'>
+                      {% for option in product.options_with_values %}
+                        <select class="variant-select" data-option-position="{{ option.position }}">
+                          {% for value in option.values %}
+                            <option value="{{ value }}">{{ value }}</option>
+                          {% endfor %}
+                        </select>
+                      {% endfor %}
+                    </div>
 
                     <!-- ALWAYS REQUIRED -->
                     <input
