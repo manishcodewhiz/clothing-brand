@@ -66,6 +66,10 @@
             "share_label": "Share"
           }
         },
+        "recharge_subscriptions_subscription_widget_v2_3zw6QU": {
+          "type": "shopify://apps/recharge-subscriptions/blocks/subscription-widget-v2/371eed76-0b44-4869-9813-730372ea378e",
+          "settings": {}
+        },
         "judge_me_reviews_preview_badge_9J7NTj": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "disabled": true,
@@ -130,6 +134,7 @@
         "buy_buttons",
         "collapsible_tab_jVx7HV",
         "share",
+        "recharge_subscriptions_subscription_widget_v2_3zw6QU",
         "judge_me_reviews_preview_badge_9J7NTj",
         "popup_b39c9m",
         "wishlist_hero_custom_product_button_LrRiRf",
