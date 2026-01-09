@@ -264,6 +264,29 @@
         "type": "shopify://apps/recharge-subscriptions/blocks/storefront-experiences/371eed76-0b44-4869-9813-730372ea378e",
         "disabled": false,
         "settings": {}
+      },
+      "17627155365306921321": {
+        "type": "shopify://apps/kickflip/blocks/kickflip-product-embed/852f7399-e025-496f-91ce-94176f54ae8c",
+        "disabled": false,
+        "settings": {
+          "integration_type": "customize_button",
+          "customize_button_text": "Customize",
+          "modal_width": 85,
+          "modal_height": 85,
+          "corner_radius": 0,
+          "close_button_color": "#FFFFFF",
+          "customize_button_class": "",
+          "customizer_height": 80,
+          "customizer_horizontal_padding": 0,
+          "customizer_vertical_padding": 0,
+          "advanced_mode": false,
+          "add_button_selector": "",
+          "customizer_only_selector": "",
+          "hide_selectors": "",
+          "cart_advanced_mode": false,
+          "cart_main_container_selector": "",
+          "cart_other_container_selectors": ""
+        }
       }
     },
     "color_schemes": {
