@@ -96,13 +96,13 @@
             "enabled_mega_menu": true
           }
         },
-        "brand_product_menu_aBm9RC": {
-          "type": "Brand-product-menu",
+        "collection_list_wTmtbA": {
+          "type": "collection_list",
           "settings": {
             "title": "Graphics",
-            "collection_list_heading": "Color Menu",
-            "secondary_menu": "color-menu",
-            "buttons": "button"
+            "collection_list": [
+              "kawasaki"
+            ]
           }
         }
       },
@@ -112,7 +112,7 @@
         "collection_list_NgrNqE",
         "product_list_bN6Qph",
         "mega_menu_DVM7Jd",
-        "brand_product_menu_aBm9RC"
+        "collection_list_wTmtbA"
       ],
       "settings": {
         "logo_position": "middle-left",
