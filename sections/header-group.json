@@ -95,6 +95,15 @@
             "title": "Graphics",
             "enabled_mega_menu": true
           }
+        },
+        "brand_product_menu_kfntLB": {
+          "type": "Brand-product-menu",
+          "settings": {
+            "title": "Graphics",
+            "collection_list_heading": "collection",
+            "secondary_menu": "collection-menu",
+            "buttons": "button"
+          }
         }
       },
       "block_order": [
@@ -102,7 +111,8 @@
         "brand_product_menu_NR4cHL",
         "collection_list_NgrNqE",
         "product_list_bN6Qph",
-        "menu_3bXiUc"
+        "menu_3bXiUc",
+        "brand_product_menu_kfntLB"
       ],
       "settings": {
         "logo_position": "middle-left",
