@@ -57,10 +57,10 @@ body.gradient.menu-box:before {
     display: none;
  }
  .section-header .header .main-menu-block .first-level-menu_items{
-    display: none !important;
+    display: none ;
  }
  .section-header .header .main-menu-block .first-level-menu_items.show-menu{
-    display: flex !important; 
+    display: flex ; 
  }
 
 .section-header .header .nav-menu-dropdown {
