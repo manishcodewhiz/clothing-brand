@@ -88,13 +88,21 @@
             ],
             "buttons": "button"
           }
+        },
+        "mega_menu_DVM7Jd": {
+          "type": "mega-menu",
+          "settings": {
+            "title": "Graphics",
+            "enabled_mega_menu": true
+          }
         }
       },
       "block_order": [
         "mega_menu_XmMiJL",
         "brand_product_menu_NR4cHL",
         "collection_list_NgrNqE",
-        "product_list_bN6Qph"
+        "product_list_bN6Qph",
+        "mega_menu_DVM7Jd"
       ],
       "settings": {
         "logo_position": "middle-left",
