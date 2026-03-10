@@ -46,8 +46,8 @@
     "header": {
       "type": "header",
       "blocks": {
-        "menu_FdP8Ti": {
-          "type": "menu",
+        "mega_menu_XmMiJL": {
+          "type": "mega-menu",
           "settings": {
             "title": "Shop",
             "enabled_mega_menu": true
@@ -88,21 +88,13 @@
             ],
             "buttons": "button"
           }
-        },
-        "menu_3bXiUc": {
-          "type": "menu",
-          "settings": {
-            "title": "Graphics",
-            "enabled_mega_menu": true
-          }
         }
       },
       "block_order": [
-        "menu_FdP8Ti",
+        "mega_menu_XmMiJL",
         "brand_product_menu_NR4cHL",
         "collection_list_NgrNqE",
-        "product_list_bN6Qph",
-        "menu_3bXiUc"
+        "product_list_bN6Qph"
       ],
       "settings": {
         "logo_position": "middle-left",
