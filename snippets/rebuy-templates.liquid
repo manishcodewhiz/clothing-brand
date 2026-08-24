@@ -66,7 +66,7 @@
                     rel="nofollow"
                   >
                     <div class="rebuy-image-wrapper">
-                       {% render 'wishlisthero-collection-product' with product: card_product %}
+                       {% render 'wishlisthero-collection-product' with product, product: card_product %}
                       <img
                         class="primary-image"
                         v-bind:loading="product_index > 1 ? 'lazy' : 'eager'"
@@ -312,3 +312,14 @@
         </div>
       </div>
 </script>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'wishlisthero-collection-product' with product: card_product %}"
+  to: "{% render 'wishlisthero-collection-product' with product, product: card_product
+    %}"
+  position: 3251..3333
+{% endcomment %}

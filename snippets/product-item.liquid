@@ -1,5 +1,5 @@
 <div class="product-card cstm-product-card" product-id="{{ product.selected_or_first_available_variant.id }}">
-  {% render 'wishlisthero-collection-product' with product: product %}
+  {% render 'wishlisthero-collection-product' with product, product: product %}
   {% assign product_sku_last_character = product.selected_or_first_available_variant.sku | slice: -1, 1 %}
   {% assign show_price = true %}
   {% assign show_atc = true %}
@@ -194,3 +194,14 @@
   {% endif %}
 </form>
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'wishlisthero-collection-product' with product: product %}"
+  to: "{% render 'wishlisthero-collection-product' with product, product: product
+    %}"
+  position: 113..190
+{% endcomment %}

@@ -55,7 +55,7 @@
     >
       <div class="card__media">
 
-      {% render 'wishlisthero-collection-product' with product: card_product %}
+      {% render 'wishlisthero-collection-product' with product, product: card_product %}
 
     </div>
       <div
@@ -657,3 +657,14 @@
     </div>
   </div>
 {%- endif -%}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'wishlisthero-collection-product' with product: card_product %}"
+  to: "{% render 'wishlisthero-collection-product' with product, product: card_product
+    %}"
+  position: 3071..3153
+{% endcomment %}
